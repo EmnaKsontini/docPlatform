@@ -1,0 +1,153 @@
+$navbar-height: 60px;
+$sidebar-width: 260px;
+
+$bg-color2: #2a2c2b;
+$bg-color: #e2e2e2;
+$navbar-bg-color2: #191a1d;
+$navbar-bg-color: #1c1e21;
+$navbar-bg-color1: #373c44;
+$primary-color: #ccc;
+$sidebar-bg-color2: #2f343b;
+$sidebar-bg-color: #2d3e50;
+$sidebar-color: #f1f6fc;
+.wrapper {
+    main {
+        margin: 0;
+        padding: 0;
+        height: 100%;
+        .sidebar {
+            background: rgba(0, 0, 0, 0.95);
+            box-shadow: 0 16px 38px -12px rgba(0, 0, 0, 0.56), 0 4px 25px 0px rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(0, 0, 0, 0.2);
+            float: right;
+            padding-bottom: 60px;
+            margin-bottom: -60px;
+            width: 260px;
+
+            > div {
+                border-bottom: 1px solid;
+                &:last-child {
+                    border-bottom: none;
+                }
+            }
+            .sidebar-profile {
+                .user-picture {
+                    width: 60px;
+                    height: 60px;
+                    border-radius: 50%;
+                    overflow: hidden;
+
+                    img {
+                        width: 100%;
+                        height: 100%;
+                        object-fit: cover;
+                        object-position: center;
+                    }
+                }
+
+                .profile-details {
+                    .name {
+                        font-size: 0.9rem;
+                        font-weight: 800;
+                    }
+
+                    .role {
+                        font-size: 0.7rem;
+                        letter-spacing: 2px;
+                        font-weight: 700;
+                    }
+                }
+            }
+
+            .sidebar-search {
+                display: none;
+            }
+
+            .sidebar-menu {
+                ul {
+                    list-style-type: none;
+                    margin: 0;
+                    padding: 0;
+
+                    li {
+                        display: block;
+
+                        a {
+                            text-decoration: none;
+                            display: flex;
+                            align-items: center;
+                            width: 100%;
+                            height: 55px;
+                            line-height: 55px;
+                            padding: 0 1.5rem;
+                            color: $sidebar-color;
+                            font-size: 0.75rem;
+                            text-transform: uppercase;
+                            letter-spacing: 1px;
+
+                            fa-icon {
+                                width: 35px;
+                                height: 35px;
+                                text-align: center;
+                                line-height: 35px;
+                                border-radius: 50%;
+                                border: 1px solid;
+                                font-size: 0.9rem;
+                            }
+
+                            span {
+                                color: inherit;
+                                margin-left: 1rem;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        @media (min-width: 768px) {
+            .sidebar {
+                position: static;
+                height: 100%;
+            }
+        }
+    }
+
+    &.pinned-sidebar {
+        @media (min-width: 768px) {
+            .sidebar {
+                width: 70px;
+
+                .sidebar-profile {
+                    .user-picture {
+                        width: 40px;
+                        height: 40px;
+                    }
+
+                    .profile-details {
+                        display: none;
+                    }
+                }
+                .sidebar-menu {
+                    ul a {
+                        padding: 0.5rem;
+                        justify-content: center;
+                        span {
+                            display: none;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    &.toggeled-sidebar {
+        main {
+            .overlay {
+                display: block;
+
+                @media (min-width: 768px) {
+                    display: none;
+                }
+            }
+        }
+    }
+}

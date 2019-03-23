@@ -6,6 +6,8 @@ import '../content/scss/vendor.scss';
 
 import { library } from '@fortawesome/fontawesome-svg-core';
 import {
+    faFileMedicalAlt,
+    faUserMd,
     faUser,
     faSort,
     faSortUp,
@@ -39,6 +41,7 @@ import {
     faTrashAlt,
     faAsterisk,
     faTasks,
+    faAppleAlt,
     faHome
 } from '@fortawesome/free-solid-svg-icons';
 
@@ -77,5 +80,8 @@ library.add(faCalendarAlt);
 library.add(faSearch);
 library.add(faTrashAlt);
 library.add(faAsterisk);
+library.add(faUserMd);
+library.add(faFileMedicalAlt);
+library.add(faAppleAlt);
 
 // jhipster-needle-add-element-to-vendor - JHipster will add new menu items here
