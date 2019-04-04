@@ -11,6 +11,7 @@ import { DoctorComponent } from './doctor.component';
 import { DoctorDetailComponent } from './doctor-detail.component';
 import { DoctorUpdateComponent } from './doctor-update.component';
 import { DoctorDeletePopupComponent } from './doctor-delete-dialog.component';
+import { MyDoctorsComponent } from 'app/entities/doctor/my-doctors.component';
 import { IDoctor } from 'app/shared/model/doctor.model';
 
 @Injectable({ providedIn: 'root' })
@@ -75,6 +76,19 @@ export const doctorRoute: Routes = [
         },
         data: {
             authorities: ['ROLE_USER'],
+            pageTitle: 'doctorsPlatformApp.doctor.home.title'
+        },
+        canActivate: [UserRouteAccessService]
+    },
+    {
+        path: 'MyDoctor',
+        component: MyDoctorsComponent,
+        resolve: {
+            pagingParams: JhiResolvePagingParams
+        },
+        data: {
+            authorities: ['ROLE_USER'],
+            defaultSort: 'id,asc',
             pageTitle: 'doctorsPlatformApp.doctor.home.title'
         },
         canActivate: [UserRouteAccessService]
