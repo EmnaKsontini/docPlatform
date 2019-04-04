@@ -1,0 +1,47 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="doctor">
+            <h2><span jhiTranslate="doctorsPlatformApp.doctor.detail.title">Doctor</span> {{doctor.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="doctorsPlatformApp.doctor.name">Name</span></dt>
+                <dd>
+                    <span>{{doctor.name}}</span>
+                </dd>
+                <dt><span jhiTranslate="doctorsPlatformApp.doctor.cin">Cin</span></dt>
+                <dd>
+                    <span>{{doctor.cin}}</span>
+                </dd>
+                <dt><span jhiTranslate="doctorsPlatformApp.doctor.address">Address</span></dt>
+                <dd>
+                    <span>{{doctor.address}}</span>
+                </dd>
+                <dt><span jhiTranslate="doctorsPlatformApp.doctor.speciality">Speciality</span></dt>
+                <dd>
+                    <span>{{doctor.speciality}}</span>
+                </dd>
+                <dt><span jhiTranslate="doctorsPlatformApp.doctor.email">Email</span></dt>
+                <dd>
+                    <span>{{doctor.email}}</span>
+                </dd>
+                <dt><span jhiTranslate="doctorsPlatformApp.doctor.phoneNumber">Phone Number</span></dt>
+                <dd>
+                    <span>{{doctor.phoneNumber}}</span>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/doctor', doctor.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>
