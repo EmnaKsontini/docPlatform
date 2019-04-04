@@ -33,19 +33,21 @@
                         <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
             </span>
-                    </a>
+                        </a>
                   <!--  <ul class="treeview-menu">
                         <li><a href="index.html"><i class="fa fa-circle-o"></i> Dashboard v1</a></li>
                         <li class="active"><a href="index2.html"><i class="fa fa-circle-o"></i> Dashboard v2</a></li>
                     </ul> -->
                 </li>
                 <li class="treeview">
-                    <a href="#">
+                    <a class="dropdown-item" routerLink="/doctor" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
                         <i class="fa fa-files-o"></i>
-                        <span>Layout Options</span>
+                        <span>Searsh Doctors</span>
                         <span class="pull-right-container">
                             <span class="label-primary label-reg">4</span>
                         </span>
+
+            </span>
                     </a>
                     <ul class="treeview-menu">
                         <li><a href="pages/layout/top-nav.html"><i class="fa fa-circle-o"></i> Top Navigation</a></li>
@@ -55,10 +57,10 @@
                     </ul>
                 </li>
                 <li>
-                    <a href="pages/widgets.html">
-                        <i class="fa fa-th"></i> <span>Widgets</span>
+                    <a>
+                        <i class="fa fa-th"></i> <span>My medical history </span>
                         <span class="pull-right-container">
-              <small class="label pull-right bg-green label-reg">new</small>
+              <small class="label pull-right bg-green">new</small>
             </span>
                     </a>
                 </li>
@@ -120,21 +122,20 @@
                     </ul>
                 </li>  -->
                 <li>
-                    <a href="pages/calendar.html">
-                        <i class="fa fa-calendar"></i> <span>Calendar</span>
+                    <a>
+                        <i class="fa fa-calendar"></i> <span>Appointments</span>
                         <span class="pull-right-container">
-              <small class="label pull-right bg-red label-reg">3</small>
-              <small class="label pull-right bg-blue label-reg">17</small>
+
             </span>
                     </a>
                 </li>
                 <li>
-                    <a href="pages/mailbox/mailbox.html">
-                        <i class="fa fa-envelope"></i> <span>Mailbox</span>
+                    <a>
+                        <i class="fa fa-envelope"></i> <span>Propositions</span>
                         <span class="pull-right-container">
-              <small class="label pull-right bg-yellow label-reg">12</small>
-              <small class="label pull-right bg-green label-reg">16</small>
-              <small class="label pull-right bg-red label-reg">5</small>
+              <small class="label pull-right bg-yellow">12</small>
+              <small class="label pull-right bg-green">16</small>
+
             </span>
                     </a>
                 </li>
@@ -145,17 +146,7 @@
               <i class="fa fa-angle-left pull-right"></i>
             </span>
                     </a>
-                    <ul class="treeview-menu">
-                        <li><a href="pages/examples/invoice.html"><i class="fa fa-circle-o"></i> Invoice</a></li>
-                        <li><a href="pages/examples/profile.html"><i class="fa fa-circle-o"></i> Profile</a></li>
-                        <li><a href="pages/examples/login.html"><i class="fa fa-circle-o"></i> Login</a></li>
-                        <li><a href="pages/examples/register.html"><i class="fa fa-circle-o"></i> Register</a></li>
-                        <li><a href="pages/examples/lockscreen.html"><i class="fa fa-circle-o"></i> Lockscreen</a></li>
-                        <li><a href="pages/examples/404.html"><i class="fa fa-circle-o"></i> 404 Error</a></li>
-                        <li><a href="pages/examples/500.html"><i class="fa fa-circle-o"></i> 500 Error</a></li>
-                        <li><a href="pages/examples/blank.html"><i class="fa fa-circle-o"></i> Blank Page</a></li>
-                        <li><a href="pages/examples/pace.html"><i class="fa fa-circle-o"></i> Pace Page</a></li>
-                    </ul>
+
                 </li>   <!--
                 <li class="treeview">
                     <a href="#">
