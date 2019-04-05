@@ -7,7 +7,7 @@
                     <img src="avatar.jpg" class="img-circle" alt="User Image">
                 </div>
                 <div class="pull-left info">
-                    <p>Bella Pierce</p>
+                    <p>Patient's Name</p>
                     <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
                 </div>
             </div>
@@ -27,8 +27,8 @@
             <ul class="sidebar-menu" data-widget="tree">
                 <li class="header">MAIN NAVIGATION</li>
                 <li class="active treeview menu-open">
-                    <a href="#">
-                        <i class="fa fa-dashboard"></i> <span>Dashboard</span>
+                    <a class="dropdown-item" routerLink="/doctor/MyDoctor" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
+                        <i class="fa fa-dashboard"></i> <span>My Doctors</span>
                         <br>
                         <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
@@ -49,18 +49,13 @@
 
             </span>
                     </a>
-                    <ul class="treeview-menu">
-                        <li><a href="pages/layout/top-nav.html"><i class="fa fa-circle-o"></i> Top Navigation</a></li>
-                        <li><a href="pages/layout/boxed.html"><i class="fa fa-circle-o"></i> Boxed</a></li>
-                        <li><a href="pages/layout/fixed.html"><i class="fa fa-circle-o"></i> Fixed</a></li>
-                        <li><a href="pages/layout/collapsed-sidebar.html"><i class="fa fa-circle-o"></i> Collapsed Sidebar</a></li>
-                    </ul>
+
                 </li>
                 <li>
                     <a>
                         <i class="fa fa-th"></i> <span>My medical history </span>
                         <span class="pull-right-container">
-              <small class="label pull-right bg-green">new</small>
+              <small class="label pull-right bg-red label-reg">new</small>
             </span>
                     </a>
                 </li>
@@ -133,8 +128,8 @@
                     <a>
                         <i class="fa fa-envelope"></i> <span>Propositions</span>
                         <span class="pull-right-container">
-              <small class="label pull-right bg-yellow">12</small>
-              <small class="label pull-right bg-green">16</small>
+              <small class="label pull-right bg-yellow label-reg">12</small>
+              <small class="label pull-right bg-green label-reg">16</small>
 
             </span>
                     </a>

@@ -1,0 +1,27 @@
+{
+    "doctorsPlatformApp": {
+        "doctor": {
+            "home": {
+                "title": "Doctors",
+                "createLabel": "Créer un nouveau Doctor",
+                "createOrEditLabel": "Créer ou éditer un Doctor",
+                "search": "Recherche pour Doctor"
+            },
+            "created": "Un nouveau Doctor a été créé avec l'identifiant {{ param }}",
+            "updated": "Le Doctor avec l'identifiant {{ param }} a été mis à jour",
+            "deleted": "Le Doctor avec l'identifiant {{ param }} a été supprimé",
+            "delete": {
+                "question": "Etes-vous certain de vouloir supprimer le Doctor {{ id }} ?"
+            },
+            "detail": {
+                "title": "Doctor"
+            },
+            "name": "Name",
+            "cin": "Cin",
+            "address": "Address",
+            "speciality": "Speciality",
+            "email": "Email",
+            "phoneNumber": "Phone Number"
+        }
+    }
+}
