@@ -8,6 +8,7 @@
         "node_modules"
     ],
     "dependencies": {
+        "@agm/core": "^1.0.0-beta.5",
         "@angular/animations": "^7.2.13",
         "@angular/common": "7.2.2",
         "@angular/compiler": "7.2.2",
@@ -23,6 +24,7 @@
         "@ngx-translate/core": "11.0.1",
         "@ngx-translate/http-loader": "4.0.0",
         "angular-admin-lte": "^2.0.0",
+        "angular-maps": "^6.0.1",
         "angular-calendar": "^0.27.3",
         "angular-material": "^1.1.14",
         "bootstrap": "4.2.1",

@@ -27,6 +27,7 @@ import { SidebarComponent } from './layouts/sidebar/sidebar.component';
 import { SimpleCalendarComponent } from './simple-calendar/simple-calendar.component';
 import { CalendarDocComponent } from './calendar/calendar-doc.component';
 import { CalendarDocModule } from 'app/calendar/calendar-doc.module';
+import { AgmCoreModule } from '@agm/core';
 
 @NgModule({
     imports: [
