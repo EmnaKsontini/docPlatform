@@ -2,6 +2,7 @@ import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { JhiLanguageService } from 'ng-jhipster';
 import { JhiLanguageHelper } from 'app/core';
+import { AgmCoreModule } from '@agm/core';
 
 import { DoctorsPlatformSharedModule } from 'app/shared';
 import {
@@ -18,7 +19,13 @@ import { MyDoctorsComponent } from './my-doctors.component';
 const ENTITY_STATES = [...doctorRoute, ...doctorPopupRoute];
 
 @NgModule({
-    imports: [DoctorsPlatformSharedModule, RouterModule.forChild(ENTITY_STATES)],
+    imports: [
+        DoctorsPlatformSharedModule,
+        RouterModule.forChild(ENTITY_STATES),
+        AgmCoreModule.forRoot({
+            // apiKey: 'AIzaSyBgGnbBQGJrwXJTHk-enTfIxFHUnU_SavM'
+        })
+    ],
     declarations: [
         DoctorComponent,
         DoctorDetailComponent,

@@ -76,12 +76,17 @@
             </tbody>
         </table>
     </div>
-    <div *ngIf="doctors && doctors.length">
+    <agm-map [latitude]="latitude"[longtitude]="longitude">
+
+
+    </agm-map>
+
+   <!-- <div *ngIf="doctors && doctors.length">
         <div class="row justify-content-center">
             <jhi-item-count [page]="page" [total]="totalItems" [maxSize]="5" [itemsPerPage]="itemsPerPage"></jhi-item-count>
         </div>
         <div class="row justify-content-center">
             <ngb-pagination [collectionSize]="totalItems" [(page)]="page" [pageSize]="itemsPerPage" [maxSize]="5" [rotate]="true" [boundaryLinks]="true" (pageChange)="loadPage(page)"></ngb-pagination>
         </div>
-    </div>
+    </div> -->
 </div>

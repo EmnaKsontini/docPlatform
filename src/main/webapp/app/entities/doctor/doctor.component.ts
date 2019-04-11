@@ -13,9 +13,12 @@ import { DoctorService } from './doctor.service';
 
 @Component({
     selector: 'jhi-doctor',
-    templateUrl: './doctor.component.html'
+    templateUrl: './doctor.component.html',
+    styleUrls: ['doctor.css']
 })
 export class DoctorComponent implements OnInit, OnDestroy {
+    latitude: 51.678418;
+    longitude: 7.809007;
     currentAccount: any;
     doctors: IDoctor[];
     error: any;
