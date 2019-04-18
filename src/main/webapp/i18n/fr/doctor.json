@@ -21,7 +21,8 @@
             "address": "Address",
             "speciality": "Speciality",
             "email": "Email",
-            "phoneNumber": "Phone Number"
+            "phoneNumber": "Phone Number",
+            "requests": "Requests"
         }
     }
 }

@@ -1,0 +1,28 @@
+{
+    "doctorsPlatformApp": {
+        "request": {
+            "home": {
+                "title": "Requests",
+                "createLabel": "Créer un nouveau Request",
+                "createOrEditLabel": "Créer ou éditer un Request",
+                "search": "Recherche pour Request"
+            },
+            "created": "Un nouveau Request a été créé avec l'identifiant {{ param }}",
+            "updated": "Le Request avec l'identifiant {{ param }} a été mis à jour",
+            "deleted": "Le Request avec l'identifiant {{ param }} a été supprimé",
+            "delete": {
+                "question": "Etes-vous certain de vouloir supprimer le Request {{ id }} ?"
+            },
+            "detail": {
+                "title": "Request"
+            },
+            "date1": "Date 1",
+            "date2": "Date 2",
+            "date3": "Date 3",
+            "confirmation": "Confirmation",
+            "patient": "Patient",
+            "doctor": "Doctor",
+            "appointment": "Appointment"
+        }
+    }
+}

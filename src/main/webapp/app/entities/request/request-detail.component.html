@@ -1,0 +1,57 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="request">
+            <h2><span jhiTranslate="doctorsPlatformApp.request.detail.title">Request</span> {{request.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="doctorsPlatformApp.request.date1">Date 1</span></dt>
+                <dd>
+                    <span>{{request.date1}}</span>
+                </dd>
+                <dt><span jhiTranslate="doctorsPlatformApp.request.date2">Date 2</span></dt>
+                <dd>
+                    <span>{{request.date2}}</span>
+                </dd>
+                <dt><span jhiTranslate="doctorsPlatformApp.request.date3">Date 3</span></dt>
+                <dd>
+                    <span>{{request.date3}}</span>
+                </dd>
+                <dt><span jhiTranslate="doctorsPlatformApp.request.confirmation">Confirmation</span></dt>
+                <dd>
+                    <span>{{request.confirmation}}</span>
+                </dd>
+                <dt><span jhiTranslate="doctorsPlatformApp.request.patient">Patient</span></dt>
+                <dd>
+                    <div *ngIf="request.patientId">
+                        <a [routerLink]="['/patient', request.patientId, 'view']">{{request.patientRequests}}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="doctorsPlatformApp.request.doctor">Doctor</span></dt>
+                <dd>
+                    <div *ngIf="request.doctorId">
+                        <a [routerLink]="['/doctor', request.doctorId, 'view']">{{request.doctorRequests}}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="doctorsPlatformApp.request.appointment">Appointment</span></dt>
+                <dd>
+                    <div *ngIf="request.appointmentId">
+                        <a [routerLink]="['/appointment', request.appointmentId, 'view']">{{request.appointmentRequest}}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/request', request.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

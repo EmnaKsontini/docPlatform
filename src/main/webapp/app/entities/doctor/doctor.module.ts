@@ -13,20 +13,12 @@ import {
     doctorRoute,
     doctorPopupRoute
 } from './';
-import { MyDoctorsComponent } from './my-doctors.component';
 
 const ENTITY_STATES = [...doctorRoute, ...doctorPopupRoute];
 
 @NgModule({
     imports: [DoctorsPlatformSharedModule, RouterModule.forChild(ENTITY_STATES)],
-    declarations: [
-        DoctorComponent,
-        DoctorDetailComponent,
-        DoctorUpdateComponent,
-        DoctorDeleteDialogComponent,
-        DoctorDeletePopupComponent,
-        MyDoctorsComponent
-    ],
+    declarations: [DoctorComponent, DoctorDetailComponent, DoctorUpdateComponent, DoctorDeleteDialogComponent, DoctorDeletePopupComponent],
     entryComponents: [DoctorComponent, DoctorUpdateComponent, DoctorDeleteDialogComponent, DoctorDeletePopupComponent],
     providers: [{ provide: JhiLanguageService, useClass: JhiLanguageService }],
     schemas: [CUSTOM_ELEMENTS_SCHEMA]
