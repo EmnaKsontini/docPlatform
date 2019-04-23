@@ -3,6 +3,8 @@ import { NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { JhiEventManager } from 'ng-jhipster';
 
 import { LoginModalService, AccountService, Account } from 'app/core';
+import { ITip } from 'app/shared/model/tip.model';
+import { HomeService } from 'app/home/home.service';
 
 @Component({
     selector: 'jhi-home',
@@ -12,8 +14,10 @@ import { LoginModalService, AccountService, Account } from 'app/core';
 export class HomeComponent implements OnInit {
     account: Account;
     modalRef: NgbModalRef;
+    tips: ITip[];
 
     constructor(
+        private homeService: HomeService,
         private accountService: AccountService,
         private loginModalService: LoginModalService,
         private eventManager: JhiEventManager
@@ -24,6 +28,9 @@ export class HomeComponent implements OnInit {
             this.account = account;
         });
         this.registerAuthenticationSuccess();
+        this.homeService.getAllTips().subscribe(Alltips => {
+            this.tips = Alltips;
+        });
     }
 
     registerAuthenticationSuccess() {
