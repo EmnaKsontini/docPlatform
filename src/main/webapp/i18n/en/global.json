@@ -8,6 +8,7 @@
             "entities": {
                 "main": "Entities",
                 "doctor": "Doctor",
+                "tip": "Tip",
                 "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
             },
             "account": {
