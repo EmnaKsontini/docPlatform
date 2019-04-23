@@ -8,6 +8,7 @@
             "entities": {
                 "main": "Entities",
                 "doctor": "Doctor",
+                "tip": "Tip",
                 "patient": "Patient",
                 "request": "Request",
                 "appointment": "Appointment",
