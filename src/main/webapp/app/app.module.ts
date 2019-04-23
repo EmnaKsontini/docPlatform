@@ -20,6 +20,8 @@ import { DoctorsPlatformEntityModule } from './entities/entity.module';
 import * as moment from 'moment';
 // jhipster-needle-angular-add-module-import JHipster will add new module here
 import { JhiMainComponent, NavbarComponent, FooterComponent, PageRibbonComponent, ActiveMenuDirective, ErrorComponent } from './layouts';
+import { SidebarComponent } from './layouts/sidebar/sidebar.component';
+import { SimpleCalendarComponent } from './simple-calendar/simple-calendar.component';
 
 @NgModule({
     imports: [
@@ -40,7 +42,16 @@ import { JhiMainComponent, NavbarComponent, FooterComponent, PageRibbonComponent
         DoctorsPlatformEntityModule,
         DoctorsPlatformAppRoutingModule
     ],
-    declarations: [JhiMainComponent, NavbarComponent, ErrorComponent, PageRibbonComponent, ActiveMenuDirective, FooterComponent],
+    declarations: [
+        JhiMainComponent,
+        NavbarComponent,
+        ErrorComponent,
+        PageRibbonComponent,
+        ActiveMenuDirective,
+        FooterComponent,
+        SidebarComponent,
+        SimpleCalendarComponent
+    ],
     providers: [
         {
             provide: HTTP_INTERCEPTORS,
