@@ -1,14 +1,17 @@
-<div>
-    <h2 id="page-heading">
-        <span jhiTranslate="doctorsPlatformApp.doctor.home.title">Doctors</span>
-        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-doctor" [routerLink]="['/doctor/new']">
+
+    <div class="row">
+        <div class="col-sm-6">
+        <div>
+             <h2 id="page-heading">
+              <span jhiTranslate="doctorsPlatformApp.doctor.home.title">Doctors</span>
+              <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-doctor" [routerLink]="['/doctor/new']">
             <fa-icon [icon]="'plus'"></fa-icon>
             <span class="hidden-sm-down"  jhiTranslate="doctorsPlatformApp.doctor.home.createLabel">
             Create new Doctor
             </span>
-        </button>
-    </h2>
-    <jhi-alert></jhi-alert>
+             </button>
+            </h2>
+     <jhi-alert></jhi-alert>
     <div class="row">
         <div class="col-sm-12">
             <form name="searchForm" class="form-inline">
@@ -29,26 +32,19 @@
         <table class="table table-striped">
             <thead>
             <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
-            <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th jhiSortBy="name"><span jhiTranslate="doctorsPlatformApp.doctor.name">Name</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="cin"><span jhiTranslate="doctorsPlatformApp.doctor.cin">Cin</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th jhiSortBy="address"><span jhiTranslate="doctorsPlatformApp.doctor.address">Address</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th jhiSortBy="speciality"><span jhiTranslate="doctorsPlatformApp.doctor.speciality">Speciality</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="email"><span jhiTranslate="doctorsPlatformApp.doctor.email">Email</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th jhiSortBy="phoneNumber"><span jhiTranslate="doctorsPlatformApp.doctor.phoneNumber">Phone Number</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th></th>
             </tr>
             </thead>
             <tbody>
             <tr *ngFor="let doctor of doctors ;trackBy: trackId">
-                <td><a [routerLink]="['/doctor', doctor.id, 'view' ]">{{doctor.id}}</a></td>
-                <td>{{doctor.name}}</td>
-                <td>{{doctor.cin}}</td>
+                <td><a [routerLink]="['/doctor', doctor.id, 'view' ]">{{doctor.name}}</a></td>
                 <td>{{doctor.address}}</td>
                 <td>{{doctor.speciality}}</td>
-                <td>{{doctor.email}}</td>
                 <td>{{doctor.phoneNumber}}</td>
-                <td class="text-right">
+                <!--<td class="text-right">
                     <div class="btn-group flex-btn-group-container">
                         <button type="submit"
                                 [routerLink]="['/doctor', doctor.id, 'view' ]"
@@ -71,15 +67,25 @@
                             <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
                         </button>
                     </div>
-                </td>
+                </td>-->
             </tr>
             </tbody>
         </table>
     </div>
-    <agm-map [latitude]="latitude"[longtitude]="longitude">
+    </div>
+        </div>
+            <div class="col-sm-6">
+                <div class="container">
+                <div class="form-group">
+                <input placeholder="search for location" autocorrect="off" autocapitalize="off" spellcheck="off" type="text">
+                </div>
+                <agm-map [latitude]="latitude"[longtitude]="longitude"></agm-map>
+                </div>
+            </div>
 
 
-    </agm-map>
+
+    </div>
 
    <!-- <div *ngIf="doctors && doctors.length">
         <div class="row justify-content-center">
@@ -89,4 +95,4 @@
             <ngb-pagination [collectionSize]="totalItems" [(page)]="page" [pageSize]="itemsPerPage" [maxSize]="5" [rotate]="true" [boundaryLinks]="true" (pageChange)="loadPage(page)"></ngb-pagination>
         </div>
     </div> -->
-</div>
+

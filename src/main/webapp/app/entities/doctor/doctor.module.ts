@@ -23,7 +23,7 @@ const ENTITY_STATES = [...doctorRoute, ...doctorPopupRoute];
         DoctorsPlatformSharedModule,
         RouterModule.forChild(ENTITY_STATES),
         AgmCoreModule.forRoot({
-            // apiKey: 'AIzaSyBgGnbBQGJrwXJTHk-enTfIxFHUnU_SavM'
+            apiKey: 'AIzaSyB4iF9FiFPJ8x1wuaHWRsk5-tEeAl9gqeU'
         })
     ],
     declarations: [
