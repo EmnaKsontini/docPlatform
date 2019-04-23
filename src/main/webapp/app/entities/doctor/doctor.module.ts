@@ -3,7 +3,7 @@ import { RouterModule } from '@angular/router';
 import { JhiLanguageService } from 'ng-jhipster';
 import { JhiLanguageHelper } from 'app/core';
 import { AgmCoreModule } from '@agm/core';
-
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DoctorsPlatformSharedModule } from 'app/shared';
 import {
     DoctorComponent,
@@ -23,8 +23,11 @@ const ENTITY_STATES = [...doctorRoute, ...doctorPopupRoute];
         DoctorsPlatformSharedModule,
         RouterModule.forChild(ENTITY_STATES),
         AgmCoreModule.forRoot({
-            apiKey: 'AIzaSyB4iF9FiFPJ8x1wuaHWRsk5-tEeAl9gqeU'
-        })
+            apiKey: 'AIzaSyB4iF9FiFPJ8x1wuaHWRsk5-tEeAl9gqeU',
+            libraries: ['places']
+        }),
+        FormsModule,
+        ReactiveFormsModule
     ],
     declarations: [
         DoctorComponent,
