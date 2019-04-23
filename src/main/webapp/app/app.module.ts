@@ -18,11 +18,12 @@ import { DoctorsPlatformHomeModule } from './home/home.module';
 import { DoctorsPlatformAccountModule } from './account/account.module';
 import { DoctorsPlatformEntityModule } from './entities/entity.module';
 import * as moment from 'moment';
-// jhipster-needle-angular-add-module-import JHipster will add new module here
+import { ChatbotRasaModule } from 'angular-chat-widget-rasa';
 import { JhiMainComponent, NavbarComponent, FooterComponent, PageRibbonComponent, ActiveMenuDirective, ErrorComponent } from './layouts';
 import { SidebarComponent } from './layouts/sidebar/sidebar.component';
 import { SimpleCalendarComponent } from './simple-calendar/simple-calendar.component';
-import { AgmCoreModule } from '@agm/core';
+import { ChatModule } from 'app/chat/chat.module';
+
 
 @NgModule({
     imports: [
@@ -39,6 +40,9 @@ import { AgmCoreModule } from '@agm/core';
         DoctorsPlatformCoreModule,
         DoctorsPlatformHomeModule,
         DoctorsPlatformAccountModule,
+        ChatbotRasaModule,
+        ChatModule,
+
         // jhipster-needle-angular-add-module JHipster will add new module here
         DoctorsPlatformEntityModule,
         DoctorsPlatformAppRoutingModule

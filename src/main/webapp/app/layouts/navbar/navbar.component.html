@@ -10,7 +10,18 @@
         </a>
             </div>
         <!-- Navbar Right Menu -->
+
         <div class="navbar-custom-menu  col-lg-offset-5" [ngSwitch]="isAuthenticated()"  >
+
+        <div class="navbar-custom-menu  col-lg-offset-5">
+            <li>
+                <a class="nav-link" (click)="login()" id="login">
+                    <span>
+                        <i class="fas fa-sign-in-alt"></i> Sign in
+                    </span>
+                </a>
+            </li>
+
             <ul class="nav navbar-nav">
                 <!-- Messages: style can be found in dropdown.less-->
                 <li class="dropdown messages-menu">

@@ -44,15 +44,15 @@ scratch. This page gets rid of all links and provides the needed markup only.
             <!-- logo for regular state and mobile devices -->
             <span class="logo-lg"><b>Doctor's </b>platform</span>
         </a>
-    <jhi-navbar></jhi-navbar>
+        <jhi-navbar></jhi-navbar>
     </header>
-<jhi-page-ribbon></jhi-page-ribbon>
-<jhi-sidebar ></jhi-sidebar>
+    <jhi-page-ribbon></jhi-page-ribbon>
+    <jhi-sidebar ></jhi-sidebar>
     <section class="content-wrapper">
         <div class="content">
             <div class="container-fluid">
-                    <router-outlet></router-outlet>
-                    <router-outlet name="popup"></router-outlet>
+                <jhi-chat-dialog></jhi-chat-dialog>
+                <router-outlet name="popup"></router-outlet>
             </div>
         </div>
     </section>
