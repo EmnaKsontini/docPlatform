@@ -1,0 +1,24 @@
+{
+    "doctorsPlatformApp": {
+        "tip": {
+            "home": {
+                "title": "Tips",
+                "createLabel": "Créer un nouveau Tip",
+                "createOrEditLabel": "Créer ou éditer un Tip",
+                "search": "Recherche pour Tip"
+            },
+            "created": "Un nouveau Tip a été créé avec l'identifiant {{ param }}",
+            "updated": "Le Tip avec l'identifiant {{ param }} a été mis à jour",
+            "deleted": "Le Tip avec l'identifiant {{ param }} a été supprimé",
+            "delete": {
+                "question": "Etes-vous certain de vouloir supprimer le Tip {{ id }} ?"
+            },
+            "detail": {
+                "title": "Tip"
+            },
+            "title": "Title",
+            "content": "Content",
+            "image": "Image"
+        }
+    }
+}

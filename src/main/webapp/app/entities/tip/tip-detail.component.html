@@ -1,0 +1,37 @@
+<div class="row justify-content-center">
+    <div class="col-4">
+        <div *ngIf="tip">
+            <h2><span jhiTranslate="doctorsPlatformApp.tip.detail.title">Tip</span> {{tip.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+
+    <div class="card mb-2">
+                            <a *ngIf="tip.image" (click)="openFile(tip.imageContentType, tip.image)">
+                                <img [src]="'data:' + tip.imageContentType + ';base64,' + tip.image" height="120" width="250" class="card-img-top" alt="tip image"/>
+                            </a>
+
+                            <div class="card-body">
+                                <h4 class="card-title">{{tip.title}}</h4>
+                                <p class="card-text">{{tip.content}}</p>
+
+
+                        </div>
+    </div>
+
+
+
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/tip', tip.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

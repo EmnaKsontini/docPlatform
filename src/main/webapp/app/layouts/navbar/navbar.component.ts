@@ -3,9 +3,11 @@ import { Router } from '@angular/router';
 import { NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { JhiLanguageService } from 'ng-jhipster';
 import { SessionStorageService } from 'ngx-webstorage';
+
 import { VERSION } from 'app/app.constants';
 import { JhiLanguageHelper, AccountService, LoginModalService, LoginService } from 'app/core';
 import { ProfileService } from 'app/layouts/profiles/profile.service';
+
 @Component({
     selector: 'jhi-navbar',
     templateUrl: './navbar.component.html',
@@ -75,12 +77,3 @@ export class NavbarComponent implements OnInit {
         return this.isAuthenticated() ? this.accountService.getImageUrl() : null;
     }
 }
-window.onscroll = function() {
-    if (document.body.scrollTop > 30 || document.documentElement.scrollTop > 30) {
-        document.getElementById('nav').style.backgroundColor = '#F8F8F8';
-        document.getElementById('nav').style.boxShadow = '1px 1px 8px #888888';
-    } else {
-        document.getElementById('nav').style.backgroundColor = 'transparent';
-        document.getElementById('nav').style.boxShadow = 'none';
-    }
-};

@@ -1,7 +1,7 @@
 
 
     <!-- Header Navbar -->
-    <nav class="navbar navbar-static-top navbar-expand" role="navigation">
+    <nav class="navbar navbar-static-top navbar-expand" role="navigation" >
         <div class="container">
         <!-- Sidebar toggle button-->
             <div class="col-0">
@@ -10,15 +10,29 @@
         </a>
             </div>
         <!-- Navbar Right Menu -->
-        <div class="navbar-custom-menu  col-lg-offset-5">
+        <div class="navbar-custom-menu  col-lg-offset-5" [ngSwitch]="isAuthenticated()"  >
             <ul class="nav navbar-nav">
                 <!-- Messages: style can be found in dropdown.less-->
                 <li class="dropdown messages-menu">
                     <!-- Menu toggle button -->
+                <li *ngSwitchCase="true">
+                    <a class="dropdown-item" (click)="logout()" id="logout">
+                        <fa-icon icon="sign-out-alt" fixedWidth="true"></fa-icon>
+                        <span jhiTranslate="global.menu.account.logout">Sign out</span>
+                    </a>
+                </li>
+                <li *ngSwitchCase="false">
+                    <a class="dropdown-item" (click)="login()" id="login">
+                        <fa-icon icon="sign-in-alt" fixedWidth="true"></fa-icon>
+                        <span jhiTranslate="global.menu.account.login">Sign in</span>
+                    </a>
+                </li>
+                <li>
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                         <i class="fa fa-envelope-o"></i>
                         <span class="label label-success">4</span>
                     </a>
+                </li>
                     <ul class="dropdown-menu">
                         <li class="header">You have 4 messages</li>
                         <li>
@@ -40,6 +54,7 @@
                                         <p>Why not buy a new awesome theme?</p>
                                     </a>
                                 </li>
+
                                 <!-- end message -->
                             </ul>
                             <!-- /.menu -->
@@ -88,11 +103,8 @@
                                 <li>
                                     <!-- Task item -->
                                     <a href="#">
-                                        <!-- Task title and progress text -->
-                                        <h3>
-                                            Design some buttons
-                                            <small class="pull-right">20%</small>
-                                        </h3>
+
+
                                         <!-- The progress bar -->
                                         <div class="progress xs">
                                             <!-- Change the css width attribute to simulate progress -->
@@ -117,18 +129,11 @@
                         <!-- The user image in the navbar-->
                         <img src="https://cdnjs.cloudflare.com/ajax/libs/admin-lte/2.3.11/img/user2-160x160.jpg" class="user-image" alt="User Image">
                         <!-- hidden-xs hides the username on small devices so only the image appears. -->
-                        <span class="hidden-xs">Alexander Pierce</span>
+                        <span class="hidden-xs"></span>
                     </a>
                     <ul class="dropdown-menu">
                         <!-- The user image in the menu -->
-                        <li class="user-header">
-                            <img src="https://cdnjs.cloudflare.com/ajax/libs/admin-lte/2.3.11/img/user2-160x160.jpg" class="img-circle" alt="User Image">
 
-                            <p>
-                                Alexander Pierce - Web Developer
-                                <small>Member since Nov. 2012</small>
-                            </p>
-                        </li>
                         <!-- Menu Body -->
                         <li class="user-body">
                             <div class="row">
@@ -149,7 +154,7 @@
                             <div class="pull-left">
                                 <a href="#" class="btn btn-default btn-flat">Profile</a>
                             </div>
-                            <div class="pull-right">
+                            <div >
                                 <a href="#" class="btn btn-default btn-flat">Sign out</a>
                             </div>
                         </li>
