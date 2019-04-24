@@ -37,7 +37,7 @@ export class DoctorComponent implements OnInit, OnDestroy {
     predicate: any;
     previousPage: any;
     reverse: any;
-
+    marker: any;
     @ViewChild('search')
     public searchElementRef: ElementRef;
     constructor(
@@ -159,6 +159,10 @@ export class DoctorComponent implements OnInit, OnDestroy {
             let autocomplete = new google.maps.places.Autocomplete(this.searchElementRef.nativeElement, {
                 types: ['address']
             });
+            console.log(typeof autocomplete);
+            console.log(autocomplete);
+            console.log('heer!');
+
             autocomplete.addListener('place_changed', () => {
                 this.ngZone.run(() => {
                     //get the place result
@@ -183,6 +187,31 @@ export class DoctorComponent implements OnInit, OnDestroy {
                 this.zoom = 12;
             });
         }
+    }
+
+    @ViewChild('Mysearch')
+    public MysearchElementRef: ElementRef;
+
+    getMarker() {
+        this.mapsAPILoader.load().then(() => {
+            let autocomplete = new google.maps.places.Autocomplete(this.MysearchElementRef.nativeElement, {
+                types: ['address']
+            });
+            autocomplete.addListener('place_changed', () => {
+                this.ngZone.run(() => {
+                    //get the place result
+                    let place: google.maps.places.PlaceResult = autocomplete.getPlace();
+
+                    //verify result
+                    if (place.geometry === undefined || place.geometry === null) {
+                        return;
+                    }
+                    this.latitude = place.geometry.location.lat();
+                    this.longitude = place.geometry.location.lng();
+                    this.zoom = 12;
+                });
+            });
+        });
     }
 
     ngOnDestroy() {

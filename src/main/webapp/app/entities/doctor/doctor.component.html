@@ -41,7 +41,10 @@
             <tbody>
             <tr *ngFor="let doctor of doctors ;trackBy: trackId">
                 <td><a [routerLink]="['/doctor', doctor.id, 'view' ]">{{doctor.name}}</a></td>
-                <td>{{doctor.address}}</td>
+                <label class="radio-inline"><input  #Mysearch type="radio"  name="adress" >{{doctor.address}}</label>
+
+
+
                 <td>{{doctor.speciality}}</td>
                 <td>{{doctor.phoneNumber}}</td>
                 <!--<td class="text-right">
