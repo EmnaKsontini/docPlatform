@@ -30,7 +30,7 @@ const ENTITY_STATES = [...requestRoute, ...requestPopupRoute];
     providers: [{ provide: JhiLanguageService, useClass: JhiLanguageService }],
     schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
-export class DoctorsPlatformTipModule {
+export class DoctorsPlatformRequestModule {
     constructor(private languageService: JhiLanguageService, private languageHelper: JhiLanguageHelper) {
         this.languageHelper.language.subscribe((languageKey: string) => {
             if (languageKey !== undefined) {

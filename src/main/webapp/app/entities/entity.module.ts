@@ -9,36 +9,12 @@ import { RouterModule } from '@angular/router';
                 loadChildren: './doctor/doctor.module#DoctorsPlatformDoctorModule'
             },
             {
-                path: 'patient',
-                loadChildren: './patient/patient.module#DoctorsPlatformPatientModule'
-            },
-            {
-                path: 'patient',
-                loadChildren: './patient/patient.module#DoctorsPlatformPatientModule'
-            },
-            {
-                path: 'request',
-                loadChildren: './request/request.module#DoctorsPlatformRequestModule'
-            },
-            {
                 path: 'appointment',
                 loadChildren: './appointment/appointment.module#DoctorsPlatformAppointmentModule'
             },
             {
                 path: 'request',
                 loadChildren: './request/request.module#DoctorsPlatformRequestModule'
-            },
-            {
-                path: 'request',
-                loadChildren: './request/request.module#DoctorsPlatformRequestModule'
-            },
-            {
-                path: 'request',
-                loadChildren: './request/request.module#DoctorsPlatformRequestModule'
-            },
-            {
-                path: 'doctor',
-                loadChildren: './doctor/doctor.module#DoctorsPlatformDoctorModule'
             },
             {
                 path: 'patient',

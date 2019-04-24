@@ -47,10 +47,9 @@
                             <span class="label-primary label-reg">4</span>
                     </span>
                 </a>
-
             </li>
             <li class="treeview">
-                <a class="dropdown-item" routerLink="/request" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
+                <a *jhiHasAnyAuthority="'ROLE_USER'" class="dropdown-item" routerLink="/request" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
                     <i class="fa fa-files-o"></i>
                     <span>Requests</span>
                     <span class="pull-right-container">
@@ -59,7 +58,7 @@
                 </a>
             </li>
             <li class="treeview">
-                <a class="dropdown-item" routerLink="/appointment" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
+                <a *jhiHasAnyAuthority="'ROLE_USER'" class="dropdown-item" routerLink="/appointment" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" >
                     <i class="fa fa-calendar"></i>
                     <span>Appointments</span>
                     <span class="pull-right-container">
@@ -68,7 +67,7 @@
                 </a>
             </li>
             <li class="treeview">
-                <a class="dropdown-item" routerLink="/patient" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
+                <a *jhiHasAnyAuthority="'ROLE_USER'" class="dropdown-item" routerLink="/patient" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
                     <i class="fa fa-files-o"></i>
                     <span>Patients</span>
                     <span class="pull-right-container">
@@ -141,14 +140,6 @@
                         <li><a href="pages/tables/data.html"><i class="fa fa-circle-o"></i> Data tables</a></li>
                     </ul>
                 </li>  -->
-            <li>
-                <a>
-                    <i class="fa fa-calendar"></i> <span>Appointments</span>
-                    <span class="pull-right-container">
-
-            </span>
-                </a>
-            </li>
             <li>
                 <a>
                     <i class="fa fa-envelope"></i> <span>Propositions</span>

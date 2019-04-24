@@ -36,7 +36,7 @@ const ENTITY_STATES = [...appointmentRoute, ...appointmentPopupRoute];
     providers: [{ provide: JhiLanguageService, useClass: JhiLanguageService }],
     schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
-export class DoctorsPlatformDoctorModule {
+export class DoctorsPlatformAppointmentModule {
     constructor(private languageService: JhiLanguageService, private languageHelper: JhiLanguageHelper) {
         this.languageHelper.language.subscribe((languageKey: string) => {
             if (languageKey !== undefined) {
