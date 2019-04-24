@@ -1,0 +1,85 @@
+<div>
+    <h2 id="page-heading">
+        <span jhiTranslate="doctorsPlatformApp.tip.home.title">Tips</span>
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-tip" [routerLink]="['/tip/new']">
+            <fa-icon [icon]="'plus'"></fa-icon>
+            <span class="hidden-sm-down"  jhiTranslate="doctorsPlatformApp.tip.home.createLabel">
+            Create new Tip
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <div class="row">
+        <div class="col-sm-4">
+            <form name="searchForm" class="form-inline">
+                <div class="input-group w-100 mt-3">
+                    <input type="text" class="form-control" [(ngModel)]="currentSearch" id="currentSearch" name="currentSearch" placeholder="{{ 'doctorsPlatformApp.tip.home.search' | translate }}">
+                    <button class="input-group-append btn btn-info" (click)="search(currentSearch)">
+                        <fa-icon [icon]="'search'"></fa-icon>
+                    </button>
+                    <button class="input-group-append btn btn-danger" (click)="clear()" *ngIf="currentSearch">
+                        <fa-icon [icon]="'trash-alt'"></fa-icon>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <br/>
+
+
+        <div class="col-lg-12 ">
+            <div class="row">
+
+
+                <div class="col-md-3 col-lg-3 mb-3" *ngFor="let tip of tips ;trackBy: trackId">
+                    <div class="card mb-2">
+                        <a *ngIf="tip.image" (click)="openFile(tip.imageContentType, tip.image)">
+                            <img [src]="'data:' + tip.imageContentType + ';base64,' + tip.image" height="120" width="250" class="card-img-top" alt="tip image"/>
+                        </a>
+
+                        <div class="card-body">
+                            <h4 class="card-title">{{tip.title}}</h4>
+                            <!--<p class="card-text">{{tip.content}}</p>-->
+                            <div class="btn-group flex-btn-group-container">
+                                <button type="submit"
+                                        [routerLink]="['/tip', tip.id, 'view' ]"
+                                        class="btn btn-info btn-sm">
+                                    <fa-icon [icon]="'eye'"></fa-icon>
+                                    <span class="d-none d-md-inline" >Details</span>
+                                </button>
+                            </div>
+
+
+                        </div>
+                        <td class="text-right">
+                            <div class="btn-group flex-btn-group-container">
+                                <button type="submit"
+                                        [routerLink]="['/tip', tip.id, 'edit']"
+                                        class="btn btn-primary btn-sm">
+                                    <fa-icon [icon]="'pencil-alt'"></fa-icon>
+                                    <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                                </button>
+                                <button type="submit"
+                                        [routerLink]="['/', 'tip', { outlets: { popup: tip.id + '/delete'} }]"
+                                        replaceUrl="true"
+                                        queryParamsHandling="merge"
+                                        class="btn btn-danger btn-sm">
+                                    <fa-icon [icon]="'times'"></fa-icon>
+                                    <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                                </button>
+                            </div>
+                        </td>
+                    </div>
+                </div>
+                </div>
+        </div>
+    <!--
+    <div *ngIf="tips && tips.length">
+        <div class="row justify-content-center">
+            <jhi-item-count [page]="page" [total]="totalItems" [maxSize]="5" [itemsPerPage]="itemsPerPage"></jhi-item-count>
+        </div>
+        <div class="row justify-content-center">
+            <ngb-pagination [collectionSize]="totalItems" [(page)]="page" [pageSize]="itemsPerPage" [maxSize]="5" [rotate]="true" [boundaryLinks]="true" (pageChange)="loadPage(page)"></ngb-pagination>
+        </div>
+    </div>-->
+</div>

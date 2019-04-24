@@ -1,0 +1,63 @@
+
+<div class=" mb-4 ">
+    <h4 class="text-muted mb-4">
+       My Doctors
+
+    </h4>
+    <jhi-alert></jhi-alert>
+
+    <div class="row">
+        <div class="col-lg-4">
+            <form name="searchForm" class="form-inline">
+                <div class="input-group w-100 mt-3">
+                    <input type="text" class="form-control" [(ngModel)]="currentSearch" id="currentSearch" name="currentSearch" placeholder="{{ 'doctorsPlatformApp.doctor.home.search' | translate }}">
+                    <button class="input-group-append btn btn-info" (click)="search(currentSearch)">
+                        <fa-icon [icon]="'search'"></fa-icon>
+                    </button>
+                    <button class="input-group-append btn btn-danger" (click)="clear()" *ngIf="currentSearch">
+                        <fa-icon [icon]="'trash-alt'"></fa-icon>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <br/>
+    <div class="card border-0 rounded-0">
+        <div class="card-body">
+    <div class="table-responsive-md" *ngIf="doctors">
+        <table class="table table-striped">
+            <thead>
+            <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
+
+                <th jhiSortBy="name"><span jhiTranslate="doctorsPlatformApp.doctor.name">Name</span> </th>
+
+                <th jhiSortBy="address"><span jhiTranslate="doctorsPlatformApp.doctor.address">Address</span> </th>
+                <th jhiSortBy="speciality"><span jhiTranslate="doctorsPlatformApp.doctor.speciality">Speciality</span> </th>
+                <th jhiSortBy="email"><span jhiTranslate="doctorsPlatformApp.doctor.email">Email</span> </th>
+                <th jhiSortBy="phoneNumber"><span jhiTranslate="doctorsPlatformApp.doctor.phoneNumber">Phone Number</span> </th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let doctor of doctors ;trackBy: trackId">
+                <td><a [routerLink]="['/doctor', doctor.id, 'view' ]">{{doctor.name}}</a></td>
+
+                <td>{{doctor.address}}</td>
+                <td>{{doctor.speciality}}</td>
+                <td>{{doctor.email}}</td>
+                <td>{{doctor.phoneNumber}}</td>
+
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div *ngIf="doctors && doctors.length">
+        <div class="row justify-content-center">
+            <jhi-item-count [page]="page" [total]="totalItems" [maxSize]="5" [itemsPerPage]="itemsPerPage"></jhi-item-count>
+        </div>
+        <div class="row justify-content-center">
+            <ngb-pagination [collectionSize]="totalItems" [(page)]="page" [pageSize]="itemsPerPage" [maxSize]="5" [rotate]="true" [boundaryLinks]="true" (pageChange)="loadPage(page)"></ngb-pagination>
+        </div>
+    </div>
+</div>
+</div>
+</div>
