@@ -1,0 +1,23 @@
+{
+    "doctorsPlatformApp": {
+        "appointment": {
+            "home": {
+                "title": "Appointments",
+                "createLabel": "Créer un nouveau Appointment",
+                "createOrEditLabel": "Créer ou éditer un Appointment",
+                "search": "Recherche pour Appointment"
+            },
+            "created": "Un nouveau Appointment a été créé avec l'identifiant {{ param }}",
+            "updated": "Le Appointment avec l'identifiant {{ param }} a été mis à jour",
+            "deleted": "Le Appointment avec l'identifiant {{ param }} a été supprimé",
+            "delete": {
+                "question": "Etes-vous certain de vouloir supprimer le Appointment {{ id }} ?"
+            },
+            "detail": {
+                "title": "Appointment"
+            },
+            "date": "Date",
+            "request": "Request"
+        }
+    }
+}

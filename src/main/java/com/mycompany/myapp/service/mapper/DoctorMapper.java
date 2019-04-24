@@ -12,6 +12,8 @@ import org.mapstruct.*;
 public interface DoctorMapper extends EntityMapper<DoctorDTO, Doctor> {
 
 
+    @Mapping(target = "requests", ignore = true)
+    Doctor toEntity(DoctorDTO doctorDTO);
 
     default Doctor fromId(Long id) {
         if (id == null) {

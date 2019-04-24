@@ -7,6 +7,48 @@ import { RouterModule } from '@angular/router';
             {
                 path: 'doctor',
                 loadChildren: './doctor/doctor.module#DoctorsPlatformDoctorModule'
+            },
+            {
+                path: 'patient',
+                loadChildren: './patient/patient.module#DoctorsPlatformPatientModule'
+            },
+            {
+                path: 'patient',
+                loadChildren: './patient/patient.module#DoctorsPlatformPatientModule'
+            },
+            {
+                path: 'request',
+                loadChildren: './request/request.module#DoctorsPlatformRequestModule'
+            },
+            {
+                path: 'appointment',
+                loadChildren: './appointment/appointment.module#DoctorsPlatformAppointmentModule'
+            },
+            {
+                path: 'request',
+                loadChildren: './request/request.module#DoctorsPlatformRequestModule'
+            },
+            {
+                path: 'request',
+                loadChildren: './request/request.module#DoctorsPlatformRequestModule'
+            },
+            {
+                path: 'request',
+                loadChildren: './request/request.module#DoctorsPlatformRequestModule'
+            },
+            {
+                path: 'doctor',
+                loadChildren: './doctor/doctor.module#DoctorsPlatformDoctorModule'
+            },
+            {
+                path: 'patient',
+                loadChildren: './patient/patient.module#DoctorsPlatformPatientModule'
+            }
+        ]),
+        RouterModule.forChild([
+            {
+                path: 'tip',
+                loadChildren: './tip/tip.module#DoctorsPlatformTipModule'
             }
         ]),
         RouterModule.forChild([
