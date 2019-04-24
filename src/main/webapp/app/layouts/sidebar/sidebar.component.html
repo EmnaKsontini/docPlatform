@@ -42,14 +42,39 @@
             <li class="treeview">
                 <a class="dropdown-item" routerLink="/doctor" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
                     <i class="fa fa-files-o"></i>
-                    <span>Searsh Doctors</span>
+                    <span>Search Doctors</span>
                     <span class="pull-right-container">
                             <span class="label-primary label-reg">4</span>
-                        </span>
-
                     </span>
                 </a>
 
+            </li>
+            <li class="treeview">
+                <a class="dropdown-item" routerLink="/request" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
+                    <i class="fa fa-files-o"></i>
+                    <span>Requests</span>
+                    <span class="pull-right-container">
+                            <span class="label-warning label-reg">3</span>
+                    </span>
+                </a>
+            </li>
+            <li class="treeview">
+                <a class="dropdown-item" routerLink="/appointment" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
+                    <i class="fa fa-calendar"></i>
+                    <span>Appointments</span>
+                    <span class="pull-right-container">
+                            <span class="label-info label-reg">2</span>
+                    </span>
+                </a>
+            </li>
+            <li class="treeview">
+                <a class="dropdown-item" routerLink="/patient" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
+                    <i class="fa fa-files-o"></i>
+                    <span>Patients</span>
+                    <span class="pull-right-container">
+                            <span class="label-success label-reg">10</span>
+                    </span>
+                </a>
             </li>
             <li>
                 <a>
