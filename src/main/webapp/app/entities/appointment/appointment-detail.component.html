@@ -1,0 +1,33 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="appointment">
+            <h2><span jhiTranslate="doctorsPlatformApp.appointment.detail.title">Appointment</span> {{appointment.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="doctorsPlatformApp.appointment.date">Date</span></dt>
+                <dd>
+                    <span>{{appointment.date}}</span>
+                </dd>
+                <dt><span jhiTranslate="doctorsPlatformApp.appointment.request">Request</span></dt>
+                <dd>
+                    <div *ngIf="appointment.requestId">
+                        <a [routerLink]="['/request', appointment.requestId, 'view']">{{appointment.requestAppointement}}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/appointment', appointment.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>
