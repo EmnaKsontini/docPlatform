@@ -119,7 +119,7 @@ export class CalendarDocComponent {
     handleEvent(action: string, event: CalendarEvent): void {
         action = action === 'Clicked' ? 'edit' : action;
         this.modalData = { event, action };
-        let url = this.router.createUrlTree(['/', { outlets: { popup: 'appointment/' + event.id + '/delete' } }]);
+        let url = this.router.createUrlTree(['/', 'appointment', { outlets: { popup: event + '/delete' } }]);
 
         if (action === 'edit') {
             url = this.router.createUrlTree(['/appointment', event.id, 'edit']);
