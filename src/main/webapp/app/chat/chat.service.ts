@@ -17,6 +17,8 @@ export class ChatService {
 
     conversation = new BehaviorSubject<Message[]>([]);
 
+    information: object[];
+
     constructor() {}
 
     // Sends and receives messages via DialogFlow
@@ -26,6 +28,8 @@ export class ChatService {
 
         return this.client.textRequest(msg).then(res => {
             const speech = res.result.fulfillment.speech;
+            console.log('ok');
+            if (res.result.parameters) console.log(res.result.parameters);
             const botMessage = new Message(speech, 'bot');
             this.update(botMessage);
         });
