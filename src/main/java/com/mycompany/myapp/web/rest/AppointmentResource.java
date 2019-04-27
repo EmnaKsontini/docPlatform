@@ -1,4 +1,6 @@
 package com.mycompany.myapp.web.rest;
+import com.mycompany.myapp.domain.Appointment;
+import com.mycompany.myapp.repository.AppointmentRepository;
 import com.mycompany.myapp.service.AppointmentService;
 import com.mycompany.myapp.web.rest.errors.BadRequestAlertException;
 import com.mycompany.myapp.web.rest.util.HeaderUtil;
@@ -7,6 +9,7 @@ import com.mycompany.myapp.service.dto.AppointmentDTO;
 import com.mycompany.myapp.service.dto.AppointmentCriteria;
 import com.mycompany.myapp.service.AppointmentQueryService;
 import io.github.jhipster.web.util.ResponseUtil;
+import io.micrometer.core.annotation.Timed;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
@@ -40,11 +43,14 @@ public class AppointmentResource {
 
     private final AppointmentService appointmentService;
 
+    private final AppointmentRepository appointmentRepository;
+
     private final AppointmentQueryService appointmentQueryService;
 
-    public AppointmentResource(AppointmentService appointmentService, AppointmentQueryService appointmentQueryService) {
+    public AppointmentResource(AppointmentService appointmentService, AppointmentQueryService appointmentQueryService,  AppointmentRepository appointmentRepository) {
         this.appointmentService = appointmentService;
         this.appointmentQueryService = appointmentQueryService;
+        this.appointmentRepository = appointmentRepository;
     }
 
     /**
@@ -157,6 +163,15 @@ public class AppointmentResource {
         Page<AppointmentDTO> page = appointmentService.search(query, pageable);
         HttpHeaders headers = PaginationUtil.generateSearchPaginationHttpHeaders(query, page, "/api/_search/appointments");
         return ResponseEntity.ok().headers(headers).body(page.getContent());
+    }
+
+    /**
+     * @return a string list of the all of the clubs name
+     */
+    @GetMapping("/appointment/list")
+    @Timed
+    public List<Appointment> geAppointmentsList() {
+        return appointmentRepository.findAll();
     }
 
 }

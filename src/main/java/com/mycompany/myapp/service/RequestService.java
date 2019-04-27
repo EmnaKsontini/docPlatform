@@ -2,7 +2,6 @@ package com.mycompany.myapp.service;
 
 import com.mycompany.myapp.domain.Request;
 import com.mycompany.myapp.repository.RequestRepository;
-import com.mycompany.myapp.repository.AppointmentRepository;
 import com.mycompany.myapp.repository.search.RequestSearchRepository;
 import com.mycompany.myapp.service.dto.RequestDTO;
 import com.mycompany.myapp.service.mapper.RequestMapper;
@@ -14,7 +13,11 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
+import java.util.stream.StreamSupport;
 
 import static org.elasticsearch.index.query.QueryBuilders.*;
 
@@ -33,13 +36,10 @@ public class RequestService {
 
     private final RequestSearchRepository requestSearchRepository;
 
-    private final AppointmentRepository appointmentRepository;
-
-    public RequestService(RequestRepository requestRepository, RequestMapper requestMapper, RequestSearchRepository requestSearchRepository, AppointmentRepository appointmentRepository) {
+    public RequestService(RequestRepository requestRepository, RequestMapper requestMapper, RequestSearchRepository requestSearchRepository) {
         this.requestRepository = requestRepository;
         this.requestMapper = requestMapper;
         this.requestSearchRepository = requestSearchRepository;
-        this.appointmentRepository = appointmentRepository;
     }
 
     /**
@@ -51,8 +51,6 @@ public class RequestService {
     public RequestDTO save(RequestDTO requestDTO) {
         log.debug("Request to save Request : {}", requestDTO);
         Request request = requestMapper.toEntity(requestDTO);
-        long appointmentId = requestDTO.getAppointmentId();
-        appointmentRepository.findById(appointmentId).ifPresent(request::appointment);
         request = requestRepository.save(request);
         RequestDTO result = requestMapper.toDto(request);
         requestSearchRepository.save(request);
@@ -72,6 +70,21 @@ public class RequestService {
             .map(requestMapper::toDto);
     }
 
+
+
+    /**
+     *  get all the requests where Appointment is null.
+     *  @return the list of entities
+     */
+    @Transactional(readOnly = true) 
+    public List<RequestDTO> findAllWhereAppointmentIsNull() {
+        log.debug("Request to get all requests where Appointment is null");
+        return StreamSupport
+            .stream(requestRepository.findAll().spliterator(), false)
+            .filter(request -> request.getAppointment() == null)
+            .map(requestMapper::toDto)
+            .collect(Collectors.toCollection(LinkedList::new));
+    }
 
     /**
      * Get one request by id.

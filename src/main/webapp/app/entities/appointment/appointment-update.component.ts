@@ -4,6 +4,7 @@ import { HttpResponse, HttpErrorResponse } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { filter, map } from 'rxjs/operators';
 import * as moment from 'moment';
+import { DATE_TIME_FORMAT } from 'app/shared/constants/input.constants';
 import { JhiAlertService } from 'ng-jhipster';
 import { IAppointment } from 'app/shared/model/appointment.model';
 import { AppointmentService } from './appointment.service';
@@ -19,7 +20,7 @@ export class AppointmentUpdateComponent implements OnInit {
     isSaving: boolean;
 
     requests: IRequest[];
-    dateDp: any;
+    dateAndHour: string;
 
     constructor(
         protected jhiAlertService: JhiAlertService,
@@ -32,6 +33,7 @@ export class AppointmentUpdateComponent implements OnInit {
         this.isSaving = false;
         this.activatedRoute.data.subscribe(({ appointment }) => {
             this.appointment = appointment;
+            this.dateAndHour = this.appointment.dateAndHour != null ? this.appointment.dateAndHour.format(DATE_TIME_FORMAT) : null;
         });
         this.requestService
             .query({ 'appointmentId.specified': 'false' })
@@ -66,6 +68,7 @@ export class AppointmentUpdateComponent implements OnInit {
 
     save() {
         this.isSaving = true;
+        this.appointment.dateAndHour = this.dateAndHour != null ? moment(this.dateAndHour, DATE_TIME_FORMAT) : null;
         if (this.appointment.id !== undefined) {
             this.subscribeToSaveResponse(this.appointmentService.update(this.appointment));
         } else {

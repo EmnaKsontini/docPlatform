@@ -21,7 +21,6 @@ import java.net.URI;
 import java.net.URISyntaxException;
 
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 import java.util.stream.StreamSupport;
 
@@ -59,9 +58,6 @@ public class RequestResource {
         log.debug("REST request to save Request : {}", requestDTO);
         if (requestDTO.getId() != null) {
             throw new BadRequestAlertException("A new request cannot already have an ID", ENTITY_NAME, "idexists");
-        }
-        if (Objects.isNull(requestDTO.getAppointmentId())) {
-            throw new BadRequestAlertException("Invalid association value provided", ENTITY_NAME, "null");
         }
         RequestDTO result = requestService.save(requestDTO);
         return ResponseEntity.created(new URI("/api/requests/" + result.getId()))

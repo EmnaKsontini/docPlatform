@@ -28,9 +28,7 @@
             "relationshipName": "appointment",
             "otherEntityName": "appointment",
             "relationshipType": "one-to-one",
-            "otherEntityField": "request",
-            "ownerSide": true,
-            "useJPADerivedIdentifier": true,
+            "ownerSide": false,
             "otherEntityRelationshipName": "request",
             "otherEntityRelationshipNameUndefined": false
         }

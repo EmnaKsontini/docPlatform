@@ -20,11 +20,5 @@
                                  referencedColumnNames="id"
                                  referencedTableName="doctor"/>
 
-        <addForeignKeyConstraint baseColumnNames="id"
-                                 baseTableName="request"
-                                 constraintName="fk_request_appointment_id"
-                                 referencedColumnNames="id"
-                                 referencedTableName="appointment"/>
-
     </changeSet>
 </databaseChangeLog>

@@ -77,13 +77,6 @@
                         This field is required.
                     </small>
                 </div>
-                <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="doctorsPlatformApp.request.appointment" for="field_appointment">Appointment</label>
-                    <select class="form-control" id="field_appointment" name="appointment" [(ngModel)]="request.appointmentId">
-                        <option [ngValue]="null"></option>
-                        <option [ngValue]="appointmentOption.id" *ngFor="let appointmentOption of appointments; trackBy: trackAppointmentById">{{appointmentOption.request}}</option>
-                    </select>
-                </div>
             </div>
             <div>
                 <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">

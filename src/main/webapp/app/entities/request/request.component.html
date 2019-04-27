@@ -36,7 +36,6 @@
             <th jhiSortBy="confirmation"><span jhiTranslate="doctorsPlatformApp.request.confirmation">Confirmation</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th jhiSortBy="patientRequests"><span jhiTranslate="doctorsPlatformApp.request.patient">Patient</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th jhiSortBy="doctorRequests"><span jhiTranslate="doctorsPlatformApp.request.doctor">Doctor</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="appointmentRequest"><span jhiTranslate="doctorsPlatformApp.request.appointment">Appointment</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th></th>
             </tr>
             </thead>
@@ -55,11 +54,6 @@
                 <td>
                     <div *ngIf="request.doctorId">
                         <a [routerLink]="['../doctor', request.doctorId , 'view' ]" >{{request.doctorRequests}}</a>
-                    </div>
-                </td>
-                <td>
-                    <div *ngIf="request.appointmentId">
-                        <a [routerLink]="['../appointment', request.appointmentId , 'view' ]" >{{request.appointmentRequest}}</a>
                     </div>
                 </td>
                 <td class="text-right">
