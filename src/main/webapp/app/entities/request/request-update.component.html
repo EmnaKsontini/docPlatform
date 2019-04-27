@@ -1,0 +1,91 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+            <h2 id="jhi-request-heading" jhiTranslate="doctorsPlatformApp.request.home.createOrEditLabel">Create or edit a Request</h2>
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+                <div class="form-group" [hidden]="!request.id">
+                    <label for="id" jhiTranslate="global.field.id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id"
+                        [(ngModel)]="request.id" readonly />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="doctorsPlatformApp.request.date1" for="field_date1">Date 1</label>
+                    <div class="input-group">
+                        <input id="field_date1" type="text" class="form-control" name="date1" ngbDatepicker  #date1Dp="ngbDatepicker" [(ngModel)]="request.date1"
+                        required/>
+                        <span class="input-group-append">
+                            <button type="button" class="btn btn-secondary" (click)="date1Dp.toggle()"><fa-icon [icon]="'calendar-alt'"></fa-icon></button>
+                        </span>
+                    </div>
+                    <div [hidden]="!(editForm.controls.date1?.dirty && editForm.controls.date1?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.date1?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="doctorsPlatformApp.request.date2" for="field_date2">Date 2</label>
+                    <div class="input-group">
+                        <input id="field_date2" type="text" class="form-control" name="date2" ngbDatepicker  #date2Dp="ngbDatepicker" [(ngModel)]="request.date2"
+                        />
+                        <span class="input-group-append">
+                            <button type="button" class="btn btn-secondary" (click)="date2Dp.toggle()"><fa-icon [icon]="'calendar-alt'"></fa-icon></button>
+                        </span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="doctorsPlatformApp.request.date3" for="field_date3">Date 3</label>
+                    <div class="input-group">
+                        <input id="field_date3" type="text" class="form-control" name="date3" ngbDatepicker  #date3Dp="ngbDatepicker" [(ngModel)]="request.date3"
+                        />
+                        <span class="input-group-append">
+                            <button type="button" class="btn btn-secondary" (click)="date3Dp.toggle()"><fa-icon [icon]="'calendar-alt'"></fa-icon></button>
+                        </span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="doctorsPlatformApp.request.confirmation" for="field_confirmation">Confirmation</label>
+                    <input type="checkbox" class="form-control" name="confirmation" id="field_confirmation"
+                        [(ngModel)]="request.confirmation" />
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="doctorsPlatformApp.request.patient" for="field_patient">Patient</label>
+                    <select class="form-control" id="field_patient" name="patient" [(ngModel)]="request.patientId"  required>
+                        <option *ngIf="!editForm.value.patient" [ngValue]="null" selected></option>
+                        <option [ngValue]="patientOption.id" *ngFor="let patientOption of patients; trackBy: trackPatientById">{{patientOption.requests}}</option>
+                    </select>
+                </div>
+                <div [hidden]="!(editForm.controls.patient?.dirty && editForm.controls.patient?.invalid)">
+                    <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.patient?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                    </small>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="doctorsPlatformApp.request.doctor" for="field_doctor">Doctor</label>
+                    <select class="form-control" id="field_doctor" name="doctor" [(ngModel)]="request.doctorId"  required>
+                        <option *ngIf="!editForm.value.doctor" [ngValue]="null" selected></option>
+                        <option [ngValue]="doctorOption.id" *ngFor="let doctorOption of doctors; trackBy: trackDoctorById">{{doctorOption.requests}}</option>
+                    </select>
+                </div>
+                <div [hidden]="!(editForm.controls.doctor?.dirty && editForm.controls.doctor?.invalid)">
+                    <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.doctor?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                    </small>
+                </div>
+            </div>
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                </button>
+                <button type="submit" id="save-entity" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

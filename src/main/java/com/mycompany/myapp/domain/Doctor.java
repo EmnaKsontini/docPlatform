@@ -1,6 +1,7 @@
 package com.mycompany.myapp.domain;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 import javax.validation.constraints.*;
@@ -8,6 +9,8 @@ import javax.validation.constraints.*;
 import org.springframework.data.elasticsearch.annotations.Document;
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.Objects;
 
 /**
@@ -48,6 +51,8 @@ public class Doctor implements Serializable {
     @Column(name = "phone_number", precision = 10, scale = 2, nullable = false)
     private BigDecimal phoneNumber;
 
+    @OneToMany(mappedBy = "doctor")
+    private Set<Request> requests = new HashSet<>();
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
         return id;
@@ -133,6 +138,31 @@ public class Doctor implements Serializable {
 
     public void setPhoneNumber(BigDecimal phoneNumber) {
         this.phoneNumber = phoneNumber;
+    }
+
+    public Set<Request> getRequests() {
+        return requests;
+    }
+
+    public Doctor requests(Set<Request> requests) {
+        this.requests = requests;
+        return this;
+    }
+
+    public Doctor addRequests(Request request) {
+        this.requests.add(request);
+        request.setDoctor(this);
+        return this;
+    }
+
+    public Doctor removeRequests(Request request) {
+        this.requests.remove(request);
+        request.setDoctor(null);
+        return this;
+    }
+
+    public void setRequests(Set<Request> requests) {
+        this.requests = requests;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 

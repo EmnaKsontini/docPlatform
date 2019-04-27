@@ -1,6 +1,9 @@
 import './vendor.ts';
 
 import { NgModule } from '@angular/core';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { CalendarModule, DateAdapter } from 'angular-calendar';
+import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
 import { BrowserModule } from '@angular/platform-browser';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NgbDatepickerConfig } from '@ng-bootstrap/ng-bootstrap';
@@ -24,6 +27,9 @@ import { SidebarComponent } from './layouts/sidebar/sidebar.component';
 import { SimpleCalendarComponent } from './simple-calendar/simple-calendar.component';
 import { ChatModule } from 'app/chat/chat.module';
 
+import { CalendarDocComponent } from './calendar/calendar-doc.component';
+import { CalendarDocModule } from 'app/calendar/calendar-doc.module';
+import { AgmCoreModule } from '@agm/core';
 
 @NgModule({
     imports: [
@@ -45,7 +51,9 @@ import { ChatModule } from 'app/chat/chat.module';
 
         // jhipster-needle-angular-add-module JHipster will add new module here
         DoctorsPlatformEntityModule,
-        DoctorsPlatformAppRoutingModule
+        DoctorsPlatformAppRoutingModule,
+        BrowserAnimationsModule,
+        CalendarDocModule
     ],
     declarations: [
         JhiMainComponent,
