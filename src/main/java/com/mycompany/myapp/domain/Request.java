@@ -1,6 +1,7 @@
 package com.mycompany.myapp.domain;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
@@ -22,6 +23,7 @@ public class Request implements Serializable {
     private static final long serialVersionUID = 1L;
     
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @NotNull
@@ -47,9 +49,8 @@ public class Request implements Serializable {
     @JsonIgnoreProperties("requests")
     private Doctor doctor;
 
-    @OneToOne
-    @MapsId
-    @JoinColumn(name = "id")
+    @OneToOne(mappedBy = "request")
+    @JsonIgnore
     private Appointment appointment;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove

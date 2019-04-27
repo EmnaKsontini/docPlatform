@@ -5,7 +5,7 @@ import { HttpClient, HttpResponse } from '@angular/common/http';
 import { of } from 'rxjs';
 import { take, map } from 'rxjs/operators';
 import * as moment from 'moment';
-import { DATE_FORMAT } from 'app/shared/constants/input.constants';
+import { DATE_TIME_FORMAT } from 'app/shared/constants/input.constants';
 import { AppointmentService } from 'app/entities/appointment/appointment.service';
 import { IAppointment, Appointment } from 'app/shared/model/appointment.model';
 
@@ -32,7 +32,7 @@ describe('Service Tests', () => {
             it('should find an element', async () => {
                 const returnedFromService = Object.assign(
                     {
-                        date: currentDate.format(DATE_FORMAT)
+                        dateAndHour: currentDate.format(DATE_TIME_FORMAT)
                     },
                     elemDefault
                 );
@@ -49,13 +49,13 @@ describe('Service Tests', () => {
                 const returnedFromService = Object.assign(
                     {
                         id: 0,
-                        date: currentDate.format(DATE_FORMAT)
+                        dateAndHour: currentDate.format(DATE_TIME_FORMAT)
                     },
                     elemDefault
                 );
                 const expected = Object.assign(
                     {
-                        date: currentDate
+                        dateAndHour: currentDate
                     },
                     returnedFromService
                 );
@@ -70,14 +70,14 @@ describe('Service Tests', () => {
             it('should update a Appointment', async () => {
                 const returnedFromService = Object.assign(
                     {
-                        date: currentDate.format(DATE_FORMAT)
+                        dateAndHour: currentDate.format(DATE_TIME_FORMAT)
                     },
                     elemDefault
                 );
 
                 const expected = Object.assign(
                     {
-                        date: currentDate
+                        dateAndHour: currentDate
                     },
                     returnedFromService
                 );
@@ -92,13 +92,13 @@ describe('Service Tests', () => {
             it('should return a list of Appointment', async () => {
                 const returnedFromService = Object.assign(
                     {
-                        date: currentDate.format(DATE_FORMAT)
+                        dateAndHour: currentDate.format(DATE_TIME_FORMAT)
                     },
                     elemDefault
                 );
                 const expected = Object.assign(
                     {
-                        date: currentDate
+                        dateAndHour: currentDate
                     },
                     returnedFromService
                 );

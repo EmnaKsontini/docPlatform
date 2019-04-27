@@ -1,13 +1,13 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpResponse } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import * as moment from 'moment';
 import { DATE_FORMAT } from 'app/shared/constants/input.constants';
 import { map } from 'rxjs/operators';
 
 import { SERVER_API_URL } from 'app/app.constants';
 import { createRequestOption } from 'app/shared';
-import { IAppointment } from 'app/shared/model/appointment.model';
+import { Appointment, IAppointment } from 'app/shared/model/appointment.model';
 
 type EntityResponseType = HttpResponse<IAppointment>;
 type EntityArrayResponseType = HttpResponse<IAppointment[]>;
@@ -16,6 +16,8 @@ type EntityArrayResponseType = HttpResponse<IAppointment[]>;
 export class AppointmentService {
     public resourceUrl = SERVER_API_URL + 'api/appointments';
     public resourceSearchUrl = SERVER_API_URL + 'api/_search/appointments';
+    public _subject = new Subject<object>();
+    public event = this._subject.asObservable();
 
     constructor(protected http: HttpClient) {}
 
@@ -59,14 +61,14 @@ export class AppointmentService {
 
     protected convertDateFromClient(appointment: IAppointment): IAppointment {
         const copy: IAppointment = Object.assign({}, appointment, {
-            date: appointment.date != null && appointment.date.isValid() ? appointment.date.format(DATE_FORMAT) : null
+            dateAndHour: appointment.dateAndHour != null && appointment.dateAndHour.isValid() ? appointment.dateAndHour.toJSON() : null
         });
         return copy;
     }
 
     protected convertDateFromServer(res: EntityResponseType): EntityResponseType {
         if (res.body) {
-            res.body.date = res.body.date != null ? moment(res.body.date) : null;
+            res.body.dateAndHour = res.body.dateAndHour != null ? moment(res.body.dateAndHour) : null;
         }
         return res;
     }
@@ -74,9 +76,13 @@ export class AppointmentService {
     protected convertDateArrayFromServer(res: EntityArrayResponseType): EntityArrayResponseType {
         if (res.body) {
             res.body.forEach((appointment: IAppointment) => {
-                appointment.date = appointment.date != null ? moment(appointment.date) : null;
+                appointment.dateAndHour = appointment.dateAndHour != null ? moment(appointment.dateAndHour) : null;
             });
         }
         return res;
+    }
+
+    AppointmentList(): Observable<Appointment[]> {
+        return this.http.get<Appointment[]>(SERVER_API_URL + 'api/appointment/list');
     }
 }

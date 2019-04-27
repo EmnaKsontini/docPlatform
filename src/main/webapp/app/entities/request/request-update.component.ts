@@ -60,30 +60,12 @@ export class RequestUpdateComponent implements OnInit {
             )
             .subscribe((res: IDoctor[]) => (this.doctors = res), (res: HttpErrorResponse) => this.onError(res.message));
         this.appointmentService
-            .query({ 'requestId.specified': 'false' })
+            .query()
             .pipe(
                 filter((mayBeOk: HttpResponse<IAppointment[]>) => mayBeOk.ok),
                 map((response: HttpResponse<IAppointment[]>) => response.body)
             )
-            .subscribe(
-                (res: IAppointment[]) => {
-                    if (!this.request.appointmentId) {
-                        this.appointments = res;
-                    } else {
-                        this.appointmentService
-                            .find(this.request.appointmentId)
-                            .pipe(
-                                filter((subResMayBeOk: HttpResponse<IAppointment>) => subResMayBeOk.ok),
-                                map((subResponse: HttpResponse<IAppointment>) => subResponse.body)
-                            )
-                            .subscribe(
-                                (subRes: IAppointment) => (this.appointments = [subRes].concat(res)),
-                                (subRes: HttpErrorResponse) => this.onError(subRes.message)
-                            );
-                    }
-                },
-                (res: HttpErrorResponse) => this.onError(res.message)
-            );
+            .subscribe((res: IAppointment[]) => (this.appointments = res), (res: HttpErrorResponse) => this.onError(res.message));
     }
 
     previousState() {

@@ -10,13 +10,14 @@
             "otherEntityField": "appointement",
             "ownerSide": true,
             "useJPADerivedIdentifier": true,
-            "otherEntityRelationshipName": "appointment"
+            "otherEntityRelationshipName": "appointment",
+            "otherEntityRelationshipNameUndefined": false
         }
     ],
     "fields": [
         {
-            "fieldName": "date",
-            "fieldType": "LocalDate",
+            "fieldName": "dateAndHour",
+            "fieldType": "ZonedDateTime",
             "fieldValidateRules": [
                 "required",
                 "unique"

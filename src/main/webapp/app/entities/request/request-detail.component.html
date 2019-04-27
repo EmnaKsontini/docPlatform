@@ -33,12 +33,6 @@
                         <a [routerLink]="['/doctor', request.doctorId, 'view']">{{request.doctorRequests}}</a>
                     </div>
                 </dd>
-                <dt><span jhiTranslate="doctorsPlatformApp.request.appointment">Appointment</span></dt>
-                <dd>
-                    <div *ngIf="request.appointmentId">
-                        <a [routerLink]="['/appointment', request.appointmentId, 'view']">{{request.appointmentRequest}}</a>
-                    </div>
-                </dd>
             </dl>
 
             <button type="submit"

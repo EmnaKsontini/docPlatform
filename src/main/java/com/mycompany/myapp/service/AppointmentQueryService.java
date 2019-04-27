@@ -93,8 +93,8 @@ public class AppointmentQueryService extends QueryService<Appointment> {
             if (criteria.getId() != null) {
                 specification = specification.and(buildSpecification(criteria.getId(), Appointment_.id));
             }
-            if (criteria.getDate() != null) {
-                specification = specification.and(buildRangeSpecification(criteria.getDate(), Appointment_.date));
+            if (criteria.getDateAndHour() != null) {
+                specification = specification.and(buildRangeSpecification(criteria.getDateAndHour(), Appointment_.dateAndHour));
             }
             if (criteria.getRequestId() != null) {
                 specification = specification.and(buildSpecification(criteria.getRequestId(),

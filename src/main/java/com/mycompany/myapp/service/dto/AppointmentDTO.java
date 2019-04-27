@@ -1,5 +1,5 @@
 package com.mycompany.myapp.service.dto;
-import java.time.LocalDate;
+import java.time.ZonedDateTime;
 import javax.validation.constraints.*;
 import java.io.Serializable;
 import java.util.Objects;
@@ -12,11 +12,12 @@ public class AppointmentDTO implements Serializable {
     private Long id;
 
     @NotNull
-    private LocalDate date;
+    private ZonedDateTime dateAndHour;
 
 
     private Long requestId;
 
+    private String requestAppointement;
 
     public Long getId() {
         return id;
@@ -26,12 +27,12 @@ public class AppointmentDTO implements Serializable {
         this.id = id;
     }
 
-    public LocalDate getDate() {
-        return date;
+    public ZonedDateTime getDateAndHour() {
+        return dateAndHour;
     }
 
-    public void setDate(LocalDate date) {
-        this.date = date;
+    public void setDateAndHour(ZonedDateTime dateAndHour) {
+        this.dateAndHour = dateAndHour;
     }
 
     public Long getRequestId() {
@@ -42,6 +43,13 @@ public class AppointmentDTO implements Serializable {
         this.requestId = requestId;
     }
 
+    public String getRequestAppointement() {
+        return requestAppointement;
+    }
+
+    public void setRequestAppointement(String requestAppointement) {
+        this.requestAppointement = requestAppointement;
+    }
 
     @Override
     public boolean equals(Object o) {
@@ -68,8 +76,9 @@ public class AppointmentDTO implements Serializable {
     public String toString() {
         return "AppointmentDTO{" +
             "id=" + getId() +
-            ", date='" + getDate() + "'" +
+            ", dateAndHour='" + getDateAndHour() + "'" +
             ", request=" + getRequestId() +
+            ", request='" + getRequestAppointement() + "'" +
             "}";
     }
 }

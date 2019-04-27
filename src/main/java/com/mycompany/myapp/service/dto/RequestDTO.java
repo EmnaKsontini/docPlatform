@@ -20,12 +20,14 @@ public class RequestDTO implements Serializable {
 
     private Boolean confirmation;
 
+
     private Long patientId;
+
+    private String patientRequests;
 
     private Long doctorId;
 
-    private Long appointmentId;
-
+    private String doctorRequests;
 
     public Long getId() {
         return id;
@@ -75,6 +77,14 @@ public class RequestDTO implements Serializable {
         this.patientId = patientId;
     }
 
+    public String getPatientRequests() {
+        return patientRequests;
+    }
+
+    public void setPatientRequests(String patientRequests) {
+        this.patientRequests = patientRequests;
+    }
+
     public Long getDoctorId() {
         return doctorId;
     }
@@ -83,14 +93,13 @@ public class RequestDTO implements Serializable {
         this.doctorId = doctorId;
     }
 
-    public Long getAppointmentId() {
-        return appointmentId;
+    public String getDoctorRequests() {
+        return doctorRequests;
     }
 
-    public void setAppointmentId(Long appointmentId) {
-        this.appointmentId = appointmentId;
+    public void setDoctorRequests(String doctorRequests) {
+        this.doctorRequests = doctorRequests;
     }
-
 
     @Override
     public boolean equals(Object o) {
@@ -122,8 +131,9 @@ public class RequestDTO implements Serializable {
             ", date3='" + getDate3() + "'" +
             ", confirmation='" + isConfirmation() + "'" +
             ", patient=" + getPatientId() +
+            ", patient='" + getPatientRequests() + "'" +
             ", doctor=" + getDoctorId() +
-            ", appointment=" + getAppointmentId() +
+            ", doctor='" + getDoctorRequests() + "'" +
             "}";
     }
 }

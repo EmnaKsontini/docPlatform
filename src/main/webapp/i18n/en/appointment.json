@@ -16,7 +16,7 @@
             "detail": {
                 "title": "Appointment"
             },
-            "date": "Date",
+            "dateAndHour": "Date And Hour",
             "request": "Request"
         }
     }

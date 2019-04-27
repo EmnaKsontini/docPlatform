@@ -141,11 +141,6 @@ public class RequestResourceIntTest {
         em.persist(doctor);
         em.flush();
         request.setDoctor(doctor);
-        // Add required entity
-        Appointment appointment = AppointmentResourceIntTest.createEntity(em);
-        em.persist(appointment);
-        em.flush();
-        request.setAppointment(appointment);
         return request;
     }
 
@@ -174,9 +169,6 @@ public class RequestResourceIntTest {
         assertThat(testRequest.getDate2()).isEqualTo(DEFAULT_DATE_2);
         assertThat(testRequest.getDate3()).isEqualTo(DEFAULT_DATE_3);
         assertThat(testRequest.isConfirmation()).isEqualTo(DEFAULT_CONFIRMATION);
-
-        // Validate the id for MapsId, the ids must be same
-        assertThat(testRequest.getId()).isEqualTo(testRequest.getAppointment().getId());
 
         // Validate the Request in Elasticsearch
         verify(mockRequestSearchRepository, times(1)).save(testRequest);
@@ -541,6 +533,7 @@ public class RequestResourceIntTest {
         em.persist(appointment);
         em.flush();
         request.setAppointment(appointment);
+        appointment.setRequest(request);
         requestRepository.saveAndFlush(request);
         Long appointmentId = appointment.getId();
 
