@@ -6,9 +6,7 @@ export interface IRequest {
     date2?: Moment;
     date3?: Moment;
     confirmation?: boolean;
-    patientRequests?: string;
     patientId?: number;
-    doctorRequests?: string;
     doctorId?: number;
     appointmentId?: number;
 }
@@ -20,9 +18,7 @@ export class Request implements IRequest {
         public date2?: Moment,
         public date3?: Moment,
         public confirmation?: boolean,
-        public patientRequests?: string,
         public patientId?: number,
-        public doctorRequests?: string,
         public doctorId?: number,
         public appointmentId?: number
     ) {

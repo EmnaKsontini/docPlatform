@@ -34,8 +34,8 @@
             <th jhiSortBy="date2"><span jhiTranslate="doctorsPlatformApp.request.date2">Date 2</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th jhiSortBy="date3"><span jhiTranslate="doctorsPlatformApp.request.date3">Date 3</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th jhiSortBy="confirmation"><span jhiTranslate="doctorsPlatformApp.request.confirmation">Confirmation</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="patientRequests"><span jhiTranslate="doctorsPlatformApp.request.patient">Patient</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="doctorRequests"><span jhiTranslate="doctorsPlatformApp.request.doctor">Doctor</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="patientId"><span jhiTranslate="doctorsPlatformApp.request.patient">Patient</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="doctorId"><span jhiTranslate="doctorsPlatformApp.request.doctor">Doctor</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th></th>
             </tr>
             </thead>
@@ -48,12 +48,12 @@
                 <td>{{request.confirmation}}</td>
                 <td>
                     <div *ngIf="request.patientId">
-                        <a [routerLink]="['../patient', request.patientId , 'view' ]" >{{request.patientRequests}}</a>
+                        <a [routerLink]="['../patient', request.patientId , 'view' ]" >{{request.patientId}}</a>
                     </div>
                 </td>
                 <td>
                     <div *ngIf="request.doctorId">
-                        <a [routerLink]="['../doctor', request.doctorId , 'view' ]" >{{request.doctorRequests}}</a>
+                        <a [routerLink]="['../doctor', request.doctorId , 'view' ]" >{{request.doctorId}}</a>
                     </div>
                 </td>
                 <td class="text-right">
