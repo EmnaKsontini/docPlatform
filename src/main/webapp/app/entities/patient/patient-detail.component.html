@@ -21,6 +21,12 @@
                 <dd>
                     <span>{{patient.phoneNumber}}</span>
                 </dd>
+                <dt><span jhiTranslate="doctorsPlatformApp.patient.doctor">Doctor</span></dt>
+                <dd>
+                    <span *ngFor="let doctor of patient.doctors; let last = last">
+                        <a [routerLink]="['/doctor', doctor?.id, 'view' ]">{{doctor.id}}</a>{{last ? '' : ', '}}
+                    </span>
+                </dd>
             </dl>
 
             <button type="submit"

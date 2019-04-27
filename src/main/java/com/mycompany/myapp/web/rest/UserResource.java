@@ -1,10 +1,13 @@
 package com.mycompany.myapp.web.rest;
 
 import com.mycompany.myapp.config.Constants;
+import com.mycompany.myapp.domain.Doctor;
 import com.mycompany.myapp.domain.User;
 import com.mycompany.myapp.repository.UserRepository;
 import com.mycompany.myapp.repository.search.UserSearchRepository;
 import com.mycompany.myapp.security.AuthoritiesConstants;
+import com.mycompany.myapp.security.SecurityUtils;
+import com.mycompany.myapp.service.DoctorService;
 import com.mycompany.myapp.service.MailService;
 import com.mycompany.myapp.service.UserService;
 import com.mycompany.myapp.service.dto.UserDTO;
@@ -15,6 +18,7 @@ import com.mycompany.myapp.web.rest.util.HeaderUtil;
 import com.mycompany.myapp.web.rest.util.PaginationUtil;
 import io.github.jhipster.web.util.ResponseUtil;
 
+import io.micrometer.core.annotation.Timed;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
@@ -70,13 +74,16 @@ public class UserResource {
 
     private final MailService mailService;
 
+    private final DoctorService doctorService;
+
     private final UserSearchRepository userSearchRepository;
 
-    public UserResource(UserService userService, UserRepository userRepository, MailService mailService, UserSearchRepository userSearchRepository) {
+    public UserResource(UserService userService, UserRepository userRepository, MailService mailService, DoctorService doctorService, UserSearchRepository userSearchRepository) {
 
         this.userService = userService;
         this.userRepository = userRepository;
         this.mailService = mailService;
+        this.doctorService = doctorService;
         this.userSearchRepository = userSearchRepository;
     }
 
@@ -202,4 +209,6 @@ public class UserResource {
             .stream(userSearchRepository.search(queryStringQuery(query)).spliterator(), false)
             .collect(Collectors.toList());
     }
+
+
 }

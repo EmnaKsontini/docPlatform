@@ -4,6 +4,7 @@ import com.mycompany.myapp.DoctorsPlatformApp;
 
 import com.mycompany.myapp.domain.Patient;
 import com.mycompany.myapp.domain.Request;
+import com.mycompany.myapp.domain.Doctor;
 import com.mycompany.myapp.repository.PatientRepository;
 import com.mycompany.myapp.repository.search.PatientSearchRepository;
 import com.mycompany.myapp.service.PatientService;
@@ -16,6 +17,7 @@ import com.mycompany.myapp.service.PatientQueryService;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -31,6 +33,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.validation.Validator;
 
 import javax.persistence.EntityManager;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -67,8 +70,14 @@ public class PatientResourceIntTest {
     @Autowired
     private PatientRepository patientRepository;
 
+    @Mock
+    private PatientRepository patientRepositoryMock;
+
     @Autowired
     private PatientMapper patientMapper;
+
+    @Mock
+    private PatientService patientServiceMock;
 
     @Autowired
     private PatientService patientService;
@@ -276,6 +285,39 @@ public class PatientResourceIntTest {
             .andExpect(jsonPath("$.[*].phoneNumber").value(hasItem(DEFAULT_PHONE_NUMBER.intValue())));
     }
     
+    @SuppressWarnings({"unchecked"})
+    public void getAllPatientsWithEagerRelationshipsIsEnabled() throws Exception {
+        PatientResource patientResource = new PatientResource(patientServiceMock, patientQueryService);
+        when(patientServiceMock.findAllWithEagerRelationships(any())).thenReturn(new PageImpl(new ArrayList<>()));
+
+        MockMvc restPatientMockMvc = MockMvcBuilders.standaloneSetup(patientResource)
+            .setCustomArgumentResolvers(pageableArgumentResolver)
+            .setControllerAdvice(exceptionTranslator)
+            .setConversionService(createFormattingConversionService())
+            .setMessageConverters(jacksonMessageConverter).build();
+
+        restPatientMockMvc.perform(get("/api/patients?eagerload=true"))
+        .andExpect(status().isOk());
+
+        verify(patientServiceMock, times(1)).findAllWithEagerRelationships(any());
+    }
+
+    @SuppressWarnings({"unchecked"})
+    public void getAllPatientsWithEagerRelationshipsIsNotEnabled() throws Exception {
+        PatientResource patientResource = new PatientResource(patientServiceMock, patientQueryService);
+            when(patientServiceMock.findAllWithEagerRelationships(any())).thenReturn(new PageImpl(new ArrayList<>()));
+            MockMvc restPatientMockMvc = MockMvcBuilders.standaloneSetup(patientResource)
+            .setCustomArgumentResolvers(pageableArgumentResolver)
+            .setControllerAdvice(exceptionTranslator)
+            .setConversionService(createFormattingConversionService())
+            .setMessageConverters(jacksonMessageConverter).build();
+
+        restPatientMockMvc.perform(get("/api/patients?eagerload=true"))
+        .andExpect(status().isOk());
+
+            verify(patientServiceMock, times(1)).findAllWithEagerRelationships(any());
+    }
+
     @Test
     @Transactional
     public void getPatient() throws Exception {
@@ -519,6 +561,25 @@ public class PatientResourceIntTest {
 
         // Get all the patientList where requests equals to requestsId + 1
         defaultPatientShouldNotBeFound("requestsId.equals=" + (requestsId + 1));
+    }
+
+
+    @Test
+    @Transactional
+    public void getAllPatientsByDoctorIsEqualToSomething() throws Exception {
+        // Initialize the database
+        Doctor doctor = DoctorResourceIntTest.createEntity(em);
+        em.persist(doctor);
+        em.flush();
+        patient.addDoctor(doctor);
+        patientRepository.saveAndFlush(patient);
+        Long doctorId = doctor.getId();
+
+        // Get all the patientList where doctor equals to doctorId
+        defaultPatientShouldBeFound("doctorId.equals=" + doctorId);
+
+        // Get all the patientList where doctor equals to doctorId + 1
+        defaultPatientShouldNotBeFound("doctorId.equals=" + (doctorId + 1));
     }
 
     /**

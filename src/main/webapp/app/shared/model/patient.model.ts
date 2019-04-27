@@ -1,4 +1,5 @@
 import { IRequest } from 'app/shared/model/request.model';
+import { IDoctor } from 'app/shared/model/doctor.model';
 
 export interface IPatient {
     id?: number;
@@ -7,6 +8,7 @@ export interface IPatient {
     email?: string;
     phoneNumber?: number;
     requests?: IRequest[];
+    doctors?: IDoctor[];
 }
 
 export class Patient implements IPatient {
@@ -16,6 +18,7 @@ export class Patient implements IPatient {
         public name?: string,
         public email?: string,
         public phoneNumber?: number,
-        public requests?: IRequest[]
+        public requests?: IRequest[],
+        public doctors?: IDoctor[]
     ) {}
 }

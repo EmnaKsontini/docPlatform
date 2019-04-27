@@ -9,8 +9,11 @@
     <include file="config/liquibase/changelog/20190418192401_added_entity_Patient.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20190418195259_added_entity_Request.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20190418201404_added_entity_Appointment.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20190426201048_changelog.xml" relativeToChangelogFile="false"/>
+
     <!-- jhipster-needle-liquibase-add-changelog - JHipster will add liquibase changelogs here -->
     <include file="config/liquibase/changelog/20190418195259_added_entity_constraints_Request.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20190418201404_added_entity_constraints_Appointment.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20190418192401_added_entity_constraints_Patient.xml" relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-constraints-changelog - JHipster will add liquibase constraints changelogs here -->
 </databaseChangeLog>

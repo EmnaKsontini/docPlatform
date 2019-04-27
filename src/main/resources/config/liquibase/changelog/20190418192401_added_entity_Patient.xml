@@ -41,6 +41,17 @@
             <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here, do not remove-->
         </createTable>
         
+        <createTable tableName="patient_doctor">
+            <column name="doctor_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+            <column name="patient_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <addPrimaryKey columnNames="patient_id, doctor_id" tableName="patient_doctor"/>
+        
     </changeSet>
     <!-- jhipster-needle-liquibase-add-changeset - JHipster will add changesets here, do not remove-->
 </databaseChangeLog>

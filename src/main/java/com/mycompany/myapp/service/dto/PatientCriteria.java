@@ -34,6 +34,8 @@ public class PatientCriteria implements Serializable {
 
     private LongFilter requestsId;
 
+    private LongFilter doctorId;
+
     public LongFilter getId() {
         return id;
     }
@@ -82,6 +84,14 @@ public class PatientCriteria implements Serializable {
         this.requestsId = requestsId;
     }
 
+    public LongFilter getDoctorId() {
+        return doctorId;
+    }
+
+    public void setDoctorId(LongFilter doctorId) {
+        this.doctorId = doctorId;
+    }
+
 
     @Override
     public boolean equals(Object o) {
@@ -98,7 +108,8 @@ public class PatientCriteria implements Serializable {
             Objects.equals(name, that.name) &&
             Objects.equals(email, that.email) &&
             Objects.equals(phoneNumber, that.phoneNumber) &&
-            Objects.equals(requestsId, that.requestsId);
+            Objects.equals(requestsId, that.requestsId) &&
+            Objects.equals(doctorId, that.doctorId);
     }
 
     @Override
@@ -109,7 +120,8 @@ public class PatientCriteria implements Serializable {
         name,
         email,
         phoneNumber,
-        requestsId
+        requestsId,
+        doctorId
         );
     }
 
@@ -122,6 +134,7 @@ public class PatientCriteria implements Serializable {
                 (email != null ? "email=" + email + ", " : "") +
                 (phoneNumber != null ? "phoneNumber=" + phoneNumber + ", " : "") +
                 (requestsId != null ? "requestsId=" + requestsId + ", " : "") +
+                (doctorId != null ? "doctorId=" + doctorId + ", " : "") +
             "}";
     }
 

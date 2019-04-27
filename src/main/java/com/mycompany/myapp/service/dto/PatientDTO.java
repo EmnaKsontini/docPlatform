@@ -1,6 +1,8 @@
 package com.mycompany.myapp.service.dto;
 import javax.validation.constraints.*;
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.Objects;
 
 /**
@@ -23,6 +25,8 @@ public class PatientDTO implements Serializable {
     @NotNull
     private Long phoneNumber;
 
+
+    private Set<DoctorDTO> doctors = new HashSet<>();
 
     public Long getId() {
         return id;
@@ -62,6 +66,14 @@ public class PatientDTO implements Serializable {
 
     public void setPhoneNumber(Long phoneNumber) {
         this.phoneNumber = phoneNumber;
+    }
+
+    public Set<DoctorDTO> getDoctors() {
+        return doctors;
+    }
+
+    public void setDoctors(Set<DoctorDTO> doctors) {
+        this.doctors = doctors;
     }
 
     @Override

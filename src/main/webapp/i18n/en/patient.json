@@ -20,7 +20,8 @@
             "name": "Name",
             "email": "Email",
             "phoneNumber": "Phone Number",
-            "requests": "Requests"
+            "requests": "Requests",
+            "doctor": "Doctor"
         }
     }
 }

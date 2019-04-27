@@ -31,6 +31,10 @@ import { RouterModule } from '@angular/router';
             {
                 path: 'tip',
                 loadChildren: './tip/tip.module#DoctorsPlatformTipModule'
+            },
+            {
+                path: 'patient',
+                loadChildren: './patient/patient.module#DoctorsPlatformPatientModule'
             }
             /* jhipster-needle-add-entity-route - JHipster will add entity modules routes here */
         ])

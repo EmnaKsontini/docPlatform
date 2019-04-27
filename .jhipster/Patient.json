@@ -8,6 +8,15 @@
             "relationshipType": "one-to-many",
             "otherEntityRelationshipName": "patient",
             "otherEntityRelationshipNameUndefined": false
+        },
+        {
+            "relationshipName": "doctor",
+            "otherEntityName": "doctor",
+            "relationshipType": "many-to-many",
+            "otherEntityField": "id",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "patient",
+            "otherEntityRelationshipNameUndefined": false
         }
     ],
     "fields": [

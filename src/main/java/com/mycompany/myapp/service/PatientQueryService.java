@@ -109,6 +109,10 @@ public class PatientQueryService extends QueryService<Patient> {
                 specification = specification.and(buildSpecification(criteria.getRequestsId(),
                     root -> root.join(Patient_.requests, JoinType.LEFT).get(Request_.id)));
             }
+            if (criteria.getDoctorId() != null) {
+                specification = specification.and(buildSpecification(criteria.getDoctorId(),
+                    root -> root.join(Patient_.doctors, JoinType.LEFT).get(Doctor_.id)));
+            }
         }
         return specification;
     }
