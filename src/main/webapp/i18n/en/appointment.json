@@ -1,0 +1,23 @@
+{
+    "doctorsPlatformApp": {
+        "appointment": {
+            "home": {
+                "title": "Appointments",
+                "createLabel": "Create a new Appointment",
+                "createOrEditLabel": "Create or edit a Appointment",
+                "search": "Search for Appointment"
+            },
+            "created": "A new Appointment is created with identifier {{ param }}",
+            "updated": "A Appointment is updated with identifier {{ param }}",
+            "deleted": "A Appointment is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Appointment {{ id }}?"
+            },
+            "detail": {
+                "title": "Appointment"
+            },
+            "dateAndHour": "Date And Hour",
+            "request": "Request"
+        }
+    }
+}

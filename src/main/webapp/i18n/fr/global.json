@@ -9,6 +9,9 @@
                 "main": "Entités",
                 "doctor": "Doctor",
                 "tip": "Tip",
+                "patient": "Patient",
+                "request": "Request",
+                "appointment": "Appointment",
                 "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
             },
             "account": {

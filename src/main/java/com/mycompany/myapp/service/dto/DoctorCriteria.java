@@ -37,6 +37,8 @@ public class DoctorCriteria implements Serializable {
 
     private BigDecimalFilter phoneNumber;
 
+    private LongFilter requestsId;
+
     public LongFilter getId() {
         return id;
     }
@@ -93,6 +95,14 @@ public class DoctorCriteria implements Serializable {
         this.phoneNumber = phoneNumber;
     }
 
+    public LongFilter getRequestsId() {
+        return requestsId;
+    }
+
+    public void setRequestsId(LongFilter requestsId) {
+        this.requestsId = requestsId;
+    }
+
 
     @Override
     public boolean equals(Object o) {
@@ -110,7 +120,8 @@ public class DoctorCriteria implements Serializable {
             Objects.equals(address, that.address) &&
             Objects.equals(speciality, that.speciality) &&
             Objects.equals(email, that.email) &&
-            Objects.equals(phoneNumber, that.phoneNumber);
+            Objects.equals(phoneNumber, that.phoneNumber) &&
+            Objects.equals(requestsId, that.requestsId);
     }
 
     @Override
@@ -122,7 +133,8 @@ public class DoctorCriteria implements Serializable {
         address,
         speciality,
         email,
-        phoneNumber
+        phoneNumber,
+        requestsId
         );
     }
 
@@ -136,6 +148,7 @@ public class DoctorCriteria implements Serializable {
                 (speciality != null ? "speciality=" + speciality + ", " : "") +
                 (email != null ? "email=" + email + ", " : "") +
                 (phoneNumber != null ? "phoneNumber=" + phoneNumber + ", " : "") +
+                (requestsId != null ? "requestsId=" + requestsId + ", " : "") +
             "}";
     }
 

@@ -1,0 +1,143 @@
+
+<link href="https://unpkg.com/bootstrap-css-only@4.1.1/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://unpkg.com/font-awesome@4.7.0/css/font-awesome.css" rel="stylesheet">
+<link href="https://unpkg.com/angular-calendar@0.26.4/css/angular-calendar.css" rel="stylesheet">
+<link href="https://unpkg.com/flatpickr@4.5.2/dist/flatpickr.css" rel="stylesheet">
+<div class="cal-layout">
+    <ng-template #modalContent let-close="close" >
+        <div class="modal-header">
+            <h5 class="modal-title">Event action occurred</h5>
+            <button type="button" class="close" (click)="close()">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+            <div>
+                Action:
+                <pre>{{ modalData?.action }}</pre>
+            </div>
+            <div>
+                Event:
+                <pre>{{ modalData?.event | json }}</pre>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-outline-secondary" (click)="close()">OK</button>
+        </div>
+    </ng-template>
+
+    <ng-template #customCellTemplate let-day="day"
+                 let-openDay="openDay"
+                 let-locale="locale"
+                 let-tooltipPlacement="tooltipPlacement"
+                 let-highlightDay="highlightDay"
+                 let-unhighlightDay="unhighlightDay"
+                 let-eventClicked="eventClicked"
+                 let-tooltipTemplate="tooltipTemplate"
+                 let-tooltipAppendToBody="tooltipAppendToBody">
+        <div class="cal-cell-top">
+            <span class="cal-day-number">{{ day.date | calendarDate:'monthViewDayNumber':locale }}</span>
+        </div>
+        <div class="cal-events" *ngIf="day.events.length > 0">
+            <div class="cal-event"
+                 *ngFor="let event of day.events"
+                 [style.backgroundColor]="event.color.primary"
+                 [ngClass]="event?.cssClass"
+                 (mouseenter)="highlightDay.emit({event: event})"
+                 (mouseleave)="unhighlightDay.emit({event: event})"
+                 [mwlCalendarTooltip]="event.title | calendarEventTitle:'monthTooltip':event"
+                 [tooltipPlacement]="tooltipPlacement"
+                 [tooltipEvent]="event"
+                 [tooltipTemplate]="tooltipTemplate"
+                 [tooltipAppendToBody]="tooltipAppendToBody">
+            </div>
+        </div>
+    </ng-template>
+
+    <div class="row text-center">
+        <div class="col-md-4">
+            <div class="btn-group">
+                <div
+                    class="btn btn-primary"
+                    mwlCalendarPreviousView
+                    [view]="view"
+                    [(viewDate)]="viewDate"
+                    (viewDateChange)="activeDayIsOpen = false">
+                    Previous
+                </div>
+                <div
+                    class="btn btn-outline-secondary"
+                    mwlCalendarToday
+                    [(viewDate)]="viewDate">
+                    Today
+                </div>
+                <div
+                    class="btn btn-primary"
+                    mwlCalendarNextView
+                    [view]="view"
+                    [(viewDate)]="viewDate"
+                    (viewDateChange)="activeDayIsOpen = false">
+                    Next
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <h3>{{ viewDate | calendarDate:(view + 'ViewTitle'):'en' }}</h3>
+        </div>
+        <div class="col-md-4">
+            <div class="btn-group">
+                <div
+                    class="btn btn-primary"
+                    (click)="view ='month'"
+                    [class.active]="view ==='month'">
+                    Month
+                </div>
+                <div
+                    class="btn btn-primary"
+                    (click)="view = CalendarView.Week"
+                    [class.active]="view ==='week'">
+                    Week
+                </div>
+                <div
+                    class="btn btn-primary"
+                    (click)="view = CalendarView.Day"
+                    [class.active]="view === 'day'">
+                    Day
+                </div>
+            </div>
+        </div>
+    </div>
+    <br>
+<div [ngSwitch]="view">
+    <mwl-calendar-month-view
+        *ngSwitchCase="'month'"
+        [viewDate]="viewDate"
+        [events]="events"
+        [refresh]="refresh"
+        [activeDayIsOpen]="activeDayIsOpen"
+        (dayClicked)="dayClicked($event.day)"
+        (eventClicked)="handleEvent('Clicked', $event.event)"
+        [cellTemplate]="customCellTemplate"
+        (eventTimesChanged)="eventTimesChanged($event)"
+    >
+    </mwl-calendar-month-view>
+    <mwl-calendar-week-view
+        *ngSwitchCase="'week'"
+        [viewDate]="viewDate"
+        [events]="events"
+        [refresh]="refresh"
+        (eventClicked)="handleEvent('Clicked', $event.event)"
+        (eventTimesChanged)="eventTimesChanged($event)"
+    >
+    </mwl-calendar-week-view>
+    <mwl-calendar-day-view
+        *ngSwitchCase="'day'"
+        [viewDate]="viewDate"
+        [events]="events"
+        [refresh]="refresh"
+        (eventClicked)="handleEvent('Clicked', $event.event)"
+        (eventTimesChanged)="eventTimesChanged($event)"
+    >
+    </mwl-calendar-day-view>
+</div>
+</div>
