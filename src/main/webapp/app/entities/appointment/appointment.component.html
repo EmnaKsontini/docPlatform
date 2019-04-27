@@ -30,7 +30,7 @@
             <thead>
             <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
             <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="date"><span jhiTranslate="doctorsPlatformApp.appointment.date">Date</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="dateAndHour"><span jhiTranslate="doctorsPlatformApp.appointment.dateAndHour">Date And Hour</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th jhiSortBy="requestAppointement"><span jhiTranslate="doctorsPlatformApp.appointment.request">Request</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th></th>
             </tr>
@@ -38,10 +38,10 @@
             <tbody>
             <tr *ngFor="let appointment of appointments ;trackBy: trackId">
                 <td><a [routerLink]="['/appointment', appointment.id, 'view' ]">{{appointment.id}}</a></td>
-                <td>{{appointment.date | date:'mediumDate'}}</td>
+                <td>{{appointment.dateAndHour | date:'medium'}}</td>
                 <td>
                     <div *ngIf="appointment.requestId">
-                        <a [routerLink]="['../request', appointment.requestId , 'view' ]" >{{appointment.requestAppointement}}</a>
+                        <a [routerLink]="['../request', appointment.requestId , 'view' ]" >{{appointment.requestId}}</a>
                     </div>
                 </td>
                 <td class="text-right">

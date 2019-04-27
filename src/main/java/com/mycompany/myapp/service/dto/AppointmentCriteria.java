@@ -9,7 +9,7 @@ import io.github.jhipster.service.filter.FloatFilter;
 import io.github.jhipster.service.filter.IntegerFilter;
 import io.github.jhipster.service.filter.LongFilter;
 import io.github.jhipster.service.filter.StringFilter;
-import io.github.jhipster.service.filter.LocalDateFilter;
+import io.github.jhipster.service.filter.ZonedDateTimeFilter;
 
 /**
  * Criteria class for the Appointment entity. This class is used in AppointmentResource to
@@ -25,7 +25,7 @@ public class AppointmentCriteria implements Serializable {
 
     private LongFilter id;
 
-    private LocalDateFilter date;
+    private ZonedDateTimeFilter dateAndHour;
 
     private LongFilter requestId;
 
@@ -37,12 +37,12 @@ public class AppointmentCriteria implements Serializable {
         this.id = id;
     }
 
-    public LocalDateFilter getDate() {
-        return date;
+    public ZonedDateTimeFilter getDateAndHour() {
+        return dateAndHour;
     }
 
-    public void setDate(LocalDateFilter date) {
-        this.date = date;
+    public void setDateAndHour(ZonedDateTimeFilter dateAndHour) {
+        this.dateAndHour = dateAndHour;
     }
 
     public LongFilter getRequestId() {
@@ -65,7 +65,7 @@ public class AppointmentCriteria implements Serializable {
         final AppointmentCriteria that = (AppointmentCriteria) o;
         return
             Objects.equals(id, that.id) &&
-            Objects.equals(date, that.date) &&
+            Objects.equals(dateAndHour, that.dateAndHour) &&
             Objects.equals(requestId, that.requestId);
     }
 
@@ -73,7 +73,7 @@ public class AppointmentCriteria implements Serializable {
     public int hashCode() {
         return Objects.hash(
         id,
-        date,
+        dateAndHour,
         requestId
         );
     }
@@ -82,7 +82,7 @@ public class AppointmentCriteria implements Serializable {
     public String toString() {
         return "AppointmentCriteria{" +
                 (id != null ? "id=" + id + ", " : "") +
-                (date != null ? "date=" + date + ", " : "") +
+                (dateAndHour != null ? "dateAndHour=" + dateAndHour + ", " : "") +
                 (requestId != null ? "requestId=" + requestId + ", " : "") +
             "}";
     }

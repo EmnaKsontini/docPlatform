@@ -7,7 +7,7 @@ import javax.validation.constraints.*;
 
 import org.springframework.data.elasticsearch.annotations.Document;
 import java.io.Serializable;
-import java.time.LocalDate;
+import java.time.ZonedDateTime;
 import java.util.Objects;
 
 /**
@@ -24,8 +24,8 @@ public class Appointment implements Serializable {
     private Long id;
 
     @NotNull
-    @Column(name = "jhi_date", nullable = false, unique = true)
-    private LocalDate date;
+    @Column(name = "date_and_hour", nullable = false, unique = true)
+    private ZonedDateTime dateAndHour;
 
     @OneToOne
     @MapsId
@@ -41,17 +41,17 @@ public class Appointment implements Serializable {
         this.id = id;
     }
 
-    public LocalDate getDate() {
-        return date;
+    public ZonedDateTime getDateAndHour() {
+        return dateAndHour;
     }
 
-    public Appointment date(LocalDate date) {
-        this.date = date;
+    public Appointment dateAndHour(ZonedDateTime dateAndHour) {
+        this.dateAndHour = dateAndHour;
         return this;
     }
 
-    public void setDate(LocalDate date) {
-        this.date = date;
+    public void setDateAndHour(ZonedDateTime dateAndHour) {
+        this.dateAndHour = dateAndHour;
     }
 
     public Request getRequest() {
@@ -92,7 +92,7 @@ public class Appointment implements Serializable {
     public String toString() {
         return "Appointment{" +
             "id=" + getId() +
-            ", date='" + getDate() + "'" +
+            ", dateAndHour='" + getDateAndHour() + "'" +
             "}";
     }
 }

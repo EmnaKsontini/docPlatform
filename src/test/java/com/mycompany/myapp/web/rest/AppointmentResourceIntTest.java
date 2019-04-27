@@ -31,12 +31,15 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.validation.Validator;
 
 import javax.persistence.EntityManager;
-import java.time.LocalDate;
+import java.time.Instant;
+import java.time.ZonedDateTime;
+import java.time.ZoneOffset;
 import java.time.ZoneId;
 import java.util.Collections;
 import java.util.List;
 
 
+import static com.mycompany.myapp.web.rest.TestUtil.sameInstant;
 import static com.mycompany.myapp.web.rest.TestUtil.createFormattingConversionService;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.elasticsearch.index.query.QueryBuilders.queryStringQuery;
@@ -54,8 +57,8 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @SpringBootTest(classes = DoctorsPlatformApp.class)
 public class AppointmentResourceIntTest {
 
-    private static final LocalDate DEFAULT_DATE = LocalDate.ofEpochDay(0L);
-    private static final LocalDate UPDATED_DATE = LocalDate.now(ZoneId.systemDefault());
+    private static final ZonedDateTime DEFAULT_DATE_AND_HOUR = ZonedDateTime.ofInstant(Instant.ofEpochMilli(0L), ZoneOffset.UTC);
+    private static final ZonedDateTime UPDATED_DATE_AND_HOUR = ZonedDateTime.now(ZoneId.systemDefault()).withNano(0);
 
     @Autowired
     private AppointmentRepository appointmentRepository;
@@ -116,7 +119,7 @@ public class AppointmentResourceIntTest {
      */
     public static Appointment createEntity(EntityManager em) {
         Appointment appointment = new Appointment()
-            .date(DEFAULT_DATE);
+            .dateAndHour(DEFAULT_DATE_AND_HOUR);
         // Add required entity
         Request request = RequestResourceIntTest.createEntity(em);
         em.persist(request);
@@ -146,7 +149,7 @@ public class AppointmentResourceIntTest {
         List<Appointment> appointmentList = appointmentRepository.findAll();
         assertThat(appointmentList).hasSize(databaseSizeBeforeCreate + 1);
         Appointment testAppointment = appointmentList.get(appointmentList.size() - 1);
-        assertThat(testAppointment.getDate()).isEqualTo(DEFAULT_DATE);
+        assertThat(testAppointment.getDateAndHour()).isEqualTo(DEFAULT_DATE_AND_HOUR);
 
         // Validate the id for MapsId, the ids must be same
         assertThat(testAppointment.getId()).isEqualTo(testAppointment.getRequest().getId());
@@ -180,10 +183,10 @@ public class AppointmentResourceIntTest {
 
     @Test
     @Transactional
-    public void checkDateIsRequired() throws Exception {
+    public void checkDateAndHourIsRequired() throws Exception {
         int databaseSizeBeforeTest = appointmentRepository.findAll().size();
         // set the field null
-        appointment.setDate(null);
+        appointment.setDateAndHour(null);
 
         // Create the Appointment, which fails.
         AppointmentDTO appointmentDTO = appointmentMapper.toDto(appointment);
@@ -208,7 +211,7 @@ public class AppointmentResourceIntTest {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(appointment.getId().intValue())))
-            .andExpect(jsonPath("$.[*].date").value(hasItem(DEFAULT_DATE.toString())));
+            .andExpect(jsonPath("$.[*].dateAndHour").value(hasItem(sameInstant(DEFAULT_DATE_AND_HOUR))));
     }
     
     @Test
@@ -222,72 +225,72 @@ public class AppointmentResourceIntTest {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.id").value(appointment.getId().intValue()))
-            .andExpect(jsonPath("$.date").value(DEFAULT_DATE.toString()));
+            .andExpect(jsonPath("$.dateAndHour").value(sameInstant(DEFAULT_DATE_AND_HOUR)));
     }
 
     @Test
     @Transactional
-    public void getAllAppointmentsByDateIsEqualToSomething() throws Exception {
+    public void getAllAppointmentsByDateAndHourIsEqualToSomething() throws Exception {
         // Initialize the database
         appointmentRepository.saveAndFlush(appointment);
 
-        // Get all the appointmentList where date equals to DEFAULT_DATE
-        defaultAppointmentShouldBeFound("date.equals=" + DEFAULT_DATE);
+        // Get all the appointmentList where dateAndHour equals to DEFAULT_DATE_AND_HOUR
+        defaultAppointmentShouldBeFound("dateAndHour.equals=" + DEFAULT_DATE_AND_HOUR);
 
-        // Get all the appointmentList where date equals to UPDATED_DATE
-        defaultAppointmentShouldNotBeFound("date.equals=" + UPDATED_DATE);
+        // Get all the appointmentList where dateAndHour equals to UPDATED_DATE_AND_HOUR
+        defaultAppointmentShouldNotBeFound("dateAndHour.equals=" + UPDATED_DATE_AND_HOUR);
     }
 
     @Test
     @Transactional
-    public void getAllAppointmentsByDateIsInShouldWork() throws Exception {
+    public void getAllAppointmentsByDateAndHourIsInShouldWork() throws Exception {
         // Initialize the database
         appointmentRepository.saveAndFlush(appointment);
 
-        // Get all the appointmentList where date in DEFAULT_DATE or UPDATED_DATE
-        defaultAppointmentShouldBeFound("date.in=" + DEFAULT_DATE + "," + UPDATED_DATE);
+        // Get all the appointmentList where dateAndHour in DEFAULT_DATE_AND_HOUR or UPDATED_DATE_AND_HOUR
+        defaultAppointmentShouldBeFound("dateAndHour.in=" + DEFAULT_DATE_AND_HOUR + "," + UPDATED_DATE_AND_HOUR);
 
-        // Get all the appointmentList where date equals to UPDATED_DATE
-        defaultAppointmentShouldNotBeFound("date.in=" + UPDATED_DATE);
+        // Get all the appointmentList where dateAndHour equals to UPDATED_DATE_AND_HOUR
+        defaultAppointmentShouldNotBeFound("dateAndHour.in=" + UPDATED_DATE_AND_HOUR);
     }
 
     @Test
     @Transactional
-    public void getAllAppointmentsByDateIsNullOrNotNull() throws Exception {
+    public void getAllAppointmentsByDateAndHourIsNullOrNotNull() throws Exception {
         // Initialize the database
         appointmentRepository.saveAndFlush(appointment);
 
-        // Get all the appointmentList where date is not null
-        defaultAppointmentShouldBeFound("date.specified=true");
+        // Get all the appointmentList where dateAndHour is not null
+        defaultAppointmentShouldBeFound("dateAndHour.specified=true");
 
-        // Get all the appointmentList where date is null
-        defaultAppointmentShouldNotBeFound("date.specified=false");
+        // Get all the appointmentList where dateAndHour is null
+        defaultAppointmentShouldNotBeFound("dateAndHour.specified=false");
     }
 
     @Test
     @Transactional
-    public void getAllAppointmentsByDateIsGreaterThanOrEqualToSomething() throws Exception {
+    public void getAllAppointmentsByDateAndHourIsGreaterThanOrEqualToSomething() throws Exception {
         // Initialize the database
         appointmentRepository.saveAndFlush(appointment);
 
-        // Get all the appointmentList where date greater than or equals to DEFAULT_DATE
-        defaultAppointmentShouldBeFound("date.greaterOrEqualThan=" + DEFAULT_DATE);
+        // Get all the appointmentList where dateAndHour greater than or equals to DEFAULT_DATE_AND_HOUR
+        defaultAppointmentShouldBeFound("dateAndHour.greaterOrEqualThan=" + DEFAULT_DATE_AND_HOUR);
 
-        // Get all the appointmentList where date greater than or equals to UPDATED_DATE
-        defaultAppointmentShouldNotBeFound("date.greaterOrEqualThan=" + UPDATED_DATE);
+        // Get all the appointmentList where dateAndHour greater than or equals to UPDATED_DATE_AND_HOUR
+        defaultAppointmentShouldNotBeFound("dateAndHour.greaterOrEqualThan=" + UPDATED_DATE_AND_HOUR);
     }
 
     @Test
     @Transactional
-    public void getAllAppointmentsByDateIsLessThanSomething() throws Exception {
+    public void getAllAppointmentsByDateAndHourIsLessThanSomething() throws Exception {
         // Initialize the database
         appointmentRepository.saveAndFlush(appointment);
 
-        // Get all the appointmentList where date less than or equals to DEFAULT_DATE
-        defaultAppointmentShouldNotBeFound("date.lessThan=" + DEFAULT_DATE);
+        // Get all the appointmentList where dateAndHour less than or equals to DEFAULT_DATE_AND_HOUR
+        defaultAppointmentShouldNotBeFound("dateAndHour.lessThan=" + DEFAULT_DATE_AND_HOUR);
 
-        // Get all the appointmentList where date less than or equals to UPDATED_DATE
-        defaultAppointmentShouldBeFound("date.lessThan=" + UPDATED_DATE);
+        // Get all the appointmentList where dateAndHour less than or equals to UPDATED_DATE_AND_HOUR
+        defaultAppointmentShouldBeFound("dateAndHour.lessThan=" + UPDATED_DATE_AND_HOUR);
     }
 
 
@@ -317,7 +320,7 @@ public class AppointmentResourceIntTest {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(appointment.getId().intValue())))
-            .andExpect(jsonPath("$.[*].date").value(hasItem(DEFAULT_DATE.toString())));
+            .andExpect(jsonPath("$.[*].dateAndHour").value(hasItem(sameInstant(DEFAULT_DATE_AND_HOUR))));
 
         // Check, that the count call also returns 1
         restAppointmentMockMvc.perform(get("/api/appointments/count?sort=id,desc&" + filter))
@@ -365,7 +368,7 @@ public class AppointmentResourceIntTest {
         // Disconnect from session so that the updates on updatedAppointment are not directly saved in db
         em.detach(updatedAppointment);
         updatedAppointment
-            .date(UPDATED_DATE);
+            .dateAndHour(UPDATED_DATE_AND_HOUR);
         AppointmentDTO appointmentDTO = appointmentMapper.toDto(updatedAppointment);
 
         restAppointmentMockMvc.perform(put("/api/appointments")
@@ -377,7 +380,7 @@ public class AppointmentResourceIntTest {
         List<Appointment> appointmentList = appointmentRepository.findAll();
         assertThat(appointmentList).hasSize(databaseSizeBeforeUpdate);
         Appointment testAppointment = appointmentList.get(appointmentList.size() - 1);
-        assertThat(testAppointment.getDate()).isEqualTo(UPDATED_DATE);
+        assertThat(testAppointment.getDateAndHour()).isEqualTo(UPDATED_DATE_AND_HOUR);
 
         // Validate the Appointment in Elasticsearch
         verify(mockAppointmentSearchRepository, times(1)).save(testAppointment);
@@ -438,7 +441,7 @@ public class AppointmentResourceIntTest {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(appointment.getId().intValue())))
-            .andExpect(jsonPath("$.[*].date").value(hasItem(DEFAULT_DATE.toString())));
+            .andExpect(jsonPath("$.[*].dateAndHour").value(hasItem(sameInstant(DEFAULT_DATE_AND_HOUR))));
     }
 
     @Test

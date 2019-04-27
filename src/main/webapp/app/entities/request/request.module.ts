@@ -18,7 +18,6 @@ const ENTITY_STATES = [...requestRoute, ...requestPopupRoute];
 
 @NgModule({
     imports: [DoctorsPlatformSharedModule, RouterModule.forChild(ENTITY_STATES)],
-
     declarations: [
         RequestComponent,
         RequestDetailComponent,

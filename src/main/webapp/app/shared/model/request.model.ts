@@ -10,7 +10,6 @@ export interface IRequest {
     patientId?: number;
     doctorRequests?: string;
     doctorId?: number;
-    appointmentRequest?: string;
     appointmentId?: number;
 }
 
@@ -25,7 +24,6 @@ export class Request implements IRequest {
         public patientId?: number,
         public doctorRequests?: string,
         public doctorId?: number,
-        public appointmentRequest?: string,
         public appointmentId?: number
     ) {
         this.confirmation = this.confirmation || false;
