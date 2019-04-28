@@ -2,14 +2,14 @@ package com.mycompany.myapp.web.rest;
 
 import com.mycompany.myapp.config.Constants;
 import com.mycompany.myapp.domain.Doctor;
+import com.mycompany.myapp.domain.Request;
 import com.mycompany.myapp.domain.User;
 import com.mycompany.myapp.repository.UserRepository;
 import com.mycompany.myapp.repository.search.UserSearchRepository;
 import com.mycompany.myapp.security.AuthoritiesConstants;
 import com.mycompany.myapp.security.SecurityUtils;
-import com.mycompany.myapp.service.DoctorService;
-import com.mycompany.myapp.service.MailService;
-import com.mycompany.myapp.service.UserService;
+import com.mycompany.myapp.service.*;
+import com.mycompany.myapp.service.dto.PatientDTO;
 import com.mycompany.myapp.service.dto.UserDTO;
 import com.mycompany.myapp.web.rest.errors.BadRequestAlertException;
 import com.mycompany.myapp.web.rest.errors.EmailAlreadyUsedException;
@@ -74,16 +74,21 @@ public class UserResource {
 
     private final MailService mailService;
 
-    private final DoctorService doctorService;
+
+
+    private final RequestService requestService;
+
+
 
     private final UserSearchRepository userSearchRepository;
 
-    public UserResource(UserService userService, UserRepository userRepository, MailService mailService, DoctorService doctorService, UserSearchRepository userSearchRepository) {
+    public UserResource(UserService userService, UserRepository userRepository, MailService mailService, RequestService requestService, UserSearchRepository userSearchRepository) {
 
         this.userService = userService;
         this.userRepository = userRepository;
         this.mailService = mailService;
-        this.doctorService = doctorService;
+
+        this.requestService = requestService;
         this.userSearchRepository = userSearchRepository;
     }
 
@@ -113,6 +118,7 @@ public class UserResource {
             throw new EmailAlreadyUsedException();
         } else {
             User newUser = userService.createUser(userDTO);
+
             mailService.sendCreationEmail(newUser);
             return ResponseEntity.created(new URI("/api/users/" + newUser.getLogin()))
                 .headers(HeaderUtil.createAlert( "userManagement.created", newUser.getLogin()))
@@ -208,6 +214,28 @@ public class UserResource {
         return StreamSupport
             .stream(userSearchRepository.search(queryStringQuery(query)).spliterator(), false)
             .collect(Collectors.toList());
+    }
+
+    @GetMapping("/user/MyDoctors")
+    @Timed
+    public List<Doctor> getDoctors() {
+        String userLogin = SecurityUtils.getCurrentUserLogin().get();
+        User currentUser = userService.getUserWithAuthoritiesByLogin(userLogin).get();
+        List<Request> requests= requestService.findAll();
+        List<Doctor> result = new ArrayList<>();
+        log.debug(currentUser.getLogin());
+
+        for (Request request : requests ){
+            log.debug(request.getPatient().getName() , "allll");
+            if (request.getPatient().getName()==currentUser.getLogin()){
+                log.debug(request.getPatient().getName());
+
+
+                Doctor doctor = request.getDoctor();
+                result.add(doctor);
+            }
+        }
+        return result;
     }
 
 

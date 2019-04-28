@@ -24,13 +24,13 @@ public class PatientCriteria implements Serializable {
 
     private LongFilter id;
 
-    private LongFilter cin;
-
     private StringFilter name;
 
-    private StringFilter email;
-
     private LongFilter phoneNumber;
+
+    private LongFilter cin;
+
+    private StringFilter email;
 
     private LongFilter requestsId;
 
@@ -44,14 +44,6 @@ public class PatientCriteria implements Serializable {
         this.id = id;
     }
 
-    public LongFilter getCin() {
-        return cin;
-    }
-
-    public void setCin(LongFilter cin) {
-        this.cin = cin;
-    }
-
     public StringFilter getName() {
         return name;
     }
@@ -60,20 +52,28 @@ public class PatientCriteria implements Serializable {
         this.name = name;
     }
 
-    public StringFilter getEmail() {
-        return email;
-    }
-
-    public void setEmail(StringFilter email) {
-        this.email = email;
-    }
-
     public LongFilter getPhoneNumber() {
         return phoneNumber;
     }
 
     public void setPhoneNumber(LongFilter phoneNumber) {
         this.phoneNumber = phoneNumber;
+    }
+
+    public LongFilter getCin() {
+        return cin;
+    }
+
+    public void setCin(LongFilter cin) {
+        this.cin = cin;
+    }
+
+    public StringFilter getEmail() {
+        return email;
+    }
+
+    public void setEmail(StringFilter email) {
+        this.email = email;
     }
 
     public LongFilter getRequestsId() {
@@ -104,10 +104,10 @@ public class PatientCriteria implements Serializable {
         final PatientCriteria that = (PatientCriteria) o;
         return
             Objects.equals(id, that.id) &&
-            Objects.equals(cin, that.cin) &&
             Objects.equals(name, that.name) &&
-            Objects.equals(email, that.email) &&
             Objects.equals(phoneNumber, that.phoneNumber) &&
+            Objects.equals(cin, that.cin) &&
+            Objects.equals(email, that.email) &&
             Objects.equals(requestsId, that.requestsId) &&
             Objects.equals(doctorId, that.doctorId);
     }
@@ -116,10 +116,10 @@ public class PatientCriteria implements Serializable {
     public int hashCode() {
         return Objects.hash(
         id,
-        cin,
         name,
-        email,
         phoneNumber,
+        cin,
+        email,
         requestsId,
         doctorId
         );
@@ -129,10 +129,10 @@ public class PatientCriteria implements Serializable {
     public String toString() {
         return "PatientCriteria{" +
                 (id != null ? "id=" + id + ", " : "") +
-                (cin != null ? "cin=" + cin + ", " : "") +
                 (name != null ? "name=" + name + ", " : "") +
-                (email != null ? "email=" + email + ", " : "") +
                 (phoneNumber != null ? "phoneNumber=" + phoneNumber + ", " : "") +
+                (cin != null ? "cin=" + cin + ", " : "") +
+                (email != null ? "email=" + email + ", " : "") +
                 (requestsId != null ? "requestsId=" + requestsId + ", " : "") +
                 (doctorId != null ? "doctorId=" + doctorId + ", " : "") +
             "}";

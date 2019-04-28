@@ -63,6 +63,24 @@ public class AccountResource {
     }
 
     /**
+     * POST  /register/doctor : register the userAsAdoctor.
+     *
+     * @param managedUserVM the managed user View Model
+     * @throws InvalidPasswordException 400 (Bad Request) if the password is incorrect
+     * @throws EmailAlreadyUsedException 400 (Bad Request) if the email is already used
+     * @throws LoginAlreadyUsedException 400 (Bad Request) if the login is already used
+     */
+    @PostMapping("/register/doctor")
+    @ResponseStatus(HttpStatus.CREATED)
+    public void registerAccountAsDoctor(@Valid @RequestBody ManagedUserVM managedUserVM) {
+        if (!checkPasswordLength(managedUserVM.getPassword())) {
+            throw new InvalidPasswordException();
+        }
+        User user = userService.registerUserAsDoctor(managedUserVM, managedUserVM.getPassword());
+        mailService.sendActivationEmail(user);
+    }
+
+    /**
      * GET  /activate : activate the registered user.
      *
      * @param key the activation key

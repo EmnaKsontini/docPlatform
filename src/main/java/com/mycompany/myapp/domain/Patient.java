@@ -27,21 +27,20 @@ public class Patient implements Serializable {
     private Long id;
 
     @NotNull
-    @Column(name = "cin", nullable = false, unique = true)
-    private Long cin;
-
-    @NotNull
     @Column(name = "name", nullable = false)
     private String name;
 
     @NotNull
-    @Pattern(regexp = "^[a-zA-Z0-9]*@*.com")
-    @Column(name = "email", nullable = false)
-    private String email;
-
-    @NotNull
     @Column(name = "phone_number", nullable = false)
     private Long phoneNumber;
+
+    @NotNull
+    @Column(name = "cin", nullable = false, unique = true)
+    private Long cin;
+
+    @Pattern(regexp = "^([a-zA-Z0-9_\\-\\.]+)@([a-zA-Z0-9_\\-\\.]+)\\.([a-zA-Z]{2,5})$")
+    @Column(name = "email")
+    private String email;
 
     @OneToMany(mappedBy = "patient")
     private Set<Request> requests = new HashSet<>();
@@ -60,19 +59,6 @@ public class Patient implements Serializable {
         this.id = id;
     }
 
-    public Long getCin() {
-        return cin;
-    }
-
-    public Patient cin(Long cin) {
-        this.cin = cin;
-        return this;
-    }
-
-    public void setCin(Long cin) {
-        this.cin = cin;
-    }
-
     public String getName() {
         return name;
     }
@@ -86,19 +72,6 @@ public class Patient implements Serializable {
         this.name = name;
     }
 
-    public String getEmail() {
-        return email;
-    }
-
-    public Patient email(String email) {
-        this.email = email;
-        return this;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
     public Long getPhoneNumber() {
         return phoneNumber;
     }
@@ -110,6 +83,32 @@ public class Patient implements Serializable {
 
     public void setPhoneNumber(Long phoneNumber) {
         this.phoneNumber = phoneNumber;
+    }
+
+    public Long getCin() {
+        return cin;
+    }
+
+    public Patient cin(Long cin) {
+        this.cin = cin;
+        return this;
+    }
+
+    public void setCin(Long cin) {
+        this.cin = cin;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public Patient email(String email) {
+        this.email = email;
+        return this;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public Set<Request> getRequests() {
@@ -187,10 +186,10 @@ public class Patient implements Serializable {
     public String toString() {
         return "Patient{" +
             "id=" + getId() +
-            ", cin=" + getCin() +
             ", name='" + getName() + "'" +
-            ", email='" + getEmail() + "'" +
             ", phoneNumber=" + getPhoneNumber() +
+            ", cin=" + getCin() +
+            ", email='" + getEmail() + "'" +
             "}";
     }
 }

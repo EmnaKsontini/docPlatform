@@ -1,6 +1,4 @@
-²
-
-    <?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <databaseChangeLog
     xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -11,7 +9,7 @@
     <include file="config/liquibase/changelog/20190418192401_added_entity_Patient.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20190418195259_added_entity_Request.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20190418201404_added_entity_Appointment.xml" relativeToChangelogFile="false"/>
-    <include file="config/liquibase/changelog/20190426201048_changelog.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20190411202708_added_entity_Tip.xml" relativeToChangelogFile="false"/>
 
     <!-- jhipster-needle-liquibase-add-changelog - JHipster will add liquibase changelogs here -->
     <include file="config/liquibase/changelog/20190418195259_added_entity_constraints_Request.xml" relativeToChangelogFile="false"/>

@@ -13,17 +13,16 @@ public class PatientDTO implements Serializable {
     private Long id;
 
     @NotNull
-    private Long cin;
-
-    @NotNull
     private String name;
 
     @NotNull
-    @Pattern(regexp = "^[a-zA-Z0-9]*@*.com")
-    private String email;
+    private Long phoneNumber;
 
     @NotNull
-    private Long phoneNumber;
+    private Long cin;
+
+    @Pattern(regexp = "^([a-zA-Z0-9_\\-\\.]+)@([a-zA-Z0-9_\\-\\.]+)\\.([a-zA-Z]{2,5})$")
+    private String email;
 
 
     private Set<DoctorDTO> doctors = new HashSet<>();
@@ -36,14 +35,6 @@ public class PatientDTO implements Serializable {
         this.id = id;
     }
 
-    public Long getCin() {
-        return cin;
-    }
-
-    public void setCin(Long cin) {
-        this.cin = cin;
-    }
-
     public String getName() {
         return name;
     }
@@ -52,20 +43,28 @@ public class PatientDTO implements Serializable {
         this.name = name;
     }
 
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
     public Long getPhoneNumber() {
         return phoneNumber;
     }
 
     public void setPhoneNumber(Long phoneNumber) {
         this.phoneNumber = phoneNumber;
+    }
+
+    public Long getCin() {
+        return cin;
+    }
+
+    public void setCin(Long cin) {
+        this.cin = cin;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public Set<DoctorDTO> getDoctors() {
@@ -101,10 +100,10 @@ public class PatientDTO implements Serializable {
     public String toString() {
         return "PatientDTO{" +
             "id=" + getId() +
-            ", cin=" + getCin() +
             ", name='" + getName() + "'" +
-            ", email='" + getEmail() + "'" +
             ", phoneNumber=" + getPhoneNumber() +
+            ", cin=" + getCin() +
+            ", email='" + getEmail() + "'" +
             "}";
     }
 }

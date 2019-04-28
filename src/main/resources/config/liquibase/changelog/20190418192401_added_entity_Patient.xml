@@ -22,20 +22,20 @@
             <column name="id" type="bigint" autoIncrement="${autoIncrement}">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
-            <column name="cin" type="bigint">
-                <constraints nullable="false" unique="true" uniqueConstraintName="ux_patient_cin" />
-            </column>
-
             <column name="name" type="varchar(255)">
-                <constraints nullable="false" />
-            </column>
-
-            <column name="email" type="varchar(255)">
                 <constraints nullable="false" />
             </column>
 
             <column name="phone_number" type="bigint">
                 <constraints nullable="false" />
+            </column>
+
+            <column name="cin" type="bigint">
+                <constraints nullable="false" unique="true" uniqueConstraintName="ux_patient_cin" />
+            </column>
+
+            <column name="email" type="varchar(255)">
+                <constraints nullable="true" />
             </column>
 
             <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here, do not remove-->

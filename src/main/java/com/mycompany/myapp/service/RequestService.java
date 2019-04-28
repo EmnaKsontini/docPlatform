@@ -123,4 +123,8 @@ public class RequestService {
         return requestSearchRepository.search(queryStringQuery(query), pageable)
             .map(requestMapper::toDto);
     }
+
+    public List<Request> findAll() {
+        return requestRepository.findAll();
+    }
 }

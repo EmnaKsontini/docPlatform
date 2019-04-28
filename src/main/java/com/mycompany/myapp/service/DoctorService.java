@@ -107,6 +107,7 @@ public class DoctorService {
     }
 
 
-
-
+    public List<Doctor> findAll() {
+        return doctorRepository.findAll();
+    }
 }

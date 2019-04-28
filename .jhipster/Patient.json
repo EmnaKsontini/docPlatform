@@ -21,6 +21,20 @@
     ],
     "fields": [
         {
+            "fieldName": "name",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "phoneNumber",
+            "fieldType": "Long",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
             "fieldName": "cin",
             "fieldType": "Long",
             "fieldValidateRules": [
@@ -29,27 +43,12 @@
             ]
         },
         {
-            "fieldName": "name",
-            "fieldType": "String",
-            "fieldValidateRules": [
-                "required"
-            ]
-        },
-        {
             "fieldName": "email",
             "fieldType": "String",
             "fieldValidateRules": [
-                "required",
                 "pattern"
             ],
-            "fieldValidateRulesPattern": "^[a-zA-Z0-9]*@*.com"
-        },
-        {
-            "fieldName": "phoneNumber",
-            "fieldType": "Long",
-            "fieldValidateRules": [
-                "required"
-            ]
+            "fieldValidateRulesPattern": "^([a-zA-Z0-9_\\-\\.]+)@([a-zA-Z0-9_\\-\\.]+)\\.([a-zA-Z]{2,5})$"
         }
     ],
     "changelogDate": "20190418192401",

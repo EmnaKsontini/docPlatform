@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import { SERVER_API_URL } from 'app/app.constants';
 import { createRequestOption } from 'app/shared';
 import { IDoctor } from 'app/shared/model/doctor.model';
+import { ITip, Tip } from 'app/shared/model/tip.model';
 
 type EntityResponseType = HttpResponse<IDoctor>;
 type EntityArrayResponseType = HttpResponse<IDoctor[]>;
@@ -40,5 +41,8 @@ export class DoctorService {
     search(req?: any): Observable<EntityArrayResponseType> {
         const options = createRequestOption(req);
         return this.http.get<IDoctor[]>(this.resourceSearchUrl, { params: options, observe: 'response' });
+    }
+    getMyDoctors(): Observable<IDoctor[]> {
+        return this.http.get<IDoctor[]>(SERVER_API_URL + 'api/user/MyDoctors');
     }
 }

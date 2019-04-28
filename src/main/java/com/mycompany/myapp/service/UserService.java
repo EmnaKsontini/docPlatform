@@ -8,6 +8,8 @@ import com.mycompany.myapp.repository.UserRepository;
 import com.mycompany.myapp.repository.search.UserSearchRepository;
 import com.mycompany.myapp.security.AuthoritiesConstants;
 import com.mycompany.myapp.security.SecurityUtils;
+import com.mycompany.myapp.service.dto.DoctorDTO;
+import com.mycompany.myapp.service.dto.PatientDTO;
 import com.mycompany.myapp.service.dto.UserDTO;
 import com.mycompany.myapp.service.util.RandomUtil;
 import com.mycompany.myapp.web.rest.errors.*;
@@ -21,10 +23,13 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.math.BigDecimal;
 import java.time.Instant;
 import java.time.temporal.ChronoUnit;
 import java.util.*;
 import java.util.stream.Collectors;
+
+import static com.mycompany.myapp.domain.Request_.patient;
 
 /**
  * Service class for managing users.
@@ -43,11 +48,18 @@ public class UserService {
 
     private final AuthorityRepository authorityRepository;
 
-    public UserService(UserRepository userRepository, PasswordEncoder passwordEncoder, UserSearchRepository userSearchRepository, AuthorityRepository authorityRepository) {
+    private final PatientService patientService;
+
+    private final DoctorService doctorService;
+
+
+    public UserService(UserRepository userRepository, PasswordEncoder passwordEncoder, UserSearchRepository userSearchRepository, AuthorityRepository authorityRepository, PatientService patientService, DoctorService doctorService) {
         this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
         this.userSearchRepository = userSearchRepository;
         this.authorityRepository = authorityRepository;
+        this.patientService = patientService;
+        this.doctorService = doctorService;
     }
 
     public Optional<User> activateRegistration(String key) {
@@ -109,15 +121,92 @@ public class UserService {
         newUser.setImageUrl(userDTO.getImageUrl());
         newUser.setLangKey(userDTO.getLangKey());
         // new user is not active
-        newUser.setActivated(false);
+
+        //newUser.setActivated(false);
+
         // new user gets registration key
-        newUser.setActivationKey(RandomUtil.generateActivationKey());
+
+        //newUser.setActivationKey(RandomUtil.generateActivationKey());
         Set<Authority> authorities = new HashSet<>();
         authorityRepository.findById(AuthoritiesConstants.USER).ifPresent(authorities::add);
         newUser.setAuthorities(authorities);
+        newUser.setActivated(true);
+        newUser.setActivationKey(null);
         userRepository.save(newUser);
         userSearchRepository.save(newUser);
-        log.debug("Created Information for User: {}", newUser);
+       /* DoctorDTO doctor = new DoctorDTO() ;
+        BigDecimal a = new BigDecimal("2160000");
+        BigDecimal b = new BigDecimal(newUser.getId());
+
+        doctor.setName(newUser.getLogin());
+        doctor.setEmail(newUser.getEmail());
+        doctor.setPhoneNumber(a);
+        doctor.setCin(b);
+        doctor.setAddress("please provide your adress ");
+        doctor.setSpeciality("please provide your speciality");
+        doctorService.save(doctor);*/
+
+        PatientDTO patient = new PatientDTO() ;
+
+        patient.setName(newUser.getLogin());
+        patient.setEmail(newUser.getEmail());
+        patient.setPhoneNumber(216000000l);
+        patient.setCin(newUser.getId());
+        patientService.save(patient);
+        log.debug("Created Information for User: as a patient !! {}", newUser);
+        return newUser;
+    }
+
+    public User registerUserAsDoctor(UserDTO userDTO, String password) {
+        userRepository.findOneByLogin(userDTO.getLogin().toLowerCase()).ifPresent(existingUser -> {
+            boolean removed = removeNonActivatedUser(existingUser);
+            if (!removed) {
+                throw new LoginAlreadyUsedException();
+            }
+        });
+        userRepository.findOneByEmailIgnoreCase(userDTO.getEmail()).ifPresent(existingUser -> {
+            boolean removed = removeNonActivatedUser(existingUser);
+            if (!removed) {
+                throw new EmailAlreadyUsedException();
+            }
+        });
+        User newUser = new User();
+        String encryptedPassword = passwordEncoder.encode(password);
+        newUser.setLogin(userDTO.getLogin().toLowerCase());
+        // new user gets initially a generated password
+        newUser.setPassword(encryptedPassword);
+        newUser.setFirstName(userDTO.getFirstName());
+        newUser.setLastName(userDTO.getLastName());
+        newUser.setEmail(userDTO.getEmail().toLowerCase());
+        newUser.setImageUrl(userDTO.getImageUrl());
+        newUser.setLangKey(userDTO.getLangKey());
+        // new user is not active
+
+        //newUser.setActivated(false);
+
+        // new user gets registration key
+
+       // newUser.setActivationKey(RandomUtil.generateActivationKey());
+
+        Set<Authority> authorities = new HashSet<>();
+        authorityRepository.findById(AuthoritiesConstants.USER).ifPresent(authorities::add);
+        newUser.setAuthorities(authorities);
+        newUser.setActivated(true);
+        newUser.setActivationKey(null);
+        userRepository.save(newUser);
+        userSearchRepository.save(newUser);
+        DoctorDTO doctor = new DoctorDTO() ;
+         BigDecimal a = new BigDecimal("2160000");
+         BigDecimal b = new BigDecimal(newUser.getId());
+
+        doctor.setName(newUser.getLogin());
+        doctor.setEmail(newUser.getEmail());
+        doctor.setPhoneNumber(a);
+        doctor.setCin(b);
+        doctor.setAddress("please provide your adress ");
+        doctor.setSpeciality("please provide your speciality");
+        doctorService.save(doctor);
+        log.debug("Created Information for User as a doctor: {}", newUser);
         return newUser;
     }
 
@@ -160,6 +249,8 @@ public class UserService {
         log.debug("Created Information for User: {}", user);
         return user;
     }
+
+
 
     /**
      * Update basic information (first name, last name, email, language) for the current user.
