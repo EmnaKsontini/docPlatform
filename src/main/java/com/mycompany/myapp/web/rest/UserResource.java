@@ -4,12 +4,12 @@ import com.mycompany.myapp.config.Constants;
 import com.mycompany.myapp.domain.Doctor;
 import com.mycompany.myapp.domain.Request;
 import com.mycompany.myapp.domain.User;
+import com.mycompany.myapp.repository.DoctorRepository;
 import com.mycompany.myapp.repository.UserRepository;
 import com.mycompany.myapp.repository.search.UserSearchRepository;
 import com.mycompany.myapp.security.AuthoritiesConstants;
 import com.mycompany.myapp.security.SecurityUtils;
 import com.mycompany.myapp.service.*;
-import com.mycompany.myapp.service.dto.PatientDTO;
 import com.mycompany.myapp.service.dto.UserDTO;
 import com.mycompany.myapp.web.rest.errors.BadRequestAlertException;
 import com.mycompany.myapp.web.rest.errors.EmailAlreadyUsedException;
@@ -78,17 +78,21 @@ public class UserResource {
 
     private final RequestService requestService;
 
+    private final DoctorRepository doctorRepository;
+
+
 
 
     private final UserSearchRepository userSearchRepository;
 
-    public UserResource(UserService userService, UserRepository userRepository, MailService mailService, RequestService requestService, UserSearchRepository userSearchRepository) {
+    public UserResource(UserService userService, UserRepository userRepository, MailService mailService, RequestService requestService, DoctorRepository doctorRepository, UserSearchRepository userSearchRepository) {
 
         this.userService = userService;
         this.userRepository = userRepository;
         this.mailService = mailService;
 
         this.requestService = requestService;
+        this.doctorRepository = doctorRepository;
         this.userSearchRepository = userSearchRepository;
     }
 
@@ -227,11 +231,10 @@ public class UserResource {
 
         for (Request request : requests ){
             log.debug(request.getPatient().getName() , "allll");
-            if (request.getPatient().getName()==currentUser.getLogin()){
+            if (request.getPatient().getCin()==currentUser.getId()){
                 log.debug(request.getPatient().getName());
-
-
-                Doctor doctor = request.getDoctor();
+                Long id = request.getDoctor().getId();
+                Doctor doctor = doctorRepository.findById(id).get();
                 result.add(doctor);
             }
         }

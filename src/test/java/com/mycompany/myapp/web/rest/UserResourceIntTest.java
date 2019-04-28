@@ -3,6 +3,7 @@ package com.mycompany.myapp.web.rest;
 import com.mycompany.myapp.DoctorsPlatformApp;
 import com.mycompany.myapp.domain.Authority;
 import com.mycompany.myapp.domain.User;
+import com.mycompany.myapp.repository.DoctorRepository;
 import com.mycompany.myapp.repository.UserRepository;
 import com.mycompany.myapp.repository.search.UserSearchRepository;
 import com.mycompany.myapp.security.AuthoritiesConstants;
@@ -90,6 +91,9 @@ public class UserResourceIntTest {
     private UserMapper userMapper;
 
     @Autowired
+    private DoctorRepository doctorRepository;
+
+    @Autowired
     private MappingJackson2HttpMessageConverter jacksonMessageConverter;
 
     @Autowired
@@ -111,7 +115,7 @@ public class UserResourceIntTest {
 
     @Before
     public void setup() {
-        UserResource userResource = new UserResource(userService, userRepository, mailService, requestService, mockUserSearchRepository);
+        UserResource userResource = new UserResource(userService, userRepository, mailService, requestService, doctorRepository, mockUserSearchRepository);
 
         this.restUserMockMvc = MockMvcBuilders.standaloneSetup(userResource)
             .setCustomArgumentResolvers(pageableArgumentResolver)
