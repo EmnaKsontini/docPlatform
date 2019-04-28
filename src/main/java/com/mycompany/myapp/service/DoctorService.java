@@ -13,6 +13,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 import java.util.Optional;
 
 import static org.elasticsearch.index.query.QueryBuilders.*;
@@ -51,6 +52,11 @@ public class DoctorService {
         DoctorDTO result = doctorMapper.toDto(doctor);
         doctorSearchRepository.save(doctor);
         return result;
+    }
+
+    public List<Doctor> findAllDoctors()
+    {
+        return doctorRepository.findAll();
     }
 
     /**
@@ -104,4 +110,5 @@ public class DoctorService {
         return doctorSearchRepository.search(queryStringQuery(query), pageable)
             .map(doctorMapper::toDto);
     }
+
 }

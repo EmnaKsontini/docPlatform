@@ -3,6 +3,7 @@ package com.mycompany.myapp.web.rest;
 
 import com.mycompany.myapp.domain.User;
 import com.mycompany.myapp.repository.UserRepository;
+import com.mycompany.myapp.repository.search.UserSearchRepository;
 import com.mycompany.myapp.security.SecurityUtils;
 import com.mycompany.myapp.service.MailService;
 import com.mycompany.myapp.service.UserService;
@@ -35,13 +36,16 @@ public class AccountResource {
 
     private final UserService userService;
 
+    private final UserSearchRepository userSearchRepository;
+
     private final MailService mailService;
 
-    public AccountResource(UserRepository userRepository, UserService userService, MailService mailService) {
+    public AccountResource(UserRepository userRepository, UserService userService, MailService mailService,UserSearchRepository userSearchRepository) {
 
         this.userRepository = userRepository;
         this.userService = userService;
         this.mailService = mailService;
+        this.userSearchRepository=userSearchRepository;
     }
 
     /**
@@ -59,6 +63,18 @@ public class AccountResource {
             throw new InvalidPasswordException();
         }
         User user = userService.registerUser(managedUserVM, managedUserVM.getPassword());
+        //log.debug("Activating user for activation key {}", key);
+        userRepository.findOneByLogin(user.getLogin())
+            .map(user1 -> {
+                // activate given user for the registration key.
+                user1.setActivated(true);
+                user1.setActivationKey(null);
+                userSearchRepository.save(user1);
+                log.debug("Activated user: {}", user1);
+                userRepository.save(user1);
+                return user1;
+            });
+
         mailService.sendActivationEmail(user);
     }
 

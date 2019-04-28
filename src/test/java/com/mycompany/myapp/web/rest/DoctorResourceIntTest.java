@@ -5,6 +5,7 @@ import com.mycompany.myapp.DoctorsPlatformApp;
 import com.mycompany.myapp.domain.Doctor;
 import com.mycompany.myapp.domain.Request;
 import com.mycompany.myapp.repository.DoctorRepository;
+import com.mycompany.myapp.repository.UserRepository;
 import com.mycompany.myapp.repository.search.DoctorSearchRepository;
 import com.mycompany.myapp.service.DoctorService;
 import com.mycompany.myapp.service.dto.DoctorDTO;
@@ -110,10 +111,12 @@ public class DoctorResourceIntTest {
 
     private Doctor doctor;
 
+    private UserRepository userRepository;
+
     @Before
     public void setup() {
         MockitoAnnotations.initMocks(this);
-        final DoctorResource doctorResource = new DoctorResource(doctorService, doctorQueryService);
+        final DoctorResource doctorResource = new DoctorResource(doctorService, doctorQueryService,userRepository);
         this.restDoctorMockMvc = MockMvcBuilders.standaloneSetup(doctorResource)
             .setCustomArgumentResolvers(pageableArgumentResolver)
             .setControllerAdvice(exceptionTranslator)
@@ -307,7 +310,7 @@ public class DoctorResourceIntTest {
             .andExpect(jsonPath("$.[*].email").value(hasItem(DEFAULT_EMAIL.toString())))
             .andExpect(jsonPath("$.[*].phoneNumber").value(hasItem(DEFAULT_PHONE_NUMBER.intValue())));
     }
-    
+
     @Test
     @Transactional
     public void getDoctor() throws Exception {
