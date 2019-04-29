@@ -1,7 +1,15 @@
 {
     "fluentMethods": true,
     "clientRootFolder": "",
-    "relationships": [],
+    "relationships": [
+        {
+            "relationshipName": "requests",
+            "otherEntityName": "request",
+            "relationshipType": "one-to-many",
+            "otherEntityRelationshipName": "doctor",
+            "otherEntityRelationshipNameUndefined": false
+        }
+    ],
     "fields": [
         {
             "fieldName": "name",

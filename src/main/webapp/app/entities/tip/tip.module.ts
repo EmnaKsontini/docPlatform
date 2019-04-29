@@ -2,7 +2,6 @@ import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { JhiLanguageService } from 'ng-jhipster';
 import { JhiLanguageHelper } from 'app/core';
-import { BsDropdownModule } from 'ngx-bootstrap';
 
 import { DoctorsPlatformSharedModule } from 'app/shared';
 import {
@@ -18,7 +17,7 @@ import {
 const ENTITY_STATES = [...tipRoute, ...tipPopupRoute];
 
 @NgModule({
-    imports: [DoctorsPlatformSharedModule, RouterModule.forChild(ENTITY_STATES), BsDropdownModule.forRoot()],
+    imports: [DoctorsPlatformSharedModule, RouterModule.forChild(ENTITY_STATES)],
 
     declarations: [TipComponent, TipDetailComponent, TipUpdateComponent, TipDeleteDialogComponent, TipDeletePopupComponent],
     entryComponents: [TipComponent, TipUpdateComponent, TipDeleteDialogComponent, TipDeletePopupComponent],

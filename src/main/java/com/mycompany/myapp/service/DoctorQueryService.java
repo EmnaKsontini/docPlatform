@@ -111,6 +111,10 @@ public class DoctorQueryService extends QueryService<Doctor> {
             if (criteria.getPhoneNumber() != null) {
                 specification = specification.and(buildRangeSpecification(criteria.getPhoneNumber(), Doctor_.phoneNumber));
             }
+            if (criteria.getRequestsId() != null) {
+                specification = specification.and(buildSpecification(criteria.getRequestsId(),
+                    root -> root.join(Doctor_.requests, JoinType.LEFT).get(Request_.id)));
+            }
         }
         return specification;
     }

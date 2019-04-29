@@ -3,6 +3,7 @@ package com.mycompany.myapp.web.rest;
 import com.mycompany.myapp.DoctorsPlatformApp;
 
 import com.mycompany.myapp.domain.Doctor;
+import com.mycompany.myapp.domain.Request;
 import com.mycompany.myapp.repository.DoctorRepository;
 import com.mycompany.myapp.repository.search.DoctorSearchRepository;
 import com.mycompany.myapp.service.DoctorService;
@@ -559,6 +560,25 @@ public class DoctorResourceIntTest {
         // Get all the doctorList where phoneNumber is null
         defaultDoctorShouldNotBeFound("phoneNumber.specified=false");
     }
+
+    @Test
+    @Transactional
+    public void getAllDoctorsByRequestsIsEqualToSomething() throws Exception {
+        // Initialize the database
+        Request requests = RequestResourceIntTest.createEntity(em);
+        em.persist(requests);
+        em.flush();
+        doctor.addRequests(requests);
+        doctorRepository.saveAndFlush(doctor);
+        Long requestsId = requests.getId();
+
+        // Get all the doctorList where requests equals to requestsId
+        defaultDoctorShouldBeFound("requestsId.equals=" + requestsId);
+
+        // Get all the doctorList where requests equals to requestsId + 1
+        defaultDoctorShouldNotBeFound("requestsId.equals=" + (requestsId + 1));
+    }
+
     /**
      * Executes the search, and checks that the default entity is returned
      */
