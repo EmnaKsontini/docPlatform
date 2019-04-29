@@ -44,4 +44,7 @@ export class DoctorService {
         const options = createRequestOption(req);
         return this.http.get<IDoctor[]>(this.resourceSearchUrl, { params: options, observe: 'response' });
     }
+    getMyDoctors(): Observable<IDoctor[]> {
+        return this.http.get<IDoctor[]>(SERVER_API_URL + 'api/user/MyDoctors');
+    }
 }

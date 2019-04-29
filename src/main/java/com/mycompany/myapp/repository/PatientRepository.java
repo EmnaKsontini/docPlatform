@@ -34,5 +34,4 @@ public interface PatientRepository extends JpaRepository<Patient, Long>, JpaSpec
     Optional<Patient> findOneWithEagerRelationships(@Param("id") Long id);
 
 
-    Optional<Patient> findOneByCin(Long cin);
 }
