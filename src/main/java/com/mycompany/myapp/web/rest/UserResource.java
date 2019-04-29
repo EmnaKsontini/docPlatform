@@ -259,23 +259,29 @@ public class UserResource {
     public List<Appointment> getAppointments() {
         String userLogin = SecurityUtils.getCurrentUserLogin().get();
         User currentUser = userService.getUserWithAuthoritiesByLogin(userLogin).get();
-        List<Appointment> appointments= appointmentService.findAll();
-        List<Appointment> result = new ArrayList<>();
-        log.debug(currentUser.getLogin());
+        log.debug(currentUser.getAuthorities().iterator().next().getName()+" heyyyyyy !!!!!!!!!!!");
+        if (currentUser.getAuthorities().iterator().next().getName().equals("ROLE_PATIENT")){
+            List<Appointment> appointments= appointmentService.findAll();
+            List<Appointment> result = new ArrayList<>();
+            log.debug(currentUser.getLogin());
 
-        for (Appointment appointment : appointments ){
+            for (Appointment appointment : appointments ){
 
-            //Patient patient = patientRepository.findOneWithEagerRelationships(appointment.getRequest().getPatient().getId()).get();
-            Patient patient = appointment.getRequest().getPatient();
-            log.debug("here !!!");
-            log.debug(patient.toString());
+                //Patient patient = patientRepository.findOneWithEagerRelationships(appointment.getRequest().getPatient().getId()).get();
+                Patient patient = appointment.getRequest().getPatient();
+                log.debug("here !!!");
+                log.debug(patient.toString());
 
 
-            if (patient.getCin()==currentUser.getId()){
-                result.add(appointment);
+                if (patient.getCin()==currentUser.getId()){
+                    result.add(appointment);
+                }
             }
+            return result;
         }
-        return result;
+        else{
+            return appointmentService.findAll();
+        }
     }
 
     @GetMapping("/user/MyAppointmentsDoctor")

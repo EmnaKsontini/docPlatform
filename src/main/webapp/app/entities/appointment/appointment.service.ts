@@ -8,6 +8,7 @@ import { map } from 'rxjs/operators';
 import { SERVER_API_URL } from 'app/app.constants';
 import { createRequestOption } from 'app/shared';
 import { Appointment, IAppointment } from 'app/shared/model/appointment.model';
+import { Doctor } from 'app/shared/model/doctor.model';
 
 type EntityResponseType = HttpResponse<IAppointment>;
 type EntityArrayResponseType = HttpResponse<IAppointment[]>;
@@ -82,7 +83,11 @@ export class AppointmentService {
         return res;
     }
 
-    AppointmentList(): Observable<Appointment[]> {
-        return this.http.get<Appointment[]>(SERVER_API_URL + 'api/appointment/list');
+    getAppointmentList(): Observable<Appointment[]> {
+        return this.http.get<Appointment[]>(SERVER_API_URL + 'api/user/MyAppointments');
+    }
+
+    getAllDoctorNamesAppointments(): Observable<Doctor[]> {
+        return this.http.get<Doctor[]>(SERVER_API_URL + 'api/user/MyAppointmentsDoctor');
     }
 }

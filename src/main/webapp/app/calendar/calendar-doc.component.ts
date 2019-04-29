@@ -8,6 +8,8 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AppointmentService } from 'app/entities/appointment';
 import { JhiAlertService } from 'ng-jhipster';
+import { User } from 'app/core';
+import { IDoctor } from 'app/shared/model/doctor.model';
 
 @Component({
     selector: 'jhi-calendar',
@@ -55,6 +57,8 @@ export class CalendarDocComponent {
     activeDayIsOpen: any = false;
     appointments: Appointment[];
     appointment: Appointment;
+    user: User;
+    myDoctors: IDoctor[];
     constructor(
         private modal: NgbModal,
         private activatedRoute: ActivatedRoute,
@@ -65,9 +69,12 @@ export class CalendarDocComponent {
 
     ngOnInit() {
         this.appointments = [];
-        this.appointmentService.AppointmentList().subscribe(clubsList => {
-            this.appointments = clubsList;
+        this.appointmentService.getAppointmentList().subscribe(appointmentsList => {
+            this.appointments = appointmentsList;
             this.onSucc();
+        });
+        this.appointmentService.getAllDoctorNamesAppointments().subscribe(myDoctors => {
+            this.myDoctors = myDoctors;
         });
     }
 
@@ -79,7 +86,7 @@ export class CalendarDocComponent {
                 id: this.appointments[i].id,
                 start: this.date,
                 end: this.date,
-                title: this.appointments[i].dateAndHour.toString(),
+                title: this.appointments[i].dateAndHour.toString() + ' Doctor ' + this.myDoctors[i].name,
                 color: {
                     primary: '#' + (0x1000000 + Math.random() * 0xffffff).toString(16).substr(1, 6),
                     secondary: '#' + (0x1000000 + Math.random() * 0xffffff).toString(16).substr(1, 6)
