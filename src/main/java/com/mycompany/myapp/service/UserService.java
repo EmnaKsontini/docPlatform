@@ -8,6 +8,8 @@ import com.mycompany.myapp.repository.UserRepository;
 import com.mycompany.myapp.repository.search.UserSearchRepository;
 import com.mycompany.myapp.security.AuthoritiesConstants;
 import com.mycompany.myapp.security.SecurityUtils;
+import com.mycompany.myapp.service.dto.DoctorDTO;
+import com.mycompany.myapp.service.dto.PatientDTO;
 import com.mycompany.myapp.service.dto.UserDTO;
 import com.mycompany.myapp.service.util.RandomUtil;
 import com.mycompany.myapp.web.rest.errors.*;
@@ -21,10 +23,13 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.math.BigDecimal;
 import java.time.Instant;
 import java.time.temporal.ChronoUnit;
 import java.util.*;
 import java.util.stream.Collectors;
+
+import static com.mycompany.myapp.domain.Request_.patient;
 
 /**
  * Service class for managing users.
@@ -43,11 +48,16 @@ public class UserService {
 
     private final AuthorityRepository authorityRepository;
 
-    public UserService(UserRepository userRepository, PasswordEncoder passwordEncoder, UserSearchRepository userSearchRepository, AuthorityRepository authorityRepository) {
+    private final PatientService patientService;
+
+
+
+    public UserService(UserRepository userRepository, PasswordEncoder passwordEncoder, UserSearchRepository userSearchRepository, AuthorityRepository authorityRepository, PatientService patientService) {
         this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
         this.userSearchRepository = userSearchRepository;
         this.authorityRepository = authorityRepository;
+        this.patientService = patientService;
     }
 
     public Optional<User> activateRegistration(String key) {
@@ -126,7 +136,9 @@ public class UserService {
         userSearchRepository.save(newUser);
         log.debug("Created Information for User: {}", newUser);
         return newUser;
+
     }
+
 
     private boolean removeNonActivatedUser(User existingUser){
         if (existingUser.getActivated()) {
@@ -167,6 +179,8 @@ public class UserService {
         log.debug("Created Information for User: {}", user);
         return user;
     }
+
+
 
     /**
      * Update basic information (first name, last name, email, language) for the current user.

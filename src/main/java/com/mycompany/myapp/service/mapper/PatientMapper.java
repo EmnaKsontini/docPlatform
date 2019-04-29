@@ -8,7 +8,7 @@ import org.mapstruct.*;
 /**
  * Mapper for the entity Patient and its DTO PatientDTO.
  */
-@Mapper(componentModel = "spring", uses = {})
+@Mapper(componentModel = "spring", uses = {DoctorMapper.class})
 public interface PatientMapper extends EntityMapper<PatientDTO, Patient> {
 
 

@@ -93,21 +93,25 @@ public class PatientQueryService extends QueryService<Patient> {
             if (criteria.getId() != null) {
                 specification = specification.and(buildSpecification(criteria.getId(), Patient_.id));
             }
-            if (criteria.getCin() != null) {
-                specification = specification.and(buildRangeSpecification(criteria.getCin(), Patient_.cin));
-            }
             if (criteria.getName() != null) {
                 specification = specification.and(buildStringSpecification(criteria.getName(), Patient_.name));
-            }
-            if (criteria.getEmail() != null) {
-                specification = specification.and(buildStringSpecification(criteria.getEmail(), Patient_.email));
             }
             if (criteria.getPhoneNumber() != null) {
                 specification = specification.and(buildRangeSpecification(criteria.getPhoneNumber(), Patient_.phoneNumber));
             }
+            if (criteria.getCin() != null) {
+                specification = specification.and(buildRangeSpecification(criteria.getCin(), Patient_.cin));
+            }
+            if (criteria.getEmail() != null) {
+                specification = specification.and(buildStringSpecification(criteria.getEmail(), Patient_.email));
+            }
             if (criteria.getRequestsId() != null) {
                 specification = specification.and(buildSpecification(criteria.getRequestsId(),
                     root -> root.join(Patient_.requests, JoinType.LEFT).get(Request_.id)));
+            }
+            if (criteria.getDoctorId() != null) {
+                specification = specification.and(buildSpecification(criteria.getDoctorId(),
+                    root -> root.join(Patient_.doctors, JoinType.LEFT).get(Doctor_.id)));
             }
         }
         return specification;

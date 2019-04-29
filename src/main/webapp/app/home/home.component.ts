@@ -5,6 +5,8 @@ import { JhiEventManager } from 'ng-jhipster';
 import { LoginModalService, AccountService, Account } from 'app/core';
 import { ITip } from 'app/shared/model/tip.model';
 import { HomeService } from 'app/home/home.service';
+import { IAppointment } from 'app/shared/model/appointment.model';
+import { IDoctor } from 'app/shared/model/doctor.model';
 
 @Component({
     selector: 'jhi-home',
@@ -15,6 +17,9 @@ export class HomeComponent implements OnInit {
     account: Account;
     modalRef: NgbModalRef;
     tips: ITip[];
+    appointments: IAppointment[];
+    MyDoctorsAppointment: IDoctor[];
+    Mydoctors: IDoctor[];
 
     constructor(
         private homeService: HomeService,
@@ -28,8 +33,21 @@ export class HomeComponent implements OnInit {
             this.account = account;
         });
         this.registerAuthenticationSuccess();
+        this.tips = [];
         this.homeService.getAllTips().subscribe(Alltips => {
             this.tips = Alltips;
+        });
+        this.appointments = [];
+        this.homeService.getAllAppointments().subscribe(appointments => {
+            this.appointments = appointments;
+        });
+        this.MyDoctorsAppointment = [];
+        this.homeService.getAllNames().subscribe(names => {
+            this.MyDoctorsAppointment = names;
+        });
+        this.Mydoctors = [];
+        this.homeService.getMyDoctors().subscribe(AllDoctors => {
+            this.Mydoctors = AllDoctors;
         });
     }
 

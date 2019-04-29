@@ -1,15 +1,17 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, ViewChild, ElementRef, NgZone } from '@angular/core';
 import { HttpErrorResponse, HttpHeaders, HttpResponse } from '@angular/common/http';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { filter, map } from 'rxjs/operators';
 import { JhiEventManager, JhiParseLinks, JhiAlertService } from 'ng-jhipster';
+import { AgmCoreModule, MapsAPILoader } from '@agm/core';
 
 import { IDoctor } from 'app/shared/model/doctor.model';
 import { AccountService } from 'app/core';
 
 import { ITEMS_PER_PAGE } from 'app/shared';
 import { DoctorService } from './doctor.service';
+import { FormControl } from '@angular/forms';
 
 @Component({
     selector: 'jhi-doctor',
@@ -17,8 +19,10 @@ import { DoctorService } from './doctor.service';
     styleUrls: ['doctor.css']
 })
 export class DoctorComponent implements OnInit, OnDestroy {
-    latitude: 51.678418;
-    longitude: 7.809007;
+    public latitude: number;
+    public longitude: number;
+    public searchControl: FormControl;
+    public zoom: number;
     currentAccount: any;
     doctors: IDoctor[];
     error: any;
@@ -33,7 +37,9 @@ export class DoctorComponent implements OnInit, OnDestroy {
     predicate: any;
     previousPage: any;
     reverse: any;
-
+    marker: any;
+    @ViewChild('search')
+    public searchElementRef: ElementRef;
     constructor(
         protected doctorService: DoctorService,
         protected parseLinks: JhiParseLinks,
@@ -41,6 +47,8 @@ export class DoctorComponent implements OnInit, OnDestroy {
         protected accountService: AccountService,
         protected activatedRoute: ActivatedRoute,
         protected router: Router,
+        private mapsAPILoader: MapsAPILoader,
+        private ngZone: NgZone,
         protected eventManager: JhiEventManager
     ) {
         this.itemsPerPage = ITEMS_PER_PAGE;
@@ -133,11 +141,77 @@ export class DoctorComponent implements OnInit, OnDestroy {
     }
 
     ngOnInit() {
+        this.zoom = 4;
+        this.latitude = 39.8282;
+        this.longitude = -98.5795;
         this.loadAll();
         this.accountService.identity().then(account => {
             this.currentAccount = account;
         });
         this.registerChangeInDoctors();
+        this.searchControl = new FormControl();
+
+        //set current position
+        this.setCurrentPosition();
+
+        //load Places Autocomplete
+        this.mapsAPILoader.load().then(() => {
+            let autocomplete = new google.maps.places.Autocomplete(this.searchElementRef.nativeElement, {
+                types: ['address']
+            });
+            console.log(typeof autocomplete);
+            console.log(autocomplete);
+            console.log('heer!');
+
+            autocomplete.addListener('place_changed', () => {
+                this.ngZone.run(() => {
+                    //get the place result
+                    let place: google.maps.places.PlaceResult = autocomplete.getPlace();
+
+                    //verify result
+                    if (place.geometry === undefined || place.geometry === null) {
+                        return;
+                    }
+                    this.latitude = place.geometry.location.lat();
+                    this.longitude = place.geometry.location.lng();
+                    this.zoom = 12;
+                });
+            });
+        });
+    }
+    private setCurrentPosition() {
+        if ('geolocation' in navigator) {
+            navigator.geolocation.getCurrentPosition(position => {
+                this.latitude = position.coords.latitude;
+                this.longitude = position.coords.longitude;
+                this.zoom = 12;
+            });
+        }
+    }
+
+    @ViewChild('Mysearch')
+    public MysearchElementRef: ElementRef;
+
+    getMarker() {
+        this.mapsAPILoader.load().then(() => {
+            let autocomplete = new google.maps.places.Autocomplete(this.MysearchElementRef.nativeElement, {
+                types: ['address']
+            });
+            autocomplete.addListener('place_changed', () => {
+                this.ngZone.run(() => {
+                    //get the place result
+                    let place: google.maps.places.PlaceResult = autocomplete.getPlace();
+
+                    //verify result
+                    if (place.geometry === undefined || place.geometry === null) {
+                        return;
+                    }
+                    this.latitude = place.geometry.location.lat();
+                    this.longitude = place.geometry.location.lng();
+                    this.zoom = 12;
+                });
+            });
+        });
     }
 
     ngOnDestroy() {
