@@ -14,6 +14,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 import java.util.Optional;
 
 import static org.elasticsearch.index.query.QueryBuilders.*;
@@ -109,5 +110,9 @@ public class AppointmentService {
         log.debug("Request to search for a page of Appointments for query {}", query);
         return appointmentSearchRepository.search(queryStringQuery(query), pageable)
             .map(appointmentMapper::toDto);
+    }
+
+    public List<Appointment> findAll() {
+        return appointmentRepository.findAll();
     }
 }

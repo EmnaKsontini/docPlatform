@@ -50,16 +50,14 @@ public class UserService {
 
     private final PatientService patientService;
 
-    private final DoctorService doctorService;
 
 
-    public UserService(UserRepository userRepository, PasswordEncoder passwordEncoder, UserSearchRepository userSearchRepository, AuthorityRepository authorityRepository, PatientService patientService, DoctorService doctorService) {
+    public UserService(UserRepository userRepository, PasswordEncoder passwordEncoder, UserSearchRepository userSearchRepository, AuthorityRepository authorityRepository, PatientService patientService) {
         this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
         this.userSearchRepository = userSearchRepository;
         this.authorityRepository = authorityRepository;
         this.patientService = patientService;
-        this.doctorService = doctorService;
     }
 
     public Optional<User> activateRegistration(String key) {
@@ -121,94 +119,19 @@ public class UserService {
         newUser.setImageUrl(userDTO.getImageUrl());
         newUser.setLangKey(userDTO.getLangKey());
         // new user is not active
-
-        //newUser.setActivated(false);
-
+        newUser.setActivated(false);
         // new user gets registration key
-
-        //newUser.setActivationKey(RandomUtil.generateActivationKey());
+        newUser.setActivationKey(RandomUtil.generateActivationKey());
         Set<Authority> authorities = new HashSet<>();
         authorityRepository.findById(AuthoritiesConstants.USER).ifPresent(authorities::add);
         newUser.setAuthorities(authorities);
-        newUser.setActivated(true);
-        newUser.setActivationKey(null);
         userRepository.save(newUser);
         userSearchRepository.save(newUser);
-       /* DoctorDTO doctor = new DoctorDTO() ;
-        BigDecimal a = new BigDecimal("2160000");
-        BigDecimal b = new BigDecimal(newUser.getId());
-
-        doctor.setName(newUser.getLogin());
-        doctor.setEmail(newUser.getEmail());
-        doctor.setPhoneNumber(a);
-        doctor.setCin(b);
-        doctor.setAddress("please provide your adress ");
-        doctor.setSpeciality("please provide your speciality");
-        doctorService.save(doctor);*/
-
-        PatientDTO patient = new PatientDTO() ;
-
-        patient.setName(newUser.getLogin());
-        patient.setEmail(newUser.getEmail());
-        patient.setPhoneNumber(216000000l);
-        patient.setCin(newUser.getId());
-        patientService.save(patient);
-        log.debug("Created Information for User: as a patient !! {}", newUser);
+        log.debug("Created Information for User: {}", newUser);
         return newUser;
+
     }
 
-    public User registerUserAsDoctor(UserDTO userDTO, String password) {
-        userRepository.findOneByLogin(userDTO.getLogin().toLowerCase()).ifPresent(existingUser -> {
-            boolean removed = removeNonActivatedUser(existingUser);
-            if (!removed) {
-                throw new LoginAlreadyUsedException();
-            }
-        });
-        userRepository.findOneByEmailIgnoreCase(userDTO.getEmail()).ifPresent(existingUser -> {
-            boolean removed = removeNonActivatedUser(existingUser);
-            if (!removed) {
-                throw new EmailAlreadyUsedException();
-            }
-        });
-        User newUser = new User();
-        String encryptedPassword = passwordEncoder.encode(password);
-        newUser.setLogin(userDTO.getLogin().toLowerCase());
-        // new user gets initially a generated password
-        newUser.setPassword(encryptedPassword);
-        newUser.setFirstName(userDTO.getFirstName());
-        newUser.setLastName(userDTO.getLastName());
-        newUser.setEmail(userDTO.getEmail().toLowerCase());
-        newUser.setImageUrl(userDTO.getImageUrl());
-        newUser.setLangKey(userDTO.getLangKey());
-        // new user is not active
-
-        //newUser.setActivated(false);
-
-        // new user gets registration key
-
-       // newUser.setActivationKey(RandomUtil.generateActivationKey());
-
-        Set<Authority> authorities = new HashSet<>();
-        authorityRepository.findById(AuthoritiesConstants.USER).ifPresent(authorities::add);
-        newUser.setAuthorities(authorities);
-        newUser.setActivated(true);
-        newUser.setActivationKey(null);
-        userRepository.save(newUser);
-        userSearchRepository.save(newUser);
-        DoctorDTO doctor = new DoctorDTO() ;
-         BigDecimal a = new BigDecimal("2160000");
-         BigDecimal b = new BigDecimal(newUser.getId());
-
-        doctor.setName(newUser.getLogin());
-        doctor.setEmail(newUser.getEmail());
-        doctor.setPhoneNumber(a);
-        doctor.setCin(b);
-        doctor.setAddress("please provide your adress ");
-        doctor.setSpeciality("please provide your speciality");
-        doctorService.save(doctor);
-        log.debug("Created Information for User as a doctor: {}", newUser);
-        return newUser;
-    }
 
     private boolean removeNonActivatedUser(User existingUser){
         if (existingUser.getActivated()) {

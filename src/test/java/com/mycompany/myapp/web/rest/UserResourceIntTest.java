@@ -4,9 +4,12 @@ import com.mycompany.myapp.DoctorsPlatformApp;
 import com.mycompany.myapp.domain.Authority;
 import com.mycompany.myapp.domain.User;
 import com.mycompany.myapp.repository.DoctorRepository;
+import com.mycompany.myapp.repository.PatientRepository;
+import com.mycompany.myapp.repository.RequestRepository;
 import com.mycompany.myapp.repository.UserRepository;
 import com.mycompany.myapp.repository.search.UserSearchRepository;
 import com.mycompany.myapp.security.AuthoritiesConstants;
+import com.mycompany.myapp.service.AppointmentService;
 import com.mycompany.myapp.service.MailService;
 import com.mycompany.myapp.service.RequestService;
 import com.mycompany.myapp.service.UserService;
@@ -108,6 +111,14 @@ public class UserResourceIntTest {
     @Autowired
     private RequestService requestService;
 
+    @Autowired
+    private AppointmentService appointmentService;
+
+    @Autowired
+    private PatientRepository patientRepository;
+
+    @Autowired
+    private RequestRepository requestRepository;
 
     private MockMvc restUserMockMvc;
 
@@ -115,7 +126,8 @@ public class UserResourceIntTest {
 
     @Before
     public void setup() {
-        UserResource userResource = new UserResource(userService, userRepository, mailService, requestService, doctorRepository, mockUserSearchRepository);
+
+        UserResource userResource = new UserResource(userService, userRepository, mailService, requestService, doctorRepository, appointmentService, patientRepository,requestRepository, mockUserSearchRepository);
 
         this.restUserMockMvc = MockMvcBuilders.standaloneSetup(userResource)
             .setCustomArgumentResolvers(pageableArgumentResolver)

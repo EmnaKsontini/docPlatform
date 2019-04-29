@@ -1,10 +1,10 @@
 package com.mycompany.myapp.web.rest;
 
 import com.mycompany.myapp.config.Constants;
-import com.mycompany.myapp.domain.Doctor;
-import com.mycompany.myapp.domain.Request;
-import com.mycompany.myapp.domain.User;
+import com.mycompany.myapp.domain.*;
 import com.mycompany.myapp.repository.DoctorRepository;
+import com.mycompany.myapp.repository.PatientRepository;
+import com.mycompany.myapp.repository.RequestRepository;
 import com.mycompany.myapp.repository.UserRepository;
 import com.mycompany.myapp.repository.search.UserSearchRepository;
 import com.mycompany.myapp.security.AuthoritiesConstants;
@@ -36,6 +36,7 @@ import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
+import static com.mycompany.myapp.domain.Request_.patient;
 import static org.elasticsearch.index.query.QueryBuilders.*;
 
 /**
@@ -80,12 +81,20 @@ public class UserResource {
 
     private final DoctorRepository doctorRepository;
 
+    private final AppointmentService appointmentService;
+
+    private final PatientRepository patientRepository;
+
+    private final RequestRepository requestRepository;
+
+
+
 
 
 
     private final UserSearchRepository userSearchRepository;
 
-    public UserResource(UserService userService, UserRepository userRepository, MailService mailService, RequestService requestService, DoctorRepository doctorRepository, UserSearchRepository userSearchRepository) {
+    public UserResource(UserService userService, UserRepository userRepository, MailService mailService, RequestService requestService, DoctorRepository doctorRepository, AppointmentService appointmentService, PatientRepository patientRepository, RequestRepository requestRepository, UserSearchRepository userSearchRepository) {
 
         this.userService = userService;
         this.userRepository = userRepository;
@@ -93,6 +102,9 @@ public class UserResource {
 
         this.requestService = requestService;
         this.doctorRepository = doctorRepository;
+        this.appointmentService = appointmentService;
+        this.patientRepository = patientRepository;
+        this.requestRepository = requestRepository;
         this.userSearchRepository = userSearchRepository;
     }
 
@@ -129,6 +141,7 @@ public class UserResource {
                 .body(newUser);
         }
     }
+
 
     /**
      * PUT /users : Updates an existing User.
@@ -240,6 +253,59 @@ public class UserResource {
         }
         return result;
     }
+
+    @GetMapping("/user/MyAppointments")
+    @Timed
+    public List<Appointment> getAppointments() {
+        String userLogin = SecurityUtils.getCurrentUserLogin().get();
+        User currentUser = userService.getUserWithAuthoritiesByLogin(userLogin).get();
+        List<Appointment> appointments= appointmentService.findAll();
+        List<Appointment> result = new ArrayList<>();
+        log.debug(currentUser.getLogin());
+
+        for (Appointment appointment : appointments ){
+
+            //Patient patient = patientRepository.findOneWithEagerRelationships(appointment.getRequest().getPatient().getId()).get();
+            Patient patient = appointment.getRequest().getPatient();
+            log.debug("here !!!");
+            log.debug(patient.toString());
+
+
+            if (patient.getCin()==currentUser.getId()){
+                result.add(appointment);
+            }
+        }
+        return result;
+    }
+
+    @GetMapping("/user/MyAppointmentsDoctor")
+    @Timed
+    public List<Doctor> getAppointmentDoctorName() {
+        String userLogin = SecurityUtils.getCurrentUserLogin().get();
+        User currentUser = userService.getUserWithAuthoritiesByLogin(userLogin).get();
+        List<Appointment> appointments= appointmentService.findAll();
+        List<Doctor> result = new ArrayList<>();
+        //log.debug(currentUser.getLogin());
+
+        for (Appointment appointment : appointments ){
+
+            //Patient patient = patientRepository.findOneWithEagerRelationships(appointment.getRequest().getPatient().getId()).get();
+            Patient patient = appointment.getRequest().getPatient();
+            log.debug("here !!!");
+            log.debug(patient.toString());
+
+
+            if (patient.getCin()==currentUser.getId()){
+                result.add(appointment.getRequest().getDoctor());
+                log.debug("calling doctor details !!!!!!!");
+                log.debug(appointment.getRequest().getDoctor().toString());
+
+            }
+        }
+        return result;
+    }
+
+
 
 
 }

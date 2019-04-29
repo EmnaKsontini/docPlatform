@@ -24,7 +24,12 @@ public interface PatientRepository extends JpaRepository<Patient, Long>, JpaSpec
     @Query(value = "select distinct patient from Patient patient left join fetch patient.doctors")
     List<Patient> findAllWithEagerRelationships();
 
-    @Query("select patient from Patient patient left join fetch patient.doctors where patient.id =:id")
+    /*@Query("select patient from Patient patient left join fetch patient.doctors where patient.id =:id")
+    Optional<Patient> findOneWithEagerRelationships(@Param("id") Long id);*/
+
+    @Query("select patient from Patient patient left join fetch patient.requests where patient.id =:id")
     Optional<Patient> findOneWithEagerRelationships(@Param("id") Long id);
+
+
 
 }
