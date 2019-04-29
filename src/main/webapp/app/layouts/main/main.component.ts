@@ -9,6 +9,7 @@ import { JhiLanguageHelper } from 'app/core';
     styleUrls: ['./main.component..scss']
 })
 export class JhiMainComponent implements OnInit {
+    showVar: boolean = false;
     constructor(private jhiLanguageHelper: JhiLanguageHelper, private router: Router) {}
 
     private getPageTitle(routeSnapshot: ActivatedRouteSnapshot) {
@@ -28,5 +29,9 @@ export class JhiMainComponent implements OnInit {
                 this.router.navigate(['/404']);
             }
         });
+    }
+
+    toggleChatBot() {
+        this.showVar = !this.showVar;
     }
 }

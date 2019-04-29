@@ -47,4 +47,12 @@ export class DoctorService {
     getMyDoctors(): Observable<IDoctor[]> {
         return this.http.get<IDoctor[]>(SERVER_API_URL + 'api/user/MyDoctors');
     }
+
+    getDoctorByName(name: any): Observable<EntityResponseType> {
+        return this.http.post<Doctor>(SERVER_API_URL + 'api' + '/doctorByName', name, { observe: 'response' });
+    }
+
+    getCurrentUser(): Observable<EntityResponseType> {
+        return this.http.get<Patient>(SERVER_API_URL + 'api' + '/getCurrentUser', { observe: 'response' });
+    }
 }
