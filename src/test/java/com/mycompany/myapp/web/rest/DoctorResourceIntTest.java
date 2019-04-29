@@ -5,6 +5,7 @@ import com.mycompany.myapp.DoctorsPlatformApp;
 import com.mycompany.myapp.domain.Doctor;
 import com.mycompany.myapp.domain.Request;
 import com.mycompany.myapp.repository.DoctorRepository;
+import com.mycompany.myapp.repository.PatientRepository;
 import com.mycompany.myapp.repository.UserRepository;
 import com.mycompany.myapp.repository.search.DoctorSearchRepository;
 import com.mycompany.myapp.service.DoctorService;
@@ -113,10 +114,12 @@ public class DoctorResourceIntTest {
 
     private UserRepository userRepository;
 
+    private PatientRepository patientRepository;
+
     @Before
     public void setup() {
         MockitoAnnotations.initMocks(this);
-        final DoctorResource doctorResource = new DoctorResource(doctorService, doctorQueryService,userRepository);
+        final DoctorResource doctorResource = new DoctorResource(doctorService, doctorQueryService,userRepository,patientRepository);
         this.restDoctorMockMvc = MockMvcBuilders.standaloneSetup(doctorResource)
             .setCustomArgumentResolvers(pageableArgumentResolver)
             .setControllerAdvice(exceptionTranslator)

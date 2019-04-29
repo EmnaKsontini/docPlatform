@@ -8,7 +8,9 @@ import com.mycompany.myapp.repository.AuthorityRepository;
 import com.mycompany.myapp.repository.UserRepository;
 import com.mycompany.myapp.repository.search.UserSearchRepository;
 import com.mycompany.myapp.security.AuthoritiesConstants;
+import com.mycompany.myapp.service.DoctorService;
 import com.mycompany.myapp.service.MailService;
+import com.mycompany.myapp.service.PatientService;
 import com.mycompany.myapp.service.UserService;
 import com.mycompany.myapp.service.dto.PasswordChangeDTO;
 import com.mycompany.myapp.service.dto.UserDTO;
@@ -80,16 +82,18 @@ public class AccountResourceIntTest {
 
     private MockMvc restUserMockMvc;
     private UserSearchRepository userSearchRepository;
+    private PatientService patientService;
 
+    private DoctorService doctorService;
     @Before
     public void setup() {
         MockitoAnnotations.initMocks(this);
         doNothing().when(mockMailService).sendActivationEmail(any());
         AccountResource accountResource =
-            new AccountResource(userRepository, userService, mockMailService,userSearchRepository);
+            new AccountResource(userRepository, userService, mockMailService,userSearchRepository,patientService,doctorService);
 
         AccountResource accountUserMockResource =
-            new AccountResource(userRepository, mockUserService, mockMailService,userSearchRepository);
+            new AccountResource(userRepository, mockUserService, mockMailService,userSearchRepository,patientService,doctorService);
         this.restMvc = MockMvcBuilders.standaloneSetup(accountResource)
             .setMessageConverters(httpMessageConverters)
             .setControllerAdvice(exceptionTranslator)

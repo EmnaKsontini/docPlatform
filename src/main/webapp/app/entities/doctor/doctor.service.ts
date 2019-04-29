@@ -48,6 +48,6 @@ export class DoctorService {
     }
 
     getCurrentUser(): Observable<EntityResponseType> {
-        return this.http.get<User>(SERVER_API_URL + 'api' + '/getCurrentUser', { observe: 'response' });
+        return this.http.get<Patient>(SERVER_API_URL + 'api' + '/getCurrentUser', { observe: 'response' });
     }
 }

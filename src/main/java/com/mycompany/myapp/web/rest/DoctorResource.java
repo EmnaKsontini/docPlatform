@@ -1,6 +1,8 @@
 package com.mycompany.myapp.web.rest;
 import com.mycompany.myapp.domain.Doctor;
+import com.mycompany.myapp.domain.Patient;
 import com.mycompany.myapp.domain.User;
+import com.mycompany.myapp.repository.PatientRepository;
 import com.mycompany.myapp.repository.UserRepository;
 import com.mycompany.myapp.service.DoctorService;
 import com.mycompany.myapp.web.rest.errors.BadRequestAlertException;
@@ -47,12 +49,16 @@ public class DoctorResource {
 
     private final UserRepository userRepository;
 
+    private final PatientRepository patientRepository;
+
+
     private final DoctorQueryService doctorQueryService;
 
-    public DoctorResource(DoctorService doctorService, DoctorQueryService doctorQueryService,UserRepository userRepository) {
+    public DoctorResource(DoctorService doctorService, DoctorQueryService doctorQueryService,UserRepository userRepository,PatientRepository patientRepository) {
         this.doctorService = doctorService;
         this.doctorQueryService = doctorQueryService;
         this.userRepository=userRepository;
+        this.patientRepository=patientRepository;
     }
 
     /**
@@ -144,9 +150,11 @@ public class DoctorResource {
     }
 
     @GetMapping("/getCurrentUser")
-    public ResponseEntity<User> getCurrentUser() {
+    public ResponseEntity<Patient> getCurrentUser() {
         User user=userRepository.findOneByLogin(getCurrentUserLogin()).get();
-        return ResponseEntity.ok().body(user);
+        Long l= new Long(user.getId());
+        Patient patient=patientRepository.findOneByCin(l).get();
+        return ResponseEntity.ok().body(patient);
     }
 
     /**
