@@ -4,6 +4,7 @@ import com.mycompany.myapp.DoctorsPlatformApp;
 
 import com.mycompany.myapp.domain.Patient;
 import com.mycompany.myapp.domain.Request;
+import com.mycompany.myapp.domain.Doctor;
 import com.mycompany.myapp.repository.PatientRepository;
 import com.mycompany.myapp.repository.search.PatientSearchRepository;
 import com.mycompany.myapp.service.PatientService;
@@ -16,6 +17,7 @@ import com.mycompany.myapp.service.PatientQueryService;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -31,6 +33,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.validation.Validator;
 
 import javax.persistence.EntityManager;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -52,23 +55,29 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @SpringBootTest(classes = DoctorsPlatformApp.class)
 public class PatientResourceIntTest {
 
-    private static final Long DEFAULT_CIN = 1L;
-    private static final Long UPDATED_CIN = 2L;
-
     private static final String DEFAULT_NAME = "AAAAAAAAAA";
     private static final String UPDATED_NAME = "BBBBBBBBBB";
-
-    private static final String DEFAULT_EMAIL = "e[com";
-    private static final String UPDATED_EMAIL = "Fcom";
 
     private static final Long DEFAULT_PHONE_NUMBER = 1L;
     private static final Long UPDATED_PHONE_NUMBER = 2L;
 
+    private static final Long DEFAULT_CIN = 1L;
+    private static final Long UPDATED_CIN = 2L;
+
+    private static final String DEFAULT_EMAIL = "te@h.ISpJL";
+    private static final String UPDATED_EMAIL = "R@5r.BUmBe";
+
     @Autowired
     private PatientRepository patientRepository;
 
+    @Mock
+    private PatientRepository patientRepositoryMock;
+
     @Autowired
     private PatientMapper patientMapper;
+
+    @Mock
+    private PatientService patientServiceMock;
 
     @Autowired
     private PatientService patientService;
@@ -123,10 +132,10 @@ public class PatientResourceIntTest {
      */
     public static Patient createEntity(EntityManager em) {
         Patient patient = new Patient()
-            .cin(DEFAULT_CIN)
             .name(DEFAULT_NAME)
-            .email(DEFAULT_EMAIL)
-            .phoneNumber(DEFAULT_PHONE_NUMBER);
+            .phoneNumber(DEFAULT_PHONE_NUMBER)
+            .cin(DEFAULT_CIN)
+            .email(DEFAULT_EMAIL);
         return patient;
     }
 
@@ -151,10 +160,10 @@ public class PatientResourceIntTest {
         List<Patient> patientList = patientRepository.findAll();
         assertThat(patientList).hasSize(databaseSizeBeforeCreate + 1);
         Patient testPatient = patientList.get(patientList.size() - 1);
-        assertThat(testPatient.getCin()).isEqualTo(DEFAULT_CIN);
         assertThat(testPatient.getName()).isEqualTo(DEFAULT_NAME);
-        assertThat(testPatient.getEmail()).isEqualTo(DEFAULT_EMAIL);
         assertThat(testPatient.getPhoneNumber()).isEqualTo(DEFAULT_PHONE_NUMBER);
+        assertThat(testPatient.getCin()).isEqualTo(DEFAULT_CIN);
+        assertThat(testPatient.getEmail()).isEqualTo(DEFAULT_EMAIL);
 
         // Validate the Patient in Elasticsearch
         verify(mockPatientSearchRepository, times(1)).save(testPatient);
@@ -185,48 +194,10 @@ public class PatientResourceIntTest {
 
     @Test
     @Transactional
-    public void checkCinIsRequired() throws Exception {
-        int databaseSizeBeforeTest = patientRepository.findAll().size();
-        // set the field null
-        patient.setCin(null);
-
-        // Create the Patient, which fails.
-        PatientDTO patientDTO = patientMapper.toDto(patient);
-
-        restPatientMockMvc.perform(post("/api/patients")
-            .contentType(TestUtil.APPLICATION_JSON_UTF8)
-            .content(TestUtil.convertObjectToJsonBytes(patientDTO)))
-            .andExpect(status().isBadRequest());
-
-        List<Patient> patientList = patientRepository.findAll();
-        assertThat(patientList).hasSize(databaseSizeBeforeTest);
-    }
-
-    @Test
-    @Transactional
     public void checkNameIsRequired() throws Exception {
         int databaseSizeBeforeTest = patientRepository.findAll().size();
         // set the field null
         patient.setName(null);
-
-        // Create the Patient, which fails.
-        PatientDTO patientDTO = patientMapper.toDto(patient);
-
-        restPatientMockMvc.perform(post("/api/patients")
-            .contentType(TestUtil.APPLICATION_JSON_UTF8)
-            .content(TestUtil.convertObjectToJsonBytes(patientDTO)))
-            .andExpect(status().isBadRequest());
-
-        List<Patient> patientList = patientRepository.findAll();
-        assertThat(patientList).hasSize(databaseSizeBeforeTest);
-    }
-
-    @Test
-    @Transactional
-    public void checkEmailIsRequired() throws Exception {
-        int databaseSizeBeforeTest = patientRepository.findAll().size();
-        // set the field null
-        patient.setEmail(null);
 
         // Create the Patient, which fails.
         PatientDTO patientDTO = patientMapper.toDto(patient);
@@ -261,6 +232,25 @@ public class PatientResourceIntTest {
 
     @Test
     @Transactional
+    public void checkCinIsRequired() throws Exception {
+        int databaseSizeBeforeTest = patientRepository.findAll().size();
+        // set the field null
+        patient.setCin(null);
+
+        // Create the Patient, which fails.
+        PatientDTO patientDTO = patientMapper.toDto(patient);
+
+        restPatientMockMvc.perform(post("/api/patients")
+            .contentType(TestUtil.APPLICATION_JSON_UTF8)
+            .content(TestUtil.convertObjectToJsonBytes(patientDTO)))
+            .andExpect(status().isBadRequest());
+
+        List<Patient> patientList = patientRepository.findAll();
+        assertThat(patientList).hasSize(databaseSizeBeforeTest);
+    }
+
+    @Test
+    @Transactional
     public void getAllPatients() throws Exception {
         // Initialize the database
         patientRepository.saveAndFlush(patient);
@@ -270,12 +260,45 @@ public class PatientResourceIntTest {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(patient.getId().intValue())))
-            .andExpect(jsonPath("$.[*].cin").value(hasItem(DEFAULT_CIN.intValue())))
             .andExpect(jsonPath("$.[*].name").value(hasItem(DEFAULT_NAME.toString())))
-            .andExpect(jsonPath("$.[*].email").value(hasItem(DEFAULT_EMAIL.toString())))
-            .andExpect(jsonPath("$.[*].phoneNumber").value(hasItem(DEFAULT_PHONE_NUMBER.intValue())));
+            .andExpect(jsonPath("$.[*].phoneNumber").value(hasItem(DEFAULT_PHONE_NUMBER.intValue())))
+            .andExpect(jsonPath("$.[*].cin").value(hasItem(DEFAULT_CIN.intValue())))
+            .andExpect(jsonPath("$.[*].email").value(hasItem(DEFAULT_EMAIL.toString())));
     }
     
+    @SuppressWarnings({"unchecked"})
+    public void getAllPatientsWithEagerRelationshipsIsEnabled() throws Exception {
+        PatientResource patientResource = new PatientResource(patientServiceMock, patientQueryService);
+        when(patientServiceMock.findAllWithEagerRelationships(any())).thenReturn(new PageImpl(new ArrayList<>()));
+
+        MockMvc restPatientMockMvc = MockMvcBuilders.standaloneSetup(patientResource)
+            .setCustomArgumentResolvers(pageableArgumentResolver)
+            .setControllerAdvice(exceptionTranslator)
+            .setConversionService(createFormattingConversionService())
+            .setMessageConverters(jacksonMessageConverter).build();
+
+        restPatientMockMvc.perform(get("/api/patients?eagerload=true"))
+        .andExpect(status().isOk());
+
+        verify(patientServiceMock, times(1)).findAllWithEagerRelationships(any());
+    }
+
+    @SuppressWarnings({"unchecked"})
+    public void getAllPatientsWithEagerRelationshipsIsNotEnabled() throws Exception {
+        PatientResource patientResource = new PatientResource(patientServiceMock, patientQueryService);
+            when(patientServiceMock.findAllWithEagerRelationships(any())).thenReturn(new PageImpl(new ArrayList<>()));
+            MockMvc restPatientMockMvc = MockMvcBuilders.standaloneSetup(patientResource)
+            .setCustomArgumentResolvers(pageableArgumentResolver)
+            .setControllerAdvice(exceptionTranslator)
+            .setConversionService(createFormattingConversionService())
+            .setMessageConverters(jacksonMessageConverter).build();
+
+        restPatientMockMvc.perform(get("/api/patients?eagerload=true"))
+        .andExpect(status().isOk());
+
+            verify(patientServiceMock, times(1)).findAllWithEagerRelationships(any());
+    }
+
     @Test
     @Transactional
     public void getPatient() throws Exception {
@@ -287,77 +310,11 @@ public class PatientResourceIntTest {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.id").value(patient.getId().intValue()))
-            .andExpect(jsonPath("$.cin").value(DEFAULT_CIN.intValue()))
             .andExpect(jsonPath("$.name").value(DEFAULT_NAME.toString()))
-            .andExpect(jsonPath("$.email").value(DEFAULT_EMAIL.toString()))
-            .andExpect(jsonPath("$.phoneNumber").value(DEFAULT_PHONE_NUMBER.intValue()));
+            .andExpect(jsonPath("$.phoneNumber").value(DEFAULT_PHONE_NUMBER.intValue()))
+            .andExpect(jsonPath("$.cin").value(DEFAULT_CIN.intValue()))
+            .andExpect(jsonPath("$.email").value(DEFAULT_EMAIL.toString()));
     }
-
-    @Test
-    @Transactional
-    public void getAllPatientsByCinIsEqualToSomething() throws Exception {
-        // Initialize the database
-        patientRepository.saveAndFlush(patient);
-
-        // Get all the patientList where cin equals to DEFAULT_CIN
-        defaultPatientShouldBeFound("cin.equals=" + DEFAULT_CIN);
-
-        // Get all the patientList where cin equals to UPDATED_CIN
-        defaultPatientShouldNotBeFound("cin.equals=" + UPDATED_CIN);
-    }
-
-    @Test
-    @Transactional
-    public void getAllPatientsByCinIsInShouldWork() throws Exception {
-        // Initialize the database
-        patientRepository.saveAndFlush(patient);
-
-        // Get all the patientList where cin in DEFAULT_CIN or UPDATED_CIN
-        defaultPatientShouldBeFound("cin.in=" + DEFAULT_CIN + "," + UPDATED_CIN);
-
-        // Get all the patientList where cin equals to UPDATED_CIN
-        defaultPatientShouldNotBeFound("cin.in=" + UPDATED_CIN);
-    }
-
-    @Test
-    @Transactional
-    public void getAllPatientsByCinIsNullOrNotNull() throws Exception {
-        // Initialize the database
-        patientRepository.saveAndFlush(patient);
-
-        // Get all the patientList where cin is not null
-        defaultPatientShouldBeFound("cin.specified=true");
-
-        // Get all the patientList where cin is null
-        defaultPatientShouldNotBeFound("cin.specified=false");
-    }
-
-    @Test
-    @Transactional
-    public void getAllPatientsByCinIsGreaterThanOrEqualToSomething() throws Exception {
-        // Initialize the database
-        patientRepository.saveAndFlush(patient);
-
-        // Get all the patientList where cin greater than or equals to DEFAULT_CIN
-        defaultPatientShouldBeFound("cin.greaterOrEqualThan=" + DEFAULT_CIN);
-
-        // Get all the patientList where cin greater than or equals to UPDATED_CIN
-        defaultPatientShouldNotBeFound("cin.greaterOrEqualThan=" + UPDATED_CIN);
-    }
-
-    @Test
-    @Transactional
-    public void getAllPatientsByCinIsLessThanSomething() throws Exception {
-        // Initialize the database
-        patientRepository.saveAndFlush(patient);
-
-        // Get all the patientList where cin less than or equals to DEFAULT_CIN
-        defaultPatientShouldNotBeFound("cin.lessThan=" + DEFAULT_CIN);
-
-        // Get all the patientList where cin less than or equals to UPDATED_CIN
-        defaultPatientShouldBeFound("cin.lessThan=" + UPDATED_CIN);
-    }
-
 
     @Test
     @Transactional
@@ -396,45 +353,6 @@ public class PatientResourceIntTest {
 
         // Get all the patientList where name is null
         defaultPatientShouldNotBeFound("name.specified=false");
-    }
-
-    @Test
-    @Transactional
-    public void getAllPatientsByEmailIsEqualToSomething() throws Exception {
-        // Initialize the database
-        patientRepository.saveAndFlush(patient);
-
-        // Get all the patientList where email equals to DEFAULT_EMAIL
-        defaultPatientShouldBeFound("email.equals=" + DEFAULT_EMAIL);
-
-        // Get all the patientList where email equals to UPDATED_EMAIL
-        defaultPatientShouldNotBeFound("email.equals=" + UPDATED_EMAIL);
-    }
-
-    @Test
-    @Transactional
-    public void getAllPatientsByEmailIsInShouldWork() throws Exception {
-        // Initialize the database
-        patientRepository.saveAndFlush(patient);
-
-        // Get all the patientList where email in DEFAULT_EMAIL or UPDATED_EMAIL
-        defaultPatientShouldBeFound("email.in=" + DEFAULT_EMAIL + "," + UPDATED_EMAIL);
-
-        // Get all the patientList where email equals to UPDATED_EMAIL
-        defaultPatientShouldNotBeFound("email.in=" + UPDATED_EMAIL);
-    }
-
-    @Test
-    @Transactional
-    public void getAllPatientsByEmailIsNullOrNotNull() throws Exception {
-        // Initialize the database
-        patientRepository.saveAndFlush(patient);
-
-        // Get all the patientList where email is not null
-        defaultPatientShouldBeFound("email.specified=true");
-
-        // Get all the patientList where email is null
-        defaultPatientShouldNotBeFound("email.specified=false");
     }
 
     @Test
@@ -505,6 +423,111 @@ public class PatientResourceIntTest {
 
     @Test
     @Transactional
+    public void getAllPatientsByCinIsEqualToSomething() throws Exception {
+        // Initialize the database
+        patientRepository.saveAndFlush(patient);
+
+        // Get all the patientList where cin equals to DEFAULT_CIN
+        defaultPatientShouldBeFound("cin.equals=" + DEFAULT_CIN);
+
+        // Get all the patientList where cin equals to UPDATED_CIN
+        defaultPatientShouldNotBeFound("cin.equals=" + UPDATED_CIN);
+    }
+
+    @Test
+    @Transactional
+    public void getAllPatientsByCinIsInShouldWork() throws Exception {
+        // Initialize the database
+        patientRepository.saveAndFlush(patient);
+
+        // Get all the patientList where cin in DEFAULT_CIN or UPDATED_CIN
+        defaultPatientShouldBeFound("cin.in=" + DEFAULT_CIN + "," + UPDATED_CIN);
+
+        // Get all the patientList where cin equals to UPDATED_CIN
+        defaultPatientShouldNotBeFound("cin.in=" + UPDATED_CIN);
+    }
+
+    @Test
+    @Transactional
+    public void getAllPatientsByCinIsNullOrNotNull() throws Exception {
+        // Initialize the database
+        patientRepository.saveAndFlush(patient);
+
+        // Get all the patientList where cin is not null
+        defaultPatientShouldBeFound("cin.specified=true");
+
+        // Get all the patientList where cin is null
+        defaultPatientShouldNotBeFound("cin.specified=false");
+    }
+
+    @Test
+    @Transactional
+    public void getAllPatientsByCinIsGreaterThanOrEqualToSomething() throws Exception {
+        // Initialize the database
+        patientRepository.saveAndFlush(patient);
+
+        // Get all the patientList where cin greater than or equals to DEFAULT_CIN
+        defaultPatientShouldBeFound("cin.greaterOrEqualThan=" + DEFAULT_CIN);
+
+        // Get all the patientList where cin greater than or equals to UPDATED_CIN
+        defaultPatientShouldNotBeFound("cin.greaterOrEqualThan=" + UPDATED_CIN);
+    }
+
+    @Test
+    @Transactional
+    public void getAllPatientsByCinIsLessThanSomething() throws Exception {
+        // Initialize the database
+        patientRepository.saveAndFlush(patient);
+
+        // Get all the patientList where cin less than or equals to DEFAULT_CIN
+        defaultPatientShouldNotBeFound("cin.lessThan=" + DEFAULT_CIN);
+
+        // Get all the patientList where cin less than or equals to UPDATED_CIN
+        defaultPatientShouldBeFound("cin.lessThan=" + UPDATED_CIN);
+    }
+
+
+    @Test
+    @Transactional
+    public void getAllPatientsByEmailIsEqualToSomething() throws Exception {
+        // Initialize the database
+        patientRepository.saveAndFlush(patient);
+
+        // Get all the patientList where email equals to DEFAULT_EMAIL
+        defaultPatientShouldBeFound("email.equals=" + DEFAULT_EMAIL);
+
+        // Get all the patientList where email equals to UPDATED_EMAIL
+        defaultPatientShouldNotBeFound("email.equals=" + UPDATED_EMAIL);
+    }
+
+    @Test
+    @Transactional
+    public void getAllPatientsByEmailIsInShouldWork() throws Exception {
+        // Initialize the database
+        patientRepository.saveAndFlush(patient);
+
+        // Get all the patientList where email in DEFAULT_EMAIL or UPDATED_EMAIL
+        defaultPatientShouldBeFound("email.in=" + DEFAULT_EMAIL + "," + UPDATED_EMAIL);
+
+        // Get all the patientList where email equals to UPDATED_EMAIL
+        defaultPatientShouldNotBeFound("email.in=" + UPDATED_EMAIL);
+    }
+
+    @Test
+    @Transactional
+    public void getAllPatientsByEmailIsNullOrNotNull() throws Exception {
+        // Initialize the database
+        patientRepository.saveAndFlush(patient);
+
+        // Get all the patientList where email is not null
+        defaultPatientShouldBeFound("email.specified=true");
+
+        // Get all the patientList where email is null
+        defaultPatientShouldNotBeFound("email.specified=false");
+    }
+
+    @Test
+    @Transactional
     public void getAllPatientsByRequestsIsEqualToSomething() throws Exception {
         // Initialize the database
         Request requests = RequestResourceIntTest.createEntity(em);
@@ -521,6 +544,25 @@ public class PatientResourceIntTest {
         defaultPatientShouldNotBeFound("requestsId.equals=" + (requestsId + 1));
     }
 
+
+    @Test
+    @Transactional
+    public void getAllPatientsByDoctorIsEqualToSomething() throws Exception {
+        // Initialize the database
+        Doctor doctor = DoctorResourceIntTest.createEntity(em);
+        em.persist(doctor);
+        em.flush();
+        patient.addDoctor(doctor);
+        patientRepository.saveAndFlush(patient);
+        Long doctorId = doctor.getId();
+
+        // Get all the patientList where doctor equals to doctorId
+        defaultPatientShouldBeFound("doctorId.equals=" + doctorId);
+
+        // Get all the patientList where doctor equals to doctorId + 1
+        defaultPatientShouldNotBeFound("doctorId.equals=" + (doctorId + 1));
+    }
+
     /**
      * Executes the search, and checks that the default entity is returned
      */
@@ -529,10 +571,10 @@ public class PatientResourceIntTest {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(patient.getId().intValue())))
-            .andExpect(jsonPath("$.[*].cin").value(hasItem(DEFAULT_CIN.intValue())))
             .andExpect(jsonPath("$.[*].name").value(hasItem(DEFAULT_NAME)))
-            .andExpect(jsonPath("$.[*].email").value(hasItem(DEFAULT_EMAIL)))
-            .andExpect(jsonPath("$.[*].phoneNumber").value(hasItem(DEFAULT_PHONE_NUMBER.intValue())));
+            .andExpect(jsonPath("$.[*].phoneNumber").value(hasItem(DEFAULT_PHONE_NUMBER.intValue())))
+            .andExpect(jsonPath("$.[*].cin").value(hasItem(DEFAULT_CIN.intValue())))
+            .andExpect(jsonPath("$.[*].email").value(hasItem(DEFAULT_EMAIL)));
 
         // Check, that the count call also returns 1
         restPatientMockMvc.perform(get("/api/patients/count?sort=id,desc&" + filter))
@@ -580,10 +622,10 @@ public class PatientResourceIntTest {
         // Disconnect from session so that the updates on updatedPatient are not directly saved in db
         em.detach(updatedPatient);
         updatedPatient
-            .cin(UPDATED_CIN)
             .name(UPDATED_NAME)
-            .email(UPDATED_EMAIL)
-            .phoneNumber(UPDATED_PHONE_NUMBER);
+            .phoneNumber(UPDATED_PHONE_NUMBER)
+            .cin(UPDATED_CIN)
+            .email(UPDATED_EMAIL);
         PatientDTO patientDTO = patientMapper.toDto(updatedPatient);
 
         restPatientMockMvc.perform(put("/api/patients")
@@ -595,10 +637,10 @@ public class PatientResourceIntTest {
         List<Patient> patientList = patientRepository.findAll();
         assertThat(patientList).hasSize(databaseSizeBeforeUpdate);
         Patient testPatient = patientList.get(patientList.size() - 1);
-        assertThat(testPatient.getCin()).isEqualTo(UPDATED_CIN);
         assertThat(testPatient.getName()).isEqualTo(UPDATED_NAME);
-        assertThat(testPatient.getEmail()).isEqualTo(UPDATED_EMAIL);
         assertThat(testPatient.getPhoneNumber()).isEqualTo(UPDATED_PHONE_NUMBER);
+        assertThat(testPatient.getCin()).isEqualTo(UPDATED_CIN);
+        assertThat(testPatient.getEmail()).isEqualTo(UPDATED_EMAIL);
 
         // Validate the Patient in Elasticsearch
         verify(mockPatientSearchRepository, times(1)).save(testPatient);
@@ -659,10 +701,10 @@ public class PatientResourceIntTest {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(patient.getId().intValue())))
-            .andExpect(jsonPath("$.[*].cin").value(hasItem(DEFAULT_CIN.intValue())))
             .andExpect(jsonPath("$.[*].name").value(hasItem(DEFAULT_NAME)))
-            .andExpect(jsonPath("$.[*].email").value(hasItem(DEFAULT_EMAIL)))
-            .andExpect(jsonPath("$.[*].phoneNumber").value(hasItem(DEFAULT_PHONE_NUMBER.intValue())));
+            .andExpect(jsonPath("$.[*].phoneNumber").value(hasItem(DEFAULT_PHONE_NUMBER.intValue())))
+            .andExpect(jsonPath("$.[*].cin").value(hasItem(DEFAULT_CIN.intValue())))
+            .andExpect(jsonPath("$.[*].email").value(hasItem(DEFAULT_EMAIL)));
     }
 
     @Test

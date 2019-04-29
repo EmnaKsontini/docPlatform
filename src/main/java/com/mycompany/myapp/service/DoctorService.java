@@ -111,4 +111,7 @@ public class DoctorService {
             .map(doctorMapper::toDto);
     }
 
+    public List<Doctor> findAll() {
+        return doctorRepository.findAll();
+    }
 }

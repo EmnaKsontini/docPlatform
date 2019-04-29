@@ -25,6 +25,8 @@
         "@ngx-translate/http-loader": "4.0.0",
         "angular-admin-lte": "^2.0.0",
         "angular-ai-chat-bot": "^1.1.1",
+        "angular-chat-widget-rasa": "latest",
+        "angular-maps": "^6.0.1",
         "angular-calendar": "^0.27.3",
         "angular-chat-widget-rasa": "latest",
         "angular-maps": "^6.0.1",

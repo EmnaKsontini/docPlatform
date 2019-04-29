@@ -113,6 +113,8 @@ public class AccountResource {
         mailService.sendActivationEmail(user);
     }
 
+
+
     /**
      * GET  /activate : activate the registered user.
      *

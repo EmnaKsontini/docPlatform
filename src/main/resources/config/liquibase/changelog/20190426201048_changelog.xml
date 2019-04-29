@@ -1,0 +1,22 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <changeSet author="Meriem (generated)" id="1556309658347-1">
+        <createTable tableName="patient_doctor">
+            <column name="patient_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="doctor_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="Meriem (generated)" id="1556309658347-2">
+        <addPrimaryKey columnNames="doctor_id, patient_id" tableName="patient_doctor"/>
+    </changeSet>
+    <changeSet author="Meriem (generated)" id="1556309658347-3">
+        <addForeignKeyConstraint baseColumnNames="doctor_id" baseTableName="patient_doctor" constraintName="FKn9ydvc6pvgp7id3s7q63ik6xj" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="doctor"/>
+    </changeSet>
+    <changeSet author="Meriem (generated)" id="1556309658347-4">
+        <addForeignKeyConstraint baseColumnNames="patient_id" baseTableName="patient_doctor" constraintName="FKtmtnhw88h1tnjg6i8pa6i3qao" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="patient"/>
+    </changeSet>
+</databaseChangeLog>

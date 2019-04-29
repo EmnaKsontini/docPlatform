@@ -41,7 +41,10 @@
             <tbody>
             <tr *ngFor="let doctor of doctors ;trackBy: trackId">
                 <td><a [routerLink]="['/doctor', doctor.id, 'view' ]">{{doctor.name}}</a></td>
-                <td>{{doctor.address}}</td>
+                <label class="radio-inline">{{doctor.address}}</label>
+
+
+
                 <td>{{doctor.speciality}}</td>
                 <td>{{doctor.phoneNumber}}</td>
                 <!--<td class="text-right">
@@ -77,9 +80,11 @@
             <div class="col-sm-6">
                 <div class="container">
                 <div class="form-group">
-                <input placeholder="search for location" autocorrect="off" autocapitalize="off" spellcheck="off" type="text">
+                <input placeholder="search for location" autocorrect="off" autocapitalize="off" spellcheck="off"  type="text" class="form-control" #search [formControl]="searchControl">
                 </div>
-                <agm-map [latitude]="latitude"[longtitude]="longitude"></agm-map>
+                <agm-map [latitude]="latitude"[longtitude]="longitude">
+                    <agm-marker [latitude]="latitude" [longitude]="longitude"></agm-marker>
+                </agm-map>
                 </div>
             </div>
 

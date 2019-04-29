@@ -16,11 +16,12 @@
             "detail": {
                 "title": "Patient"
             },
-            "cin": "Cin",
             "name": "Name",
-            "email": "Email",
             "phoneNumber": "Phone Number",
-            "requests": "Requests"
+            "cin": "Cin",
+            "email": "Email",
+            "requests": "Requests",
+            "doctor": "Doctor"
         }
     }
 }
