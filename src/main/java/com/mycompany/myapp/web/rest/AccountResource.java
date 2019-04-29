@@ -3,10 +3,15 @@ package com.mycompany.myapp.web.rest;
 
 import com.mycompany.myapp.domain.User;
 import com.mycompany.myapp.repository.UserRepository;
+import com.mycompany.myapp.repository.search.UserSearchRepository;
 import com.mycompany.myapp.security.SecurityUtils;
+import com.mycompany.myapp.service.DoctorService;
 import com.mycompany.myapp.service.MailService;
+import com.mycompany.myapp.service.PatientService;
 import com.mycompany.myapp.service.UserService;
+import com.mycompany.myapp.service.dto.DoctorDTO;
 import com.mycompany.myapp.service.dto.PasswordChangeDTO;
+import com.mycompany.myapp.service.dto.PatientDTO;
 import com.mycompany.myapp.service.dto.UserDTO;
 import com.mycompany.myapp.web.rest.errors.*;
 import com.mycompany.myapp.web.rest.vm.KeyAndPasswordVM;
@@ -20,6 +25,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
+import java.math.BigDecimal;
 import java.util.*;
 
 /**
@@ -35,13 +41,22 @@ public class AccountResource {
 
     private final UserService userService;
 
+    private final UserSearchRepository userSearchRepository;
+
     private final MailService mailService;
 
-    public AccountResource(UserRepository userRepository, UserService userService, MailService mailService) {
+    private final PatientService patientService;
+
+    private final DoctorService doctorService;
+
+    public AccountResource(UserRepository userRepository, UserService userService, MailService mailService,UserSearchRepository userSearchRepository,PatientService patientService,DoctorService doctorService) {
 
         this.userRepository = userRepository;
         this.userService = userService;
         this.mailService = mailService;
+        this.userSearchRepository=userSearchRepository;
+        this.patientService=patientService;
+        this.doctorService=doctorService;
     }
 
     /**
@@ -58,7 +73,43 @@ public class AccountResource {
         if (!checkPasswordLength(managedUserVM.getPassword())) {
             throw new InvalidPasswordException();
         }
+        System.out.println("elaff"+managedUserVM.getAuthorities().iterator().next());
         User user = userService.registerUser(managedUserVM, managedUserVM.getPassword());
+        //log.debug("Activating user for activation key {}", key);
+        userRepository.findOneByLogin(user.getLogin())
+            .map(user1 -> {
+                // activate given user for the registration key.
+                user1.setActivated(true);
+                user1.setActivationKey(null);
+                userSearchRepository.save(user1);
+                log.debug("Activated user: {}", user1);
+                userRepository.save(user1);
+                return user1;
+            });
+        if(managedUserVM.getAuthorities().iterator().next().equals("ROLE_PATIENT"))
+        {      System.out.println("hereo");
+            PatientDTO patient = new PatientDTO();
+            patient.setCin(user.getId());
+            patient.setName(user.getFirstName()+" "+user .getLastName());
+            patient.setEmail(user.getEmail());
+            patient.setPhoneNumber(216000000l);
+            patientService.save(patient);
+        }
+        if(managedUserVM.getAuthorities().iterator().next().equals("ROLE_Doctor"))
+        {      System.out.println("hereo2");
+            DoctorDTO doctor = new DoctorDTO() ;
+            BigDecimal a = new BigDecimal("2160000");
+            BigDecimal b = new BigDecimal(user.getId());
+
+            doctor.setName(user.getLogin());
+            doctor.setEmail(user.getEmail());
+            doctor.setPhoneNumber(a);
+            doctor.setCin(b);
+            doctor.setAddress("please provide your adress ");
+            doctor.setSpeciality("please provide your speciality");
+            doctorService.save(doctor);
+        }
+
         mailService.sendActivationEmail(user);
     }
 

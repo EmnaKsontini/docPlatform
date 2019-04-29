@@ -1,0 +1,884 @@
+@keyframes focus-shadow-pulse-inset {
+    0% {
+        box-shadow: inset 0 0 0 3px rgba(0, 120, 212, 0.35);
+        box-shadow: inset 0 0 0 3px rgba(var(--palette-primary, 0, 120, 212), 0.35);
+    }
+    50% {
+        box-shadow: inset 0 0 0 3px rgba(0, 120, 212, 0.15);
+        box-shadow: inset 0 0 0 3px rgba(var(--palette-primary, 0, 120, 212), 0.15);
+    }
+    100% {
+        box-shadow: inset 0 0 0 3px rgba(0, 120, 212, 0.35);
+        box-shadow: inset 0 0 0 3px rgba(var(--palette-primary, 0, 120, 212), 0.35);
+    }
+}
+.vss-ComboBox--container {
+    min-width: 254px;
+    color: rgba(0, 0, 0, 0.9);
+    color: var(--text-primary-color, rgba(0, 0, 0, 0.9));
+}
+.vss-ComboBox--container .ms-ComboBox {
+    background-color: rgba(255, 255, 255, 1);
+    background-color: var(--background-color, rgba(255, 255, 255, 1));
+}
+.vss-ComboBox--container .ms-ComboBox .ms-ComboBox-Input {
+    background-color: transparent;
+}
+.vss-ComboBox--container .ms-ComboBox .ms-Button {
+    background-color: transparent;
+}
+.vss-ComboBox--container .ms-ComboBox .ms-Button:hover .ms-Button-icon {
+    color: rgba(0, 0, 0, 1);
+    color: rgba(var(--palette-neutral-100, 0, 0, 0), 1);
+}
+.ms-ComboBox-callout {
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.132);
+    box-shadow: 0 6px 12px var(--callout-shadow-color, rgba(0, 0, 0, 0.132));
+}
+.ms-ComboBox-callout .ms-ComboBox-optionsContainerWrapper {
+    background-color: rgba(255, 255, 255, 1);
+    background-color: var(--background-color, rgba(255, 255, 255, 1));
+    border-color: rgba(218, 218, 218, 1);
+    border-color: rgba(var(--palette-neutral-10, 218, 218, 218), 1);
+}
+.ms-ComboBox-callout .ms-ComboBox-optionsContainerWrapper .ms-ComboBox-header {
+    color: rgba(0, 120, 212, 1);
+    color: var(--communication-foreground, rgba(0, 120, 212, 1));
+}
+.ms-ComboBox-callout .ms-ComboBox-optionsContainerWrapper .ms-ComboBox-option {
+    color: rgba(0, 0, 0, 0.9);
+    color: var(--text-primary-color, rgba(0, 0, 0, 0.9));
+    background-color: inherit;
+}
+.ms-ComboBox-callout .ms-ComboBox-optionsContainerWrapper .ms-ComboBox-option:hover {
+    background-color: rgba(244, 244, 244, 1);
+    background-color: rgba(var(--palette-neutral-4, 244, 244, 244), 1);
+}
+.ms-ComboBox-callout .ms-ComboBox-optionsContainerWrapper .ms-ComboBox-divider {
+    border-color: rgba(234, 234, 234, 1);
+    border-color: rgba(var(--palette-neutral-8, 234, 234, 234), 1);
+}
+@keyframes focus-shadow-pulse-inset {
+    0% {
+        box-shadow: inset 0 0 0 3px rgba(0, 120, 212, 0.35);
+        box-shadow: inset 0 0 0 3px rgba(var(--palette-primary, 0, 120, 212), 0.35);
+    }
+    50% {
+        box-shadow: inset 0 0 0 3px rgba(0, 120, 212, 0.15);
+        box-shadow: inset 0 0 0 3px rgba(var(--palette-primary, 0, 120, 212), 0.15);
+    }
+    100% {
+        box-shadow: inset 0 0 0 3px rgba(0, 120, 212, 0.35);
+        box-shadow: inset 0 0 0 3px rgba(var(--palette-primary, 0, 120, 212), 0.35);
+    }
+}
+.vss-PickList {
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+.vss-PickList .bolt-radio-button-group {
+    margin-left: 9px;
+    margin-right: 8px;
+    margin-top: 3px;
+}
+.vss-PickList .bolt-radio-button {
+    flex-grow: 1;
+}
+.vss-PickList .vss-PickList--ariaDescription {
+    display: none;
+}
+.vss-PickList .vss-PickList--pivotBar {
+    padding-bottom: 4px;
+}
+.vss-PickList .vss-PickList--pivotBar .vss-Picklist--pivotBar-button {
+    height: 32px;
+    display: inline-block;
+    padding: 0 8px;
+    text-align: center;
+    position: relative;
+    background-color: transparent;
+    overflow: visible;
+    font-weight: 400;
+}
+.vss-PickList .vss-PickList--pivotBar .vss-Picklist--pivotBar-button.bolt-button:not(.selected) {
+    font-weight: 400;
+}
+.vss-PickList .vss-PickList--pivotBar .vss-Picklist--pivotBar-button:focus {
+    outline: none;
+}
+.vss-PickList .vss-PickList--pivotBar .vss-Picklist--pivotBar-button:hover {
+    color: inherit;
+}
+@media screen and (-ms-high-contrast: active) {
+    .vss-PickList .vss-PickList--pivotBar .vss-Picklist--pivotBar-button:hover {
+        border-color: Highlight;
+    }
+}
+.vss-PickList .vss-PickList--pivotBar .vss-Picklist--pivotBar-button .text {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    padding: 0 1px;
+}
+.vss-PickList .vss-PickList--pivotBar .vss-Picklist--pivotBar-button .text,
+.vss-PickList .vss-PickList--pivotBar .vss-Picklist--pivotBar-button .badge {
+    display: inline-block;
+    vertical-align: text-bottom;
+    font-size: 14px;
+}
+.vss-PickList .vss-PickList--pivotBar .vss-Picklist--pivotBar-button .icon + .text {
+    margin-left: 4px;
+}
+.vss-PickList .vss-PickList--pivotBar .vss-Picklist--pivotBar-button .innerContainer {
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+.vss-PickList .vss-PickList--pivotBar .vss-Picklist--pivotBar-button .badge {
+    margin-left: 4px;
+    font-size: 12px;
+    background-color: rgba(218, 218, 218, 1);
+    background-color: rgba(var(--palette-neutral-10, 218, 218, 218), 1);
+    padding: 0 3px;
+    border-radius: 14px;
+}
+@media screen and (-ms-high-contrast: active) {
+    .vss-PickList .vss-PickList--pivotBar .vss-Picklist--pivotBar-button .badge {
+        border-style: solid;
+        border-width: 1px;
+    }
+}
+.vss-PickList .vss-PickList--pivotBar .vss-Picklist--pivotBar-button.selected .innerContainer {
+    font-weight: 600;
+    padding-top: 2px;
+    border-bottom: 2px solid rgba(0, 120, 212, 1);
+    border-bottom: 2px solid var(--communication-background, rgba(0, 120, 212, 1));
+}
+.vss-PickList .vss-PickList--focusContainer {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+.vss-PickList .vss-PickList--noItemsText {
+    padding: 16px 10px;
+    color: rgba(0, 0, 0, 0.55);
+    color: var(--text-secondary-color, rgba(0, 0, 0, 0.55));
+    text-align: center;
+    margin-bottom: 8px;
+}
+.vss-PickList .vss-PickList--searchSection {
+    padding: 0 8px 8px 8px;
+    border-bottom: 1px solid;
+    border-bottom-color: rgba(0, 0, 0, 0.06);
+    border-bottom-color: var(--palette-black-alpha-6, rgba(0, 0, 0, 0.06));
+}
+.vss-PickList .vss-PickList--searchTextContainer {
+    background-color: rgba(0, 0, 0, 0.06);
+    background-color: var(--palette-black-alpha-6, rgba(0, 0, 0, 0.06));
+    border-radius: 2px;
+}
+.vss-PickList .vss-PickList--searchTextIcon {
+    padding: 4px 6px 4px 8px;
+    font-size: 16px;
+}
+.vss-PickList .vss-PickList--searchTextField input::-ms-clear {
+    display: none;
+}
+.vss-PickList .vss-PickList--searchTextField .clear-filter-input {
+    align-self: center;
+    margin-right: 10px;
+    padding: 2px;
+    color: rgba(0, 0, 0, 0.55);
+    color: var(--text-secondary-color, rgba(0, 0, 0, 0.55));
+    cursor: pointer;
+}
+.vss-PickList .vss-PickList--searchTextField .ms-TextField-fieldGroup {
+    display: flex;
+    border: none;
+    background-color: transparent;
+}
+.vss-PickList .vss-PickList--searchTextField .ms-TextField-fieldGroup input {
+    width: 0;
+    flex-grow: 1;
+}
+.vss-PickList .vss-PickList--items.vss-PickList--hasItems {
+    overflow: auto;
+}
+.vss-PickList .vss-PickList--items .vss-PickList--groupHeader {
+    padding: 7px 10px;
+    color: rgba(0, 120, 212, 1);
+    color: var(--communication-foreground, rgba(0, 120, 212, 1));
+    font-size: 14px;
+    font-weight: 600;
+}
+.vss-PickList .vss-PickList--items .vss-PickList--groupSeparator {
+    border: 1px solid;
+    border-color: rgba(234, 234, 234, 1);
+    border-color: rgba(var(--palette-neutral-8, 234, 234, 234), 1);
+}
+.vss-PickList .vss-PickList--items .vss-PickList--message {
+    padding: 16px 10px;
+    color: rgba(0, 0, 0, 0.55);
+    color: var(--text-secondary-color, rgba(0, 0, 0, 0.55));
+    text-align: center;
+    margin-bottom: 8px;
+}
+.vss-PickList .vss-PickList--items .vss-PickList--message.is-error {
+    color: rgba(218, 10, 0, 1);
+    color: var(--status-error-text, rgba(218, 10, 0, 1));
+}
+.vss-PickList .vss-PickList--items .vss-PickList--loading {
+    position: relative;
+    padding: 12px;
+}
+.vss-PickList .vss-PickList--row,
+.vss-PickList .vss-PickList--action {
+    position: relative;
+    cursor: pointer;
+}
+.ms-Fabric.is-focusVisible .vss-PickList .vss-PickList--row:focus,
+.ms-Fabric.is-focusVisible .vss-PickList .vss-PickList--action:focus {
+    background-color: rgba(244, 244, 244, 1);
+    background-color: rgba(var(--palette-neutral-4, 244, 244, 244), 1);
+    outline: none;
+}
+.ms-Fabric--isFocusVisible .vss-PickList .vss-PickList--row:focus,
+.ms-Fabric--isFocusVisible .vss-PickList .vss-PickList--action:focus {
+    background-color: rgba(244, 244, 244, 1);
+    background-color: rgba(var(--palette-neutral-4, 244, 244, 244), 1);
+    outline: none;
+}
+@media screen and (-ms-high-contrast: active) {
+    .ms-Fabric.is-focusVisible .vss-PickList .vss-PickList--row:focus,
+    .ms-Fabric.is-focusVisible .vss-PickList .vss-PickList--row:focus .ms-Button-label,
+    .ms-Fabric.is-focusVisible .vss-PickList .vss-PickList--action:focus,
+    .ms-Fabric.is-focusVisible .vss-PickList .vss-PickList--action:focus .ms-Button-label {
+        font-weight: bold;
+    }
+}
+@media screen and (-ms-high-contrast: active) {
+    .ms-Fabric--isFocusVisible .vss-PickList .vss-PickList--row:focus,
+    .ms-Fabric--isFocusVisible .vss-PickList .vss-PickList--row:focus .ms-Button-label,
+    .ms-Fabric--isFocusVisible .vss-PickList .vss-PickList--action:focus,
+    .ms-Fabric--isFocusVisible .vss-PickList .vss-PickList--action:focus .ms-Button-label {
+        font-weight: bold;
+    }
+}
+.ms-Fabric.is-focusVisible .vss-PickList .vss-PickList--row:focus::after,
+.ms-Fabric.is-focusVisible .vss-PickList .vss-PickList--action:focus::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    pointer-events: none;
+    border: 1px solid;
+    border-color: rgba(0, 0, 0, 1);
+    border-color: rgba(var(--palette-neutral-100, 0, 0, 0), 1);
+}
+@media screen and (-ms-high-contrast: active) {
+    .ms-Fabric.is-focusVisible .vss-PickList .vss-PickList--row:focus::after,
+    .ms-Fabric.is-focusVisible .vss-PickList .vss-PickList--action:focus::after {
+        border-color: #1aebff;
+    }
+}
+@media screen and (-ms-high-contrast: black-on-white) {
+    .ms-Fabric.is-focusVisible .vss-PickList .vss-PickList--row:focus::after,
+    .ms-Fabric.is-focusVisible .vss-PickList .vss-PickList--action:focus::after {
+        border-color: #37006e;
+    }
+}
+.ms-Fabric--isFocusVisible .vss-PickList .vss-PickList--row:focus::after,
+.ms-Fabric--isFocusVisible .vss-PickList .vss-PickList--action:focus::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    pointer-events: none;
+    border: 1px solid;
+    border-color: rgba(0, 0, 0, 1);
+    border-color: rgba(var(--palette-neutral-100, 0, 0, 0), 1);
+}
+@media screen and (-ms-high-contrast: active) {
+    .ms-Fabric--isFocusVisible .vss-PickList .vss-PickList--row:focus::after,
+    .ms-Fabric--isFocusVisible .vss-PickList .vss-PickList--action:focus::after {
+        border-color: #1aebff;
+    }
+}
+@media screen and (-ms-high-contrast: black-on-white) {
+    .ms-Fabric--isFocusVisible .vss-PickList .vss-PickList--row:focus::after,
+    .ms-Fabric--isFocusVisible .vss-PickList .vss-PickList--action:focus::after {
+        border-color: #37006e;
+    }
+}
+.vss-PickList .vss-PickList--row:active,
+.vss-PickList .vss-PickList--row:focus,
+.vss-PickList .vss-PickList--action:active,
+.vss-PickList .vss-PickList--action:focus {
+    outline: none;
+}
+.vss-PickList .vss-PickList--row.disabled,
+.vss-PickList .vss-PickList--action.disabled {
+    cursor: default;
+}
+.vss-PickList .vss-PickList--action-tooltip {
+    width: 100%;
+}
+.vss-PickList .vss-PickList--element {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    overflow: hidden;
+    height: 32px;
+}
+.vss-PickList .vss-PickList--element:hover {
+    background-color: rgba(244, 244, 244, 1);
+    background-color: rgba(var(--palette-neutral-4, 244, 244, 244), 1);
+    color: rgba(0, 0, 0, 0.9);
+    color: var(--text-primary-color, rgba(0, 0, 0, 0.9));
+}
+@media screen and (-ms-high-contrast: active) {
+    .vss-PickList .vss-PickList--element:hover {
+        background-color: #1aebff;
+        border-color: #1aebff;
+        color: HighlightText;
+    }
+    .vss-PickList .vss-PickList--element:hover:focus {
+        border-color: #000;
+    }
+}
+@media screen and (-ms-high-contrast: black-on-white) {
+    .vss-PickList .vss-PickList--element:hover {
+        background-color: #37006e;
+        border-color: #37006e;
+        color: HighlightText;
+    }
+}
+@media screen and (-ms-high-contrast: active), screen and (-ms-high-contrast: black-on-white) {
+    .vss-PickList .vss-PickList--element:hover {
+        -ms-high-contrast-adjust: none;
+    }
+}
+@media screen and (-ms-high-contrast: active) {
+    .vss-PickList .vss-PickList--element:hover .bolt-checkmark {
+        color: highlight;
+    }
+    .vss-PickList .vss-PickList--element:hover .bolt-checkbox.checked .bolt-checkmark {
+        color: windowtext;
+    }
+}
+@media screen and (-ms-high-contrast: active) {
+    .vss-PickList .vss-PickList--element:hover .vss-PickList--selectableElementButton .vss-PickList--selectableElementButton-text {
+        background-color: #1aebff;
+        border-color: #1aebff;
+        color: HighlightText;
+    }
+    .vss-PickList .vss-PickList--element:hover .vss-PickList--selectableElementButton .vss-PickList--selectableElementButton-text:focus {
+        border-color: #000;
+    }
+}
+@media screen and (-ms-high-contrast: black-on-white) {
+    .vss-PickList .vss-PickList--element:hover .vss-PickList--selectableElementButton .vss-PickList--selectableElementButton-text {
+        background-color: #37006e;
+        border-color: #37006e;
+        color: HighlightText;
+    }
+}
+@media screen and (-ms-high-contrast: active), screen and (-ms-high-contrast: black-on-white) {
+    .vss-PickList .vss-PickList--element:hover .vss-PickList--selectableElementButton .vss-PickList--selectableElementButton-text {
+        -ms-high-contrast-adjust: none;
+    }
+}
+@media screen and (-ms-high-contrast: active) {
+    .vss-PickList .vss-PickList--element:hover .vss-PickList--selectableElementButton .vss-PickList--selectableElementButtonIcon {
+        background-color: #1aebff;
+        border-color: #1aebff;
+        color: HighlightText;
+    }
+    .vss-PickList .vss-PickList--element:hover .vss-PickList--selectableElementButton .vss-PickList--selectableElementButtonIcon:focus {
+        border-color: #000;
+    }
+}
+@media screen and (-ms-high-contrast: black-on-white) {
+    .vss-PickList .vss-PickList--element:hover .vss-PickList--selectableElementButton .vss-PickList--selectableElementButtonIcon {
+        background-color: #37006e;
+        border-color: #37006e;
+        color: HighlightText;
+    }
+}
+@media screen and (-ms-high-contrast: active), screen and (-ms-high-contrast: black-on-white) {
+    .vss-PickList .vss-PickList--element:hover .vss-PickList--selectableElementButton .vss-PickList--selectableElementButtonIcon {
+        -ms-high-contrast-adjust: none;
+    }
+}
+@media screen and (-ms-high-contrast: active) {
+    .vss-PickList .vss-PickList--element:hover a,
+    .vss-PickList .vss-PickList--element:hover a:hover,
+    .vss-PickList .vss-PickList--element:hover a:visited {
+        background-color: #1aebff;
+        border-color: #1aebff;
+        color: HighlightText;
+    }
+    .vss-PickList .vss-PickList--element:hover a:focus,
+    .vss-PickList .vss-PickList--element:hover a:hover:focus,
+    .vss-PickList .vss-PickList--element:hover a:visited:focus {
+        border-color: #000;
+    }
+}
+@media screen and (-ms-high-contrast: black-on-white) {
+    .vss-PickList .vss-PickList--element:hover a,
+    .vss-PickList .vss-PickList--element:hover a:hover,
+    .vss-PickList .vss-PickList--element:hover a:visited {
+        background-color: #37006e;
+        border-color: #37006e;
+        color: HighlightText;
+    }
+}
+@media screen and (-ms-high-contrast: active), screen and (-ms-high-contrast: black-on-white) {
+    .vss-PickList .vss-PickList--element:hover a,
+    .vss-PickList .vss-PickList--element:hover a:hover,
+    .vss-PickList .vss-PickList--element:hover a:visited {
+        -ms-high-contrast-adjust: none;
+    }
+}
+.vss-PickList .vss-PickList--element:active {
+    background-color: rgba(244, 244, 244, 1);
+    background-color: rgba(var(--palette-neutral-4, 244, 244, 244), 1);
+    color: rgba(0, 0, 0, 0.9);
+    color: var(--text-primary-color, rgba(0, 0, 0, 0.9));
+}
+.vss-PickList .vss-PickList--element.disabled {
+    background: rgba(255, 255, 255, 1);
+    background: rgba(var(--palette-neutral-0, 255, 255, 255), 1);
+    color: rgba(166, 166, 166, 1);
+    color: rgba(var(--palette-neutral-30, 166, 166, 166), 1);
+    cursor: default;
+}
+.vss-PickList .vss-PickList--element.disabled .vss-PickList--selectableElementButton {
+    color: rgba(166, 166, 166, 1);
+    color: rgba(var(--palette-neutral-30, 166, 166, 166), 1);
+}
+.vss-PickList .vss-PickList--element.disabled .vss-PickList--selectableElementButton .vss-PickList--selectableElementButtonIcon {
+    color: rgba(166, 166, 166, 1);
+    color: rgba(var(--palette-neutral-30, 166, 166, 166), 1);
+}
+.vss-PickList .vss-PickList--element.disabled .vss-PickList--selectableElementButton:hover,
+.vss-PickList .vss-PickList--element.disabled .vss-PickList--selectableElementButton:active {
+    color: rgba(166, 166, 166, 1);
+    color: rgba(var(--palette-neutral-30, 166, 166, 166), 1);
+}
+.vss-PickList .vss-PickList--element.disabled .vss-PickList--selectableElementButton:hover .vss-PickList--selectableElementButtonIcon,
+.vss-PickList .vss-PickList--element.disabled .vss-PickList--selectableElementButton:active .vss-PickList--selectableElementButtonIcon {
+    color: rgba(166, 166, 166, 1);
+    color: rgba(var(--palette-neutral-30, 166, 166, 166), 1);
+}
+.vss-PickList .vss-PickList--element .vss-IndicatorSet {
+    flex-shrink: 0;
+}
+.vss-PickList .vss-PickList--element .vss-PickList--selectableElementButton {
+    display: flex;
+    flex-grow: 1;
+    height: 32px;
+    padding: 0 0 0 8px;
+    border: none;
+    outline: transparent;
+    overflow: hidden;
+    align-items: center;
+    justify-content: flex-start;
+    text-decoration: none;
+    color: rgba(0, 0, 0, 0.9);
+    color: var(--text-primary-color, rgba(0, 0, 0, 0.9));
+}
+.vss-PickList .vss-PickList--element .vss-PickList--selectableElementButton:visited {
+    color: rgba(0, 0, 0, 0.9);
+    color: var(--text-primary-color, rgba(0, 0, 0, 0.9));
+}
+.vss-PickList .vss-PickList--element .vss-PickList--selectableElementButton .vss-PickList--selectableElementButtonIcon {
+    margin-left: 0;
+    margin-right: 8px;
+    font-size: 16px;
+    height: 16px;
+    flex-shrink: 0;
+    display: inline-flex;
+}
+.vss-PickList .vss-PickList--element .vss-PickList--selectableElementButton .vss-PickList--selectableElementButton-textContainer {
+    margin-right: 8px;
+    overflow: hidden;
+    flex-grow: 1;
+    text-overflow: ellipsis;
+}
+.vss-PickList
+    .vss-PickList--element
+    .vss-PickList--selectableElementButton
+    .vss-PickList--selectableElementButton-textContainer
+    .vss-PickList--selectableElementButton-text {
+    white-space: nowrap;
+}
+.vss-PickList .vss-PickList--element .vss-PickList--selectableElementButton:hover,
+.vss-PickList .vss-PickList--element .vss-PickList--selectableElementButton:active {
+    color: rgba(0, 0, 0, 0.9);
+    color: var(--text-primary-color, rgba(0, 0, 0, 0.9));
+}
+.vss-PickList .vss-PickList--element .vss-PickList--selectableElementButton:hover .vss-PickList--selectableElementButtonIcon,
+.vss-PickList .vss-PickList--element .vss-PickList--selectableElementButton:active .vss-PickList--selectableElementButtonIcon {
+    color: rgba(0, 0, 0, 0.9);
+    color: var(--text-primary-color, rgba(0, 0, 0, 0.9));
+}
+.vss-PickList .vss-PickList--element.is-selected {
+    background-color: rgba(218, 218, 218, 1);
+    background-color: rgba(var(--palette-neutral-10, 218, 218, 218), 1);
+}
+.vss-PickList .vss-PickList--element.is-selected:hover {
+    background-color: rgba(218, 218, 218, 1);
+    background-color: rgba(var(--palette-neutral-10, 218, 218, 218), 1);
+}
+@media screen and (-ms-high-contrast: active) {
+    .vss-PickList .vss-PickList--element.is-selected:hover {
+        background-color: #1aebff;
+        border-color: #1aebff;
+        color: HighlightText;
+    }
+    .vss-PickList .vss-PickList--element.is-selected:hover:focus {
+        border-color: #000;
+    }
+}
+@media screen and (-ms-high-contrast: black-on-white) {
+    .vss-PickList .vss-PickList--element.is-selected:hover {
+        background-color: #37006e;
+        border-color: #37006e;
+        color: HighlightText;
+    }
+}
+@media screen and (-ms-high-contrast: active), screen and (-ms-high-contrast: black-on-white) {
+    .vss-PickList .vss-PickList--element.is-selected:hover {
+        -ms-high-contrast-adjust: none;
+    }
+}
+@media screen and (-ms-high-contrast: active) {
+    .vss-PickList .vss-PickList--element.is-selected {
+        background-color: #1aebff;
+        border-color: #1aebff;
+        color: HighlightText;
+    }
+    .vss-PickList .vss-PickList--element.is-selected:focus {
+        border-color: #000;
+    }
+}
+@media screen and (-ms-high-contrast: black-on-white) {
+    .vss-PickList .vss-PickList--element.is-selected {
+        background-color: #37006e;
+        border-color: #37006e;
+        color: HighlightText;
+    }
+}
+@media screen and (-ms-high-contrast: active), screen and (-ms-high-contrast: black-on-white) {
+    .vss-PickList .vss-PickList--element.is-selected {
+        -ms-high-contrast-adjust: none;
+    }
+}
+@media screen and (-ms-high-contrast: active) {
+    .vss-PickList .vss-PickList--element.is-selected .vss-PickList--selectableElementButton .vss-PickList--selectableElementButton-text {
+        background-color: #1aebff;
+        border-color: #1aebff;
+        color: HighlightText;
+    }
+    .vss-PickList
+        .vss-PickList--element.is-selected
+        .vss-PickList--selectableElementButton
+        .vss-PickList--selectableElementButton-text:focus {
+        border-color: #000;
+    }
+}
+@media screen and (-ms-high-contrast: black-on-white) {
+    .vss-PickList .vss-PickList--element.is-selected .vss-PickList--selectableElementButton .vss-PickList--selectableElementButton-text {
+        background-color: #37006e;
+        border-color: #37006e;
+        color: HighlightText;
+    }
+}
+@media screen and (-ms-high-contrast: active), screen and (-ms-high-contrast: black-on-white) {
+    .vss-PickList .vss-PickList--element.is-selected .vss-PickList--selectableElementButton .vss-PickList--selectableElementButton-text {
+        -ms-high-contrast-adjust: none;
+    }
+}
+@media screen and (-ms-high-contrast: active) {
+    .vss-PickList .vss-PickList--element.is-selected .vss-PickList--selectableElementButton .vss-PickList--selectableElementButtonIcon {
+        background-color: #1aebff;
+        border-color: #1aebff;
+        color: HighlightText;
+    }
+    .vss-PickList
+        .vss-PickList--element.is-selected
+        .vss-PickList--selectableElementButton
+        .vss-PickList--selectableElementButtonIcon:focus {
+        border-color: #000;
+    }
+}
+@media screen and (-ms-high-contrast: black-on-white) {
+    .vss-PickList .vss-PickList--element.is-selected .vss-PickList--selectableElementButton .vss-PickList--selectableElementButtonIcon {
+        background-color: #37006e;
+        border-color: #37006e;
+        color: HighlightText;
+    }
+}
+@media screen and (-ms-high-contrast: active), screen and (-ms-high-contrast: black-on-white) {
+    .vss-PickList .vss-PickList--element.is-selected .vss-PickList--selectableElementButton .vss-PickList--selectableElementButtonIcon {
+        -ms-high-contrast-adjust: none;
+    }
+}
+@media screen and (-ms-high-contrast: active) {
+    .vss-PickList .vss-PickList--element.is-selected a,
+    .vss-PickList .vss-PickList--element.is-selected a:hover,
+    .vss-PickList .vss-PickList--element.is-selected a:visited {
+        background-color: #1aebff;
+        border-color: #1aebff;
+        color: HighlightText;
+    }
+    .vss-PickList .vss-PickList--element.is-selected a:focus,
+    .vss-PickList .vss-PickList--element.is-selected a:hover:focus,
+    .vss-PickList .vss-PickList--element.is-selected a:visited:focus {
+        border-color: #000;
+    }
+}
+@media screen and (-ms-high-contrast: black-on-white) {
+    .vss-PickList .vss-PickList--element.is-selected a,
+    .vss-PickList .vss-PickList--element.is-selected a:hover,
+    .vss-PickList .vss-PickList--element.is-selected a:visited {
+        background-color: #37006e;
+        border-color: #37006e;
+        color: HighlightText;
+    }
+}
+@media screen and (-ms-high-contrast: active), screen and (-ms-high-contrast: black-on-white) {
+    .vss-PickList .vss-PickList--element.is-selected a,
+    .vss-PickList .vss-PickList--element.is-selected a:hover,
+    .vss-PickList .vss-PickList--element.is-selected a:visited {
+        -ms-high-contrast-adjust: none;
+    }
+}
+.vss-PickList .vss-PickList--actions {
+    border-top: 1px solid;
+    border-top-color: rgba(234, 234, 234, 1);
+    border-top-color: rgba(var(--palette-neutral-8, 234, 234, 234), 1);
+}
+.vss-PickList .vss-PickList--actions .vss-PickList--action {
+    overflow: hidden;
+}
+.vss-PickList .vss-PickList--actions .vss-PickList--action:focus,
+.vss-PickList .vss-PickList--actions .vss-PickList--action:hover {
+    background-color: rgba(244, 244, 244, 1);
+    background-color: rgba(var(--palette-neutral-4, 244, 244, 244), 1);
+    color: rgba(0, 0, 0, 0.9);
+    color: var(--text-primary-color, rgba(0, 0, 0, 0.9));
+}
+.vss-PickList .vss-PickList--actions .vss-PickList--action .vss-PickList--selectableElementButton {
+    width: 100%;
+    height: 32px;
+    border: none;
+    justify-content: flex-start;
+}
+.vss-PickList .vss-PickList--multiSelectableElement {
+    display: flex;
+    overflow: hidden;
+}
+.vss-PickList .vss-PickList--multiSelectableElement:focus {
+    outline: none;
+}
+.vss-PickList .vss-PickList--multiSelectableElement .vss-PickList--checkbox {
+    margin: 0 12px 0 12px;
+    flex-shrink: 0;
+}
+.vss-PickList .vss-PickList--multiSelectableElement .vss-PickList--checkbox[disabled] {
+    border: none;
+}
+.vss-PickList .vss-PickList--multiSelectableElement .vss-PickList--multiSelectIcon {
+    margin-left: 4px;
+    margin-right: 12px;
+    overflow: visible;
+    display: inline-flex;
+}
+.vss-PickList .vss-PickList--multiSelectableElement .vss-PickList--multiSelectIcon .ms-Image .ms-Image-image {
+    height: 24px;
+    width: 24px;
+}
+.vss-PickList .vss-PickList--multiSelectableElement .vss-PickList--multiSelectTextContainer {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    flex-grow: 1;
+    margin-right: 12px;
+    padding-bottom: 1px;
+}
+.vss-PickList .vss-PickList--multiSelectableElement .vss-PickList--multiSelectTextContainer .vss-PickList--multiSelectText {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    height: 32px;
+    padding-top: 8px;
+}
+.vss-PickList .vss-PickList--multiSelectableElement .vss-PickList--multiSelectTextContainer .vss-PickList--multiSelectText.disabled {
+    color: rgba(166, 166, 166, 1);
+    color: rgba(var(--palette-neutral-30, 166, 166, 166), 1);
+}
+.vss-PickList.item-picker-list .vss-PickList--items .vss-PickList--groupHeader {
+    color: rgba(0, 0, 0, 0.55);
+    color: var(--text-secondary-color, rgba(0, 0, 0, 0.55));
+    font-size: inherit;
+    padding: 30px 0 10px 0;
+}
+.vss-PickList.item-picker-list .vss-PickList--items .vss-PickList--groupHeader.first-group {
+    padding-top: 0;
+}
+.vss-PickList.item-picker-list .vss-PickList--items .vss-PickList--row {
+    border-top: 1px solid;
+    border-top-color: rgba(244, 244, 244, 1);
+    border-top-color: rgba(var(--palette-neutral-4, 244, 244, 244), 1);
+}
+.vss-PickList.item-picker-list .vss-PickList--items .vss-PickList--row.first-in-group {
+    border-top: none;
+}
+.vss-PickList.item-picker-list .vss-PickList--searchTextField {
+    margin: 0 0 20px 0;
+    max-width: 400px;
+}
+@keyframes focus-shadow-pulse-inset {
+    0% {
+        box-shadow: inset 0 0 0 3px rgba(0, 120, 212, 0.35);
+        box-shadow: inset 0 0 0 3px rgba(var(--palette-primary, 0, 120, 212), 0.35);
+    }
+    50% {
+        box-shadow: inset 0 0 0 3px rgba(0, 120, 212, 0.15);
+        box-shadow: inset 0 0 0 3px rgba(var(--palette-primary, 0, 120, 212), 0.15);
+    }
+    100% {
+        box-shadow: inset 0 0 0 3px rgba(0, 120, 212, 0.35);
+        box-shadow: inset 0 0 0 3px rgba(var(--palette-primary, 0, 120, 212), 0.35);
+    }
+}
+.vss-PickListDropdown--title {
+    background: rgba(255, 255, 255, 1);
+    background: rgba(var(--palette-neutral-0, 255, 255, 255), 1);
+    border: 1px solid;
+    border-color: rgba(200, 200, 200, 1);
+    border-color: rgba(var(--palette-neutral-20, 200, 200, 200), 1);
+    cursor: pointer;
+    display: flex;
+    height: 32px;
+    line-height: 30px;
+    padding: 0 5px;
+    position: relative;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    font-size: 14px;
+}
+.vss-PickListDropdown--title:hover {
+    border-color: rgba(166, 166, 166, 1);
+    border-color: rgba(var(--palette-neutral-30, 166, 166, 166), 1);
+}
+@media screen and (-ms-high-contrast: active) {
+    .vss-PickListDropdown--title:hover {
+        border-color: #1aebff;
+    }
+}
+@media screen and (-ms-high-contrast: black-on-white) {
+    .vss-PickListDropdown--title:hover {
+        border-color: #37006e;
+    }
+}
+.vss-PickListDropdown--title.vss-PickListDropdown--placeholder {
+    color: rgba(0, 0, 0, 0.55);
+    color: var(--text-secondary-color, rgba(0, 0, 0, 0.55));
+}
+.vss-PickListDropdown--title.disabled {
+    background-color: rgba(244, 244, 244, 1);
+    background-color: rgba(var(--palette-neutral-4, 244, 244, 244), 1);
+    border-color: rgba(244, 244, 244, 1);
+    border-color: rgba(var(--palette-neutral-4, 244, 244, 244), 1);
+    color: rgba(166, 166, 166, 1);
+    color: rgba(var(--palette-neutral-30, 166, 166, 166), 1);
+    cursor: default;
+}
+.vss-PickListDropdown--title:focus,
+.vss-PickListDropdown--title.focused {
+    border-color: rgba(0, 120, 212, 1);
+    border-color: var(--communication-background, rgba(0, 120, 212, 1));
+    outline: none;
+}
+@media screen and (-ms-high-contrast: active) {
+    .vss-PickListDropdown--title:focus,
+    .vss-PickListDropdown--title.focused {
+        border-color: #1aebff;
+    }
+}
+@media screen and (-ms-high-contrast: black-on-white) {
+    .vss-PickListDropdown--title:focus,
+    .vss-PickListDropdown--title.focused {
+        border-color: #37006e;
+    }
+}
+.vss-PickListDropdown--title .vss-PickListDropdown--title-caretIcon {
+    margin: 0 5px;
+    font-size: 14px;
+}
+.vss-PickListDropdown--title .vss-PickListDropdown--title-checkIcon {
+    margin: 0 5px;
+    color: rgba(0, 120, 212, 1);
+    color: var(--communication-foreground, rgba(0, 120, 212, 1));
+}
+.vss-PickListDropdown--title .vss-PickListDropdown--title-textContainer {
+    margin: 0 5px;
+    left: 12px;
+    flex-grow: 1;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+.vss-PickListDropdown--title .vss-PickListDropdown--placeholder-label {
+    color: rgba(0, 0, 0, 0.55);
+    color: var(--text-secondary-color, rgba(0, 0, 0, 0.55));
+}
+.vss-PickListDropdown--list .vss-PickList--items {
+    max-height: 270px;
+}
+body .vss-PickListDropdown--callout {
+    animation: none;
+    box-shadow: 0 6.4px 14.4px 0 rgba(0, 0, 0, 0.132), 0 1.2px 3.6px 0 rgba(0, 0, 0, 0.108);
+    box-shadow: 0 6.4px 14.4px 0 var(--callout-shadow-color, rgba(0, 0, 0, 0.132)),
+        0 1.2px 3.6px 0 var(--callout-shadow-secondary-color, rgba(0, 0, 0, 0.108));
+    border-width: 0;
+    border-radius: 4px;
+}
+@media screen and (-ms-high-contrast: active) {
+    body .vss-PickListDropdown--callout {
+        background: window;
+    }
+}
+body .vss-PickListDropdown--callout .ms-Callout-main {
+    border-radius: 4px;
+    padding: 8px 0;
+    background: rgba(255, 255, 255, 1);
+    background: var(--callout-background-color, rgba(255, 255, 255, 1));
+}
+@supports (-webkit-backdrop-filter: blur(20px)) or (backdrop-filter: blur(20px)) {
+    body .vss-PickListDropdown--callout .ms-Callout-main {
+        background: rgba(255, 255, 255, 0.86);
+        background: var(--palette-white-alpha-80, rgba(255, 255, 255, 0.86));
+        -webkit-backdrop-filter: blur(20px) saturate(110%);
+        backdrop-filter: blur(20px) saturate(110%);
+    }
+}
+.vss-PickList--filterBar {
+    min-height: 32px;
+    justify-content: center;
+}
+.vss-PickList--filterBar .vss-PickList--filterBarFooter {
+    border-top: 1px solid;
+    border-top-color: rgba(0, 0, 0, 0.06);
+    border-top-color: var(--palette-black-alpha-6, rgba(0, 0, 0, 0.06));
+}
+.vss-PickList--filterBar .vss-PickList--filterBarFooterClear {
+    margin: 8px 4px 4px 0;
+}
