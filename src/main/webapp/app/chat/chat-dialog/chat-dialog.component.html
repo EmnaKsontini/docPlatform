@@ -1,19 +1,21 @@
 <link rel="stylesheet" href="//cdn.rawgit.com/necolas/normalize.css/master/normalize.css">
 <link rel="stylesheet" href="//cdn.rawgit.com/milligram/milligram/master/dist/milligram.min.css">
-<h1>SthetoBot</h1>
+<div *ngIf="showMePartially">
+    <h1>SthetoBot</h1>
 
-<ng-container *ngFor="let message of messages | async">
+    <ng-container *ngFor="let message of messages | async">
 
-    <div class="message" [ngClass]="{ 'from': message.sentBy === 'bot',
+        <div class="message" [ngClass]="{ 'from': message.sentBy === 'bot',
                                     'to':   message.sentBy === 'user' }">
-        {{ message.content }}
-    </div>
+            {{ message.content }}
+        </div>
 
-</ng-container>
+    </ng-container>
 
 
-<label for="nameField">Your Message</label>
+    <label for="nameField">Your Message</label>
 
-<input [(ngModel)]="formValue" (keyup.enter)="sendMessage()" type="text">
+    <input [(ngModel)]="formValue" (keyup.enter)="sendMessage()" type="text">
 
-<button (click)="sendMessage()">Send</button>
+    <button (click)="sendMessage()">Send</button>
+</div>
