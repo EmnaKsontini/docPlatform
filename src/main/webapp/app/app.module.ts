@@ -21,10 +21,12 @@ import { DoctorsPlatformHomeModule } from './home/home.module';
 import { DoctorsPlatformAccountModule } from './account/account.module';
 import { DoctorsPlatformEntityModule } from './entities/entity.module';
 import * as moment from 'moment';
-// jhipster-needle-angular-add-module-import JHipster will add new module here
+import { ChatbotRasaModule } from 'angular-chat-widget-rasa';
 import { JhiMainComponent, NavbarComponent, FooterComponent, PageRibbonComponent, ActiveMenuDirective, ErrorComponent } from './layouts';
 import { SidebarComponent } from './layouts/sidebar/sidebar.component';
 import { SimpleCalendarComponent } from './simple-calendar/simple-calendar.component';
+import { ChatModule } from 'app/chat/chat.module';
+
 import { CalendarDocComponent } from './calendar/calendar-doc.component';
 import { CalendarDocModule } from 'app/calendar/calendar-doc.module';
 import { AgmCoreModule } from '@agm/core';
@@ -44,6 +46,9 @@ import { AgmCoreModule } from '@agm/core';
         DoctorsPlatformCoreModule,
         DoctorsPlatformHomeModule,
         DoctorsPlatformAccountModule,
+        ChatbotRasaModule,
+        ChatModule,
+
         // jhipster-needle-angular-add-module JHipster will add new module here
         DoctorsPlatformEntityModule,
         DoctorsPlatformAppRoutingModule,

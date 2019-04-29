@@ -104,7 +104,8 @@ public class AppointmentResourceIntTest {
     @Before
     public void setup() {
         MockitoAnnotations.initMocks(this);
-        final AppointmentResource appointmentResource = new AppointmentResource(appointmentService, appointmentQueryService,appointmentRepository);
+
+        final AppointmentResource appointmentResource = new AppointmentResource(appointmentService, appointmentQueryService ,appointmentRepository);
         this.restAppointmentMockMvc = MockMvcBuilders.standaloneSetup(appointmentResource)
             .setCustomArgumentResolvers(pageableArgumentResolver)
             .setControllerAdvice(exceptionTranslator)
@@ -215,7 +216,7 @@ public class AppointmentResourceIntTest {
             .andExpect(jsonPath("$.[*].id").value(hasItem(appointment.getId().intValue())))
             .andExpect(jsonPath("$.[*].dateAndHour").value(hasItem(sameInstant(DEFAULT_DATE_AND_HOUR))));
     }
-    
+
     @Test
     @Transactional
     public void getAppointment() throws Exception {

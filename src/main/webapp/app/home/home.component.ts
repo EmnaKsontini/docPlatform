@@ -33,15 +33,19 @@ export class HomeComponent implements OnInit {
             this.account = account;
         });
         this.registerAuthenticationSuccess();
+        this.tips = [];
         this.homeService.getAllTips().subscribe(Alltips => {
             this.tips = Alltips;
         });
+        this.appointments = [];
         this.homeService.getAllAppointments().subscribe(appointments => {
             this.appointments = appointments;
         });
+        this.MyDoctorsAppointment = [];
         this.homeService.getAllNames().subscribe(names => {
             this.MyDoctorsAppointment = names;
         });
+        this.Mydoctors = [];
         this.homeService.getMyDoctors().subscribe(AllDoctors => {
             this.Mydoctors = AllDoctors;
         });

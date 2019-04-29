@@ -10,12 +10,14 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 import java.util.Optional;
 
+
 /**
  * Spring Data  repository for the Patient entity.
  */
 @SuppressWarnings("unused")
 @Repository
 public interface PatientRepository extends JpaRepository<Patient, Long>, JpaSpecificationExecutor<Patient> {
+
 
     @Query(value = "select distinct patient from Patient patient left join fetch patient.doctors",
         countQuery = "select count(distinct patient) from Patient patient")
@@ -31,5 +33,5 @@ public interface PatientRepository extends JpaRepository<Patient, Long>, JpaSpec
     Optional<Patient> findOneWithEagerRelationships(@Param("id") Long id);
 
 
-
+    Optional<Patient> findOneByCin(Long cin);
 }

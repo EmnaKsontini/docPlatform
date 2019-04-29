@@ -2,7 +2,6 @@ import { Component, OnInit, AfterViewInit, Renderer, ElementRef } from '@angular
 import { HttpErrorResponse } from '@angular/common/http';
 import { NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { JhiLanguageService } from 'ng-jhipster';
-import { FormsModule, NgForm } from '@angular/forms';
 
 import { EMAIL_ALREADY_USED_TYPE, LOGIN_ALREADY_USED_TYPE } from 'app/shared';
 import { LoginModalService } from 'app/core';
@@ -21,9 +20,8 @@ export class RegisterComponent implements OnInit, AfterViewInit {
     registerAccount: any;
     success: boolean;
     modalRef: NgbModalRef;
-    form: NgForm;
+    tab: string[];
     MyType = '';
-
     constructor(
         private languageService: JhiLanguageService,
         private loginModalService: LoginModalService,
@@ -40,49 +38,32 @@ export class RegisterComponent implements OnInit, AfterViewInit {
     ngAfterViewInit() {
         this.renderer.invokeElementMethod(this.elementRef.nativeElement.querySelector('#login'), 'focus', []);
     }
+
     getValue(type) {
         this.MyType = type;
-        console.log(this.MyType);
+        if (this.MyType == 'Doctor') this.tab = ['ROLE_Doctor'];
+        if (this.MyType == 'Patient') this.tab = ['ROLE_PATIENT'];
     }
 
     register() {
-        console.log(this.MyType);
-        //this.MyType = this.form.controls['type'].value ;
         if (this.registerAccount.password !== this.confirmPassword) {
             this.doNotMatch = 'ERROR';
         } else {
-            if (this.MyType == 'Patient') {
-                console.log('patient !!!!!!!!!!!');
-                this.doNotMatch = null;
-                this.error = null;
-                this.errorUserExists = null;
-                this.errorEmailExists = null;
-                this.languageService.getCurrent().then(key => {
-                    this.registerAccount.langKey = key;
-                    this.registerService.save(this.registerAccount).subscribe(
-                        () => {
-                            this.success = true;
-                        },
-                        response => this.processError(response)
-                    );
-                });
-            } else if (this.MyType == 'Doctor') {
-                console.log('doctooooooooooooor!!!!');
+            this.doNotMatch = null;
+            this.error = null;
+            this.errorUserExists = null;
+            this.errorEmailExists = null;
+            this.languageService.getCurrent().then(key => {
+                this.registerAccount.langKey = key;
 
-                this.doNotMatch = null;
-                this.error = null;
-                this.errorUserExists = null;
-                this.errorEmailExists = null;
-                this.languageService.getCurrent().then(key => {
-                    this.registerAccount.langKey = key;
-                    this.registerService.saveDoctor(this.registerAccount).subscribe(
-                        () => {
-                            this.success = true;
-                        },
-                        response => this.processError(response)
-                    );
-                });
-            }
+                this.registerAccount.authorities = this.tab;
+                this.registerService.save(this.registerAccount).subscribe(
+                    () => {
+                        this.success = true;
+                    },
+                    response => this.processError(response)
+                );
+            });
         }
     }
 

@@ -114,18 +114,10 @@
                     </div>
                 </div>
                 <div class="form-group">
-                   <!-- <p-radioButton  id="DoctorType" name="type"  label="Doctor" value="Doctor" [(ngModel)]="Mytype"></p-radioButton>
-                    <p-radioButton  id="DoctorType" name="type"  label="Doctor" value="Patient" [(ngModel)]="Mytype"></p-radioButton>-->
+
 
                     <input type="radio"   id="DoctorType" name="type"  value="Doctor"  (click)="getValue('Doctor')">Doctor <br>
                     <input type="radio"  id="patientType" name="type"  value="Patient" (click)="getValue('Patient')">Patient <br>
-
-
-                    <!-- <input type="radio"   id="DoctorType" name="type"  [value]="Doctor" [(ngModel)]="Mytype" (click)="getValue('Doctor')">Doctor <br>
-                    <input type="radio"  id="patientType" name="type"  [value]="Patient" [(ngModel)]="Mytype" (click)="getValue('Patient')">Patient <br>-->
-
-
-
                 </div>
 
                 <button type="submit" [disabled]="registerForm.form.invalid" class="btn btn-primary" jhiTranslate="register.form.button">Register</button>

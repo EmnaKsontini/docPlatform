@@ -54,6 +54,11 @@ public class DoctorService {
         return result;
     }
 
+    public List<Doctor> findAllDoctors()
+    {
+        return doctorRepository.findAll();
+    }
+
     /**
      * Get all the doctors.
      *

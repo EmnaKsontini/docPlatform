@@ -1,0 +1,28 @@
+@keyframes focus-shadow-pulse-inset {
+    0% {
+        box-shadow: inset 0 0 0 3px rgba(0, 120, 212, 0.35);
+        box-shadow: inset 0 0 0 3px rgba(var(--palette-primary, 0, 120, 212), 0.35);
+    }
+    50% {
+        box-shadow: inset 0 0 0 3px rgba(0, 120, 212, 0.15);
+        box-shadow: inset 0 0 0 3px rgba(var(--palette-primary, 0, 120, 212), 0.15);
+    }
+    100% {
+        box-shadow: inset 0 0 0 3px rgba(0, 120, 212, 0.35);
+        box-shadow: inset 0 0 0 3px rgba(var(--palette-primary, 0, 120, 212), 0.35);
+    }
+}
+.vss-IndicatorSet {
+    margin: 1px;
+}
+.vss-IndicatorSet .bolt-button {
+    background: transparent;
+}
+.vss-IndicatorSet .bolt-button:hover {
+    color: rgba(0, 120, 212, 1);
+    color: var(--communication-foreground, rgba(0, 120, 212, 1));
+    background: transparent;
+}
+.vss-IndicatorSet .vss-ItemIndicator button {
+    overflow: visible;
+}

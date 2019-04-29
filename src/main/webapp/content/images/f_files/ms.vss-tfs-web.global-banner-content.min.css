@@ -1,0 +1,35 @@
+.global-message-banner {
+    min-height: 36px;
+    align-items: center;
+    padding: 8px 20px;
+}
+.global-message-banner .level-icon {
+    font-size: 16px;
+    margin-right: 8px;
+    padding-top: 2px;
+}
+.global-message-banner .message {
+    flex-grow: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.global-message-banner .dismiss {
+    cursor: pointer;
+    margin-left: 5px;
+}
+.error-message {
+    background-color: rgba(249, 235, 235, 1);
+    background-color: var(--status-error-background, rgba(249, 235, 235, 1));
+}
+.warning-message {
+    background-color: rgba(255, 244, 206, 1);
+    background-color: var(--status-warning-background, rgba(255, 244, 206, 1));
+}
+.info-message {
+    background-color: rgba(222, 236, 249, 1);
+    background-color: rgba(var(--palette-primary-tint-30, 222, 236, 249), 1);
+}
+.success-message {
+    background-color: rgba(223, 246, 221, 1);
+    background-color: var(--status-success-background, rgba(223, 246, 221, 1));
+}
