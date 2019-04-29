@@ -69,8 +69,6 @@ public class AppointmentResourceIntTest {
     @Autowired
     private AppointmentService appointmentService;
 
-
-
     /**
      * This repository is mocked in the com.mycompany.myapp.repository.search test package.
      *
@@ -104,7 +102,6 @@ public class AppointmentResourceIntTest {
     @Before
     public void setup() {
         MockitoAnnotations.initMocks(this);
-
         final AppointmentResource appointmentResource = new AppointmentResource(appointmentService, appointmentQueryService ,appointmentRepository);
         this.restAppointmentMockMvc = MockMvcBuilders.standaloneSetup(appointmentResource)
             .setCustomArgumentResolvers(pageableArgumentResolver)
@@ -216,7 +213,7 @@ public class AppointmentResourceIntTest {
             .andExpect(jsonPath("$.[*].id").value(hasItem(appointment.getId().intValue())))
             .andExpect(jsonPath("$.[*].dateAndHour").value(hasItem(sameInstant(DEFAULT_DATE_AND_HOUR))));
     }
-
+    
     @Test
     @Transactional
     public void getAppointment() throws Exception {

@@ -55,8 +55,7 @@ spring:
         type: com.zaxxer.hikari.HikariDataSource
         url: jdbc:mysql://localhost:3306/doctorsPlatform?useUnicode=true&characterEncoding=utf8&useSSL=false&useLegacyDatetimeCode=false&serverTimezone=UTC
         username: root
-        password: 24937260meriem
-
+        password: root
         hikari:
             poolName: Hikari
             auto-commit: false
@@ -83,17 +82,10 @@ spring:
     liquibase:
         contexts: dev
     mail:
-           host:  smtp.gmail.com
-           port: 587
-           username: jhipstertest1997@gmail.com
-           password: jhipstertest2018
-           protocol: smtp
-           tls: true
-           properties.mail.smtp:
-               uth: true
-               starttls.enable: true
-               ssl.trust: smtp.gmail.com
-                   [...]
+        host: localhost
+        port: 25
+        username:
+        password:
     messages:
         cache-duration: PT1S # 1 second, see the ISO 8601 standard
     thymeleaf:

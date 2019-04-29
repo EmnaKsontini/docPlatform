@@ -71,9 +71,7 @@
                             Your email cannot be longer than 100 characters.
                         </small>
                     </div>
-
                 </div>
-
                 <div class="form-group">
                     <label class="form-control-label" for="password" jhiTranslate="global.form.newpassword">New password</label>
                     <input type="password" class="form-control" id="password" name="password" #password="ngModel" placeholder="{{'global.form.newpassword.placeholder' | translate}}"
@@ -114,11 +112,10 @@
                     </div>
                 </div>
                 <div class="form-group">
-
-
                     <input type="radio"   id="DoctorType" name="type"  value="Doctor"  (click)="getValue('Doctor')">Doctor <br>
                     <input type="radio"  id="patientType" name="type"  value="Patient" (click)="getValue('Patient')">Patient <br>
                 </div>
+
 
                 <button type="submit" [disabled]="registerForm.form.invalid" class="btn btn-primary" jhiTranslate="register.form.button">Register</button>
             </form>

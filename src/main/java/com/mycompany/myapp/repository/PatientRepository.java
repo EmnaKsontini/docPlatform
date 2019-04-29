@@ -18,6 +18,7 @@ import java.util.Optional;
 @Repository
 public interface PatientRepository extends JpaRepository<Patient, Long>, JpaSpecificationExecutor<Patient> {
 
+    Optional<Patient> findOneByCin(Long cin);
 
     @Query(value = "select distinct patient from Patient patient left join fetch patient.doctors",
         countQuery = "select count(distinct patient) from Patient patient")
