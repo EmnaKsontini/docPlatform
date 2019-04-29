@@ -52,10 +52,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
         <div class="content">
             <div class="container-fluid page-content-left">
                 <router-outlet></router-outlet>
-                <button class="btn-white" type="button" label="Click" (click)="toggleChatBot()">+</button>
-                <div>
-                    <jhi-chat-dialog [showMePartially]="showVar"></jhi-chat-dialog>
-                </div>
+                <button class="float-right bottom-right" type="button" label="Click" (click)="toggleChatBot()">
+                    <fa-icon [icon]="'robot'"></fa-icon>
+                </button>
+                <jhi-chat-dialog [showMePartially]="showVar"></jhi-chat-dialog>
                 <router-outlet name="popup"></router-outlet>
             </div>
         </div>
