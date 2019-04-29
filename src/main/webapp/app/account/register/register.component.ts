@@ -20,7 +20,8 @@ export class RegisterComponent implements OnInit, AfterViewInit {
     registerAccount: any;
     success: boolean;
     modalRef: NgbModalRef;
-
+    tab: string[];
+    MyType = '';
     constructor(
         private languageService: JhiLanguageService,
         private loginModalService: LoginModalService,
@@ -38,6 +39,12 @@ export class RegisterComponent implements OnInit, AfterViewInit {
         this.renderer.invokeElementMethod(this.elementRef.nativeElement.querySelector('#login'), 'focus', []);
     }
 
+    getValue(type) {
+        this.MyType = type;
+        if (this.MyType == 'Doctor') this.tab = ['ROLE_Doctor'];
+        if (this.MyType == 'Patient') this.tab = ['ROLE_PATIENT'];
+    }
+
     register() {
         if (this.registerAccount.password !== this.confirmPassword) {
             this.doNotMatch = 'ERROR';
@@ -48,6 +55,8 @@ export class RegisterComponent implements OnInit, AfterViewInit {
             this.errorEmailExists = null;
             this.languageService.getCurrent().then(key => {
                 this.registerAccount.langKey = key;
+
+                this.registerAccount.authorities = this.tab;
                 this.registerService.save(this.registerAccount).subscribe(
                     () => {
                         this.success = true;

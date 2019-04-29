@@ -80,7 +80,6 @@ public class AppointmentResourceIntTest {
     @Autowired
     private AppointmentQueryService appointmentQueryService;
 
-
     @Autowired
     private MappingJackson2HttpMessageConverter jacksonMessageConverter;
 
@@ -103,7 +102,7 @@ public class AppointmentResourceIntTest {
     @Before
     public void setup() {
         MockitoAnnotations.initMocks(this);
-        final AppointmentResource appointmentResource = new AppointmentResource(appointmentService, appointmentQueryService, appointmentRepository);
+        final AppointmentResource appointmentResource = new AppointmentResource(appointmentService, appointmentQueryService ,appointmentRepository);
         this.restAppointmentMockMvc = MockMvcBuilders.standaloneSetup(appointmentResource)
             .setCustomArgumentResolvers(pageableArgumentResolver)
             .setControllerAdvice(exceptionTranslator)

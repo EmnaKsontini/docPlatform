@@ -127,11 +127,11 @@ public class WebConfigurer implements ServletContextInitializer, WebServerFactor
     }
 
     /**
-     * Initializes the caching HTTP Headers Filter.
+     * Initializes the caching HTTP Headers Filter.²
      */
-    private void initCachingHttpHeadersFilter(ServletContext servletContext,
+   private void initCachingHttpHeadersFilter(ServletContext servletContext,
                                               EnumSet<DispatcherType> disps) {
-        log.debug("Registering Caching HTTP Headers Filter");
+      /*  log.debug("Registering Caching HTTP Headers Filter");
         FilterRegistration.Dynamic cachingHttpHeadersFilter =
             servletContext.addFilter("cachingHttpHeadersFilter",
                 new CachingHttpHeadersFilter(jHipsterProperties));
@@ -139,7 +139,7 @@ public class WebConfigurer implements ServletContextInitializer, WebServerFactor
         cachingHttpHeadersFilter.addMappingForUrlPatterns(disps, true, "/i18n/*");
         cachingHttpHeadersFilter.addMappingForUrlPatterns(disps, true, "/content/*");
         cachingHttpHeadersFilter.addMappingForUrlPatterns(disps, true, "/app/*");
-        cachingHttpHeadersFilter.setAsyncSupported(true);
+        cachingHttpHeadersFilter.setAsyncSupported(true); */
     }
 
     @Bean

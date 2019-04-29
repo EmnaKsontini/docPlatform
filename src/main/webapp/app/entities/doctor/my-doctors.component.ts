@@ -28,6 +28,7 @@ export class MyDoctorsComponent implements OnInit {
     predicate: any;
     previousPage: any;
     reverse: any;
+    Mydoctors: IDoctor[];
 
     constructor(
         protected doctorService: DoctorService,
@@ -51,114 +52,10 @@ export class MyDoctorsComponent implements OnInit {
                 : '';
     }
 
-    loadAll() {
-        if (this.currentSearch) {
-            this.doctorService
-                .search({
-                    page: this.page - 1,
-                    query: this.currentSearch,
-                    size: this.itemsPerPage,
-                    sort: this.sort()
-                })
-                .subscribe(
-                    (res: HttpResponse<IDoctor[]>) => this.paginateDoctors(res.body, res.headers),
-                    (res: HttpErrorResponse) => this.onError(res.message)
-                );
-            return;
-        }
-        this.doctorService
-            .query({
-                page: this.page - 1,
-                size: this.itemsPerPage,
-                sort: this.sort()
-            })
-            .subscribe(
-                (res: HttpResponse<IDoctor[]>) => this.paginateDoctors(res.body, res.headers),
-                (res: HttpErrorResponse) => this.onError(res.message)
-            );
-    }
-
-    loadPage(page: number) {
-        if (page !== this.previousPage) {
-            this.previousPage = page;
-            this.transition();
-        }
-    }
-
-    transition() {
-        this.router.navigate(['/doctor'], {
-            queryParams: {
-                page: this.page,
-                size: this.itemsPerPage,
-                search: this.currentSearch,
-                sort: this.predicate + ',' + (this.reverse ? 'asc' : 'desc')
-            }
-        });
-        this.loadAll();
-    }
-
-    clear() {
-        this.page = 0;
-        this.currentSearch = '';
-        this.router.navigate([
-            '/doctor',
-            {
-                page: this.page,
-                sort: this.predicate + ',' + (this.reverse ? 'asc' : 'desc')
-            }
-        ]);
-        this.loadAll();
-    }
-
-    search(query) {
-        if (!query) {
-            return this.clear();
-        }
-        this.page = 0;
-        this.currentSearch = query;
-        this.router.navigate([
-            '/doctor',
-            {
-                search: this.currentSearch,
-                page: this.page,
-                sort: this.predicate + ',' + (this.reverse ? 'asc' : 'desc')
-            }
-        ]);
-        this.loadAll();
-    }
-
     ngOnInit() {
-        this.loadAll();
-        this.accountService.identity().then(account => {
-            this.currentAccount = account;
+        this.doctorService.getMyDoctors().subscribe(AllDoctors => {
+            this.Mydoctors = AllDoctors;
         });
-        this.registerChangeInDoctors();
-    }
-
-    ngOnDestroy() {
-        this.eventManager.destroy(this.eventSubscriber);
-    }
-
-    trackId(index: number, item: IDoctor) {
-        return item.id;
-    }
-
-    registerChangeInDoctors() {
-        this.eventSubscriber = this.eventManager.subscribe('doctorListModification', response => this.loadAll());
-    }
-
-    sort() {
-        const result = [this.predicate + ',' + (this.reverse ? 'asc' : 'desc')];
-        if (this.predicate !== 'id') {
-            result.push('id');
-        }
-        return result;
-    }
-
-    protected paginateDoctors(data: IDoctor[], headers: HttpHeaders) {
-        this.links = this.parseLinks.parse(headers.get('link'));
-        this.totalItems = parseInt(headers.get('X-Total-Count'), 10);
-        this.doctors = data;
     }
 
     protected onError(errorMessage: string) {

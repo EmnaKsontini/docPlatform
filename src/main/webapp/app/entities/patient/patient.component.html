@@ -30,20 +30,20 @@
             <thead>
             <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
             <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="cin"><span jhiTranslate="doctorsPlatformApp.patient.cin">Cin</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th jhiSortBy="name"><span jhiTranslate="doctorsPlatformApp.patient.name">Name</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="email"><span jhiTranslate="doctorsPlatformApp.patient.email">Email</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th jhiSortBy="phoneNumber"><span jhiTranslate="doctorsPlatformApp.patient.phoneNumber">Phone Number</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="cin"><span jhiTranslate="doctorsPlatformApp.patient.cin">Cin</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="email"><span jhiTranslate="doctorsPlatformApp.patient.email">Email</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th></th>
             </tr>
             </thead>
             <tbody>
             <tr *ngFor="let patient of patients ;trackBy: trackId">
                 <td><a [routerLink]="['/patient', patient.id, 'view' ]">{{patient.id}}</a></td>
-                <td>{{patient.cin}}</td>
                 <td>{{patient.name}}</td>
-                <td>{{patient.email}}</td>
                 <td>{{patient.phoneNumber}}</td>
+                <td>{{patient.cin}}</td>
+                <td>{{patient.email}}</td>
                 <td class="text-right">
                     <div class="btn-group flex-btn-group-container">
                         <button type="submit"

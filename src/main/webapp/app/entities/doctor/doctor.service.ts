@@ -4,7 +4,10 @@ import { Observable } from 'rxjs';
 
 import { SERVER_API_URL } from 'app/app.constants';
 import { createRequestOption } from 'app/shared';
-import { IDoctor } from 'app/shared/model/doctor.model';
+import { ITip, Tip } from 'app/shared/model/tip.model';
+import { Doctor, IDoctor } from 'app/shared/model/doctor.model';
+import { Patient } from 'app/shared/model/patient.model';
+import { User } from 'app/core';
 
 type EntityResponseType = HttpResponse<IDoctor>;
 type EntityArrayResponseType = HttpResponse<IDoctor[]>;
@@ -40,5 +43,16 @@ export class DoctorService {
     search(req?: any): Observable<EntityArrayResponseType> {
         const options = createRequestOption(req);
         return this.http.get<IDoctor[]>(this.resourceSearchUrl, { params: options, observe: 'response' });
+    }
+    getMyDoctors(): Observable<IDoctor[]> {
+        return this.http.get<IDoctor[]>(SERVER_API_URL + 'api/user/MyDoctors');
+    }
+
+    getDoctorByName(name: any): Observable<EntityResponseType> {
+        return this.http.post<Doctor>(SERVER_API_URL + 'api' + '/doctorByName', name, { observe: 'response' });
+    }
+
+    getCurrentUser(): Observable<EntityResponseType> {
+        return this.http.get<Patient>(SERVER_API_URL + 'api' + '/getCurrentUser', { observe: 'response' });
     }
 }

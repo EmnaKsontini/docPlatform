@@ -21,7 +21,7 @@ describe('Service Tests', () => {
             service = injector.get(PatientService);
             httpMock = injector.get(HttpTestingController);
 
-            elemDefault = new Patient(0, 0, 'AAAAAAA', 'AAAAAAA', 0);
+            elemDefault = new Patient(0, 'AAAAAAA', 0, 0, 'AAAAAAA');
         });
 
         describe('Service methods', async () => {
@@ -55,10 +55,10 @@ describe('Service Tests', () => {
             it('should update a Patient', async () => {
                 const returnedFromService = Object.assign(
                     {
-                        cin: 1,
                         name: 'BBBBBB',
-                        email: 'BBBBBB',
-                        phoneNumber: 1
+                        phoneNumber: 1,
+                        cin: 1,
+                        email: 'BBBBBB'
                     },
                     elemDefault
                 );
@@ -75,10 +75,10 @@ describe('Service Tests', () => {
             it('should return a list of Patient', async () => {
                 const returnedFromService = Object.assign(
                     {
-                        cin: 1,
                         name: 'BBBBBB',
-                        email: 'BBBBBB',
-                        phoneNumber: 1
+                        phoneNumber: 1,
+                        cin: 1,
+                        email: 'BBBBBB'
                     },
                     elemDefault
                 );

@@ -44,7 +44,8 @@ import {
     faAsterisk,
     faTasks,
     faAppleAlt,
-    faHome
+    faHome,
+    faRobot
 } from '@fortawesome/free-solid-svg-icons';
 
 // Adds the SVG icon to the library so you can use it in your page
@@ -87,5 +88,6 @@ library.add(faUserMd);
 library.add(faFileMedicalAlt);
 library.add(faAppleAlt);
 library.add(faPhone);
+library.add(faRobot);
 
 // jhipster-needle-add-element-to-vendor - JHipster will add new menu items here

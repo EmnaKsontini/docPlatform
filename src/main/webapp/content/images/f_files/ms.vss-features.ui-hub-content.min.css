@@ -1,0 +1,1644 @@
+@keyframes focus-shadow-pulse-inset {
+    0% {
+        box-shadow: inset 0 0 0 3px rgba(0, 120, 212, 0.35);
+        box-shadow: inset 0 0 0 3px rgba(var(--palette-primary, 0, 120, 212), 0.35);
+    }
+    50% {
+        box-shadow: inset 0 0 0 3px rgba(0, 120, 212, 0.15);
+        box-shadow: inset 0 0 0 3px rgba(var(--palette-primary, 0, 120, 212), 0.15);
+    }
+    100% {
+        box-shadow: inset 0 0 0 3px rgba(0, 120, 212, 0.35);
+        box-shadow: inset 0 0 0 3px rgba(var(--palette-primary, 0, 120, 212), 0.35);
+    }
+}
+.vss-Hub {
+    display: flex;
+    flex-direction: column;
+}
+.vss-Hub.ms-Fabric {
+    font-family: inherit;
+    font-size: inherit;
+    font-weight: inherit;
+    color: inherit;
+}
+.vss-Hub.ms-Fabric {
+    font-family: 'Segoe UI VSS (Regular)', 'Segoe UI', '-apple-system', BlinkMacSystemFont, Roboto, 'Helvetica Neue', Helvetica, Ubuntu,
+        Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
+    font-size: 14px;
+}
+.vss-Hub .vss-HubPivotBar {
+    flex-grow: 1;
+}
+.vss-Hub .vss-HubPivotBar .vss-Hub--filterBar,
+.vss-Hub .vss-HubPivotBar > .vss-PivotBar--content .vss-PivotBarItem:not(.customPadding) {
+    padding-left: 20px;
+    padding-right: 20px;
+}
+.vss-Hub .vss-HubPivotBar > .vss-PivotBar--content .vss-PivotBarItem.detailsListPadding {
+    padding-left: 12px;
+    padding-right: 20px;
+}
+.vss-Hub .vss-HubPivotBar .vss-PivotBar--inlineFilterBar .vss-Hub--filterBar {
+    padding-left: 0;
+    padding-right: 0;
+}
+.vss-Hub .vss-HubPivotBar:not(.shadowStyle) {
+    padding-top: 10px;
+}
+.vss-Hub .vss-HubPivotBar:not(.shadowStyle) > .vss-PivotBar--bar-one-line,
+.vss-Hub .vss-HubPivotBar:not(.shadowStyle) > .vss-PivotBar--bar-two-line {
+    margin-left: 12px;
+    margin-right: 20px;
+}
+.vss-Hub .vss-HubPivotBar.shadowStyle > .vss-PivotBar--bar-one-line,
+.vss-Hub .vss-HubPivotBar.shadowStyle > .vss-PivotBar--bar-two-line {
+    padding-left: 12px;
+    padding-right: 20px;
+}
+.vss-Hub .vss-HubPivotBar.shadowStyle > .vss-PivotBar--bar-one-line,
+.vss-Hub .vss-HubPivotBar.shadowStyle > .vss-PivotBar--bar-two-line {
+    box-shadow: 0 3px 9px 0 rgba(0, 0, 0, 0.1), 0 0 0 1px rgba(0, 0, 0, 0.04);
+    background-color: rgba(255, 255, 255, 1);
+    background-color: rgba(var(--palette-neutral-0, 255, 255, 255), 1);
+    border-bottom: none;
+}
+.vss-Hub .vss-HubPivotBar.hideHeader .vss-Hub--filterBar,
+.vss-Hub .vss-HubPivotBar.hideHeader > .vss-PivotBar--bar-one-line,
+.vss-Hub .vss-HubPivotBar.hideHeader > .vss-PivotBar--bar-two-line {
+    display: none;
+}
+.vss-Hub .vss-HubPivotBar .vss-PivotBar--bar-one-line {
+    padding-bottom: 10px;
+}
+.vss-Hub .vss-HubPivotBar .vss-PivotBar--bar-one-line .vss-PivotBar--header-with-expandable-breadcrumb {
+    flex-basis: 0%;
+    flex-grow: 1;
+}
+@media screen and (min-width: 1800px) {
+    .vss-Hub .vss-HubPivotBar .vss-PivotBar--bar-one-line .vss-PivotBar--header-with-expandable-breadcrumb {
+        flex-grow: 2;
+    }
+}
+.vss-Hub .vss-HubPivotBar .vss-PivotBar--bar-two-line .vss-PivotBar--header {
+    padding-bottom: 2px;
+}
+.vss-Hub .vss-HubPivotBar.vss-HubPivotBar--scrollable {
+    overflow-y: auto;
+    height: 100%;
+}
+@keyframes focus-shadow-pulse-inset {
+    0% {
+        box-shadow: inset 0 0 0 3px rgba(0, 120, 212, 0.35);
+        box-shadow: inset 0 0 0 3px rgba(var(--palette-primary, 0, 120, 212), 0.35);
+    }
+    50% {
+        box-shadow: inset 0 0 0 3px rgba(0, 120, 212, 0.15);
+        box-shadow: inset 0 0 0 3px rgba(var(--palette-primary, 0, 120, 212), 0.15);
+    }
+    100% {
+        box-shadow: inset 0 0 0 3px rgba(0, 120, 212, 0.35);
+        box-shadow: inset 0 0 0 3px rgba(var(--palette-primary, 0, 120, 212), 0.35);
+    }
+}
+.vss-HubHeader {
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+}
+.vss-HubHeader-no-shrink {
+    flex-shrink: 0;
+}
+@keyframes focus-shadow-pulse-inset {
+    0% {
+        box-shadow: inset 0 0 0 3px rgba(0, 120, 212, 0.35);
+        box-shadow: inset 0 0 0 3px rgba(var(--palette-primary, 0, 120, 212), 0.35);
+    }
+    50% {
+        box-shadow: inset 0 0 0 3px rgba(0, 120, 212, 0.15);
+        box-shadow: inset 0 0 0 3px rgba(var(--palette-primary, 0, 120, 212), 0.15);
+    }
+    100% {
+        box-shadow: inset 0 0 0 3px rgba(0, 120, 212, 0.35);
+        box-shadow: inset 0 0 0 3px rgba(var(--palette-primary, 0, 120, 212), 0.35);
+    }
+}
+.vss-HubTileRegion {
+    display: flex;
+    flex-shrink: 0;
+    height: 38px;
+}
+.vss-HubTileRegion .vss-HubTile {
+    width: 120px;
+    margin-left: 10px;
+}
+.vss-HubTileRegion .vss-HubTextTile {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.vss-HubTileRegion .vss-HubTextTile .vss-HubTextTile--primaryText {
+    font-size: 14px;
+    color: rgba(0, 0, 0, 0.9);
+    color: var(--text-primary-color, rgba(0, 0, 0, 0.9));
+}
+.vss-HubTileRegion .vss-HubTextTile .vss-HubTextTile--primaryText.vss-HubTextTile--primaryTextOnly {
+    font-weight: 600;
+}
+.vss-HubTileRegion .vss-HubTextTile .vss-HubTextTile--secondaryText {
+    font-size: 11px;
+    color: rgba(0, 0, 0, 0.55);
+    color: var(--text-secondary-color, rgba(0, 0, 0, 0.55));
+}
+@keyframes focus-shadow-pulse-inset {
+    0% {
+        box-shadow: inset 0 0 0 3px rgba(0, 120, 212, 0.35);
+        box-shadow: inset 0 0 0 3px rgba(var(--palette-primary, 0, 120, 212), 0.35);
+    }
+    50% {
+        box-shadow: inset 0 0 0 3px rgba(0, 120, 212, 0.15);
+        box-shadow: inset 0 0 0 3px rgba(var(--palette-primary, 0, 120, 212), 0.15);
+    }
+    100% {
+        box-shadow: inset 0 0 0 3px rgba(0, 120, 212, 0.35);
+        box-shadow: inset 0 0 0 3px rgba(var(--palette-primary, 0, 120, 212), 0.35);
+    }
+}
+h1.vss-HubTitle {
+    font-size: 18px;
+    font-weight: 300;
+    display: flex;
+    align-items: center;
+    margin: 0 12px 0 8px;
+    height: 38px;
+}
+h1.vss-HubTitle .vss-HubTitle-titleIcon {
+    font-size: 18px;
+    margin-right: 8px;
+}
+@keyframes focus-shadow-pulse-inset {
+    0% {
+        box-shadow: inset 0 0 0 3px rgba(0, 120, 212, 0.35);
+        box-shadow: inset 0 0 0 3px rgba(var(--palette-primary, 0, 120, 212), 0.35);
+    }
+    50% {
+        box-shadow: inset 0 0 0 3px rgba(0, 120, 212, 0.15);
+        box-shadow: inset 0 0 0 3px rgba(var(--palette-primary, 0, 120, 212), 0.15);
+    }
+    100% {
+        box-shadow: inset 0 0 0 3px rgba(0, 120, 212, 0.35);
+        box-shadow: inset 0 0 0 3px rgba(var(--palette-primary, 0, 120, 212), 0.35);
+    }
+}
+.vss-PivotBar {
+    display: flex;
+    flex-direction: column;
+}
+.vss-PivotBar .vss-PivotBar--bar-one-line,
+.vss-PivotBar .vss-PivotBar--bar-two-line {
+    flex-shrink: 0;
+    border-bottom: 1px solid;
+    border-bottom-color: rgba(234, 234, 234, 1);
+    border-bottom-color: rgba(var(--palette-neutral-8, 234, 234, 234), 1);
+}
+.vss-PivotBar .vss-PivotBar--bar-one-line {
+    display: flex;
+}
+.vss-PivotBar .vss-PivotBar--bar-one-line.sticky {
+    position: sticky;
+    background-color: rgba(255, 255, 255, 1);
+    background-color: rgba(var(--palette-neutral-0, 255, 255, 255), 1);
+    z-index: 1;
+}
+.vss-PivotBar .vss-PivotBar--bar-one-line .vss-PivotBar--bar {
+    flex: 1;
+}
+.vss-PivotBar .vss-PivotBar--bar-two-line.sticky {
+    position: sticky;
+    background-color: rgba(255, 255, 255, 1);
+    background-color: rgba(var(--palette-neutral-0, 255, 255, 255), 1);
+    z-index: 1;
+}
+.vss-PivotBar .vss-PivotBar--header {
+    display: flex;
+    flex-shrink: 0;
+}
+.vss-PivotBar .vss-PivotBar--header.can-shrink {
+    flex-shrink: 1;
+    overflow: hidden;
+}
+.vss-PivotBar .vss-PivotBar--header.vertical {
+    margin-left: 24px;
+    margin-right: 20px;
+}
+.vss-PivotBar .vss-PivotBar--header .vss-HubHeader {
+    flex-grow: 1;
+}
+.vss-PivotBar .vss-PivotBar--filter-sticky {
+    position: sticky;
+    z-index: 1;
+    top: 49px;
+    background: rgba(255, 255, 255, 1);
+    background: rgba(var(--palette-neutral-0, 255, 255, 255), 1);
+}
+.vss-PivotBar .vss-PivotBar--filter-sticky .vss-FilterBar {
+    margin-bottom: 0;
+}
+.vss-PivotBar .vss-PivotBar--pivotsContainer {
+    display: flex;
+    flex-grow: 1;
+    padding-top: 5px;
+    overflow: hidden;
+    margin-left: 12px;
+    margin-right: 20px;
+}
+.vss-PivotBar .vss-PivotBar--pivotsContainer.vertical {
+    margin-left: 0;
+    margin-right: 0;
+}
+.vss-PivotBar .vss-PivotBar--barAndContentContainer {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+.vss-PivotBar .vss-PivotBar--pivots {
+    flex: 0 1 auto;
+    margin-right: 8px;
+}
+.vss-PivotBar .vss-PivotBar--pivots.vertical {
+    border-right: 1px;
+    border-right-color: rgba(234, 234, 234, 1) solid;
+    border-right-color: rgba(var(--palette-neutral-8, 234, 234, 234), 1) solid;
+    overflow-y: auto;
+    width: 225px;
+}
+.vss-PivotBar .vss-PivotBar--pivots.vertical .vss-PivotBar--itemLink-v {
+    text-decoration: none;
+}
+.vss-PivotBar .vss-PivotBar--pivots.vertical .vss-PivotBar--button-v {
+    width: 100%;
+    height: 36px;
+    padding: 0 4px;
+    font-weight: normal;
+    justify-content: flex-start;
+}
+.vss-PivotBar .vss-PivotBar--pivots.vertical .vss-PivotBar--button-v .pivotbar-pivot--icon-v {
+    line-height: 16px;
+    width: 16px;
+    margin: 0 4px;
+    color: rgba(0, 120, 212, 1);
+    color: var(--communication-foreground, rgba(0, 120, 212, 1));
+}
+.vss-PivotBar .vss-PivotBar--pivots.vertical .vss-PivotBar--button-v:hover {
+    background-color: rgba(244, 244, 244, 1);
+    background-color: rgba(var(--palette-neutral-4, 244, 244, 244), 1);
+}
+.vss-PivotBar .vss-PivotBar--pivots.vertical .vss-PivotBar--button-v.selected {
+    background-color: rgba(244, 244, 244, 1);
+    background-color: rgba(var(--palette-neutral-4, 244, 244, 244), 1);
+}
+.vss-PivotBar .vss-PivotBar--pivots.vertical .vss-PivotBar--button-v.selected ::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    border-left: 2px solid rgba(0, 120, 212, 1);
+    border-left: 2px solid var(--communication-background, rgba(0, 120, 212, 1));
+}
+.vss-PivotBar .vss-PivotBar--pivots.vertical .pivot-bar--ungrouped {
+    margin-top: 12px;
+}
+.vss-PivotBar .vss-PivotBar--pivots.compact {
+    flex: 0 1 auto;
+    white-space: nowrap;
+    margin-right: 8px;
+}
+.vss-PivotBar .vss-PivotBar--pivots.compact.vertical {
+    border-right: 1px;
+    border-right-color: rgba(234, 234, 234, 1) solid;
+    border-right-color: rgba(var(--palette-neutral-8, 234, 234, 234), 1) solid;
+    overflow-y: auto;
+}
+.vss-PivotBar .vss-PivotBar--pivots.compact .vss-PivotBar--itemLink {
+    color: inherit;
+    margin-right: 0;
+}
+.vss-PivotBar .vss-PivotBar--pivots.compact .vss-PivotBar--itemLink:last-child {
+    margin-right: 0;
+}
+.vss-PivotBar .vss-PivotBar--pivots.compact .vss-PivotBar--itemLink:focus {
+    outline: none;
+}
+.vss-PivotBar .vss-PivotBar--pivots.compact .vss-PivotBar--button {
+    height: 32px;
+    display: inline-block;
+    padding: 0 8px;
+    text-align: center;
+    position: relative;
+    background-color: transparent;
+    overflow: visible;
+    font-weight: 400;
+}
+.vss-PivotBar .vss-PivotBar--pivots.compact .vss-PivotBar--button.bolt-button:not(.selected) {
+    font-weight: 400;
+}
+.vss-PivotBar .vss-PivotBar--pivots.compact .vss-PivotBar--button:focus {
+    outline: none;
+}
+.vss-PivotBar .vss-PivotBar--pivots.compact .vss-PivotBar--button:hover {
+    color: inherit;
+}
+@media screen and (-ms-high-contrast: active) {
+    .vss-PivotBar .vss-PivotBar--pivots.compact .vss-PivotBar--button:hover {
+        border-color: Highlight;
+    }
+}
+.vss-PivotBar .vss-PivotBar--pivots.compact .vss-PivotBar--button .text {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    padding: 0 1px;
+}
+.vss-PivotBar .vss-PivotBar--pivots.compact .vss-PivotBar--button .text,
+.vss-PivotBar .vss-PivotBar--pivots.compact .vss-PivotBar--button .badge {
+    display: inline-block;
+    vertical-align: text-bottom;
+    font-size: 14px;
+}
+.vss-PivotBar .vss-PivotBar--pivots.compact .vss-PivotBar--button .icon + .text {
+    margin-left: 4px;
+}
+.vss-PivotBar .vss-PivotBar--pivots.compact .vss-PivotBar--button .innerContainer {
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+.vss-PivotBar .vss-PivotBar--pivots.compact .vss-PivotBar--button .badge {
+    margin-left: 4px;
+    font-size: 12px;
+    background-color: rgba(218, 218, 218, 1);
+    background-color: rgba(var(--palette-neutral-10, 218, 218, 218), 1);
+    padding: 0 3px;
+    border-radius: 14px;
+}
+@media screen and (-ms-high-contrast: active) {
+    .vss-PivotBar .vss-PivotBar--pivots.compact .vss-PivotBar--button .badge {
+        border-style: solid;
+        border-width: 1px;
+    }
+}
+.vss-PivotBar .vss-PivotBar--pivots.compact .vss-PivotBar--button.selected .innerContainer {
+    font-weight: 600;
+    padding-top: 2px;
+    border-bottom: 2px solid rgba(0, 120, 212, 1);
+    border-bottom: 2px solid var(--communication-background, rgba(0, 120, 212, 1));
+}
+.vss-PivotBar .vss-PivotBar--pivots.tall {
+    flex: 0 1 auto;
+    white-space: nowrap;
+    margin-right: 8px;
+}
+.vss-PivotBar .vss-PivotBar--pivots.tall.vertical {
+    border-right: 1px;
+    border-right-color: rgba(234, 234, 234, 1) solid;
+    border-right-color: rgba(var(--palette-neutral-8, 234, 234, 234), 1) solid;
+    overflow-y: auto;
+}
+.vss-PivotBar .vss-PivotBar--pivots.tall .vss-PivotBar--itemLink {
+    color: inherit;
+    margin-right: 0;
+}
+.vss-PivotBar .vss-PivotBar--pivots.tall .vss-PivotBar--itemLink:last-child {
+    margin-right: 0;
+}
+.vss-PivotBar .vss-PivotBar--pivots.tall .vss-PivotBar--itemLink:focus {
+    outline: none;
+}
+.vss-PivotBar .vss-PivotBar--pivots.tall .vss-PivotBar--button {
+    height: 48px;
+    display: inline-block;
+    padding: 0 8px;
+    text-align: center;
+    position: relative;
+    background-color: transparent;
+    overflow: visible;
+    font-weight: 400;
+}
+.vss-PivotBar .vss-PivotBar--pivots.tall .vss-PivotBar--button.bolt-button:not(.selected) {
+    font-weight: 400;
+}
+.vss-PivotBar .vss-PivotBar--pivots.tall .vss-PivotBar--button:focus {
+    outline: none;
+}
+.vss-PivotBar .vss-PivotBar--pivots.tall .vss-PivotBar--button:hover {
+    color: inherit;
+}
+@media screen and (-ms-high-contrast: active) {
+    .vss-PivotBar .vss-PivotBar--pivots.tall .vss-PivotBar--button:hover {
+        border-color: Highlight;
+    }
+}
+.vss-PivotBar .vss-PivotBar--pivots.tall .vss-PivotBar--button .text {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    padding: 0 1px;
+}
+.vss-PivotBar .vss-PivotBar--pivots.tall .vss-PivotBar--button .text,
+.vss-PivotBar .vss-PivotBar--pivots.tall .vss-PivotBar--button .badge {
+    display: inline-block;
+    vertical-align: text-bottom;
+    font-size: 14px;
+}
+.vss-PivotBar .vss-PivotBar--pivots.tall .vss-PivotBar--button .icon + .text {
+    margin-left: 4px;
+}
+.vss-PivotBar .vss-PivotBar--pivots.tall .vss-PivotBar--button .innerContainer {
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+.vss-PivotBar .vss-PivotBar--pivots.tall .vss-PivotBar--button .badge {
+    margin-left: 4px;
+    font-size: 12px;
+    background-color: rgba(218, 218, 218, 1);
+    background-color: rgba(var(--palette-neutral-10, 218, 218, 218), 1);
+    padding: 0 3px;
+    border-radius: 14px;
+}
+@media screen and (-ms-high-contrast: active) {
+    .vss-PivotBar .vss-PivotBar--pivots.tall .vss-PivotBar--button .badge {
+        border-style: solid;
+        border-width: 1px;
+    }
+}
+.vss-PivotBar .vss-PivotBar--pivots.tall .vss-PivotBar--button.selected .innerContainer {
+    font-weight: 600;
+    padding-top: 2px;
+    border-bottom: 2px solid rgba(0, 120, 212, 1);
+    border-bottom: 2px solid var(--communication-background, rgba(0, 120, 212, 1));
+}
+.vss-PivotBar .vss-PivotBar--pivots.large-link {
+    flex: 0 1 auto;
+    white-space: nowrap;
+    margin-right: 8px;
+}
+.vss-PivotBar .vss-PivotBar--pivots.large-link.vertical {
+    border-right: 1px;
+    border-right-color: rgba(234, 234, 234, 1) solid;
+    border-right-color: rgba(var(--palette-neutral-8, 234, 234, 234), 1) solid;
+    overflow-y: auto;
+}
+.vss-PivotBar .vss-PivotBar--pivots.large-link .vss-PivotBar--itemLink {
+    color: inherit;
+    margin-right: 0;
+}
+.vss-PivotBar .vss-PivotBar--pivots.large-link .vss-PivotBar--itemLink:last-child {
+    margin-right: 0;
+}
+.vss-PivotBar .vss-PivotBar--pivots.large-link .vss-PivotBar--itemLink:focus {
+    outline: none;
+}
+.vss-PivotBar .vss-PivotBar--pivots.large-link .vss-PivotBar--button {
+    height: 40px;
+    display: inline-block;
+    padding: 0 8px;
+    text-align: center;
+    position: relative;
+    background-color: transparent;
+    overflow: visible;
+    font-weight: 400;
+}
+.vss-PivotBar .vss-PivotBar--pivots.large-link .vss-PivotBar--button.bolt-button:not(.selected) {
+    font-weight: 400;
+}
+.vss-PivotBar .vss-PivotBar--pivots.large-link .vss-PivotBar--button:focus {
+    outline: none;
+}
+.vss-PivotBar .vss-PivotBar--pivots.large-link .vss-PivotBar--button:hover {
+    color: inherit;
+}
+@media screen and (-ms-high-contrast: active) {
+    .vss-PivotBar .vss-PivotBar--pivots.large-link .vss-PivotBar--button:hover {
+        border-color: Highlight;
+    }
+}
+.vss-PivotBar .vss-PivotBar--pivots.large-link .vss-PivotBar--button .text {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    padding: 0 1px;
+}
+.vss-PivotBar .vss-PivotBar--pivots.large-link .vss-PivotBar--button .text,
+.vss-PivotBar .vss-PivotBar--pivots.large-link .vss-PivotBar--button .badge {
+    display: inline-block;
+    vertical-align: text-bottom;
+    font-size: 17px;
+}
+.vss-PivotBar .vss-PivotBar--pivots.large-link .vss-PivotBar--button .icon + .text {
+    margin-left: 4px;
+}
+.vss-PivotBar .vss-PivotBar--pivots.large-link .vss-PivotBar--button .innerContainer {
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+.vss-PivotBar .vss-PivotBar--pivots.large-link .vss-PivotBar--button .badge {
+    margin-left: 4px;
+    font-size: 12px;
+    background-color: rgba(218, 218, 218, 1);
+    background-color: rgba(var(--palette-neutral-10, 218, 218, 218), 1);
+    padding: 0 3px;
+    border-radius: 14px;
+}
+@media screen and (-ms-high-contrast: active) {
+    .vss-PivotBar .vss-PivotBar--pivots.large-link .vss-PivotBar--button .badge {
+        border-style: solid;
+        border-width: 1px;
+    }
+}
+.vss-PivotBar .vss-PivotBar--pivots.large-link .vss-PivotBar--button.selected .innerContainer {
+    font-weight: 600;
+    padding-top: 2px;
+    border-bottom: 2px solid rgba(0, 120, 212, 1);
+    border-bottom: 2px solid var(--communication-background, rgba(0, 120, 212, 1));
+}
+.vss-PivotBar .vss-PivotBar--bar.compact {
+    display: flex;
+}
+.vss-PivotBar .vss-PivotBar--bar.compact a.ms-CommandBarItem-text,
+.vss-PivotBar .vss-PivotBar--bar.compact a.ms-CommandBarItem-link {
+    color: rgba(0, 0, 0, 0.9);
+    color: var(--text-primary-color, rgba(0, 0, 0, 0.9));
+}
+.vss-PivotBar .vss-PivotBar--bar.compact .vss-PivotBar--dropdown {
+    height: 100%;
+}
+.vss-PivotBar .vss-PivotBar--bar.compact .vss-PivotBar--dropdown .ms-Dropdown-title {
+    font-weight: 600;
+    border: 0;
+    padding-left: 9px;
+    background: transparent;
+    line-height: 32px;
+    height: 32px;
+    font-size: 14px;
+}
+.vss-PivotBar .vss-PivotBar--bar.compact .vss-PivotBar--dropdown .ms-Dropdown-caretDownWrapper {
+    cursor: pointer;
+    background: transparent;
+    line-height: 32px;
+    height: 32px;
+}
+.vss-PivotBar .vss-PivotBar--bar.compact .vss-PivotBar--dropdown.is-open,
+.vss-PivotBar .vss-PivotBar--bar.compact .vss-PivotBar--dropdown:hover {
+    background-color: rgba(234, 234, 234, 1);
+    background-color: rgba(var(--palette-neutral-8, 234, 234, 234), 1);
+}
+@media screen and (-ms-high-contrast: active) {
+    .vss-PivotBar .vss-PivotBar--bar.compact .vss-PivotBar--dropdown:focus,
+    .vss-PivotBar .vss-PivotBar--bar.compact .vss-PivotBar--dropdown:focus .ms-Dropdown-title,
+    .vss-PivotBar .vss-PivotBar--bar.compact .vss-PivotBar--dropdown:focus .ms-Dropdown-caretDownWrapper,
+    .vss-PivotBar .vss-PivotBar--bar.compact .vss-PivotBar--dropdown:focus .ms-Dropdown-caretDown {
+        background: Highlight;
+        color: HighlightText;
+    }
+}
+.vss-PivotBar .vss-PivotBar--bar.compact .vss-PivotBar--right {
+    display: flex;
+    flex: 1 1 100%;
+}
+.vss-PivotBar .vss-PivotBar--bar.compact .vss-PivotBar--separator {
+    flex: 0 1 auto;
+    align-self: center;
+    width: 1px;
+    min-width: 1px;
+    height: 24px;
+    background-color: rgba(200, 200, 200, 1);
+    background-color: rgba(var(--palette-neutral-20, 200, 200, 200), 1);
+    margin: 0 8px 0 8px;
+}
+.vss-PivotBar .vss-PivotBar--bar.compact .vss-PivotBar--commandBar {
+    height: 32px;
+    padding-top: 0;
+    padding-bottom: 0;
+    flex: 1 1 auto;
+    background-color: transparent;
+    width: 100px;
+}
+.vss-PivotBar .vss-PivotBar--bar.compact .vss-PivotBar--commandBar .vss-ChoiceGroupButton--drop {
+    font-weight: normal;
+}
+.vss-PivotBar .vss-PivotBar--bar.compact .vss-PivotBar--commandBar .pivotBar-choice-group-icon {
+    margin-left: 6px;
+}
+.vss-PivotBar .vss-PivotBar--bar.compact .vss-PivotBar--commandBar .pivotBar-toggle-button {
+    font-size: 16px;
+    font-weight: normal;
+    color: rgba(0, 120, 212, 1);
+    color: var(--communication-background, rgba(0, 120, 212, 1));
+}
+.vss-PivotBar .vss-PivotBar--bar.compact .vss-PivotBar--commandBar .bowtie-icon {
+    line-height: 32px;
+    vertical-align: top;
+}
+.vss-PivotBar .vss-PivotBar--bar.compact .vss-PivotBar--commandBar .ms-CommandBarItem-link {
+    padding: 0 8px;
+    line-height: 32px;
+    margin: auto;
+}
+.vss-PivotBar .vss-PivotBar--bar.compact .vss-PivotBar--commandBar .ms-Button-flexContainer {
+    justify-content: center;
+}
+.vss-PivotBar .vss-PivotBar--bar.compact .vss-PivotBar--commandBar .ms-CommandBarItem:not(.vss-PivotBar--inlineFilterBar),
+.vss-PivotBar .vss-PivotBar--bar.compact .vss-PivotBar--commandBar .ms-CommandBarItem-link,
+.vss-PivotBar .vss-PivotBar--bar.compact .vss-PivotBar--commandBar .ms-CommandBarItem-overflow,
+.vss-PivotBar .vss-PivotBar--bar.compact .vss-PivotBar--commandBar .ms-Button {
+    height: 32px;
+}
+.vss-PivotBar .vss-PivotBar--bar.compact .vss-PivotBar--commandBar .ms-CommandBarItem-commandText,
+.vss-PivotBar .vss-PivotBar--bar.compact .vss-PivotBar--commandBar .ms-CommandBarItem-chevronDown,
+.vss-PivotBar .vss-PivotBar--bar.compact .vss-PivotBar--commandBar .ms-CommandBarItem-icon,
+.vss-PivotBar .vss-PivotBar--bar.compact .vss-PivotBar--commandBar .ms-CommandBarItem-overflow {
+    line-height: 32px;
+}
+.vss-PivotBar .vss-PivotBar--bar.compact .vss-PivotBar--commandBar .ms-CommandBarItem,
+.vss-PivotBar .vss-PivotBar--bar.compact .vss-PivotBar--commandBar .ms-CommandBarItem-commandText,
+.vss-PivotBar .vss-PivotBar--bar.compact .vss-PivotBar--commandBar .ms-Button-label {
+    font-size: 14px;
+}
+.vss-PivotBar .vss-PivotBar--bar.compact .vss-PivotBar--commandBar .ms-CommandBarItem-overflow {
+    padding: 0;
+    vertical-align: middle;
+}
+.vss-PivotBar .vss-PivotBar--bar.compact .vss-PivotBar--commandBar .ms-CommandBar-primaryCommands {
+    margin-left: 0;
+}
+.vss-PivotBar .vss-PivotBar--bar.compact .vss-PivotBar--commandBar .ms-CommandBar-sideCommands {
+    padding-right: 0;
+    align-items: center;
+}
+.vss-PivotBar
+    .vss-PivotBar--bar.compact
+    .vss-PivotBar--commandBar
+    .ms-CommandBar-sideCommands
+    > .ms-CommandBarItem.vss-PivotBar--commandBar-barChoiceGroup:hover {
+    background-color: inherit;
+}
+.vss-PivotBar
+    .vss-PivotBar--bar.compact
+    .vss-PivotBar--commandBar
+    .ms-CommandBar-sideCommands
+    > .ms-CommandBarItem.vss-PivotBar--commandBar-barChoiceGroup:hover
+    .vss-PivotBar--commandBar-barChoiceCycle:hover,
+.vss-PivotBar
+    .vss-PivotBar--bar.compact
+    .vss-PivotBar--commandBar
+    .ms-CommandBar-sideCommands
+    > .ms-CommandBarItem.vss-PivotBar--commandBar-barChoiceGroup:hover
+    .vss-PivotBar--commandBar-barChoiceDrop:hover {
+    background-color: rgba(234, 234, 234, 1);
+    background-color: rgba(var(--palette-neutral-8, 234, 234, 234), 1);
+}
+.vss-PivotBar
+    .vss-PivotBar--bar.compact
+    .vss-PivotBar--commandBar
+    .ms-CommandBar-sideCommands
+    > .ms-CommandBarItem.vss-PivotBar--commandBar-text {
+    padding: 0 4px;
+    display: inline-flex;
+    align-items: center;
+    cursor: default;
+    color: rgba(0, 0, 0, 0.9);
+    color: var(--text-primary-color, rgba(0, 0, 0, 0.9));
+}
+.vss-PivotBar
+    .vss-PivotBar--bar.compact
+    .vss-PivotBar--commandBar
+    .ms-CommandBar-sideCommands
+    > .ms-CommandBarItem.vss-PivotBar--commandBar-text:hover {
+    background-color: inherit;
+}
+.vss-PivotBar
+    .vss-PivotBar--bar.compact
+    .vss-PivotBar--commandBar
+    .ms-CommandBar-sideCommands
+    > .ms-CommandBarItem.vss-PivotBar--commandBar-barSlider {
+    display: inline-flex;
+    align-items: center;
+}
+.vss-PivotBar
+    .vss-PivotBar--bar.compact
+    .vss-PivotBar--commandBar
+    .ms-CommandBar-sideCommands
+    > .ms-CommandBarItem.vss-PivotBar--commandBar-barSlider:hover {
+    background-color: inherit;
+}
+.vss-PivotBar
+    .vss-PivotBar--bar.compact
+    .vss-PivotBar--commandBar
+    .ms-CommandBar-sideCommands
+    > .ms-CommandBarItem.vss-PivotBar--commandBar-barSlider
+    .vss-PivotBar--commandBar-slider.ms-Slider {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+}
+.vss-PivotBar
+    .vss-PivotBar--bar.compact
+    .vss-PivotBar--commandBar
+    .ms-CommandBar-sideCommands
+    > .ms-CommandBarItem.vss-PivotBar--commandBar-barSlider
+    .vss-PivotBar--commandBar-slider.ms-Slider
+    .ms-Slider-container {
+    width: 100px;
+}
+.vss-PivotBar
+    .vss-PivotBar--bar.compact
+    .vss-PivotBar--commandBar
+    .ms-CommandBar-sideCommands
+    > .ms-CommandBarItem
+    .vss-PivotBar--commandBar-toggle-host {
+    display: block;
+}
+.vss-PivotBar
+    .vss-PivotBar--bar.compact
+    .vss-PivotBar--commandBar
+    .ms-CommandBar-sideCommands
+    > .ms-CommandBarItem
+    .vss-PivotBar--commandBar-toggle {
+    border: 0;
+}
+.vss-PivotBar
+    .vss-PivotBar--bar.compact
+    .vss-PivotBar--commandBar
+    .ms-CommandBar-sideCommands
+    > .ms-CommandBarItem
+    .vss-PivotBar--commandBar-toggle
+    .ms-Button-flexContainer {
+    display: inline;
+}
+.vss-PivotBar .vss-PivotBar--bar.compact .vss-PivotBar--commandBar .ms-CommandBar-sideCommands .vss-ChoiceGroupButton {
+    display: inline-flex;
+    align-items: center;
+    padding: 0 8px;
+    height: 32px;
+}
+.vss-PivotBar
+    .vss-PivotBar--bar.compact
+    .vss-PivotBar--commandBar
+    .ms-CommandBar-sideCommands
+    .vss-ChoiceGroupButton
+    .vss-ChoiceGroupButton--separator {
+    border-left: 1px solid;
+    border-left-color: rgba(200, 200, 200, 1);
+    border-left-color: rgba(var(--palette-neutral-20, 200, 200, 200), 1);
+    height: 16px;
+}
+.vss-PivotBar .vss-PivotBar--bar.compact .vss-PivotBar--commandBar .ms-CommandBar-sideCommands .vss-PivotBarSlider {
+    position: relative;
+    outline: 0;
+    padding: 6px 8px;
+}
+.vss-PivotBar .vss-PivotBar--bar.compact .vss-PivotBar--commandBar .ms-CommandBarItem-link:active {
+    background-color: rgba(218, 218, 218, 1);
+    background-color: rgba(var(--palette-neutral-10, 218, 218, 218), 1);
+}
+.vss-PivotBar .vss-PivotBar--bar.compact .vss-PivotBar--commandBar .vss-PivotBar--commandBar-item .ms-CommandBarItem-link[disabled],
+.vss-PivotBar .vss-PivotBar--bar.compact .vss-PivotBar--commandBar .vss-PivotBar--commandBar-item .ms-CommandBarItem-text[disabled] {
+    border: 0;
+    color: rgba(200, 200, 200, 1);
+    color: rgba(var(--palette-neutral-20, 200, 200, 200), 1);
+}
+.vss-PivotBar .vss-PivotBar--bar.compact .vss-PivotBar--inlineFilterBar {
+    height: 32px;
+    background: transparent;
+}
+.vss-PivotBar .vss-PivotBar--bar.compact .vss-PivotBar--inlineFilterBar .vss-FilterBar {
+    height: 100%;
+    margin-top: 0;
+    margin-bottom: 0;
+}
+.vss-PivotBar .vss-PivotBar--bar.compact .vss-PivotBar--inlineFilterBar .vss-FilterBar .vss-FilterBar--list {
+    align-items: center;
+}
+.vss-PivotBar .vss-PivotBar--bar.compact .vss-PivotBar--inlineFilterBar .vss-FilterBar .vss-FilterBar--action {
+    display: none;
+}
+.vss-PivotBar .vss-PivotBar--bar.compact .vss-PivotBar--inlineFilterBar .vss-FilterBar .vss-FilterBar--item {
+    margin-bottom: 0;
+}
+.vss-PivotBar .vss-PivotBar--bar.tall {
+    display: flex;
+}
+.vss-PivotBar .vss-PivotBar--bar.tall a.ms-CommandBarItem-text,
+.vss-PivotBar .vss-PivotBar--bar.tall a.ms-CommandBarItem-link {
+    color: rgba(0, 0, 0, 0.9);
+    color: var(--text-primary-color, rgba(0, 0, 0, 0.9));
+}
+.vss-PivotBar .vss-PivotBar--bar.tall .vss-PivotBar--dropdown {
+    height: 100%;
+}
+.vss-PivotBar .vss-PivotBar--bar.tall .vss-PivotBar--dropdown .ms-Dropdown-title {
+    font-weight: 600;
+    border: 0;
+    padding-left: 9px;
+    background: transparent;
+    line-height: 48px;
+    height: 48px;
+    font-size: 14px;
+}
+.vss-PivotBar .vss-PivotBar--bar.tall .vss-PivotBar--dropdown .ms-Dropdown-caretDownWrapper {
+    cursor: pointer;
+    background: transparent;
+    line-height: 48px;
+    height: 48px;
+}
+.vss-PivotBar .vss-PivotBar--bar.tall .vss-PivotBar--dropdown.is-open,
+.vss-PivotBar .vss-PivotBar--bar.tall .vss-PivotBar--dropdown:hover {
+    background-color: rgba(234, 234, 234, 1);
+    background-color: rgba(var(--palette-neutral-8, 234, 234, 234), 1);
+}
+@media screen and (-ms-high-contrast: active) {
+    .vss-PivotBar .vss-PivotBar--bar.tall .vss-PivotBar--dropdown:focus,
+    .vss-PivotBar .vss-PivotBar--bar.tall .vss-PivotBar--dropdown:focus .ms-Dropdown-title,
+    .vss-PivotBar .vss-PivotBar--bar.tall .vss-PivotBar--dropdown:focus .ms-Dropdown-caretDownWrapper,
+    .vss-PivotBar .vss-PivotBar--bar.tall .vss-PivotBar--dropdown:focus .ms-Dropdown-caretDown {
+        background: Highlight;
+        color: HighlightText;
+    }
+}
+.vss-PivotBar .vss-PivotBar--bar.tall .vss-PivotBar--right {
+    display: flex;
+    flex: 1 1 100%;
+}
+.vss-PivotBar .vss-PivotBar--bar.tall .vss-PivotBar--separator {
+    flex: 0 1 auto;
+    align-self: center;
+    width: 1px;
+    min-width: 1px;
+    height: 24px;
+    background-color: rgba(200, 200, 200, 1);
+    background-color: rgba(var(--palette-neutral-20, 200, 200, 200), 1);
+    margin: 0 8px 0 8px;
+}
+.vss-PivotBar .vss-PivotBar--bar.tall .vss-PivotBar--commandBar {
+    height: 48px;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    flex: 1 1 auto;
+    background-color: transparent;
+    width: 100px;
+}
+.vss-PivotBar .vss-PivotBar--bar.tall .vss-PivotBar--commandBar .vss-ChoiceGroupButton--drop {
+    font-weight: normal;
+}
+.vss-PivotBar .vss-PivotBar--bar.tall .vss-PivotBar--commandBar .pivotBar-choice-group-icon {
+    margin-left: 6px;
+}
+.vss-PivotBar .vss-PivotBar--bar.tall .vss-PivotBar--commandBar .pivotBar-toggle-button {
+    font-size: 16px;
+    font-weight: normal;
+    color: rgba(0, 120, 212, 1);
+    color: var(--communication-background, rgba(0, 120, 212, 1));
+}
+.vss-PivotBar .vss-PivotBar--bar.tall .vss-PivotBar--commandBar .bowtie-icon {
+    line-height: 32px;
+    vertical-align: top;
+}
+.vss-PivotBar .vss-PivotBar--bar.tall .vss-PivotBar--commandBar .ms-CommandBarItem-link {
+    padding: 0 8px;
+    line-height: 32px;
+    margin: auto;
+}
+.vss-PivotBar .vss-PivotBar--bar.tall .vss-PivotBar--commandBar .ms-Button-flexContainer {
+    justify-content: center;
+}
+.vss-PivotBar .vss-PivotBar--bar.tall .vss-PivotBar--commandBar .ms-CommandBarItem:not(.vss-PivotBar--inlineFilterBar),
+.vss-PivotBar .vss-PivotBar--bar.tall .vss-PivotBar--commandBar .ms-CommandBarItem-link,
+.vss-PivotBar .vss-PivotBar--bar.tall .vss-PivotBar--commandBar .ms-CommandBarItem-overflow,
+.vss-PivotBar .vss-PivotBar--bar.tall .vss-PivotBar--commandBar .ms-Button {
+    height: 32px;
+}
+.vss-PivotBar .vss-PivotBar--bar.tall .vss-PivotBar--commandBar .ms-CommandBarItem-commandText,
+.vss-PivotBar .vss-PivotBar--bar.tall .vss-PivotBar--commandBar .ms-CommandBarItem-chevronDown,
+.vss-PivotBar .vss-PivotBar--bar.tall .vss-PivotBar--commandBar .ms-CommandBarItem-icon,
+.vss-PivotBar .vss-PivotBar--bar.tall .vss-PivotBar--commandBar .ms-CommandBarItem-overflow {
+    line-height: 32px;
+}
+.vss-PivotBar .vss-PivotBar--bar.tall .vss-PivotBar--commandBar .ms-CommandBarItem,
+.vss-PivotBar .vss-PivotBar--bar.tall .vss-PivotBar--commandBar .ms-CommandBarItem-commandText,
+.vss-PivotBar .vss-PivotBar--bar.tall .vss-PivotBar--commandBar .ms-Button-label {
+    font-size: 14px;
+}
+.vss-PivotBar .vss-PivotBar--bar.tall .vss-PivotBar--commandBar .ms-CommandBarItem-overflow {
+    padding: 0;
+    vertical-align: middle;
+}
+.vss-PivotBar .vss-PivotBar--bar.tall .vss-PivotBar--commandBar .ms-CommandBar-primaryCommands {
+    margin-left: 0;
+}
+.vss-PivotBar .vss-PivotBar--bar.tall .vss-PivotBar--commandBar .ms-CommandBar-sideCommands {
+    padding-right: 0;
+    align-items: center;
+}
+.vss-PivotBar
+    .vss-PivotBar--bar.tall
+    .vss-PivotBar--commandBar
+    .ms-CommandBar-sideCommands
+    > .ms-CommandBarItem.vss-PivotBar--commandBar-barChoiceGroup:hover {
+    background-color: inherit;
+}
+.vss-PivotBar
+    .vss-PivotBar--bar.tall
+    .vss-PivotBar--commandBar
+    .ms-CommandBar-sideCommands
+    > .ms-CommandBarItem.vss-PivotBar--commandBar-barChoiceGroup:hover
+    .vss-PivotBar--commandBar-barChoiceCycle:hover,
+.vss-PivotBar
+    .vss-PivotBar--bar.tall
+    .vss-PivotBar--commandBar
+    .ms-CommandBar-sideCommands
+    > .ms-CommandBarItem.vss-PivotBar--commandBar-barChoiceGroup:hover
+    .vss-PivotBar--commandBar-barChoiceDrop:hover {
+    background-color: rgba(234, 234, 234, 1);
+    background-color: rgba(var(--palette-neutral-8, 234, 234, 234), 1);
+}
+.vss-PivotBar
+    .vss-PivotBar--bar.tall
+    .vss-PivotBar--commandBar
+    .ms-CommandBar-sideCommands
+    > .ms-CommandBarItem.vss-PivotBar--commandBar-text {
+    padding: 0 4px;
+    display: inline-flex;
+    align-items: center;
+    cursor: default;
+    color: rgba(0, 0, 0, 0.9);
+    color: var(--text-primary-color, rgba(0, 0, 0, 0.9));
+}
+.vss-PivotBar
+    .vss-PivotBar--bar.tall
+    .vss-PivotBar--commandBar
+    .ms-CommandBar-sideCommands
+    > .ms-CommandBarItem.vss-PivotBar--commandBar-text:hover {
+    background-color: inherit;
+}
+.vss-PivotBar
+    .vss-PivotBar--bar.tall
+    .vss-PivotBar--commandBar
+    .ms-CommandBar-sideCommands
+    > .ms-CommandBarItem.vss-PivotBar--commandBar-barSlider {
+    display: inline-flex;
+    align-items: center;
+}
+.vss-PivotBar
+    .vss-PivotBar--bar.tall
+    .vss-PivotBar--commandBar
+    .ms-CommandBar-sideCommands
+    > .ms-CommandBarItem.vss-PivotBar--commandBar-barSlider:hover {
+    background-color: inherit;
+}
+.vss-PivotBar
+    .vss-PivotBar--bar.tall
+    .vss-PivotBar--commandBar
+    .ms-CommandBar-sideCommands
+    > .ms-CommandBarItem.vss-PivotBar--commandBar-barSlider
+    .vss-PivotBar--commandBar-slider.ms-Slider {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+}
+.vss-PivotBar
+    .vss-PivotBar--bar.tall
+    .vss-PivotBar--commandBar
+    .ms-CommandBar-sideCommands
+    > .ms-CommandBarItem.vss-PivotBar--commandBar-barSlider
+    .vss-PivotBar--commandBar-slider.ms-Slider
+    .ms-Slider-container {
+    width: 100px;
+}
+.vss-PivotBar
+    .vss-PivotBar--bar.tall
+    .vss-PivotBar--commandBar
+    .ms-CommandBar-sideCommands
+    > .ms-CommandBarItem
+    .vss-PivotBar--commandBar-toggle-host {
+    display: block;
+}
+.vss-PivotBar
+    .vss-PivotBar--bar.tall
+    .vss-PivotBar--commandBar
+    .ms-CommandBar-sideCommands
+    > .ms-CommandBarItem
+    .vss-PivotBar--commandBar-toggle {
+    border: 0;
+}
+.vss-PivotBar
+    .vss-PivotBar--bar.tall
+    .vss-PivotBar--commandBar
+    .ms-CommandBar-sideCommands
+    > .ms-CommandBarItem
+    .vss-PivotBar--commandBar-toggle
+    .ms-Button-flexContainer {
+    display: inline;
+}
+.vss-PivotBar .vss-PivotBar--bar.tall .vss-PivotBar--commandBar .ms-CommandBar-sideCommands .vss-ChoiceGroupButton {
+    display: inline-flex;
+    align-items: center;
+    padding: 0 8px;
+    height: 32px;
+}
+.vss-PivotBar
+    .vss-PivotBar--bar.tall
+    .vss-PivotBar--commandBar
+    .ms-CommandBar-sideCommands
+    .vss-ChoiceGroupButton
+    .vss-ChoiceGroupButton--separator {
+    border-left: 1px solid;
+    border-left-color: rgba(200, 200, 200, 1);
+    border-left-color: rgba(var(--palette-neutral-20, 200, 200, 200), 1);
+    height: 16px;
+}
+.vss-PivotBar .vss-PivotBar--bar.tall .vss-PivotBar--commandBar .ms-CommandBar-sideCommands .vss-PivotBarSlider {
+    position: relative;
+    outline: 0;
+    padding: 6px 8px;
+}
+.vss-PivotBar .vss-PivotBar--bar.tall .vss-PivotBar--commandBar .ms-CommandBarItem-link:active {
+    background-color: rgba(218, 218, 218, 1);
+    background-color: rgba(var(--palette-neutral-10, 218, 218, 218), 1);
+}
+.vss-PivotBar .vss-PivotBar--bar.tall .vss-PivotBar--commandBar .vss-PivotBar--commandBar-item .ms-CommandBarItem-link[disabled],
+.vss-PivotBar .vss-PivotBar--bar.tall .vss-PivotBar--commandBar .vss-PivotBar--commandBar-item .ms-CommandBarItem-text[disabled] {
+    border: 0;
+    color: rgba(200, 200, 200, 1);
+    color: rgba(var(--palette-neutral-20, 200, 200, 200), 1);
+}
+.vss-PivotBar .vss-PivotBar--bar.tall .vss-PivotBar--inlineFilterBar {
+    height: 32px;
+    background: transparent;
+}
+.vss-PivotBar .vss-PivotBar--bar.tall .vss-PivotBar--inlineFilterBar .vss-FilterBar {
+    height: 100%;
+    margin-top: 0;
+    margin-bottom: 0;
+}
+.vss-PivotBar .vss-PivotBar--bar.tall .vss-PivotBar--inlineFilterBar .vss-FilterBar .vss-FilterBar--list {
+    align-items: center;
+}
+.vss-PivotBar .vss-PivotBar--bar.tall .vss-PivotBar--inlineFilterBar .vss-FilterBar .vss-FilterBar--action {
+    display: none;
+}
+.vss-PivotBar .vss-PivotBar--bar.tall .vss-PivotBar--inlineFilterBar .vss-FilterBar .vss-FilterBar--item {
+    margin-bottom: 0;
+}
+.vss-PivotBar .vss-PivotBar--bar.large-link {
+    display: flex;
+}
+.vss-PivotBar .vss-PivotBar--bar.large-link a.ms-CommandBarItem-text,
+.vss-PivotBar .vss-PivotBar--bar.large-link a.ms-CommandBarItem-link {
+    color: rgba(0, 0, 0, 0.9);
+    color: var(--text-primary-color, rgba(0, 0, 0, 0.9));
+}
+.vss-PivotBar .vss-PivotBar--bar.large-link .vss-PivotBar--dropdown {
+    height: 100%;
+}
+.vss-PivotBar .vss-PivotBar--bar.large-link .vss-PivotBar--dropdown .ms-Dropdown-title {
+    font-weight: 600;
+    border: 0;
+    padding-left: 9px;
+    background: transparent;
+    line-height: 40px;
+    height: 40px;
+    font-size: 17px;
+}
+.vss-PivotBar .vss-PivotBar--bar.large-link .vss-PivotBar--dropdown .ms-Dropdown-caretDownWrapper {
+    cursor: pointer;
+    background: transparent;
+    line-height: 40px;
+    height: 40px;
+}
+.vss-PivotBar .vss-PivotBar--bar.large-link .vss-PivotBar--dropdown.is-open,
+.vss-PivotBar .vss-PivotBar--bar.large-link .vss-PivotBar--dropdown:hover {
+    background-color: rgba(234, 234, 234, 1);
+    background-color: rgba(var(--palette-neutral-8, 234, 234, 234), 1);
+}
+@media screen and (-ms-high-contrast: active) {
+    .vss-PivotBar .vss-PivotBar--bar.large-link .vss-PivotBar--dropdown:focus,
+    .vss-PivotBar .vss-PivotBar--bar.large-link .vss-PivotBar--dropdown:focus .ms-Dropdown-title,
+    .vss-PivotBar .vss-PivotBar--bar.large-link .vss-PivotBar--dropdown:focus .ms-Dropdown-caretDownWrapper,
+    .vss-PivotBar .vss-PivotBar--bar.large-link .vss-PivotBar--dropdown:focus .ms-Dropdown-caretDown {
+        background: Highlight;
+        color: HighlightText;
+    }
+}
+.vss-PivotBar .vss-PivotBar--bar.large-link .vss-PivotBar--right {
+    display: flex;
+    flex: 1 1 100%;
+}
+.vss-PivotBar .vss-PivotBar--bar.large-link .vss-PivotBar--separator {
+    flex: 0 1 auto;
+    align-self: center;
+    width: 1px;
+    min-width: 1px;
+    height: 24px;
+    background-color: rgba(200, 200, 200, 1);
+    background-color: rgba(var(--palette-neutral-20, 200, 200, 200), 1);
+    margin: 0 8px 0 8px;
+}
+.vss-PivotBar .vss-PivotBar--bar.large-link .vss-PivotBar--commandBar {
+    height: 40px;
+    padding-top: 0;
+    padding-bottom: 0;
+    flex: 1 1 auto;
+    background-color: transparent;
+    width: 100px;
+}
+.vss-PivotBar .vss-PivotBar--bar.large-link .vss-PivotBar--commandBar .vss-ChoiceGroupButton--drop {
+    font-weight: normal;
+}
+.vss-PivotBar .vss-PivotBar--bar.large-link .vss-PivotBar--commandBar .pivotBar-choice-group-icon {
+    margin-left: 6px;
+}
+.vss-PivotBar .vss-PivotBar--bar.large-link .vss-PivotBar--commandBar .pivotBar-toggle-button {
+    font-size: 16px;
+    font-weight: normal;
+    color: rgba(0, 120, 212, 1);
+    color: var(--communication-background, rgba(0, 120, 212, 1));
+}
+.vss-PivotBar .vss-PivotBar--bar.large-link .vss-PivotBar--commandBar .bowtie-icon {
+    line-height: 40px;
+    vertical-align: top;
+}
+.vss-PivotBar .vss-PivotBar--bar.large-link .vss-PivotBar--commandBar .ms-CommandBarItem-link {
+    padding: 0 8px;
+    line-height: 40px;
+    margin: auto;
+}
+.vss-PivotBar .vss-PivotBar--bar.large-link .vss-PivotBar--commandBar .ms-Button-flexContainer {
+    justify-content: center;
+}
+.vss-PivotBar .vss-PivotBar--bar.large-link .vss-PivotBar--commandBar .ms-CommandBarItem:not(.vss-PivotBar--inlineFilterBar),
+.vss-PivotBar .vss-PivotBar--bar.large-link .vss-PivotBar--commandBar .ms-CommandBarItem-link,
+.vss-PivotBar .vss-PivotBar--bar.large-link .vss-PivotBar--commandBar .ms-CommandBarItem-overflow,
+.vss-PivotBar .vss-PivotBar--bar.large-link .vss-PivotBar--commandBar .ms-Button {
+    height: 40px;
+}
+.vss-PivotBar .vss-PivotBar--bar.large-link .vss-PivotBar--commandBar .ms-CommandBarItem-commandText,
+.vss-PivotBar .vss-PivotBar--bar.large-link .vss-PivotBar--commandBar .ms-CommandBarItem-chevronDown,
+.vss-PivotBar .vss-PivotBar--bar.large-link .vss-PivotBar--commandBar .ms-CommandBarItem-icon,
+.vss-PivotBar .vss-PivotBar--bar.large-link .vss-PivotBar--commandBar .ms-CommandBarItem-overflow {
+    line-height: 40px;
+}
+.vss-PivotBar .vss-PivotBar--bar.large-link .vss-PivotBar--commandBar .ms-CommandBarItem,
+.vss-PivotBar .vss-PivotBar--bar.large-link .vss-PivotBar--commandBar .ms-CommandBarItem-commandText,
+.vss-PivotBar .vss-PivotBar--bar.large-link .vss-PivotBar--commandBar .ms-Button-label {
+    font-size: 17px;
+}
+.vss-PivotBar .vss-PivotBar--bar.large-link .vss-PivotBar--commandBar .ms-CommandBarItem-overflow {
+    padding: 0;
+    vertical-align: middle;
+}
+.vss-PivotBar .vss-PivotBar--bar.large-link .vss-PivotBar--commandBar .ms-CommandBar-primaryCommands {
+    margin-left: 0;
+}
+.vss-PivotBar .vss-PivotBar--bar.large-link .vss-PivotBar--commandBar .ms-CommandBar-sideCommands {
+    padding-right: 0;
+    align-items: center;
+}
+.vss-PivotBar
+    .vss-PivotBar--bar.large-link
+    .vss-PivotBar--commandBar
+    .ms-CommandBar-sideCommands
+    > .ms-CommandBarItem.vss-PivotBar--commandBar-barChoiceGroup:hover {
+    background-color: inherit;
+}
+.vss-PivotBar
+    .vss-PivotBar--bar.large-link
+    .vss-PivotBar--commandBar
+    .ms-CommandBar-sideCommands
+    > .ms-CommandBarItem.vss-PivotBar--commandBar-barChoiceGroup:hover
+    .vss-PivotBar--commandBar-barChoiceCycle:hover,
+.vss-PivotBar
+    .vss-PivotBar--bar.large-link
+    .vss-PivotBar--commandBar
+    .ms-CommandBar-sideCommands
+    > .ms-CommandBarItem.vss-PivotBar--commandBar-barChoiceGroup:hover
+    .vss-PivotBar--commandBar-barChoiceDrop:hover {
+    background-color: rgba(234, 234, 234, 1);
+    background-color: rgba(var(--palette-neutral-8, 234, 234, 234), 1);
+}
+.vss-PivotBar
+    .vss-PivotBar--bar.large-link
+    .vss-PivotBar--commandBar
+    .ms-CommandBar-sideCommands
+    > .ms-CommandBarItem.vss-PivotBar--commandBar-text {
+    padding: 0 4px;
+    display: inline-flex;
+    align-items: center;
+    cursor: default;
+    color: rgba(0, 0, 0, 0.9);
+    color: var(--text-primary-color, rgba(0, 0, 0, 0.9));
+}
+.vss-PivotBar
+    .vss-PivotBar--bar.large-link
+    .vss-PivotBar--commandBar
+    .ms-CommandBar-sideCommands
+    > .ms-CommandBarItem.vss-PivotBar--commandBar-text:hover {
+    background-color: inherit;
+}
+.vss-PivotBar
+    .vss-PivotBar--bar.large-link
+    .vss-PivotBar--commandBar
+    .ms-CommandBar-sideCommands
+    > .ms-CommandBarItem.vss-PivotBar--commandBar-barSlider {
+    display: inline-flex;
+    align-items: center;
+}
+.vss-PivotBar
+    .vss-PivotBar--bar.large-link
+    .vss-PivotBar--commandBar
+    .ms-CommandBar-sideCommands
+    > .ms-CommandBarItem.vss-PivotBar--commandBar-barSlider:hover {
+    background-color: inherit;
+}
+.vss-PivotBar
+    .vss-PivotBar--bar.large-link
+    .vss-PivotBar--commandBar
+    .ms-CommandBar-sideCommands
+    > .ms-CommandBarItem.vss-PivotBar--commandBar-barSlider
+    .vss-PivotBar--commandBar-slider.ms-Slider {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+}
+.vss-PivotBar
+    .vss-PivotBar--bar.large-link
+    .vss-PivotBar--commandBar
+    .ms-CommandBar-sideCommands
+    > .ms-CommandBarItem.vss-PivotBar--commandBar-barSlider
+    .vss-PivotBar--commandBar-slider.ms-Slider
+    .ms-Slider-container {
+    width: 100px;
+}
+.vss-PivotBar
+    .vss-PivotBar--bar.large-link
+    .vss-PivotBar--commandBar
+    .ms-CommandBar-sideCommands
+    > .ms-CommandBarItem
+    .vss-PivotBar--commandBar-toggle-host {
+    display: block;
+}
+.vss-PivotBar
+    .vss-PivotBar--bar.large-link
+    .vss-PivotBar--commandBar
+    .ms-CommandBar-sideCommands
+    > .ms-CommandBarItem
+    .vss-PivotBar--commandBar-toggle {
+    border: 0;
+}
+.vss-PivotBar
+    .vss-PivotBar--bar.large-link
+    .vss-PivotBar--commandBar
+    .ms-CommandBar-sideCommands
+    > .ms-CommandBarItem
+    .vss-PivotBar--commandBar-toggle
+    .ms-Button-flexContainer {
+    display: inline;
+}
+.vss-PivotBar .vss-PivotBar--bar.large-link .vss-PivotBar--commandBar .ms-CommandBar-sideCommands .vss-ChoiceGroupButton {
+    display: inline-flex;
+    align-items: center;
+    padding: 0 8px;
+    height: 40px;
+}
+.vss-PivotBar
+    .vss-PivotBar--bar.large-link
+    .vss-PivotBar--commandBar
+    .ms-CommandBar-sideCommands
+    .vss-ChoiceGroupButton
+    .vss-ChoiceGroupButton--separator {
+    border-left: 1px solid;
+    border-left-color: rgba(200, 200, 200, 1);
+    border-left-color: rgba(var(--palette-neutral-20, 200, 200, 200), 1);
+    height: 16px;
+}
+.vss-PivotBar .vss-PivotBar--bar.large-link .vss-PivotBar--commandBar .ms-CommandBar-sideCommands .vss-PivotBarSlider {
+    position: relative;
+    outline: 0;
+    padding: 6px 8px;
+}
+.vss-PivotBar .vss-PivotBar--bar.large-link .vss-PivotBar--commandBar .ms-CommandBarItem-link:active {
+    background-color: rgba(218, 218, 218, 1);
+    background-color: rgba(var(--palette-neutral-10, 218, 218, 218), 1);
+}
+.vss-PivotBar .vss-PivotBar--bar.large-link .vss-PivotBar--commandBar .vss-PivotBar--commandBar-item .ms-CommandBarItem-link[disabled],
+.vss-PivotBar .vss-PivotBar--bar.large-link .vss-PivotBar--commandBar .vss-PivotBar--commandBar-item .ms-CommandBarItem-text[disabled] {
+    border: 0;
+    color: rgba(200, 200, 200, 1);
+    color: rgba(var(--palette-neutral-20, 200, 200, 200), 1);
+}
+.vss-PivotBar .vss-PivotBar--bar.large-link .vss-PivotBar--inlineFilterBar {
+    height: 32px;
+    background: transparent;
+}
+.vss-PivotBar .vss-PivotBar--bar.large-link .vss-PivotBar--inlineFilterBar .vss-FilterBar {
+    height: 100%;
+    margin-top: 0;
+    margin-bottom: 0;
+}
+.vss-PivotBar .vss-PivotBar--bar.large-link .vss-PivotBar--inlineFilterBar .vss-FilterBar .vss-FilterBar--list {
+    align-items: center;
+}
+.vss-PivotBar .vss-PivotBar--bar.large-link .vss-PivotBar--inlineFilterBar .vss-FilterBar .vss-FilterBar--action {
+    display: none;
+}
+.vss-PivotBar .vss-PivotBar--bar.large-link .vss-PivotBar--inlineFilterBar .vss-FilterBar .vss-FilterBar--item {
+    margin-bottom: 0;
+}
+.vss-PivotBar .vss-PivotBar--content {
+    outline: 0;
+    flex-grow: 1;
+    overflow-y: auto;
+    display: flex;
+    position: relative;
+}
+.vss-PivotBar .vss-PivotBar--content.hide-content {
+    display: none;
+}
+.vss-PivotBar .vss-PivotBar--content .vss-PivotBarItem {
+    flex-grow: 1;
+}
+.vss-PivotBar .vss-PivotBar--content .vss-PivotBarItem.content-host {
+    display: flex;
+}
+.vss-PivotBar .vss-PivotBar--content .vss-PivotBarItem.content-host .internal-content-host,
+.vss-PivotBar .vss-PivotBar--content .vss-PivotBarItem.content-host .external-content-host {
+    flex-grow: 1;
+}
+.vss-PivotBar .vss-PivotBar--content.vss-PivotBar--content-unscrollable {
+    overflow-y: visible;
+}
+.vss-PivotBar .vss-FilterBar {
+    flex-shrink: 0;
+}
+.vss-PivotBar--commandBar-icon.vss-Icon {
+    color: rgba(0, 120, 212, 1);
+    color: var(--communication-foreground, rgba(0, 120, 212, 1));
+}
+.vss-PivotBar--commandBar-overflow {
+    max-width: 300px;
+}
+.vss-PivotBar--commandBar-overflow .vss-PivotBar--commandBar-toggle.bolt-toggle-button {
+    padding-left: 8px;
+    margin-top: 4px;
+}
+.vss-PivotBar--commandBar-overflow .ms-ContextualMenu-header .ms-Icon-placeHolder {
+    display: none;
+}
+.vss-PivotBar--commandBar-overflow .ms-ContextualMenu-header .ms-ContextualMenu-itemText {
+    font-weight: normal;
+    color: rgba(0, 0, 0, 0.55);
+    color: var(--text-secondary-color, rgba(0, 0, 0, 0.55));
+}
+.vss-PivotBar--commandBar-item .ms-ContextualMenu-link[disabled],
+.vss-PivotBar--commandBar-item .ms-ContextualMenu-link.is-disabled,
+.vss-PivotBar--commandBar-item .ms-ContextualMenu-text[disabled],
+.vss-PivotBar--commandBar-item .ms-ContextualMenu-text.is-disabled {
+    border: 0;
+    color: rgba(200, 200, 200, 1);
+    color: rgba(var(--palette-neutral-20, 200, 200, 200), 1);
+}
+.ms-Fabric.is-focusVisible .vss-PivotBar .vss-ChoiceGroupButton button:focus::after,
+.ms-Fabric.is-focusVisible .vss-PivotBar .vss-PivotBarSlider:focus::after,
+.ms-Fabric.is-focusVisible .vss-PivotBar .vss-PivotBar--dropdown:focus:after,
+.ms-Fabric.is-focusVisible .vss-PivotBar .vss-PivotBar--commandBar-toggle:not(.bolt-button):focus:after {
+    content: '';
+    pointer-events: none;
+    outline: 0;
+    border: 1px solid;
+    border-color: rgba(0, 0, 0, 1);
+    border-color: rgba(var(--palette-neutral-100, 0, 0, 0), 1);
+    position: absolute;
+    top: 2px;
+    right: 2px;
+    bottom: 2px;
+    left: 2px;
+}
+.vss-PivotBar--bar .vss-PivotBar--right button[data-command-key='viewOptions'] .ms-CommandBarItem-chevronDown {
+    display: none;
+}
+@keyframes focus-shadow-pulse-inset {
+    0% {
+        box-shadow: inset 0 0 0 3px rgba(0, 120, 212, 0.35);
+        box-shadow: inset 0 0 0 3px rgba(var(--palette-primary, 0, 120, 212), 0.35);
+    }
+    50% {
+        box-shadow: inset 0 0 0 3px rgba(0, 120, 212, 0.15);
+        box-shadow: inset 0 0 0 3px rgba(var(--palette-primary, 0, 120, 212), 0.15);
+    }
+    100% {
+        box-shadow: inset 0 0 0 3px rgba(0, 120, 212, 0.35);
+        box-shadow: inset 0 0 0 3px rgba(var(--palette-primary, 0, 120, 212), 0.35);
+    }
+}
+.vss-Breadcrumb--container {
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+}
+.vss-Breadcrumb--container .vss-Breadcrumb--resizeGroup {
+    flex-grow: 1;
+    overflow: hidden;
+}
+.vss-Breadcrumb.ms-Breadcrumb {
+    margin: 4px 0;
+}
+.vss-Breadcrumb li.ms-Breadcrumb-listItem {
+    margin-left: 2px;
+}
+.vss-Breadcrumb li.ms-Breadcrumb-listItem:first-of-type {
+    margin-left: 0;
+}
+.vss-Breadcrumb .vss-Breadcrumb--light {
+    color: rgba(0, 0, 0, 0.55);
+    color: var(--text-secondary-color, rgba(0, 0, 0, 0.55));
+}
+.vss-Breadcrumb .vss-Breadcrumb--divider-container {
+    display: flex;
+    align-items: center;
+    align-self: stretch;
+}
+.vss-Breadcrumb .vss-Breadcrumb--item-dropdown {
+    font-size: 12px;
+    color: rgba(0, 0, 0, 0.55);
+    color: var(--text-secondary-color, rgba(0, 0, 0, 0.55));
+}
+.vss-Breadcrumb .vss-Breadcrumb--divider {
+    width: 20px;
+    height: 24px;
+    text-align: center;
+}
+.vss-Breadcrumb .vss-Breadcrumb--divider.vss-Breadcrumb--divider-link:hover {
+    background-color: rgba(244, 244, 244, 1);
+    background-color: rgba(var(--palette-neutral-4, 244, 244, 244), 1);
+}
+.vss-Breadcrumb .vss-Breadcrumb--divider .vss-Breadcrumb--item-dropdown {
+    font-size: 12px;
+    color: rgba(0, 0, 0, 0.55);
+    color: var(--text-secondary-color, rgba(0, 0, 0, 0.55));
+}
+.vss-Breadcrumb .vss-Breadcrumb--divider .vss-Breadcrumb--forward-slash {
+    font-size: 16px;
+}
+.vss-Breadcrumb .vss-Breadcrumb--divider.vss-Breadcrumb--divider-light {
+    color: rgba(0, 0, 0, 0.55);
+    color: var(--text-secondary-color, rgba(0, 0, 0, 0.55));
+}
+.vss-Breadcrumb .vss-Breadcrumb--divider.vss-Breadcrumb--divider-extra-padding {
+    padding: 0 8px;
+}
+.vss-Breadcrumb .vss-Breadcrumb--item {
+    display: inline-flex;
+    align-items: center;
+    align-self: stretch;
+}
+.vss-Breadcrumb .vss-Breadcrumb--item.vss-Breadcrumb--item-min-height {
+    min-height: 30px;
+}
+.vss-Breadcrumb .vss-Breadcrumb--item a {
+    text-decoration: none;
+}
+.vss-Breadcrumb .vss-Breadcrumb--item a:hover {
+    text-decoration: none;
+}
+.vss-Breadcrumb .vss-Breadcrumb--item.no-click button {
+    cursor: default;
+}
+.vss-Breadcrumb .vss-Breadcrumb--item.no-click button:hover {
+    background-color: transparent;
+}
+.vss-Breadcrumb .vss-Breadcrumb--item.no-click button span.ms-Breadcrumb-item {
+    cursor: default;
+}
+.vss-Breadcrumb .vss-Breadcrumb--item .vss-Breadcrumb--hiddenElement {
+    display: none;
+}
+.vss-Breadcrumb .vss-Breadcrumb--item .vss-Breadcrumb--itemContainer {
+    display: flex;
+    align-items: center;
+    border-radius: 2px;
+}
+.vss-Breadcrumb .vss-Breadcrumb--item .vss-Breadcrumb--itemContainer span.ms-Breadcrumb-item {
+    cursor: pointer;
+}
+.vss-Breadcrumb .vss-Breadcrumb--item .vss-Breadcrumb--itemContainer:hover {
+    background-color: rgba(0, 0, 0, 0.04);
+    background-color: var(--palette-black-alpha-4, rgba(0, 0, 0, 0.04));
+}
+.vss-Breadcrumb .vss-Breadcrumb--item .vss-Breadcrumb--itemContainer:active {
+    background-color: rgba(0, 0, 0, 0.2);
+    background-color: var(--palette-black-alpha-20, rgba(0, 0, 0, 0.2));
+}
+.vss-Breadcrumb .vss-Breadcrumb--item .vss-Breadcrumb--itemContainer .vss-Icon {
+    color: rgba(0, 0, 0, 0.9);
+    color: var(--text-primary-color, rgba(0, 0, 0, 0.9));
+}
+.vss-Breadcrumb .vss-Breadcrumb--item .ellipsis-text {
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.vss-Breadcrumb .vss-Breadcrumb--item .vss-Breadcrumb--itemText {
+    font-size: 18px;
+    font-weight: 400;
+}
+.vss-Breadcrumb .vss-Breadcrumb--item .vss-Breadcrumb--itemText-small {
+    font-size: 14px;
+    font-weight: 400;
+    padding: 4px 8px;
+}
+.vss-Breadcrumb .vss-Breadcrumb--item .vss-Breadcrumb--item-leftIcon {
+    font-size: 18px;
+    margin-right: 4px;
+    margin-left: 8px;
+}
+.vss-Breadcrumb .vss-Breadcrumb--item .vss-Breadcrumb--item-leftIcon div.ms-Image {
+    height: 18px;
+    width: 18px;
+}
+.vss-Breadcrumb .vss-Breadcrumb--item .vss-Breadcrumb--item-dropdown-with-picker {
+    margin-top: 4px;
+    margin-right: 8px;
+}
+.vss-Breadcrumb .vss-Breadcrumb--item .vss-Breadcrumb--item-dropdown-with-picker:hover {
+    background-color: rgba(244, 244, 244, 1);
+    background-color: rgba(var(--palette-neutral-4, 244, 244, 244), 1);
+}
+.vss-Breadcrumb .vss-Breadcrumb--item .vss-Breadcrumb--item-dropdown-with-picker:active {
+    background-color: rgba(200, 200, 200, 1);
+    background-color: rgba(var(--palette-neutral-20, 200, 200, 200), 1);
+}
+.vss-PickList.picker-dropdown {
+    min-width: 220px;
+    min-height: 36px;
+    justify-content: center;
+}
+.vss-PickList.picker-dropdown .vss-PickList--searchSection {
+    padding-top: 8px;
+}
+.vss-PickList.picker-dropdown .vss-PickList--items {
+    max-height: 270px;
+}
+.internal-breadcrumb--list {
+    white-space: nowrap;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    align-items: stretch;
+}
+.internal-breadcrumb--listItem {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    position: relative;
+    align-items: center;
+}
+.internal-breadcrumb--overflow {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+.vss-Breadcrumb .internal-breadcrumb--overflowButton {
+    position: relative;
+    font-size: 16px;
+    font-weight: 400;
+    box-sizing: border-box;
+    display: inline-block;
+    text-align: center;
+    vertical-align: top;
+    padding: 0 4px;
+    width: 32px;
+    height: 24px;
+    cursor: pointer;
+    background-color: transparent;
+    border-color: transparent;
+    color: rgba(0, 0, 0, 0.55);
+    color: var(--text-secondary-color, rgba(0, 0, 0, 0.55));
+}
+.vss-Breadcrumb .internal-breadcrumb--overflowButton:hover,
+.vss-Breadcrumb .internal-breadcrumb--overflowButton:active {
+    background-color: rgba(0, 0, 0, 0.06);
+    background-color: var(--palette-black-alpha-6, rgba(0, 0, 0, 0.06));
+}
+.internal-breadcrumb--item {
+    color: rgba(0, 0, 0, 0.9);
+    color: var(--text-primary-color, rgba(0, 0, 0, 0.9));
+    padding: 0 8px;
+    max-width: 160px;
+}

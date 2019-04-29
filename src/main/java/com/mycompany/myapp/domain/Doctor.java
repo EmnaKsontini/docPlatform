@@ -9,6 +9,7 @@ import javax.validation.constraints.*;
 import org.springframework.data.elasticsearch.annotations.Document;
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.util.Calendar;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.Objects;
@@ -51,11 +52,21 @@ public class Doctor implements Serializable {
     @Column(name = "phone_number", precision = 10, scale = 2, nullable = false)
     private BigDecimal phoneNumber;
 
+    @ManyToMany
+    @JoinTable(name = "patient_doctor",
+        joinColumns = @JoinColumn(name = "doctor_id", referencedColumnName = "id"),
+        inverseJoinColumns = @JoinColumn(name = "patient_id", referencedColumnName = "id"))
+    private Set<Patient> patients = new HashSet<>();
+
     @OneToMany(mappedBy = "doctor")
     private Set<Request> requests = new HashSet<>();
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
         return id;
+    }
+
+    public void setPatients(Set<Patient> patients) {
+        this.patients = patients;
     }
 
     public void setId(Long id) {
@@ -197,5 +208,9 @@ public class Doctor implements Serializable {
             ", email='" + getEmail() + "'" +
             ", phoneNumber=" + getPhoneNumber() +
             "}";
+    }
+
+    public Set<Patient> getPatients() {
+        return  patients;
     }
 }
