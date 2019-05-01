@@ -9,6 +9,8 @@ import { SERVER_API_URL } from 'app/app.constants';
 import { createRequestOption } from 'app/shared';
 import { Appointment, IAppointment } from 'app/shared/model/appointment.model';
 import { Doctor } from 'app/shared/model/doctor.model';
+import { Patient } from 'app/shared/model/patient.model';
+import { User } from 'app/core';
 
 type EntityResponseType = HttpResponse<IAppointment>;
 type EntityArrayResponseType = HttpResponse<IAppointment[]>;
@@ -83,11 +85,19 @@ export class AppointmentService {
         return res;
     }
 
+    getAllAppointmentList(): Observable<Appointment[]> {
+        return this.http.get<Appointment[]>(SERVER_API_URL + 'api/appointment/list');
+    }
+
     getAppointmentList(): Observable<Appointment[]> {
         return this.http.get<Appointment[]>(SERVER_API_URL + 'api/user/MyAppointments');
     }
 
     getAllDoctorNamesAppointments(): Observable<Doctor[]> {
         return this.http.get<Doctor[]>(SERVER_API_URL + 'api/user/MyAppointmentsDoctor');
+    }
+
+    getCurrentUser(): Observable<EntityResponseType> {
+        return this.http.get<User>(SERVER_API_URL + 'api' + '/user/getCurrentUser', { observe: 'response' });
     }
 }

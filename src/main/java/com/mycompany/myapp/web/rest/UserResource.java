@@ -311,7 +311,11 @@ public class UserResource {
         return result;
     }
 
-
+    @GetMapping("/user/getCurrentUser")
+    public ResponseEntity<User> getCurrentUser() {
+        User user=userRepository.findOneByLogin(SecurityUtils.getCurrentUserLogin().get()).get();
+        return ResponseEntity.ok().body(user);
+    }
 
 
 }
