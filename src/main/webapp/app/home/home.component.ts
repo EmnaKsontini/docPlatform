@@ -20,6 +20,9 @@ export class HomeComponent implements OnInit {
     appointments: IAppointment[];
     MyDoctorsAppointment: IDoctor[];
     Mydoctors: IDoctor[];
+    appointmentIsFull: boolean = true;
+    tipsIsFull: boolean = true;
+    mydoctorsIsFull: boolean = true;
 
     constructor(
         private homeService: HomeService,
@@ -29,6 +32,7 @@ export class HomeComponent implements OnInit {
     ) {}
 
     ngOnInit() {
+        console.log('helllllloo');
         this.accountService.identity().then((account: Account) => {
             this.account = account;
         });
@@ -36,10 +40,16 @@ export class HomeComponent implements OnInit {
         this.tips = [];
         this.homeService.getAllTips().subscribe(Alltips => {
             this.tips = Alltips;
+            if (this.tips.length == 0) {
+                this.tipsIsFull = false;
+            }
         });
         this.appointments = [];
         this.homeService.getAllAppointments().subscribe(appointments => {
             this.appointments = appointments;
+            if (this.appointments.length == 0) {
+                this.appointmentIsFull = false;
+            }
         });
         this.MyDoctorsAppointment = [];
         this.homeService.getAllNames().subscribe(names => {
@@ -48,7 +58,13 @@ export class HomeComponent implements OnInit {
         this.Mydoctors = [];
         this.homeService.getMyDoctors().subscribe(AllDoctors => {
             this.Mydoctors = AllDoctors;
+            if (this.Mydoctors.length == 0) {
+                this.mydoctorsIsFull = false;
+            }
         });
+        console.log('full:' + this.appointmentIsFull);
+        console.log('tipfull:' + this.tipsIsFull);
+        console.log('doctorfull:' + this.mydoctorsIsFull);
     }
 
     registerAuthenticationSuccess() {

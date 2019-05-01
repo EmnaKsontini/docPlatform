@@ -6,6 +6,7 @@ import { HttpResponse } from '@angular/common/http';
 import { User } from 'app/core';
 import { Request } from 'app/shared/model/request.model';
 import { Patient } from 'app/shared/model/patient.model';
+import { AppointmentService } from 'app/entities/appointment';
 
 @Component({
     selector: 'jhi-sidebar',
@@ -19,10 +20,16 @@ export class SidebarComponent implements OnInit {
     pushRightClass: string;
     image: any;
     MyVar = false;
+    name: string;
 
     @Output() collapsedEvent = new EventEmitter<boolean>();
 
-    constructor(private translate: TranslateService, public router: Router, protected doctorService: DoctorService) {
+    constructor(
+        private translate: TranslateService,
+        public router: Router,
+        protected doctorService: DoctorService,
+        private appointmentService: AppointmentService
+    ) {
         this.router.events.subscribe(val => {
             if (val instanceof NavigationEnd && window.innerWidth <= 992 && this.isToggled()) {
                 this.toggleSidebar();
@@ -31,10 +38,17 @@ export class SidebarComponent implements OnInit {
     }
 
     ngOnInit() {
+        this.name = '';
         this.isActive = false;
         this.collapsed = false;
         this.showMenu = '';
         this.pushRightClass = 'push-right';
+        this.appointmentService.getCurrentUser().subscribe((res: HttpResponse<User>) => {
+            console.log('login:' + res.body.login);
+            this.name = res.body.login;
+        });
+
+        console.log('login:' + this.name);
         this.doctorService.getCurrentUser().subscribe((res: HttpResponse<Patient>) => {
             this.image = res.body.picture;
             this.MyVar = true;

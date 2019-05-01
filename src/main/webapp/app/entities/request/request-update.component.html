@@ -55,7 +55,7 @@
                     <label class="form-control-label" jhiTranslate="doctorsPlatformApp.request.patient" for="field_patient">Patient</label>
                     <select class="form-control" id="field_patient" name="patient" [(ngModel)]="request.patientId"  required>
                         <option *ngIf="!editForm.value.patient" [ngValue]="null" selected></option>
-                        <option [ngValue]="patientOption.id" *ngFor="let patientOption of patients; trackBy: trackPatientById">{{patientOption.requests}}</option>
+                        <option [ngValue]="patientOption.id" *ngFor="let patientOption of patients; trackBy: trackPatientById">{{patientOption.id}}</option>
                     </select>
                 </div>
                 <div [hidden]="!(editForm.controls.patient?.dirty && editForm.controls.patient?.invalid)">
@@ -68,7 +68,7 @@
                     <label class="form-control-label" jhiTranslate="doctorsPlatformApp.request.doctor" for="field_doctor">Doctor</label>
                     <select class="form-control" id="field_doctor" name="doctor" [(ngModel)]="request.doctorId"  required>
                         <option *ngIf="!editForm.value.doctor" [ngValue]="null" selected></option>
-                        <option [ngValue]="doctorOption.id" *ngFor="let doctorOption of doctors; trackBy: trackDoctorById">{{doctorOption.requests}}</option>
+                        <option [ngValue]="doctorOption.id" *ngFor="let doctorOption of doctors; trackBy: trackDoctorById">{{doctorOption.id}}</option>
                     </select>
                 </div>
                 <div [hidden]="!(editForm.controls.doctor?.dirty && editForm.controls.doctor?.invalid)">
