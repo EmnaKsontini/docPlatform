@@ -12,7 +12,7 @@
                 <dt><span jhiTranslate="doctorsPlatformApp.appointment.request">Request</span></dt>
                 <dd>
                     <div *ngIf="appointment.requestId">
-                        <a [routerLink]="['/request', appointment.requestId, 'view']">{{appointment.requestAppointement}}</a>
+                        <a [routerLink]="['/request', appointment.requestId, 'view']">{{appointment.requestId}}</a>
                     </div>
                 </dd>
             </dl>

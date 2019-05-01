@@ -166,7 +166,7 @@ public class AppointmentResource {
     }
 
     /**
-     * @return a string list of the all of the clubs name
+     * @return a string list of the all of the appointments
      */
     @GetMapping("/appointment/list")
     @Timed

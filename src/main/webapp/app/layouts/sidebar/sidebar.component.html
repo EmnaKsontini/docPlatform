@@ -7,7 +7,7 @@
                 <img src="avatar.jpg" class="img-circle" alt="User Image">
             </div>
             <div class="pull-left info">
-                <p>Patient's Name</p>
+                <p>{{name}}</p>
                 <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
             </div>
         </div>
@@ -49,7 +49,7 @@
                 </a>
             </li>
             <li class="treeview">
-                <a *jhiHasAnyAuthority="'ROLE_ADMIN'"  class="dropdown-item" routerLink="/calendar" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }"
+                <a  class="dropdown-item" routerLink="/calendar" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }"
                    routerLinkActive="active">
                     <i class="fa fa-calendar-o"></i>
                     <span>calendar</span>

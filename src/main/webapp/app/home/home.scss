@@ -20,11 +20,29 @@ Main page styles
     background: url('../../content/images/doctors_platform_logo.png') no-repeat center top;
     background-size: contain;
 }
+.fit-div {
+    padding-left: 100px;
+}
+.fit {
+    height: 260px;
+}
+.card-white-no-appointmnet {
+    width: 500px;
+    height: 200px;
+    background-color: white;
+    margin-bottom: 10px;
+    box-shadow: 11px 14px 9px -7px rgba(0, 0, 0, 0.12);
+}
+.col-centered {
+    float: none;
+    margin: 0 auto;
+    padding-top: 90px;
+}
 
 /* wait autoprefixer update to allow simple generation of high pixel density media query */
 @media only screen and (-webkit-min-device-pixel-ratio: 2),
-    only screen and (-moz-min-device-pixel-ratio: 2),
-    only screen and (-o-min-device-pixel-ratio: 2/1),
+    /*only screen and (-moz-min-device-pixel-ratio: 2),
+    */ only screen and (-o-min-device-pixel-ratio: 2/1),
     only screen and (min-resolution: 192dpi),
     only screen and (min-resolution: 2dppx) {
     .hipster {
