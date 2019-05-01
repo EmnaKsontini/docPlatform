@@ -7,7 +7,6 @@ export const calendarRoute: Route = {
     path: 'calendar',
     component: CalendarDocComponent,
     data: {
-        authorities: ['ROLE_ADMIN'],
         pageTitle: 'global.menu.account.history'
     },
     canActivate: [UserRouteAccessService]

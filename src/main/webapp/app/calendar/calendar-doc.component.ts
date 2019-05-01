@@ -8,6 +8,9 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AppointmentService } from 'app/entities/appointment';
 import { JhiAlertService } from 'ng-jhipster';
+import { User } from 'app/core';
+import { IDoctor } from 'app/shared/model/doctor.model';
+import { HttpResponse } from '@angular/common/http';
 
 @Component({
     selector: 'jhi-calendar',
@@ -55,6 +58,9 @@ export class CalendarDocComponent {
     activeDayIsOpen: any = false;
     appointments: Appointment[];
     appointment: Appointment;
+    myappointments: Appointment[];
+    user: User;
+    myDoctors: IDoctor[];
     constructor(
         private modal: NgbModal,
         private activatedRoute: ActivatedRoute,
@@ -65,13 +71,54 @@ export class CalendarDocComponent {
 
     ngOnInit() {
         this.appointments = [];
-        this.appointmentService.AppointmentList().subscribe(clubsList => {
-            this.appointments = clubsList;
-            this.onSucc();
+
+        this.appointmentService.getCurrentUser().subscribe((res: HttpResponse<User>) => {
+            console.log('login:' + res.body.login);
+            if (res.body.login == 'admin') {
+                console.log('admin');
+                this.appointmentService.getAllAppointmentList().subscribe(appointmentsList => {
+                    this.appointments = appointmentsList;
+                    this.onSucc1();
+                });
+            } else {
+                console.log('patient');
+                this.appointmentService.getAppointmentList().subscribe(appointmentsList => {
+                    this.myappointments = appointmentsList;
+                });
+                this.appointmentService.getAllDoctorNamesAppointments().subscribe(myDoctors => {
+                    this.myDoctors = myDoctors;
+                    this.onSucc();
+                });
+            }
         });
     }
 
     onSucc() {
+        for (let i = 0; i < this.myappointments.length; i++) {
+            console.log(this.myappointments[i].dateAndHour.toString());
+            this.date = new Date(this.myappointments[i].dateAndHour.toString());
+            (this.event = {
+                id: this.myappointments[i].id,
+                start: this.date,
+                end: this.date,
+                title: this.myappointments[i].dateAndHour.toString() + ' Doctor ' + this.myDoctors[i].name,
+                color: {
+                    primary: '#' + (0x1000000 + Math.random() * 0xffffff).toString(16).substr(1, 6),
+                    secondary: '#' + (0x1000000 + Math.random() * 0xffffff).toString(16).substr(1, 6)
+                },
+                actions: this.actions,
+                allDay: true,
+                resizable: {
+                    beforeStart: true,
+                    afterEnd: true
+                },
+                draggable: true
+            }),
+                this.addAnEvent(this.event);
+        }
+    }
+
+    onSucc1() {
         for (let i = 0; i < this.appointments.length; i++) {
             console.log(this.appointments[i].dateAndHour.toString());
             this.date = new Date(this.appointments[i].dateAndHour.toString());
@@ -119,7 +166,7 @@ export class CalendarDocComponent {
     handleEvent(action: string, event: CalendarEvent): void {
         action = action === 'Clicked' ? 'edit' : action;
         this.modalData = { event, action };
-        let url = this.router.createUrlTree(['/', { outlets: { popup: 'appointment/' + event.id + '/delete' } }]);
+        let url = this.router.createUrlTree(['/', 'appointment', { outlets: { popup: event + '/delete' } }]);
 
         if (action === 'edit') {
             url = this.router.createUrlTree(['/appointment', event.id, 'edit']);

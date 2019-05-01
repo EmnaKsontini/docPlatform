@@ -1,64 +1,65 @@
 <link href="https://unpkg.com/flatpickr@4.5.7/dist/flatpickr.css" rel="stylesheet">
-<div class ="row">
-    <jhi-calendar></jhi-calendar>
-            <div class="col-lg-6" [ngSwitch]="isAuthenticated()" >
-                <div class =row *ngSwitchCase="true">
-                  <h4 class="col-md-10 col-lg-10 mb-4 text-muted">Next Appointments </h4>
-                    <div class="col-md-2 col-lg-2 mb-4 ">
+<div class="col-lg-12">
+    <div class ="row">
+        <div class="col-lg-6" [ngSwitch]="isAuthenticated()" >
+            <div class ="row"*ngSwitchCase="true">
+                <h3 class="col-md-10 col-lg-10 mb-4 text-muted">Next Appointments </h3>
+                <div class="col-md-2 col-lg-2 mb-4 ">
                     <a class="btn btn-info">See All </a>
-                    </div>
                 </div>
-                <div class="col-lg-12 " *ngSwitchCase="true">
-                <div class="row">
-                      <div class="col-md-6 col-lg-6 mb-4" *ngFor="let appointment of appointments ; let i=index">
-                        <div class="card border-0 rounded-0">
-                            <div class="card-body">
-                            <div class="card-innerBody d-flex align-items-center">
-                            <div class="card-icon text-light">
-                                <i class="fa fa-heartbeat bg-warning" aria-hidden="true"></i>
-                            </div>
-                                <div class="ml-auto">
-                                <p class="card-title text-right text-muted">{{MyDoctorsAppointment[i].name}}</p>
-                                <h4 class="card-text text-right ">{{MyDoctorsAppointment[i].speciality}} </h4>
+                <div class="col-lg-12">
+                    <div *ngIf="appointmentIsFull; else notFull">
+                        <div class="row">
+                            <div class="col-md-6 col-lg-6 mb-4" *ngFor="let appointment of appointments ; let i=index">
+                                <div class="card border-0 rounded-0">
+                                    <div class="card-body">
+                                        <div class="card-innerBody d-flex align-items-center">
+                                            <div class="card-icon text-light">
+                                                <i class="fa fa-heartbeat bg-warning" aria-hidden="true"></i>
+                                            </div>
+                                            <div class="ml-auto">
+                                                <p class="card-title text-right text-muted">{{MyDoctorsAppointment[i].name}}</p>
+                                                <h4 class="card-text text-right ">{{MyDoctorsAppointment[i].speciality}} </h4>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="card-footer d-flex ">
+                                        <p class="text-muted"><i class="fas fa-calendar-alt"></i></p>
+                                        <p class="text-success ml-auto">
+                                            <i class="fa fa-caret-up" aria-hidden="true"></i>
+                                            {{appointment.dateAndHour}}
+                                        </p>
+                                    </div>
                                 </div>
                             </div>
-                            </div>
-                    <div class="card-footer d-flex ">
-                        <p class="text-muted"><i class="fas fa-calendar-alt"></i></p>
-                        <p class="text-success ml-auto">
-                            <i class="fa fa-caret-up" aria-hidden="true"></i>
-                            {{appointment.dateAndHour}}
-                        </p>
-                    </div>
                         </div>
-                      </div>
-                </div>
+                    </div>
+                    <ng-template #notFull>
+                        <div class="row card-white-no-appointmnet">
+                            <div class="col-centered">
+                                Still no appointments
+                            </div>
+                        </div>
+                    </ng-template>
                 </div>
 
-                <div class="col-md-12 mb-4" *ngSwitchCase="false">
+                <div class="col-lg-12" *ngSwitchCase="true">
                     <div class =row >
-                        <h1 class="col-md-10 col-lg-10 mb-4 "><strong>Welcome To Doctor's Platform   </strong></h1>
-                        <h5 class="col-md-10 col-lg-10 mb-4 "> Have a great experience with us  </h5>
-
-                    </div>
-                    </div>
-                <div class="col-md-12 mb-4" *ngSwitchCase="true">
-                    <div class =row >
-                        <h4 class="col-md-10 col-lg-10 mb-4 text-muted">Contact your doctors  </h4>
+                        <h3 class="col-md-10 col-lg-10 mb-4 text-muted">Contact your doctors  </h3>
                         <div class="col-md-2 col-lg-2 mb-4 ">
                             <a class="btn btn-info" >See All </a>
                         </div>
                     </div>
 
-                    <div class="card border-0 rounded-0">
+                    <div class="card border-0 rounded-0" *ngIf="mydoctorsIsFull; else doctornotFull" >
                         <div class="card-body">
 
                             <div class="table-responsive-md">
-                                <div class="table-responsive">
+                                <div class="table-responsive" >
                                     <table class="table table-striped">
                                         <thead>
                                         <tr>
-                                            <th ><i class="fas fa-phone"></i></th>
+                                            <th ><fa-icon [icon]="'phone-square'"></fa-icon></th>
                                             <th>Name</th>
                                             <th>Speciality</th>
                                             <th>phone Number</th>
@@ -79,51 +80,74 @@
                                         </tbody>
                                     </table>
                                 </div>
-                                </div>
+                            </div>
                         </div>
                     </div>
+                    <ng-template #doctornotFull>
+                        <div class="row card-white-no-appointmnet">
+                            <div class="col-centered">
+                                <div> Still no doctors </div>
+                                <a class="btn btn-info" routerLink="/doctor" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" >Search for a doctor</a>
+                            </div>
+                        </div>
+                    </ng-template>
 
                 </div>
+            </div>
+            <div class="col-md-12 mb-4" *ngSwitchCase="false">
+                <div class =row >
+                    <h1 class="col-md-10 col-lg-10 mb-4 "><strong>Welcome To Doctor's Platform   </strong></h1>
+                    <h5 class="col-md-10 col-lg-10 mb-4 "> Have a great experience with us  </h5>
+
                 </div>
+            </div>
+        </div>
 
-
-
-
-            <div class="col-lg-6">
-                <div class =row>
-                    <h4 class="col-md-10 col-lg-10 mb-4 text-muted">Tips </h4>
-                    <div class="col-md-2 col-lg-2 mb-4 ">
-                        <a class="btn btn-info" routerLink="/tip" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" >See All </a>
+        <div class="col-lg-6">
+            <div class="row">
+                <div class="col-lg-12 fit-div">
+                    <img class="fit" src="../../content/images/chibi_chansey_by_seviyummy-dbjeedv.png">
+                </div>
+                <div class="row">
+                    <h3 class="col-md-10 col-lg-10 mb-4 text-muted">Tips</h3>
+                    <div class="col-md-2 col-lg-2 mb-4">
+                        <a class="btn btn-info" routerLink="/tip" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" >See All</a>
                     </div>
                 </div>
 
-                <div class="col-lg-12 ">
-                <div class="row">
-                    <div class="col-md-6 col-lg-6 mb-6" *ngFor="let tip of tips ;trackBy: trackId">
-                        <div class="card mb-2">
-                            <a *ngIf="tip.image" (click)="openFile(tip.imageContentType, tip.image)">
-                                <img [src]="'data:' + tip.imageContentType + ';base64,' + tip.image" height="120" width="250" class="card-img-top" alt="tip image"/>
-                            </a>
+                <div class="col-lg-12">
+                    <div class="row" *ngIf="tipsIsFull; else tipsnotFull">
+                        <div class="col-md-6 col-lg-6 mb-6" *ngFor="let tip of tips ;trackBy: trackId">
+                            <div class="card mb-2">
+                                <a *ngIf="tip.image" (click)="openFile(tip.imageContentType, tip.image)">
+                                    <img [src]="'data:' + tip.imageContentType + ';base64,' + tip.image" height="120" width="250" class="card-img-top" alt="tip image"/>
+                                </a>
 
-                            <div class="card-body">
-                                <h4 class="card-title">{{tip.title}}</h4>
-                                <!--<p class="card-text">{{tip.content}}</p>-->
-                                <div class="btn-group flex-btn-group-container">
-                                    <button type="submit"
-                                            [routerLink]="['/tip', tip.id, 'view' ]"
-                                            class="btn btn-info btn-sm">
-                                        <fa-icon [icon]="'eye'"></fa-icon>
-                                        <span class="d-none d-md-inline" >Details</span>
-                                    </button>
+                                <div class="card-body">
+                                    <h4 class="card-title">{{tip.title}}</h4>
+                                    <!--<p class="card-text">{{tip.content}}</p>-->
+                                    <div class="btn-group flex-btn-group-container">
+                                        <button type="submit"
+                                                [routerLink]="['/tip', tip.id, 'view' ]"
+                                                class="btn btn-info btn-sm">
+                                            <fa-icon [icon]="'eye'"></fa-icon>
+                                            <span class="d-none d-md-inline" >Details</span>
+                                        </button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
+                    <ng-template #tipsnotFull>
+                        <div class="row card-white-no-appointmnet">
+                            <div class="col-centered">
+                                Still no tips
+                            </div>
+                        </div>
+                    </ng-template>
                 </div>
             </div>
+
+        </div>
+    </div>
 </div>
-
-
-
-

@@ -1,6 +1,9 @@
 import { Component, Output, EventEmitter, OnInit } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
+import { HttpResponse } from '@angular/common/http';
+import { AccountService, User } from 'app/core';
+import { AppointmentService } from 'app/entities/appointment';
 
 @Component({
     selector: 'jhi-sidebar',
@@ -12,10 +15,16 @@ export class SidebarComponent implements OnInit {
     collapsed: boolean;
     showMenu: string;
     pushRightClass: string;
+    name: string;
 
     @Output() collapsedEvent = new EventEmitter<boolean>();
 
-    constructor(private translate: TranslateService, public router: Router) {
+    constructor(
+        private translate: TranslateService,
+        public router: Router,
+        private appointmentService: AppointmentService,
+        private accountService: AccountService
+    ) {
         this.router.events.subscribe(val => {
             if (val instanceof NavigationEnd && window.innerWidth <= 992 && this.isToggled()) {
                 this.toggleSidebar();
@@ -24,10 +33,17 @@ export class SidebarComponent implements OnInit {
     }
 
     ngOnInit() {
+        this.name = '';
         this.isActive = false;
         this.collapsed = false;
         this.showMenu = '';
         this.pushRightClass = 'push-right';
+        this.appointmentService.getCurrentUser().subscribe((res: HttpResponse<User>) => {
+            console.log('login:' + res.body.login);
+            this.name = res.body.login;
+        });
+
+        console.log('login:' + this.name);
     }
 
     eventCalled() {
@@ -68,5 +84,9 @@ export class SidebarComponent implements OnInit {
 
     onLoggedout() {
         localStorage.removeItem('isLoggedin');
+    }
+
+    isAuthenticated() {
+        return this.accountService.isAuthenticated();
     }
 }

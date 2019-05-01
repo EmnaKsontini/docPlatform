@@ -15,7 +15,7 @@
 
     <label for="nameField">Your Message</label>
 
-    <input [(ngModel)]="formValue" (keyup.enter)="sendMessage()" type="text">
+    <input class="bg-white" [(ngModel)]="formValue" (keyup.enter)="sendMessage()" type="text">
 
     <button (click)="sendMessage()">Send</button>
 </div>

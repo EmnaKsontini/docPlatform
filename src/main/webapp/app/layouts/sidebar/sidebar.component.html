@@ -2,13 +2,13 @@
     <!-- sidebar: style can be found in sidebar.less -->
     <section id="sidebar" class="sidebar">
         <!-- Sidebar user panel -->
-        <div class="user-panel">
-            <div class="pull-left image">
+        <div class="user-panel" [ngSwitch]="isAuthenticated()">
+            <div class="pull-left image" *ngSwitchCase="true">
                 <img src="avatar.jpg" class="img-circle" alt="User Image">
             </div>
-            <div class="pull-left info">
-                <p>Patient's Name</p>
-                <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+            <div class="pull-left info" *ngSwitchCase="true">
+                <p >{{name}}</p>
+                <a href="#" *ngSwitchCase="true"><i class="fa fa-circle text-success"></i> Online</a>
             </div>
         </div>
         <!-- search form -->
@@ -49,7 +49,7 @@
                 </a>
             </li>
             <li class="treeview">
-                <a *jhiHasAnyAuthority="'ROLE_ADMIN'"  class="dropdown-item" routerLink="/calendar" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }"
+                <a  class="dropdown-item" routerLink="/calendar" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }"
                    routerLinkActive="active">
                     <i class="fa fa-calendar-o"></i>
                     <span>calendar</span>
