@@ -2,7 +2,7 @@ import { Component, Output, EventEmitter, OnInit } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { HttpResponse } from '@angular/common/http';
-import { User } from 'app/core';
+import { AccountService, User } from 'app/core';
 import { AppointmentService } from 'app/entities/appointment';
 
 @Component({
@@ -19,7 +19,12 @@ export class SidebarComponent implements OnInit {
 
     @Output() collapsedEvent = new EventEmitter<boolean>();
 
-    constructor(private translate: TranslateService, public router: Router, private appointmentService: AppointmentService) {
+    constructor(
+        private translate: TranslateService,
+        public router: Router,
+        private appointmentService: AppointmentService,
+        private accountService: AccountService
+    ) {
         this.router.events.subscribe(val => {
             if (val instanceof NavigationEnd && window.innerWidth <= 992 && this.isToggled()) {
                 this.toggleSidebar();
@@ -79,5 +84,9 @@ export class SidebarComponent implements OnInit {
 
     onLoggedout() {
         localStorage.removeItem('isLoggedin');
+    }
+
+    isAuthenticated() {
+        return this.accountService.isAuthenticated();
     }
 }
