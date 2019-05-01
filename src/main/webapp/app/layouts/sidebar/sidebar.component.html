@@ -6,7 +6,7 @@
             <div class="pull-left image">
                 <div [ngSwitch]="MyVar">
                     <img src="../../../content/images/blank-profile-picture-973460_640.png" class="img-circle" alt="User Image"*ngSwitchCase="false">
-                    <img src={{image}}  class="img-circle" alt="User Image"  *ngSwitchCase="true">
+                    <img src={{byteSize(image)}}  class="img-circle" alt="User Image"  *ngSwitchCase="true">
                 </div>
             </div>
             <div class="pull-left info">

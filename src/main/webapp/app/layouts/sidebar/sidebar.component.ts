@@ -7,6 +7,7 @@ import { User } from 'app/core';
 import { Request } from 'app/shared/model/request.model';
 import { Patient } from 'app/shared/model/patient.model';
 import { AppointmentService } from 'app/entities/appointment';
+import { JhiDataUtils } from 'ng-jhipster';
 
 @Component({
     selector: 'jhi-sidebar',
@@ -28,6 +29,7 @@ export class SidebarComponent implements OnInit {
         private translate: TranslateService,
         public router: Router,
         protected doctorService: DoctorService,
+        protected dataUtils: JhiDataUtils,
         private appointmentService: AppointmentService
     ) {
         this.router.events.subscribe(val => {
@@ -52,6 +54,7 @@ export class SidebarComponent implements OnInit {
         this.doctorService.getCurrentUser().subscribe((res: HttpResponse<Patient>) => {
             this.image = res.body.picture;
             this.MyVar = true;
+            console.log('image problem !!');
         });
     }
 
@@ -89,6 +92,9 @@ export class SidebarComponent implements OnInit {
 
     changeLang(language: string) {
         this.translate.use(language);
+    }
+    byteSize(field) {
+        return this.dataUtils.byteSize(field);
     }
 
     onLoggedout() {
