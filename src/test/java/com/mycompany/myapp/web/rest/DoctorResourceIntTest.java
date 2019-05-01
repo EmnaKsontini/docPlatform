@@ -12,7 +12,6 @@ import com.mycompany.myapp.service.DoctorService;
 import com.mycompany.myapp.service.dto.DoctorDTO;
 import com.mycompany.myapp.service.mapper.DoctorMapper;
 import com.mycompany.myapp.web.rest.errors.ExceptionTranslator;
-import com.mycompany.myapp.service.dto.DoctorCriteria;
 import com.mycompany.myapp.service.DoctorQueryService;
 
 import org.junit.Before;
@@ -119,7 +118,7 @@ public class DoctorResourceIntTest {
     @Before
     public void setup() {
         MockitoAnnotations.initMocks(this);
-        final DoctorResource doctorResource = new DoctorResource(doctorService, doctorQueryService,userRepository,patientRepository);
+        final DoctorResource doctorResource = new DoctorResource(doctorService, doctorQueryService,userRepository,patientRepository, doctorRepository);
         this.restDoctorMockMvc = MockMvcBuilders.standaloneSetup(doctorResource)
             .setCustomArgumentResolvers(pageableArgumentResolver)
             .setControllerAdvice(exceptionTranslator)
