@@ -30,6 +30,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.Base64Utils;
 import org.springframework.validation.Validator;
 
 import javax.persistence.EntityManager;
@@ -66,6 +67,11 @@ public class PatientResourceIntTest {
 
     private static final String DEFAULT_EMAIL = "te@h.ISpJL";
     private static final String UPDATED_EMAIL = "R@5r.BUmBe";
+
+    private static final byte[] DEFAULT_PICTURE = TestUtil.createByteArray(1, "0");
+    private static final byte[] UPDATED_PICTURE = TestUtil.createByteArray(1, "1");
+    private static final String DEFAULT_PICTURE_CONTENT_TYPE = "image/jpg";
+    private static final String UPDATED_PICTURE_CONTENT_TYPE = "image/png";
 
     @Autowired
     private PatientRepository patientRepository;
@@ -135,7 +141,9 @@ public class PatientResourceIntTest {
             .name(DEFAULT_NAME)
             .phoneNumber(DEFAULT_PHONE_NUMBER)
             .cin(DEFAULT_CIN)
-            .email(DEFAULT_EMAIL);
+            .email(DEFAULT_EMAIL)
+            .picture(DEFAULT_PICTURE)
+            .pictureContentType(DEFAULT_PICTURE_CONTENT_TYPE);
         return patient;
     }
 
@@ -164,6 +172,8 @@ public class PatientResourceIntTest {
         assertThat(testPatient.getPhoneNumber()).isEqualTo(DEFAULT_PHONE_NUMBER);
         assertThat(testPatient.getCin()).isEqualTo(DEFAULT_CIN);
         assertThat(testPatient.getEmail()).isEqualTo(DEFAULT_EMAIL);
+        assertThat(testPatient.getPicture()).isEqualTo(DEFAULT_PICTURE);
+        assertThat(testPatient.getPictureContentType()).isEqualTo(DEFAULT_PICTURE_CONTENT_TYPE);
 
         // Validate the Patient in Elasticsearch
         verify(mockPatientSearchRepository, times(1)).save(testPatient);
@@ -263,7 +273,9 @@ public class PatientResourceIntTest {
             .andExpect(jsonPath("$.[*].name").value(hasItem(DEFAULT_NAME.toString())))
             .andExpect(jsonPath("$.[*].phoneNumber").value(hasItem(DEFAULT_PHONE_NUMBER.intValue())))
             .andExpect(jsonPath("$.[*].cin").value(hasItem(DEFAULT_CIN.intValue())))
-            .andExpect(jsonPath("$.[*].email").value(hasItem(DEFAULT_EMAIL.toString())));
+            .andExpect(jsonPath("$.[*].email").value(hasItem(DEFAULT_EMAIL.toString())))
+            .andExpect(jsonPath("$.[*].pictureContentType").value(hasItem(DEFAULT_PICTURE_CONTENT_TYPE)))
+            .andExpect(jsonPath("$.[*].picture").value(hasItem(Base64Utils.encodeToString(DEFAULT_PICTURE))));
     }
     
     @SuppressWarnings({"unchecked"})
@@ -313,7 +325,9 @@ public class PatientResourceIntTest {
             .andExpect(jsonPath("$.name").value(DEFAULT_NAME.toString()))
             .andExpect(jsonPath("$.phoneNumber").value(DEFAULT_PHONE_NUMBER.intValue()))
             .andExpect(jsonPath("$.cin").value(DEFAULT_CIN.intValue()))
-            .andExpect(jsonPath("$.email").value(DEFAULT_EMAIL.toString()));
+            .andExpect(jsonPath("$.email").value(DEFAULT_EMAIL.toString()))
+            .andExpect(jsonPath("$.pictureContentType").value(DEFAULT_PICTURE_CONTENT_TYPE))
+            .andExpect(jsonPath("$.picture").value(Base64Utils.encodeToString(DEFAULT_PICTURE)));
     }
 
     @Test
@@ -574,7 +588,9 @@ public class PatientResourceIntTest {
             .andExpect(jsonPath("$.[*].name").value(hasItem(DEFAULT_NAME)))
             .andExpect(jsonPath("$.[*].phoneNumber").value(hasItem(DEFAULT_PHONE_NUMBER.intValue())))
             .andExpect(jsonPath("$.[*].cin").value(hasItem(DEFAULT_CIN.intValue())))
-            .andExpect(jsonPath("$.[*].email").value(hasItem(DEFAULT_EMAIL)));
+            .andExpect(jsonPath("$.[*].email").value(hasItem(DEFAULT_EMAIL)))
+            .andExpect(jsonPath("$.[*].pictureContentType").value(hasItem(DEFAULT_PICTURE_CONTENT_TYPE)))
+            .andExpect(jsonPath("$.[*].picture").value(hasItem(Base64Utils.encodeToString(DEFAULT_PICTURE))));
 
         // Check, that the count call also returns 1
         restPatientMockMvc.perform(get("/api/patients/count?sort=id,desc&" + filter))
@@ -625,7 +641,9 @@ public class PatientResourceIntTest {
             .name(UPDATED_NAME)
             .phoneNumber(UPDATED_PHONE_NUMBER)
             .cin(UPDATED_CIN)
-            .email(UPDATED_EMAIL);
+            .email(UPDATED_EMAIL)
+            .picture(UPDATED_PICTURE)
+            .pictureContentType(UPDATED_PICTURE_CONTENT_TYPE);
         PatientDTO patientDTO = patientMapper.toDto(updatedPatient);
 
         restPatientMockMvc.perform(put("/api/patients")
@@ -641,6 +659,8 @@ public class PatientResourceIntTest {
         assertThat(testPatient.getPhoneNumber()).isEqualTo(UPDATED_PHONE_NUMBER);
         assertThat(testPatient.getCin()).isEqualTo(UPDATED_CIN);
         assertThat(testPatient.getEmail()).isEqualTo(UPDATED_EMAIL);
+        assertThat(testPatient.getPicture()).isEqualTo(UPDATED_PICTURE);
+        assertThat(testPatient.getPictureContentType()).isEqualTo(UPDATED_PICTURE_CONTENT_TYPE);
 
         // Validate the Patient in Elasticsearch
         verify(mockPatientSearchRepository, times(1)).save(testPatient);
@@ -704,7 +724,9 @@ public class PatientResourceIntTest {
             .andExpect(jsonPath("$.[*].name").value(hasItem(DEFAULT_NAME)))
             .andExpect(jsonPath("$.[*].phoneNumber").value(hasItem(DEFAULT_PHONE_NUMBER.intValue())))
             .andExpect(jsonPath("$.[*].cin").value(hasItem(DEFAULT_CIN.intValue())))
-            .andExpect(jsonPath("$.[*].email").value(hasItem(DEFAULT_EMAIL)));
+            .andExpect(jsonPath("$.[*].email").value(hasItem(DEFAULT_EMAIL)))
+            .andExpect(jsonPath("$.[*].pictureContentType").value(hasItem(DEFAULT_PICTURE_CONTENT_TYPE)))
+            .andExpect(jsonPath("$.[*].picture").value(hasItem(Base64Utils.encodeToString(DEFAULT_PICTURE))));
     }
 
     @Test

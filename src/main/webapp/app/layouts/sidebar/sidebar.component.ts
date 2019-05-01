@@ -1,6 +1,11 @@
 import { Component, Output, EventEmitter, OnInit } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
+import { DoctorService } from 'app/entities/doctor';
+import { HttpResponse } from '@angular/common/http';
+import { User } from 'app/core';
+import { Request } from 'app/shared/model/request.model';
+import { Patient } from 'app/shared/model/patient.model';
 
 @Component({
     selector: 'jhi-sidebar',
@@ -12,10 +17,12 @@ export class SidebarComponent implements OnInit {
     collapsed: boolean;
     showMenu: string;
     pushRightClass: string;
+    image: any;
+    MyVar = false;
 
     @Output() collapsedEvent = new EventEmitter<boolean>();
 
-    constructor(private translate: TranslateService, public router: Router) {
+    constructor(private translate: TranslateService, public router: Router, protected doctorService: DoctorService) {
         this.router.events.subscribe(val => {
             if (val instanceof NavigationEnd && window.innerWidth <= 992 && this.isToggled()) {
                 this.toggleSidebar();
@@ -28,6 +35,10 @@ export class SidebarComponent implements OnInit {
         this.collapsed = false;
         this.showMenu = '';
         this.pushRightClass = 'push-right';
+        this.doctorService.getCurrentUser().subscribe((res: HttpResponse<Patient>) => {
+            this.image = res.body.picture;
+            this.MyVar = true;
+        });
     }
 
     eventCalled() {

@@ -61,6 +61,23 @@
                         </small>
                     </div>
                 </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="doctorsPlatformApp.patient.picture" for="field_picture">Picture</label>
+                    <div>
+                        <img [src]="'data:' + patient.pictureContentType + ';base64,' + patient.picture" style="max-height: 100px;" *ngIf="patient.picture" alt="patient image"/>
+                        <div *ngIf="patient.picture" class="form-text text-danger clearfix">
+                            <span class="pull-left">{{patient.pictureContentType}}, {{byteSize(patient.picture)}}</span>
+                            <button type="button" (click)="clearInputImage('picture', 'pictureContentType', 'fileImage')" class="btn btn-secondary btn-xs pull-right">
+                                <fa-icon [icon]="'times'"></fa-icon>
+                            </button>
+                        </div>
+                        <input type="file" id="file_picture" (change)="setFileData($event, patient, 'picture', true)" accept="image/*" jhiTranslate="entity.action.addimage"/>
+                    </div>
+                    <input type="hidden" class="form-control" name="picture" id="field_picture"
+                        [(ngModel)]="patient.picture" />
+                    <input type="hidden" class="form-control" name="pictureContentType" id="field_pictureContentType"
+                        [(ngModel)]="patient.pictureContentType" />
+                </div>
 
                 <div class="form-group">
                     <label jhiTranslate="doctorsPlatformApp.patient.doctor" for="field_doctor">Doctor</label>

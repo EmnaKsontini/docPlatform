@@ -34,6 +34,7 @@
             <th jhiSortBy="phoneNumber"><span jhiTranslate="doctorsPlatformApp.patient.phoneNumber">Phone Number</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th jhiSortBy="cin"><span jhiTranslate="doctorsPlatformApp.patient.cin">Cin</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th jhiSortBy="email"><span jhiTranslate="doctorsPlatformApp.patient.email">Email</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="picture"><span jhiTranslate="doctorsPlatformApp.patient.picture">Picture</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th></th>
             </tr>
             </thead>
@@ -44,6 +45,12 @@
                 <td>{{patient.phoneNumber}}</td>
                 <td>{{patient.cin}}</td>
                 <td>{{patient.email}}</td>
+                <td>
+                    <a *ngIf="patient.picture" (click)="openFile(patient.pictureContentType, patient.picture)">
+                        <img [src]="'data:' + patient.pictureContentType + ';base64,' + patient.picture" style="max-height: 30px;" alt="patient image"/>
+                    </a>
+                    <span *ngIf="patient.picture">{{patient.pictureContentType}}, {{byteSize(patient.picture)}}</span>
+                </td>
                 <td class="text-right">
                     <div class="btn-group flex-btn-group-container">
                         <button type="submit"

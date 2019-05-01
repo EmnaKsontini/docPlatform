@@ -1,9 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ElementRef } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { HttpResponse, HttpErrorResponse } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { filter, map } from 'rxjs/operators';
-import { JhiAlertService } from 'ng-jhipster';
+import { JhiAlertService, JhiDataUtils } from 'ng-jhipster';
 import { IPatient } from 'app/shared/model/patient.model';
 import { PatientService } from './patient.service';
 import { IDoctor } from 'app/shared/model/doctor.model';
@@ -20,9 +20,11 @@ export class PatientUpdateComponent implements OnInit {
     doctors: IDoctor[];
 
     constructor(
+        protected dataUtils: JhiDataUtils,
         protected jhiAlertService: JhiAlertService,
         protected patientService: PatientService,
         protected doctorService: DoctorService,
+        protected elementRef: ElementRef,
         protected activatedRoute: ActivatedRoute
     ) {}
 
@@ -38,6 +40,22 @@ export class PatientUpdateComponent implements OnInit {
                 map((response: HttpResponse<IDoctor[]>) => response.body)
             )
             .subscribe((res: IDoctor[]) => (this.doctors = res), (res: HttpErrorResponse) => this.onError(res.message));
+    }
+
+    byteSize(field) {
+        return this.dataUtils.byteSize(field);
+    }
+
+    openFile(contentType, field) {
+        return this.dataUtils.openFile(contentType, field);
+    }
+
+    setFileData(event, entity, field, isImage) {
+        this.dataUtils.setFileData(event, entity, field, isImage);
+    }
+
+    clearInputImage(field: string, fieldContentType: string, idInput: string) {
+        this.dataUtils.clearInputImage(this.patient, this.elementRef, field, fieldContentType, idInput);
     }
 
     previousState() {
