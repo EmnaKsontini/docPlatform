@@ -55,7 +55,7 @@ spring:
         type: com.zaxxer.hikari.HikariDataSource
         url: jdbc:mysql://localhost:3306/doctorsPlatform?useUnicode=true&characterEncoding=utf8&useSSL=false&useLegacyDatetimeCode=false&serverTimezone=UTC
         username: root
-        password:
+        password: 24937260meriem
         hikari:
             poolName: Hikari
             auto-commit: false

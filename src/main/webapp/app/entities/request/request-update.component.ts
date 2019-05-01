@@ -5,7 +5,7 @@ import { Observable } from 'rxjs';
 import { filter, map } from 'rxjs/operators';
 import * as moment from 'moment';
 import { JhiAlertService } from 'ng-jhipster';
-import { IRequest } from 'app/shared/model/request.model';
+import { IRequest, Request } from 'app/shared/model/request.model';
 import { RequestService } from './request.service';
 import { IPatient } from 'app/shared/model/patient.model';
 import { PatientService } from 'app/entities/patient';
@@ -13,6 +13,7 @@ import { IDoctor } from 'app/shared/model/doctor.model';
 import { DoctorService } from 'app/entities/doctor';
 import { IAppointment } from 'app/shared/model/appointment.model';
 import { AppointmentService } from 'app/entities/appointment';
+import { User } from 'app/core';
 
 @Component({
     selector: 'jhi-request-update',
@@ -20,6 +21,7 @@ import { AppointmentService } from 'app/entities/appointment';
 })
 export class RequestUpdateComponent implements OnInit {
     request: IRequest;
+    request2: IRequest;
     isSaving: boolean;
 
     patients: IPatient[];
@@ -79,6 +81,23 @@ export class RequestUpdateComponent implements OnInit {
         } else {
             this.subscribeToSaveResponse(this.requestService.create(this.request));
         }
+    }
+    saveAutomatic() {
+        this.isSaving = true;
+
+        this.requestService.getCurrentUser().subscribe((res: HttpResponse<User>) => {
+            this.request2 = new Request(
+                null,
+                this.request.date1,
+                this.request.date2,
+                this.request.date3,
+                false,
+                res.body.id,
+                this.request.doctorId
+            );
+            //this.requestService.create(this.request2).subscribe();
+            this.subscribeToSaveResponse(this.requestService.create(this.request2));
+        });
     }
 
     protected subscribeToSaveResponse(result: Observable<HttpResponse<IRequest>>) {
