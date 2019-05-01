@@ -1,0 +1,14 @@
+table {
+    border-radius: 10px;
+}
+td > *,
+th > * {
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+button {
+    border-radius: 10px;
+    font-size: 10px;
+    font-weight: bold;
+}
