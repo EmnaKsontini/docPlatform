@@ -1,4 +1,9 @@
 package com.mycompany.myapp.web.rest;
+import com.mycompany.myapp.domain.Doctor;
+import com.mycompany.myapp.domain.Patient;
+import com.mycompany.myapp.domain.User;
+import com.mycompany.myapp.repository.PatientRepository;
+import com.mycompany.myapp.repository.UserRepository;
 import com.mycompany.myapp.service.DoctorService;
 import com.mycompany.myapp.web.rest.errors.BadRequestAlertException;
 import com.mycompany.myapp.web.rest.util.HeaderUtil;
@@ -14,6 +19,9 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -39,11 +47,18 @@ public class DoctorResource {
 
     private final DoctorService doctorService;
 
+    private final UserRepository userRepository;
+
+    private final PatientRepository patientRepository;
+
+
     private final DoctorQueryService doctorQueryService;
 
-    public DoctorResource(DoctorService doctorService, DoctorQueryService doctorQueryService) {
+    public DoctorResource(DoctorService doctorService, DoctorQueryService doctorQueryService,UserRepository userRepository,PatientRepository patientRepository) {
         this.doctorService = doctorService;
         this.doctorQueryService = doctorQueryService;
+        this.userRepository=userRepository;
+        this.patientRepository=patientRepository;
     }
 
     /**
@@ -101,6 +116,47 @@ public class DoctorResource {
         return ResponseEntity.ok().headers(headers).body(page.getContent());
     }
 
+
+    @PostMapping("/doctorByName")
+    public ResponseEntity<Doctor> getAllDoctors(@RequestBody String name) {
+        //log.debug("REST request to get Doctors by criteria: {}", criteria);
+        //Page<DoctorDTO> page = doctorQueryService.findByCriteria(criteria, pageable);
+        //HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/doctors");s
+        System.out.println("ismoo "+ name);
+
+        Doctor doc=null;
+        List<Doctor> doctors=doctorService.findAllDoctors();
+        for (int i=0; i<doctors.size() ; i++)
+        {
+            if(doctors.get(i).getName().equals(name))
+            {
+                doc=doctors.get(i);
+                break;
+            }
+        }
+        return ResponseEntity.ok().body(doc);
+    }
+    public String getCurrentUserLogin() {
+        org.springframework.security.core.context.SecurityContext securityContext = SecurityContextHolder.getContext();
+        Authentication authentication = securityContext.getAuthentication();
+        String login = null;
+        if (authentication != null)
+            if (authentication.getPrincipal() instanceof UserDetails)
+                login = ((UserDetails) authentication.getPrincipal()).getUsername();
+            else if (authentication.getPrincipal() instanceof String)
+                login = (String) authentication.getPrincipal();
+
+        return login;
+    }
+
+    @GetMapping("/getCurrentUser")
+    public ResponseEntity<Patient> getCurrentUser() {
+        User user=userRepository.findOneByLogin(getCurrentUserLogin()).get();
+        Long l= new Long(user.getId());
+        Patient patient=patientRepository.findOneByCin(l).get();
+        return ResponseEntity.ok().body(patient);
+    }
+
     /**
     * GET  /doctors/count : count all the doctors.
     *
@@ -115,7 +171,7 @@ public class DoctorResource {
 
     /**
      * GET  /doctors/:id : get the "id" doctor.
-     *
+     *f
      * @param id the id of the doctorDTO to retrieve
      * @return the ResponseEntity with status 200 (OK) and with body the doctorDTO, or with status 404 (Not Found)
      */

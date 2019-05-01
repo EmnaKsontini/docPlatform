@@ -1,12 +1,15 @@
 package com.mycompany.myapp.web.rest;
 
 import com.mycompany.myapp.config.Constants;
-import com.mycompany.myapp.domain.User;
+import com.mycompany.myapp.domain.*;
+import com.mycompany.myapp.repository.DoctorRepository;
+import com.mycompany.myapp.repository.PatientRepository;
+import com.mycompany.myapp.repository.RequestRepository;
 import com.mycompany.myapp.repository.UserRepository;
 import com.mycompany.myapp.repository.search.UserSearchRepository;
 import com.mycompany.myapp.security.AuthoritiesConstants;
-import com.mycompany.myapp.service.MailService;
-import com.mycompany.myapp.service.UserService;
+import com.mycompany.myapp.security.SecurityUtils;
+import com.mycompany.myapp.service.*;
 import com.mycompany.myapp.service.dto.UserDTO;
 import com.mycompany.myapp.web.rest.errors.BadRequestAlertException;
 import com.mycompany.myapp.web.rest.errors.EmailAlreadyUsedException;
@@ -15,6 +18,7 @@ import com.mycompany.myapp.web.rest.util.HeaderUtil;
 import com.mycompany.myapp.web.rest.util.PaginationUtil;
 import io.github.jhipster.web.util.ResponseUtil;
 
+import io.micrometer.core.annotation.Timed;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
@@ -32,6 +36,7 @@ import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
+import static com.mycompany.myapp.domain.Request_.patient;
 import static org.elasticsearch.index.query.QueryBuilders.*;
 
 /**
@@ -70,13 +75,36 @@ public class UserResource {
 
     private final MailService mailService;
 
+
+
+    private final RequestService requestService;
+
+    private final DoctorRepository doctorRepository;
+
+    private final AppointmentService appointmentService;
+
+    private final PatientRepository patientRepository;
+
+    private final RequestRepository requestRepository;
+
+
+
+
+
+
     private final UserSearchRepository userSearchRepository;
 
-    public UserResource(UserService userService, UserRepository userRepository, MailService mailService, UserSearchRepository userSearchRepository) {
+    public UserResource(UserService userService, UserRepository userRepository, MailService mailService, RequestService requestService, DoctorRepository doctorRepository, AppointmentService appointmentService, PatientRepository patientRepository, RequestRepository requestRepository, UserSearchRepository userSearchRepository) {
 
         this.userService = userService;
         this.userRepository = userRepository;
         this.mailService = mailService;
+
+        this.requestService = requestService;
+        this.doctorRepository = doctorRepository;
+        this.appointmentService = appointmentService;
+        this.patientRepository = patientRepository;
+        this.requestRepository = requestRepository;
         this.userSearchRepository = userSearchRepository;
     }
 
@@ -106,12 +134,14 @@ public class UserResource {
             throw new EmailAlreadyUsedException();
         } else {
             User newUser = userService.createUser(userDTO);
+
             mailService.sendCreationEmail(newUser);
             return ResponseEntity.created(new URI("/api/users/" + newUser.getLogin()))
                 .headers(HeaderUtil.createAlert( "userManagement.created", newUser.getLogin()))
                 .body(newUser);
         }
     }
+
 
     /**
      * PUT /users : Updates an existing User.
@@ -202,4 +232,80 @@ public class UserResource {
             .stream(userSearchRepository.search(queryStringQuery(query)).spliterator(), false)
             .collect(Collectors.toList());
     }
+
+    @GetMapping("/user/MyDoctors")
+    @Timed
+    public List<Doctor> getDoctors() {
+        String userLogin = SecurityUtils.getCurrentUserLogin().get();
+        User currentUser = userService.getUserWithAuthoritiesByLogin(userLogin).get();
+        List<Request> requests= requestService.findAll();
+        List<Doctor> result = new ArrayList<>();
+        log.debug(currentUser.getLogin());
+
+        for (Request request : requests ){
+            log.debug(request.getPatient().getName() , "allll");
+            if (request.getPatient().getCin()==currentUser.getId()){
+                log.debug(request.getPatient().getName());
+                Long id = request.getDoctor().getId();
+                Doctor doctor = doctorRepository.findById(id).get();
+                result.add(doctor);
+            }
+        }
+        return result;
+    }
+
+    @GetMapping("/user/MyAppointments")
+    @Timed
+    public List<Appointment> getAppointments() {
+        String userLogin = SecurityUtils.getCurrentUserLogin().get();
+        User currentUser = userService.getUserWithAuthoritiesByLogin(userLogin).get();
+        List<Appointment> appointments= appointmentService.findAll();
+        List<Appointment> result = new ArrayList<>();
+        log.debug(currentUser.getLogin());
+
+        for (Appointment appointment : appointments ){
+
+            //Patient patient = patientRepository.findOneWithEagerRelationships(appointment.getRequest().getPatient().getId()).get();
+            Patient patient = appointment.getRequest().getPatient();
+            log.debug("here !!!");
+            log.debug(patient.toString());
+
+
+            if (patient.getCin()==currentUser.getId()){
+                result.add(appointment);
+            }
+        }
+        return result;
+    }
+
+    @GetMapping("/user/MyAppointmentsDoctor")
+    @Timed
+    public List<Doctor> getAppointmentDoctorName() {
+        String userLogin = SecurityUtils.getCurrentUserLogin().get();
+        User currentUser = userService.getUserWithAuthoritiesByLogin(userLogin).get();
+        List<Appointment> appointments= appointmentService.findAll();
+        List<Doctor> result = new ArrayList<>();
+        //log.debug(currentUser.getLogin());
+
+        for (Appointment appointment : appointments ){
+
+            //Patient patient = patientRepository.findOneWithEagerRelationships(appointment.getRequest().getPatient().getId()).get();
+            Patient patient = appointment.getRequest().getPatient();
+            log.debug("here !!!");
+            log.debug(patient.toString());
+
+
+            if (patient.getCin()==currentUser.getId()){
+                result.add(appointment.getRequest().getDoctor());
+                log.debug("calling doctor details !!!!!!!");
+                log.debug(appointment.getRequest().getDoctor().toString());
+
+            }
+        }
+        return result;
+    }
+
+
+
+
 }

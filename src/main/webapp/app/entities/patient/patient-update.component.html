@@ -10,21 +10,6 @@
                         [(ngModel)]="patient.id" readonly />
                 </div>
                 <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="doctorsPlatformApp.patient.cin" for="field_cin">Cin</label>
-                    <input type="number" class="form-control" name="cin" id="field_cin"
-                        [(ngModel)]="patient.cin" required/>
-                    <div [hidden]="!(editForm.controls.cin?.dirty && editForm.controls.cin?.invalid)">
-                        <small class="form-text text-danger"
-                        [hidden]="!editForm.controls.cin?.errors?.required" jhiTranslate="entity.validation.required">
-                        This field is required.
-                        </small>
-                        <small class="form-text text-danger"
-                            [hidden]="!editForm.controls.cin?.errors?.number" jhiTranslate="entity.validation.number">
-                            This field should be a number.
-                        </small>
-                    </div>
-                </div>
-                <div class="form-group">
                     <label class="form-control-label" jhiTranslate="doctorsPlatformApp.patient.name" for="field_name">Name</label>
                     <input type="text" class="form-control" name="name" id="field_name"
                         [(ngModel)]="patient.name" required/>
@@ -32,21 +17,6 @@
                         <small class="form-text text-danger"
                         [hidden]="!editForm.controls.name?.errors?.required" jhiTranslate="entity.validation.required">
                         This field is required.
-                        </small>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="doctorsPlatformApp.patient.email" for="field_email">Email</label>
-                    <input type="text" class="form-control" name="email" id="field_email"
-                        [(ngModel)]="patient.email" required pattern="^[a-zA-Z0-9]*@*.com"/>
-                    <div [hidden]="!(editForm.controls.email?.dirty && editForm.controls.email?.invalid)">
-                        <small class="form-text text-danger"
-                        [hidden]="!editForm.controls.email?.errors?.required" jhiTranslate="entity.validation.required">
-                        This field is required.
-                        </small>
-                        <small class="form-text text-danger"
-                            [hidden]="!editForm.controls.email?.errors?.pattern" jhiTranslate="entity.validation.pattern" [translateValues]="{ pattern: 'Email' }">
-                            This field should follow pattern for "Email".
                         </small>
                     </div>
                 </div>
@@ -65,7 +35,39 @@
                         </small>
                     </div>
                 </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="doctorsPlatformApp.patient.cin" for="field_cin">Cin</label>
+                    <input type="number" class="form-control" name="cin" id="field_cin"
+                        [(ngModel)]="patient.cin" required/>
+                    <div [hidden]="!(editForm.controls.cin?.dirty && editForm.controls.cin?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.cin?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                            [hidden]="!editForm.controls.cin?.errors?.number" jhiTranslate="entity.validation.number">
+                            This field should be a number.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="doctorsPlatformApp.patient.email" for="field_email">Email</label>
+                    <input type="text" class="form-control" name="email" id="field_email"
+                        [(ngModel)]="patient.email" pattern="^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$"/>
+                    <div [hidden]="!(editForm.controls.email?.dirty && editForm.controls.email?.invalid)">
+                        <small class="form-text text-danger"
+                            [hidden]="!editForm.controls.email?.errors?.pattern" jhiTranslate="entity.validation.pattern" [translateValues]="{ pattern: 'Email' }">
+                            This field should follow pattern for "Email".
+                        </small>
+                    </div>
+                </div>
 
+                <div class="form-group">
+                    <label jhiTranslate="doctorsPlatformApp.patient.doctor" for="field_doctor">Doctor</label>
+                    <select class="form-control" id="field_doctor" multiple name="doctor" [(ngModel)]="patient.doctors">
+                        <option [ngValue]="getSelected(patient.doctors, doctorOption)" *ngFor="let doctorOption of doctors; trackBy: trackDoctorById">{{doctorOption.id}}</option>
+                    </select>
+                </div>
             </div>
             <div>
                 <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">

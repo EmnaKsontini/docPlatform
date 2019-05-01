@@ -1,0 +1,36 @@
+@keyframes focus-shadow-pulse-inset {
+    0% {
+        box-shadow: inset 0 0 0 3px rgba(0, 120, 212, 0.35);
+        box-shadow: inset 0 0 0 3px rgba(var(--palette-primary, 0, 120, 212), 0.35);
+    }
+    50% {
+        box-shadow: inset 0 0 0 3px rgba(0, 120, 212, 0.15);
+        box-shadow: inset 0 0 0 3px rgba(var(--palette-primary, 0, 120, 212), 0.15);
+    }
+    100% {
+        box-shadow: inset 0 0 0 3px rgba(0, 120, 212, 0.35);
+        box-shadow: inset 0 0 0 3px rgba(var(--palette-primary, 0, 120, 212), 0.35);
+    }
+}
+.accordion-root .accordion-item {
+    padding-bottom: 20px;
+}
+.accordion-root .accordion-item .accordion-header {
+    border-bottom: 1px;
+    border-bottom-color: rgba(234, 234, 234, 1) solid;
+    border-bottom-color: rgba(var(--palette-neutral-8, 234, 234, 234), 1) solid;
+    width: 100%;
+    font-size: 18px;
+    padding: 8px;
+    font-weight: 300;
+    height: 40px;
+    justify-content: flex-start;
+}
+.accordion-root .accordion-item .accordion-header:hover {
+    background-color: rgba(244, 244, 244, 1);
+    background-color: rgba(var(--palette-neutral-4, 244, 244, 244), 1);
+}
+.accordion-root .accordion-item .accordion-header .accordion-chevron {
+    padding-right: 8px;
+    font-size: 12px;
+}

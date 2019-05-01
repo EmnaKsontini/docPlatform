@@ -26,10 +26,17 @@ export class RequestService {
             .pipe(map((res: EntityResponseType) => this.convertDateFromServer(res)));
     }
 
+    createBot(request: IRequest): Observable<EntityResponseType> {
+        const copy = this.convertDateFromClient(request);
+        return this.http
+            .post<IRequest>(this.resourceUrl, copy, { observe: 'response' })
+            .pipe(map((res: EntityResponseType) => this.convertDateFromServer(res)));
+    }
+
     update(request: IRequest): Observable<EntityResponseType> {
         const copy = this.convertDateFromClient(request);
         return this.http
-            .put<IRequest>(this.resourceUrl, copy, { observe: 'response' })
+            .put<IRequest>(SERVER_API_URL + 'createBot', copy, { observe: 'response' })
             .pipe(map((res: EntityResponseType) => this.convertDateFromServer(res)));
     }
 
