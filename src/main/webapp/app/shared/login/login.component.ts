@@ -73,7 +73,6 @@ export class JhiLoginModalComponent implements AfterViewInit {
             .catch(() => {
                 this.authenticationError = true;
             });
-        window.location.reload();
     }
 
     register() {
