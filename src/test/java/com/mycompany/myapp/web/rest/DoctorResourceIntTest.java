@@ -118,7 +118,7 @@ public class DoctorResourceIntTest {
     @Before
     public void setup() {
         MockitoAnnotations.initMocks(this);
-        final DoctorResource doctorResource = new DoctorResource(doctorService, doctorQueryService,userRepository,patientRepository, doctorRepository);
+        final DoctorResource doctorResource = new DoctorResource(doctorService, doctorQueryService,userRepository,patientRepository);
         this.restDoctorMockMvc = MockMvcBuilders.standaloneSetup(doctorResource)
             .setCustomArgumentResolvers(pageableArgumentResolver)
             .setControllerAdvice(exceptionTranslator)
