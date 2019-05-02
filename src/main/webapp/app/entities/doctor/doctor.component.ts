@@ -12,7 +12,6 @@ import { AccountService } from 'app/core';
 import { ITEMS_PER_PAGE } from 'app/shared';
 import { DoctorService } from './doctor.service';
 import { FormControl } from '@angular/forms';
-import { google } from '@agm/core/services/google-maps-types';
 
 @Component({
     selector: 'jhi-doctor',

@@ -1,0 +1,33 @@
+.shadow-div {
+    box-shadow: -9px 6px 5px -2px rgba(0, 0, 0, 0.12);
+    background-color: red;
+}
+.margin-top {
+    margin-top: 5px;
+}
+table {
+    background-color: white;
+    margin-bottom: 0;
+}
+td > *,
+th > * {
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+button {
+    border-radius: 10px;
+    font-size: 10px;
+    font-weight: bold;
+    margin-right: 5px;
+}
+
+th {
+    background-color: #3c8dbc;
+    color: white;
+}
+
+a {
+    color: #6e6e6e;
+    font-weight: normal;
+}
