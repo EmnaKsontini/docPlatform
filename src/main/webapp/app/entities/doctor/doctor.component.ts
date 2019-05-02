@@ -16,7 +16,7 @@ import { FormControl } from '@angular/forms';
 @Component({
     selector: 'jhi-doctor',
     templateUrl: './doctor.component.html',
-    styleUrls: ['doctor.css']
+    styleUrls: ['myDoctor.scss']
 })
 export class DoctorComponent implements OnInit, OnDestroy {
     public latitude: number;
