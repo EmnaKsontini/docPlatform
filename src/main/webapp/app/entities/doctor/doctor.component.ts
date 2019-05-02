@@ -12,7 +12,6 @@ import { AccountService } from 'app/core';
 import { ITEMS_PER_PAGE } from 'app/shared';
 import { DoctorService } from './doctor.service';
 import { FormControl } from '@angular/forms';
-import { google } from '@agm/core/services/google-maps-types';
 
 @Component({
     selector: 'jhi-doctor',
@@ -162,7 +161,7 @@ export class DoctorComponent implements OnInit, OnDestroy {
             });
             console.log(typeof autocomplete);
             console.log(autocomplete);
-            console.log('heer!');
+            console.log('heere!');
 
             autocomplete.addListener('place_changed', () => {
                 this.ngZone.run(() => {
@@ -193,7 +192,7 @@ export class DoctorComponent implements OnInit, OnDestroy {
     @ViewChild('Mysearch')
     public MysearchElementRef: ElementRef;
 
-    getMarker() {
+    /* getMarker() {
         this.mapsAPILoader.load().then(() => {
             let autocomplete = new google.maps.places.Autocomplete(this.MysearchElementRef.nativeElement, {
                 types: ['address']
@@ -213,7 +212,7 @@ export class DoctorComponent implements OnInit, OnDestroy {
                 });
             });
         });
-    }
+    }*/
 
     ngOnDestroy() {
         this.eventManager.destroy(this.eventSubscriber);
