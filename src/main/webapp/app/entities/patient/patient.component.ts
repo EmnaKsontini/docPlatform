@@ -13,7 +13,8 @@ import { PatientService } from './patient.service';
 
 @Component({
     selector: 'jhi-patient',
-    templateUrl: './patient.component.html'
+    templateUrl: './patient.component.html',
+    styleUrls: ['patient.scss']
 })
 export class PatientComponent implements OnInit, OnDestroy {
     currentAccount: any;

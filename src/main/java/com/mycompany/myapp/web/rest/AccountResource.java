@@ -90,7 +90,7 @@ public class AccountResource {
         {      System.out.println("hereo");
             PatientDTO patient = new PatientDTO();
             patient.setCin(user.getId());
-            patient.setName(user.getFirstName()+" "+user .getLastName());
+            patient.setName(user.getLogin());
             patient.setEmail(user.getEmail());
             patient.setPhoneNumber(216000000l);
             patientService.save(patient);
