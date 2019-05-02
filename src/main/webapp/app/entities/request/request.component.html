@@ -25,9 +25,9 @@
         </div>
     </div>
     <br/>
-    <div class="table-responsive" *ngIf="requests">
-        <table class="table table-striped table-dark">
-            <thead>
+    <div class="shadow-div table-responsive" *ngIf="requests">
+        <table class="table">
+            <thead class="">
             <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
             <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th jhiSortBy="date1"><span jhiTranslate="doctorsPlatformApp.request.date1">Date 1</span> <fa-icon [icon]="'sort'"></fa-icon></th>
@@ -78,8 +78,8 @@
                             <fa-icon [icon]="'times'"></fa-icon>
                             <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
                         </button>
-                        <button type="submit"
-                                [routerLink]="['/request', 'new' ]"
+                        <button *jhiHasAnyAuthority="'ROLE_ADMIN'" type="submit"
+                                [routerLink]="['/appointment', 'new' ]"
                                 class="btn btn-warning btn-sm">
                             <fa-icon [icon]="'check'"></fa-icon>
                             <span class="d-none d-md-inline">make an appointment</span>
@@ -90,7 +90,7 @@
             </tbody>
         </table>
     </div>
-    <div *ngIf="requests && requests.length">
+    <div class="margin-top" *ngIf="requests && requests.length">
         <div class="row justify-content-center">
             <jhi-item-count [page]="page" [total]="totalItems" [maxSize]="5" [itemsPerPage]="itemsPerPage"></jhi-item-count>
         </div>
