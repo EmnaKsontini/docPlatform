@@ -25,6 +25,7 @@ import {
     faThList,
     faUserPlus,
     faRoad,
+    faCheck,
     faTachometerAlt,
     faHeart,
     faList,
@@ -51,6 +52,7 @@ import {
 
 // Adds the SVG icon to the library so you can use it in your page
 library.add(faUser);
+library.add(faCheck);
 library.add(faSort);
 library.add(faSortUp);
 library.add(faSortDown);

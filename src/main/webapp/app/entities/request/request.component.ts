@@ -13,7 +13,8 @@ import { RequestService } from './request.service';
 
 @Component({
     selector: 'jhi-request',
-    templateUrl: './request.component.html'
+    templateUrl: './request.component.html',
+    styleUrls: ['request.scss']
 })
 export class RequestComponent implements OnInit, OnDestroy {
     currentAccount: any;

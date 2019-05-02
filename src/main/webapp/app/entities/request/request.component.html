@@ -25,9 +25,9 @@
         </div>
     </div>
     <br/>
-    <div class="table-responsive" *ngIf="requests">
-        <table class="table table-striped">
-            <thead>
+    <div class="shadow-div table-responsive" *ngIf="requests">
+        <table class="table">
+            <thead class="">
             <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
             <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th jhiSortBy="date1"><span jhiTranslate="doctorsPlatformApp.request.date1">Date 1</span> <fa-icon [icon]="'sort'"></fa-icon></th>
@@ -42,10 +42,10 @@
             <tbody>
             <tr *ngFor="let request of requests ;trackBy: trackId">
                 <td><a [routerLink]="['/request', request.id, 'view' ]">{{request.id}}</a></td>
-                <td>{{request.date1 | date:'mediumDate'}}</td>
-                <td>{{request.date2 | date:'mediumDate'}}</td>
-                <td>{{request.date3 | date:'mediumDate'}}</td>
-                <td>{{request.confirmation}}</td>
+                <td><p>{{request.date1 | date:'mediumDate'}}</p></td>
+                <td><p>{{request.date2 | date:'mediumDate'}}</p></td>
+                <td><p>{{request.date3 | date:'mediumDate'}}</p></td>
+                <td><p>{{request.confirmation}}</p></td>
                 <td>
                     <div *ngIf="request.patientId">
                         <a [routerLink]="['../patient', request.patientId , 'view' ]" >{{request.patientId}}</a>
@@ -56,8 +56,8 @@
                         <a [routerLink]="['../doctor', request.doctorId , 'view' ]" >{{request.doctorId}}</a>
                     </div>
                 </td>
-                <td class="text-right">
-                    <div class="btn-group flex-btn-group-container">
+                <td>
+                    <div class="btn-group">
                         <button type="submit"
                                 [routerLink]="['/request', request.id, 'view' ]"
                                 class="btn btn-info btn-sm">
@@ -78,13 +78,19 @@
                             <fa-icon [icon]="'times'"></fa-icon>
                             <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
                         </button>
+                        <button *jhiHasAnyAuthority="'ROLE_ADMIN'" type="submit"
+                                [routerLink]="['/appointment', 'new' ]"
+                                class="btn btn-warning btn-sm">
+                            <fa-icon [icon]="'check'"></fa-icon>
+                            <span class="d-none d-md-inline">make an appointment</span>
+                        </button>
                     </div>
                 </td>
             </tr>
             </tbody>
         </table>
     </div>
-    <div *ngIf="requests && requests.length">
+    <div class="margin-top" *ngIf="requests && requests.length">
         <div class="row justify-content-center">
             <jhi-item-count [page]="page" [total]="totalItems" [maxSize]="5" [itemsPerPage]="itemsPerPage"></jhi-item-count>
         </div>
