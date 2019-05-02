@@ -5,7 +5,7 @@
         <div class="user-panel">
             <div class="pull-left " [ngSwitch]="MyVar">
 
-                    <img src="../../../content/images/blank-profile-picture-973460_640.png" class="img-circle" alt="User Image"*ngSwitchCase="false" width="100" height="200">
+                    <img src="../../../content/images/blank-profile-picture-973460_640.png" class="img-circle" alt="User Image"*ngSwitchCase="false" width="80" height="100">
                     <img [src]="'data:' + pictureContentType + ';base64,' + image"  alt="User Image" width="80" height="100"  *ngSwitchCase="true">
 
             </div>
