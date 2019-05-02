@@ -1,22 +1,19 @@
 
 <div class=" mb-4 ">
     <h4 class="text-muted mb-4">
-       My Doctors
+        My Doctors
 
     </h4>
     <jhi-alert></jhi-alert>
 
 
     <br/>
-    <div class="card border-0 rounded-0">
-        <div class="card-body">
-    <div class="table-responsive-md" >
-        <table class="table table-striped">
+
+    <div class="shadow-div table-responsive-md" >
+        <table class="table">
             <thead>
-            <tr >
-
+            <tr>
                 <th ><span jhiTranslate="doctorsPlatformApp.doctor.name">Name</span> </th>
-
                 <th ><span jhiTranslate="doctorsPlatformApp.doctor.address">Address</span> </th>
                 <th ><span jhiTranslate="doctorsPlatformApp.doctor.speciality">Speciality</span> </th>
                 <th><span jhiTranslate="doctorsPlatformApp.doctor.email">Email</span> </th>
@@ -26,17 +23,12 @@
             <tbody>
             <tr *ngFor="let doctor of Mydoctors ">
                 <td><a [routerLink]="['/doctor', doctor.id, 'view' ]">{{doctor.name}}</a></td>
-
-                <td>{{doctor.address}}</td>
-                <td>{{doctor.speciality}}</td>
-                <td>{{doctor.email}}</td>
-                <td>{{doctor.phoneNumber}}</td>
-
+                <td><p>{{doctor.address}}</p></td>
+                <td><p>{{doctor.speciality}}</p></td>
+                <td><p>{{doctor.email}}</p></td>
+                <td><p>{{doctor.phoneNumber}}</p></td>
             </tr>
             </tbody>
         </table>
     </div>
-
-</div>
-</div>
 </div>

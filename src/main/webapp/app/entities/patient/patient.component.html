@@ -25,8 +25,8 @@
         </div>
     </div>
     <br/>
-    <div class="table-responsive" *ngIf="patients">
-        <table class="table table-striped">
+    <div class="shadow-div table-responsive" *ngIf="patients">
+        <table class="table">
             <thead>
             <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
             <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon [icon]="'sort'"></fa-icon></th>
@@ -41,16 +41,17 @@
             <tbody>
             <tr *ngFor="let patient of patients ;trackBy: trackId">
                 <td><a [routerLink]="['/patient', patient.id, 'view' ]">{{patient.id}}</a></td>
-                <td>{{patient.name}}</td>
-                <td>{{patient.phoneNumber}}</td>
-                <td>{{patient.cin}}</td>
-                <td>{{patient.email}}</td>
+                <td><p>{{patient.name}}</p></td>
+                <td><p>{{patient.phoneNumber}}</p></td>
+                <td><p>{{patient.cin}}</p></td>
+                <td><p>{{patient.email}}</p></td>
                 <td>
                     <a *ngIf="patient.picture" (click)="openFile(patient.pictureContentType, patient.picture)">
                         <img [src]="'data:' + patient.pictureContentType + ';base64,' + patient.picture" style="max-height: 30px;" alt="patient image"/>
                     </a>
                     <span *ngIf="patient.picture">{{patient.pictureContentType}}, {{byteSize(patient.picture)}}</span>
                 </td>
+
                 <td class="text-right">
                     <div class="btn-group flex-btn-group-container">
                         <button type="submit"
@@ -79,7 +80,7 @@
             </tbody>
         </table>
     </div>
-    <div *ngIf="patients && patients.length">
+    <div class="margin-top" *ngIf="patients && patients.length">
         <div class="row justify-content-center">
             <jhi-item-count [page]="page" [total]="totalItems" [maxSize]="5" [itemsPerPage]="itemsPerPage"></jhi-item-count>
         </div>

@@ -11,7 +11,7 @@ import { HttpErrorResponse, HttpHeaders, HttpResponse } from '@angular/common/ht
 @Component({
     selector: 'jhi-my-doctors',
     templateUrl: './my-doctors.component.html',
-    styles: []
+    styleUrls: ['myDoctor.scss']
 })
 export class MyDoctorsComponent implements OnInit {
     currentAccount: any;

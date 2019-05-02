@@ -28,8 +28,8 @@
         </div>
     </div>
     <br/>
-    <div class="table-responsive" *ngIf="doctors">
-        <table class="table table-striped">
+    <div class="shadow-div table-responsive" *ngIf="doctors">
+        <table class="table">
             <thead>
             <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
             <th jhiSortBy="name"><span jhiTranslate="doctorsPlatformApp.doctor.name">Name</span> <fa-icon [icon]="'sort'"></fa-icon></th>
@@ -42,11 +42,8 @@
             <tr *ngFor="let doctor of doctors ;trackBy: trackId">
                 <td><a [routerLink]="['/doctor', doctor.id, 'view' ]">{{doctor.name}}</a></td>
                 <label class="radio-inline">{{doctor.address}}</label>
-
-
-
-                <td>{{doctor.speciality}}</td>
-                <td>{{doctor.phoneNumber}}</td>
+                <td><p>{{doctor.speciality}}</p></td>
+                <td><p>{{doctor.phoneNumber}}</p></td>
                 <!--<td class="text-right">
                     <div class="btn-group flex-btn-group-container">
                         <button type="submit"

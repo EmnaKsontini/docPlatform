@@ -13,7 +13,8 @@ import { AppointmentService } from './appointment.service';
 
 @Component({
     selector: 'jhi-appointment',
-    templateUrl: './appointment.component.html'
+    templateUrl: './appointment.component.html',
+    styleUrls: ['appointment.scss']
 })
 export class AppointmentComponent implements OnInit, OnDestroy {
     currentAccount: any;
