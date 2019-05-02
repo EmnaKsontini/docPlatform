@@ -23,6 +23,7 @@ export class SidebarComponent implements OnInit {
     MyVar = false;
     name: string;
     pictureContentType: any;
+    id: any;
 
     @Output() collapsedEvent = new EventEmitter<boolean>();
 
@@ -49,6 +50,8 @@ export class SidebarComponent implements OnInit {
         this.appointmentService.getCurrentUser().subscribe((res: HttpResponse<User>) => {
             console.log('login:' + res.body.login);
             this.name = res.body.login;
+
+            console.log('heeeeeeere !!!');
         });
 
         console.log('login:' + this.name);
@@ -56,6 +59,9 @@ export class SidebarComponent implements OnInit {
             this.image = res.body.picture;
             this.pictureContentType = res.body.pictureContentType;
             this.MyVar = true;
+            this.id = res.body.id;
+            console.log(this.id);
+
             console.log('image problem !!');
         });
     }

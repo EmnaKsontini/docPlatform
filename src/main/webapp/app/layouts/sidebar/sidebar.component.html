@@ -32,7 +32,16 @@
         <!-- /.search form -->
         <!-- sidebar menu: : style can be found in sidebar.less -->
         <ul class="sidebar-menu" data-widget="tree">
+
+
             <li class="header">MAIN NAVIGATION</li>
+            <li class="treeview" >
+                <a  class="dropdown-item"  [routerLink]="['/patient', id, 'edit']" routerLinkActive="active">
+                    <i class="fa fa-files-o"></i>
+                    <span>Edit Profile</span>
+
+                </a>
+            </li>
             <li class="active treeview menu-open">
                 <a class="dropdown-item" routerLink="/doctor/MyDoctor" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
                     <i class="fa fa-dashboard"></i> <span>My Doctors</span>
@@ -80,8 +89,8 @@
                     </span>
                 </a>
             </li>
-            <li class="treeview">
-                <a *jhiHasAnyAuthority="'ROLE_USER'" class="dropdown-item" routerLink="/patient" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+            <li class="treeview" >
+                <a *jhiHasAnyAuthority="'ROLE_ADMIN'" class="dropdown-item" routerLink="/patient" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
                     <i class="fa fa-files-o"></i>
                     <span>Patients</span>
                     <span class="pull-right-container">
@@ -89,6 +98,7 @@
                     </span>
                 </a>
             </li>
+
             <li class="treeview">
                 <a class="dropdown-item" href="#">
                     <i class="fa fa-th"></i> <span>My medical history </span>

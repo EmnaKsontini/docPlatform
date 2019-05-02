@@ -4,3 +4,4 @@ export * from './patient-delete-dialog.component';
 export * from './patient-detail.component';
 export * from './patient.component';
 export * from './patient.route';
+export * from './patient-profile.component';
