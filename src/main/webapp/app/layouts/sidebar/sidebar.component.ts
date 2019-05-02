@@ -3,7 +3,7 @@ import { Router, NavigationEnd } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { DoctorService } from 'app/entities/doctor';
 import { HttpResponse } from '@angular/common/http';
-import { User } from 'app/core';
+import { AccountService, User } from 'app/core';
 import { Request } from 'app/shared/model/request.model';
 import { Patient } from 'app/shared/model/patient.model';
 import { AppointmentService } from 'app/entities/appointment';
@@ -32,7 +32,8 @@ export class SidebarComponent implements OnInit {
         public router: Router,
         protected doctorService: DoctorService,
         protected dataUtils: JhiDataUtils,
-        private appointmentService: AppointmentService
+        private appointmentService: AppointmentService,
+        private accountService: AccountService
     ) {
         this.router.events.subscribe(val => {
             if (val instanceof NavigationEnd && window.innerWidth <= 992 && this.isToggled()) {
@@ -50,8 +51,6 @@ export class SidebarComponent implements OnInit {
         this.appointmentService.getCurrentUser().subscribe((res: HttpResponse<User>) => {
             console.log('login:' + res.body.login);
             this.name = res.body.login;
-
-            console.log('heeeeeeere !!!');
         });
 
         console.log('login:' + this.name);
@@ -107,5 +106,9 @@ export class SidebarComponent implements OnInit {
 
     onLoggedout() {
         localStorage.removeItem('isLoggedin');
+    }
+
+    isAuthenticated() {
+        return this.accountService.isAuthenticated();
     }
 }
