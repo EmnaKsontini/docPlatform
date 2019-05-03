@@ -32,6 +32,11 @@
         <!-- sidebar menu: : style can be found in sidebar.less -->
         <ul class="sidebar-menu" data-widget="tree">
             <li class="header">MAIN NAVIGATION</li>
+            <li class="treeview">
+                <a href="#" class="dropdown-item">
+                    <fa-icon [icon]="'home'"></fa-icon><span>home</span>
+                </a>
+            </li>
             <li class="treeview" >
                 <a  class="dropdown-item"  [routerLink]="['/patient', id, 'edit']" routerLinkActive="active">
                     <i class="fa fa-files-o"></i>
@@ -169,15 +174,7 @@
                     </span>
                 </a>
             </li>
-            <li class="treeview">
-                <a href="#" class="dropdown-item">
-                    <i class="fa fa-folder"></i> <span>Examples</span>
-                    <span class="pull-right-container">
-                        <i class="fa fa-angle-left pull-right"></i>
-                    </span>
-                </a>
-
-            </li>   <!--
+            <!--
                 <li class="treeview">
                     <a href="#">
                         <i class="fa fa-share"></i> <span>Multilevel</span>
