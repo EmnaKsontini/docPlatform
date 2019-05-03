@@ -1,9 +1,13 @@
 import { Component, Output, EventEmitter, OnInit } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
+import { DoctorService } from 'app/entities/doctor';
 import { HttpResponse } from '@angular/common/http';
 import { AccountService, User } from 'app/core';
+import { Request } from 'app/shared/model/request.model';
+import { Patient } from 'app/shared/model/patient.model';
 import { AppointmentService } from 'app/entities/appointment';
+import { JhiDataUtils } from 'ng-jhipster';
 
 @Component({
     selector: 'jhi-sidebar',
@@ -15,13 +19,19 @@ export class SidebarComponent implements OnInit {
     collapsed: boolean;
     showMenu: string;
     pushRightClass: string;
+    image: any;
+    MyVar = false;
     name: string;
+    pictureContentType: any;
+    id: any;
 
     @Output() collapsedEvent = new EventEmitter<boolean>();
 
     constructor(
         private translate: TranslateService,
         public router: Router,
+        protected doctorService: DoctorService,
+        protected dataUtils: JhiDataUtils,
         private appointmentService: AppointmentService,
         private accountService: AccountService
     ) {
@@ -44,6 +54,15 @@ export class SidebarComponent implements OnInit {
         });
 
         console.log('login:' + this.name);
+        this.doctorService.getCurrentUser().subscribe((res: HttpResponse<Patient>) => {
+            this.image = res.body.picture;
+            this.pictureContentType = res.body.pictureContentType;
+            this.MyVar = true;
+            this.id = res.body.id;
+            console.log(this.id);
+
+            console.log('image problem !!');
+        });
     }
 
     eventCalled() {
@@ -80,6 +99,9 @@ export class SidebarComponent implements OnInit {
 
     changeLang(language: string) {
         this.translate.use(language);
+    }
+    byteSize(field) {
+        return this.dataUtils.byteSize(field);
     }
 
     onLoggedout() {

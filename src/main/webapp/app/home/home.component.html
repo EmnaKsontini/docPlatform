@@ -1,7 +1,7 @@
 <link href="https://unpkg.com/flatpickr@4.5.7/dist/flatpickr.css" rel="stylesheet">
 <div class="col-lg-12">
-    <div class ="row">
-        <div class="col-lg-6" [ngSwitch]="isAuthenticated()" >
+    <div class ="row" [ngSwitch]="isAuthenticated()" >
+        <div class="col-lg-6" >
             <div class ="row"*ngSwitchCase="true">
                 <h3 class="col-md-10 col-lg-10 mb-4 text-muted">Next Appointments </h3>
                 <div class="col-md-2 col-lg-2 mb-4 ">
@@ -145,6 +145,13 @@
                             </div>
                         </div>
                     </ng-template>
+                    <div *ngSwitchCase="false">
+                        <div class="row card-white-no-appointmnet" >
+                            <div class="col-centered">
+                                Still no tips
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
 

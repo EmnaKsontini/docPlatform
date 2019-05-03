@@ -2,13 +2,19 @@
     <!-- sidebar: style can be found in sidebar.less -->
     <section id="sidebar" class="sidebar">
         <!-- Sidebar user panel -->
-        <div class="user-panel" [ngSwitch]="isAuthenticated()">
-            <div class="pull-left image" *ngSwitchCase="true">
-                <img src="avatar.jpg" class="img-circle" alt="User Image">
+        <div class="user-panel">
+            <div class="pull-left " [ngSwitch]="MyVar">
+
+                    <img src="../../../content/images/blank-profile-picture-973460_640.png" class="img-circle" alt="User Image"*ngSwitchCase="false" width="80" height="100">
+                    <img [src]="'data:' + pictureContentType + ';base64,' + image"  alt="User Image" width="80" height="100"  *ngSwitchCase="true">
+
             </div>
-            <div class="pull-left info" *ngSwitchCase="true">
-                <p >{{name}}</p>
-                <a href="#" *ngSwitchCase="true"><i class="fa fa-circle text-success"></i> Online</a>
+            <div>
+            <div class="pull-right info">
+
+                <p>  {{name}}</p>
+                <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+            </div>
             </div>
         </div>
         <!-- search form -->
@@ -29,6 +35,13 @@
             <li class="treeview">
                 <a href="#" class="dropdown-item">
                     <fa-icon [icon]="'home'"></fa-icon><span>home</span>
+                </a>
+            </li>
+            <li class="treeview" >
+                <a  class="dropdown-item"  [routerLink]="['/patient', id, 'edit']" routerLinkActive="active">
+                    <i class="fa fa-files-o"></i>
+                    <span>Edit Profile</span>
+
                 </a>
             </li>
             <li class="active treeview menu-open">
@@ -78,8 +91,8 @@
                     </span>
                 </a>
             </li>
-            <li class="treeview">
-                <a *jhiHasAnyAuthority="'ROLE_USER'" class="dropdown-item" routerLink="/patient" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+            <li class="treeview" >
+                <a *jhiHasAnyAuthority="'ROLE_ADMIN'" class="dropdown-item" routerLink="/patient" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
                     <i class="fa fa-files-o"></i>
                     <span>Patients</span>
                     <span class="pull-right-container">

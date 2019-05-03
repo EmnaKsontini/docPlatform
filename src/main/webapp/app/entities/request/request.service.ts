@@ -8,6 +8,7 @@ import { map } from 'rxjs/operators';
 import { SERVER_API_URL } from 'app/app.constants';
 import { createRequestOption } from 'app/shared';
 import { IRequest } from 'app/shared/model/request.model';
+import { Patient } from 'app/shared/model/patient.model';
 
 type EntityResponseType = HttpResponse<IRequest>;
 type EntityArrayResponseType = HttpResponse<IRequest[]>;
@@ -18,6 +19,9 @@ export class RequestService {
     public resourceSearchUrl = SERVER_API_URL + 'api/_search/requests';
 
     constructor(protected http: HttpClient) {}
+    getCurrentUser(): Observable<EntityResponseType> {
+        return this.http.get<Patient>(SERVER_API_URL + 'api' + '/getCurrentUser', { observe: 'response' });
+    }
 
     create(request: IRequest): Observable<EntityResponseType> {
         const copy = this.convertDateFromClient(request);

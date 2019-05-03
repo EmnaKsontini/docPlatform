@@ -1,19 +1,20 @@
-import { Component, OnInit, ElementRef } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { HttpResponse, HttpErrorResponse } from '@angular/common/http';
-import { Observable } from 'rxjs';
-import { filter, map } from 'rxjs/operators';
-import { JhiAlertService, JhiDataUtils } from 'ng-jhipster';
+import { Component, ElementRef, OnInit } from '@angular/core';
 import { IPatient } from 'app/shared/model/patient.model';
-import { PatientService } from './patient.service';
 import { IDoctor } from 'app/shared/model/doctor.model';
+import { JhiAlertService, JhiDataUtils } from 'ng-jhipster';
+import { PatientService } from 'app/entities/patient/patient.service';
 import { DoctorService } from 'app/entities/doctor';
+import { ActivatedRoute } from '@angular/router';
+import { filter, map } from 'rxjs/operators';
+import { HttpErrorResponse, HttpResponse } from '@angular/common/http';
+import { Observable } from 'rxjs';
 
 @Component({
-    selector: 'jhi-patient-update',
-    templateUrl: './patient-update.component.html'
+    selector: 'jhi-patient-profile',
+    templateUrl: './patient-profile.component.html',
+    styles: []
 })
-export class PatientUpdateComponent implements OnInit {
+export class PatientProfileComponent implements OnInit {
     patient: IPatient;
     isSaving: boolean;
 
