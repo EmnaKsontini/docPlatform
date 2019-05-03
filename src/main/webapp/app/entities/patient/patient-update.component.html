@@ -79,12 +79,12 @@
                         [(ngModel)]="patient.pictureContentType" />
                 </div>
 
-                <div class="form-group">
+                <!--<div class="form-group">
                     <label jhiTranslate="doctorsPlatformApp.patient.doctor" for="field_doctor">Doctor</label>
                     <select class="form-control" id="field_doctor" multiple name="doctor" [(ngModel)]="patient.doctors">
                         <option [ngValue]="getSelected(patient.doctors, doctorOption)" *ngFor="let doctorOption of doctors; trackBy: trackDoctorById">{{doctorOption.id}}</option>
                     </select>
-                </div>
+                </div>-->
             </div>
             <div>
                 <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
