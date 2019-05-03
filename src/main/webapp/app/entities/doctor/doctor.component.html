@@ -36,6 +36,7 @@
             <th jhiSortBy="address"><span jhiTranslate="doctorsPlatformApp.doctor.address">Address</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th jhiSortBy="speciality"><span jhiTranslate="doctorsPlatformApp.doctor.speciality">Speciality</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th jhiSortBy="phoneNumber"><span jhiTranslate="doctorsPlatformApp.doctor.phoneNumber">Phone Number</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th></th>
             </tr>
             </thead>
             <tbody>
@@ -44,30 +45,16 @@
                 <label class="radio-inline">{{doctor.address}}</label>
                 <td><p>{{doctor.speciality}}</p></td>
                 <td><p>{{doctor.phoneNumber}}</p></td>
-                <!--<td class="text-right">
+                <td class="text-right">
                     <div class="btn-group flex-btn-group-container">
                         <button type="submit"
-                                [routerLink]="['/doctor', doctor.id, 'view' ]"
+                                [routerLink]="['/request', 'new' ]"
                                 class="btn btn-info btn-sm">
-                            <fa-icon [icon]="'eye'"></fa-icon>
-                            <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
-                        </button>
-                        <button type="submit"
-                                [routerLink]="['/doctor', doctor.id, 'edit']"
-                                class="btn btn-primary btn-sm">
-                            <fa-icon [icon]="'pencil-alt'"></fa-icon>
-                            <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
-                        </button>
-                        <button type="submit"
-                                [routerLink]="['/', 'doctor', { outlets: { popup: doctor.id + '/delete'} }]"
-                                replaceUrl="true"
-                                queryParamsHandling="merge"
-                                class="btn btn-danger btn-sm">
-                            <fa-icon [icon]="'times'"></fa-icon>
-                            <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                            <fa-icon [icon]="'check'"></fa-icon>
+                            <span class="d-none d-md-inline">create request</span>
                         </button>
                     </div>
-                </td>-->
+                </td>
             </tr>
             </tbody>
         </table>
