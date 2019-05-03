@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.Objects;
+import javax.persistence.Lob;
 
 /**
  * A DTO for the Patient entity.
@@ -24,6 +25,10 @@ public class PatientDTO implements Serializable {
     @Pattern(regexp = "^([a-zA-Z0-9_\\-\\.]+)@([a-zA-Z0-9_\\-\\.]+)\\.([a-zA-Z]{2,5})$")
     private String email;
 
+    @Lob
+    private byte[] picture;
+
+    private String pictureContentType;
 
     private Set<DoctorDTO> doctors = new HashSet<>();
 
@@ -67,6 +72,22 @@ public class PatientDTO implements Serializable {
         this.email = email;
     }
 
+    public byte[] getPicture() {
+        return picture;
+    }
+
+    public void setPicture(byte[] picture) {
+        this.picture = picture;
+    }
+
+    public String getPictureContentType() {
+        return pictureContentType;
+    }
+
+    public void setPictureContentType(String pictureContentType) {
+        this.pictureContentType = pictureContentType;
+    }
+
     public Set<DoctorDTO> getDoctors() {
         return doctors;
     }
@@ -104,6 +125,7 @@ public class PatientDTO implements Serializable {
             ", phoneNumber=" + getPhoneNumber() +
             ", cin=" + getCin() +
             ", email='" + getEmail() + "'" +
+            ", picture='" + getPicture() + "'" +
             "}";
     }
 }

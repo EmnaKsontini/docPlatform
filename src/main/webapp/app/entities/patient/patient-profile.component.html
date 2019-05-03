@@ -7,56 +7,56 @@
                 <div class="form-group" [hidden]="!patient.id">
                     <label for="id" jhiTranslate="global.field.id">ID</label>
                     <input type="text" class="form-control" id="id" name="id"
-                        [(ngModel)]="patient.id" readonly />
+                           [(ngModel)]="patient.id" readonly />
                 </div>
                 <div class="form-group">
                     <label class="form-control-label" jhiTranslate="doctorsPlatformApp.patient.name" for="field_name">Name</label>
                     <input type="text" class="form-control" name="name" id="field_name"
-                        [(ngModel)]="patient.name" required/>
+                           [(ngModel)]="patient.name" required/>
                     <div [hidden]="!(editForm.controls.name?.dirty && editForm.controls.name?.invalid)">
                         <small class="form-text text-danger"
-                        [hidden]="!editForm.controls.name?.errors?.required" jhiTranslate="entity.validation.required">
-                        This field is required.
+                               [hidden]="!editForm.controls.name?.errors?.required" jhiTranslate="entity.validation.required">
+                            This field is required.
                         </small>
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="form-control-label" jhiTranslate="doctorsPlatformApp.patient.phoneNumber" for="field_phoneNumber">Phone Number</label>
                     <input type="number" class="form-control" name="phoneNumber" id="field_phoneNumber"
-                        [(ngModel)]="patient.phoneNumber" required/>
+                           [(ngModel)]="patient.phoneNumber" required/>
                     <div [hidden]="!(editForm.controls.phoneNumber?.dirty && editForm.controls.phoneNumber?.invalid)">
                         <small class="form-text text-danger"
-                        [hidden]="!editForm.controls.phoneNumber?.errors?.required" jhiTranslate="entity.validation.required">
-                        This field is required.
+                               [hidden]="!editForm.controls.phoneNumber?.errors?.required" jhiTranslate="entity.validation.required">
+                            This field is required.
                         </small>
                         <small class="form-text text-danger"
-                            [hidden]="!editForm.controls.phoneNumber?.errors?.number" jhiTranslate="entity.validation.number">
+                               [hidden]="!editForm.controls.phoneNumber?.errors?.number" jhiTranslate="entity.validation.number">
                             This field should be a number.
                         </small>
                     </div>
                 </div>
-               <!-- <div class="form-group">
+                <div class="form-group">
                     <label class="form-control-label" jhiTranslate="doctorsPlatformApp.patient.cin" for="field_cin">Cin</label>
                     <input type="number" class="form-control" name="cin" id="field_cin"
-                        [(ngModel)]="patient.cin" required/>
+                           [(ngModel)]="patient.cin" required/>
                     <div [hidden]="!(editForm.controls.cin?.dirty && editForm.controls.cin?.invalid)">
                         <small class="form-text text-danger"
-                        [hidden]="!editForm.controls.cin?.errors?.required" jhiTranslate="entity.validation.required">
-                        This field is required.
+                               [hidden]="!editForm.controls.cin?.errors?.required" jhiTranslate="entity.validation.required">
+                            This field is required.
                         </small>
                         <small class="form-text text-danger"
-                            [hidden]="!editForm.controls.cin?.errors?.number" jhiTranslate="entity.validation.number">
+                               [hidden]="!editForm.controls.cin?.errors?.number" jhiTranslate="entity.validation.number">
                             This field should be a number.
                         </small>
                     </div>
-                </div>-->
+                </div>
                 <div class="form-group">
                     <label class="form-control-label" jhiTranslate="doctorsPlatformApp.patient.email" for="field_email">Email</label>
                     <input type="text" class="form-control" name="email" id="field_email"
-                        [(ngModel)]="patient.email" pattern="^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$"/>
+                           [(ngModel)]="patient.email" pattern="^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$"/>
                     <div [hidden]="!(editForm.controls.email?.dirty && editForm.controls.email?.invalid)">
                         <small class="form-text text-danger"
-                            [hidden]="!editForm.controls.email?.errors?.pattern" jhiTranslate="entity.validation.pattern" [translateValues]="{ pattern: 'Email' }">
+                               [hidden]="!editForm.controls.email?.errors?.pattern" jhiTranslate="entity.validation.pattern" [translateValues]="{ pattern: 'Email' }">
                             This field should follow pattern for "Email".
                         </small>
                     </div>
@@ -74,17 +74,17 @@
                         <input type="file" id="file_picture" (change)="setFileData($event, patient, 'picture', true)" accept="image/*" jhiTranslate="entity.action.addimage"/>
                     </div>
                     <input type="hidden" class="form-control" name="picture" id="field_picture"
-                        [(ngModel)]="patient.picture" />
+                           [(ngModel)]="patient.picture" />
                     <input type="hidden" class="form-control" name="pictureContentType" id="field_pictureContentType"
-                        [(ngModel)]="patient.pictureContentType" />
+                           [(ngModel)]="patient.pictureContentType" />
                 </div>
 
-                <!--<div class="form-group">
+                <div class="form-group">
                     <label jhiTranslate="doctorsPlatformApp.patient.doctor" for="field_doctor">Doctor</label>
                     <select class="form-control" id="field_doctor" multiple name="doctor" [(ngModel)]="patient.doctors">
                         <option [ngValue]="getSelected(patient.doctors, doctorOption)" *ngFor="let doctorOption of doctors; trackBy: trackDoctorById">{{doctorOption.id}}</option>
                     </select>
-                </div>-->
+                </div>
             </div>
             <div>
                 <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">

@@ -7,6 +7,8 @@ export interface IPatient {
     phoneNumber?: number;
     cin?: number;
     email?: string;
+    pictureContentType?: string;
+    picture?: any;
     requests?: IRequest[];
     doctors?: IDoctor[];
 }
@@ -18,6 +20,8 @@ export class Patient implements IPatient {
         public phoneNumber?: number,
         public cin?: number,
         public email?: string,
+        public pictureContentType?: string,
+        public picture?: any,
         public requests?: IRequest[],
         public doctors?: IDoctor[]
     ) {}

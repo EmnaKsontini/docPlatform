@@ -12,6 +12,7 @@ import { PatientDetailComponent } from './patient-detail.component';
 import { PatientUpdateComponent } from './patient-update.component';
 import { PatientDeletePopupComponent } from './patient-delete-dialog.component';
 import { IPatient } from 'app/shared/model/patient.model';
+import { PatientProfileComponent } from 'app/entities/patient/patient-profile.component';
 
 @Injectable({ providedIn: 'root' })
 export class PatientResolve implements Resolve<IPatient> {
@@ -70,6 +71,18 @@ export const patientRoute: Routes = [
     {
         path: ':id/edit',
         component: PatientUpdateComponent,
+        resolve: {
+            patient: PatientResolve
+        },
+        data: {
+            authorities: ['ROLE_USER'],
+            pageTitle: 'doctorsPlatformApp.patient.home.title'
+        },
+        canActivate: [UserRouteAccessService]
+    },
+    {
+        path: ':id/profile',
+        component: PatientProfileComponent,
         resolve: {
             patient: PatientResolve
         },

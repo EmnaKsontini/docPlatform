@@ -42,6 +42,13 @@ public class Patient implements Serializable {
     @Column(name = "email")
     private String email;
 
+    @Lob
+    @Column(name = "picture")
+    private byte[] picture;
+
+    @Column(name = "picture_content_type")
+    private String pictureContentType;
+
     @OneToMany(mappedBy = "patient")
     private Set<Request> requests = new HashSet<>();
     @ManyToMany
@@ -109,6 +116,32 @@ public class Patient implements Serializable {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public byte[] getPicture() {
+        return picture;
+    }
+
+    public Patient picture(byte[] picture) {
+        this.picture = picture;
+        return this;
+    }
+
+    public void setPicture(byte[] picture) {
+        this.picture = picture;
+    }
+
+    public String getPictureContentType() {
+        return pictureContentType;
+    }
+
+    public Patient pictureContentType(String pictureContentType) {
+        this.pictureContentType = pictureContentType;
+        return this;
+    }
+
+    public void setPictureContentType(String pictureContentType) {
+        this.pictureContentType = pictureContentType;
     }
 
     public Set<Request> getRequests() {
@@ -190,6 +223,8 @@ public class Patient implements Serializable {
             ", phoneNumber=" + getPhoneNumber() +
             ", cin=" + getCin() +
             ", email='" + getEmail() + "'" +
+            ", picture='" + getPicture() + "'" +
+            ", pictureContentType='" + getPictureContentType() + "'" +
             "}";
     }
 }
